@@ -1,0 +1,189 @@
+:root {
+    --transition-duration: 0.35s;
+    --transition-timing-function: ease-in-out;
+    --primary-color: #000000;
+    --secondary-color: #FFFFFF;
+    --divider-color: #CCCCCC;
+    --bg-primary-color: #FFFFFF;
+    --bg-secondary-color: #F5F5F5;
+    --bg-header-footer-color: #000000;
+    --placeholder-color: #3B3B3B;
+    --border-color: #000000;
+    --border-radius: 16px;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 40px 80px 10px 80px;
+    background-color: var(--bg-header-footer-color);
+}
+
+footer>.subscribe-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+footer>.subscribe-section>p {
+    color: var(--secondary-color);
+    font-family: "Bebas Neue";
+    font-size: 40px;
+    left: 150%;
+    letter-spacing: 3px;
+    margin: 24px 40px 20px 0;
+}
+
+footer .react-aria-Form {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+footer .react-aria-Input {
+    height: 48px;
+    width: 340px;
+    margin-right: 14px;
+    font-family: "Roboto Condensed";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0 14px;
+    border: none;
+    border-radius: 0;
+}
+
+footer .react-aria-Input[data-focused] {
+    outline: none;
+}
+
+footer .react-aria-Button {
+    color: var(--secondary-color);
+    font-family: "Roboto Condensed";
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 10px 46px;
+    border: solid 2px var(--bg-secondary-color);
+    background-color: transparent;
+    transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+footer .react-aria-Button[data-hovered] {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+footer .react-aria-Button[data-focused] {
+    outline: none;
+}
+
+footer .react-aria-Button[data-pressed] {
+    transform: scale(0.98);
+}
+
+footer>.social-media {
+    margin: 10px 0;
+}
+
+footer>.social-media>img {
+    opacity: 0.8;
+    width: 32px;
+    height: 32px;
+    margin: 18px;
+    transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+footer>.social-media>img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+footer>.copyright {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 14px;
+    width: 100%;
+    border-top: solid 1px var(--divider-color);
+    opacity: 0.6;
+}
+
+footer>.copyright>p {
+    color: var(--secondary-color);
+    font-family: "Roboto Condensed";
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+
+footer .terms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    align-items: center;
+}
+
+footer .terms>.react-aria-Link {
+    color: var(--secondary-color);
+    font-size: 16px;
+    font-family: "Roboto Condensed";
+    font-weight: 300;
+    letter-spacing: 1px;
+    line-height: 150%;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    border-bottom: solid 1px transparent;
+    margin: 0 0 0 24px;
+    padding: 0 0 4px 0;
+    transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+footer .terms>.react-aria-Link[data-hovered] {
+    border-bottom: solid 1px var(--secondary-color);
+}
+
+@media only screen and (max-width: 934px) {
+
+    footer .react-aria-Form,
+    footer>.subscribe-section {
+        flex-wrap: wrap;
+        width: 80%;
+    }
+
+    footer .react-aria-Button,
+    footer>.subscribe-section>.react-aria-Form>.react-aria-Input {
+        width: 100%;
+        margin: 0;
+        margin-top: 14px;
+    }
+
+    footer>.subscribe-section>p {
+        text-align: center;
+        margin-right: 0;
+    }
+
+    footer {
+        padding: 20px 20px 10px 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    footer .react-aria-Form {
+        width: 100%;
+    }
+}
