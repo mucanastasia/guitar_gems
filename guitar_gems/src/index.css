@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+:root {
+  --transition-duration: 0.35s;
+  --transition-timing-function: ease-in-out;
+  --primary-color: #000000;
+  --secondary-color: #FFFFFF;
+  --divider-color: #CCCCCC;
+  --bg-primary-color: #FFFFFF;
+  --bg-secondary-color: #F5F5F5;
+  --bg-header-footer-color: #000000;
+  --placeholder-color: #3B3B3B;
+  --border-color: #000000;
+  --border-radius: 16px;
+}
+
 * {
   box-sizing: border-box;
 }

@@ -1,4 +1,4 @@
-import { Button, Input, Link, Form } from 'react-aria-components';
+import { Button, Input, Link, Form, TextField } from 'react-aria-components';
 import instagramIcn from './assets/instagram.svg';
 import facebookIcn from './assets/facebook.svg';
 import xIcn from './assets/x.svg';
@@ -10,9 +10,11 @@ export default function Footer() {
         <footer>
             <div className="subscribe-section">
                 <p>Subscribe to our newsletters</p>
-                <Form>
-                    <Input placeholder='Email' />
-                    <Button>Subscribe</Button>
+                <Form onSubmit={(e) => { e.preventDefault() }}>
+                    <TextField name="email" type="email">
+                        <Input placeholder='Email' />
+                        <Button type="submit">Subscribe</Button>
+                    </TextField>
                 </Form>
             </div>
             <div className="social-media">
