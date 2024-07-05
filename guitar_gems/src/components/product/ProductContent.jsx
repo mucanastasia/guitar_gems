@@ -59,7 +59,7 @@ export default function ProductContent({ guitarData }) {
                             </tbody>
                         </table>
                     </article>
-                    {guitarData.features.length > 0 &&
+                    {guitarData.features?.length > 0 &&
                         <article>
                             <h2>Features</h2>
                             <ul>

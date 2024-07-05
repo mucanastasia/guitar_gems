@@ -4,7 +4,7 @@ import Hero from './Hero';
 import ProductContent from './ProductContent';
 import './product.css';
 
-export default function Product() {
+export default function Product({ guitarId }) {
     const [guitarData, setGuitarData] = useState({});
     // const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -50,7 +50,7 @@ export default function Product() {
                                 description
                             )
                         `)
-                    .eq('id', 7)
+                    .eq('id', guitarId)
                     .single();
 
                 // console.log(data.brand.name);        // console.log!!!!!!!
@@ -66,7 +66,7 @@ export default function Product() {
         };
 
         fetchData();
-    }, []);
+    }, [guitarId]);
 
     return (
         <>
