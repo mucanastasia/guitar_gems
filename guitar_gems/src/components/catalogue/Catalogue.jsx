@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
 import ProductCard from './ProductCard';
 import './catalogue.css';
+import FiltersContainer from './FiltersContainer';
 
 export default function Catalogue() {
     const [guitars, setGuitars] = useState([]);
-    // const [loading, setLoading] = useState(true);
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // setLoading(true);
+                setLoading(true);
                 const { data, error } = await supabase
                     .from('guitars')
                     .select(`
@@ -28,9 +28,9 @@ export default function Catalogue() {
 
                 setGuitars(data);
             } catch (error) {
-                setErrorMessage(error.message);
+                console.error(error.message);
             } finally {
-                // setLoading(false);
+                setLoading(false);
             }
         };
 
@@ -49,12 +49,14 @@ export default function Catalogue() {
 
     return (
         <>
-            {
-                errorMessage
-                    ? <p>{errorMessage}</p>
-                    : <div className="catalogue-container">
+            {loading
+                ? <p>LOADING...</p>
+                : <div className="container">
+                    <FiltersContainer />
+                    <div className="catalogue-container">
                         {renderCatalogue()}
                     </div>
+                </div>
             }
         </>
     );

@@ -15,13 +15,13 @@ export default function ProductContent({ guitarData }) {
         const formattedDate = formatDate(guitarData.release_date);
 
         const data = [
-            ['Brand', guitarData.brand?.name],
-            ['Type', guitarData.type?.name],
-            ['Body', guitarData.body_material?.name],
-            ['Neck', guitarData.neck_material?.name],
-            ['Fingerboard', guitarData.fingerboard_material?.name],
+            ['Brand', guitarData.brand.name],
+            ['Type', guitarData.type.name],
+            ['Body', guitarData.body_material.name],
+            ['Neck', guitarData.neck_material.name],
+            ['Fingerboard', guitarData.fingerboard_material.name],
             ['Release date', formattedDate],
-            ['Country', guitarData.country?.name],
+            ['Country', guitarData.country.name],
         ];
 
         return data.map((row) => (
@@ -33,7 +33,7 @@ export default function ProductContent({ guitarData }) {
     };
 
     const renderFeatures = () => {
-        return guitarData.features?.map((feature) => (
+        return guitarData.features.map((feature) => (
             <li key={feature.id}><p>{feature.description}</p></li>
         ));
     };

@@ -8,13 +8,12 @@ import './product.css';
 
 export default function Product({ guitarId }) {
     const [guitarData, setGuitarData] = useState({});
-    // const [loading, setLoading] = useState(true);
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // setLoading(true);
+                setLoading(true);
                 const { data, error } = await supabase
                     .from('guitars')
                     .select(`
@@ -55,15 +54,13 @@ export default function Product({ guitarId }) {
                     .eq('id', guitarId)
                     .single();
 
-                // console.log(data.brand.name);        // console.log!!!!!!!
-
                 if (error) throw error;
 
                 setGuitarData(data);
             } catch (error) {
-                setErrorMessage(error.message);
+                console.error(error.message);
             } finally {
-                // setLoading(false);
+                setLoading(false);
             }
         };
 
@@ -72,22 +69,21 @@ export default function Product({ guitarId }) {
 
     return (
         <>
-            {
-                errorMessage
-                    ? <p>{errorMessage}</p>
-                    : <>
-                        <Hero name={guitarData.name} brand={guitarData.brand?.name} img={guitarData.main_img} />
-                        <div className="product-wrap">
-                            <Breadcrumbs>
-                                <Breadcrumb><Link href="/">Catalogue</Link></Breadcrumb>
-                                <Breadcrumb><Link>{`${guitarData.brand?.name} - ${guitarData.name}`}</Link></Breadcrumb>
-                            </Breadcrumbs>
-                            <div className="product-content-container">
-                                <ProductCard key={guitarData.id} guitarData={guitarData} />
-                                <ProductContent guitarData={guitarData} />
-                            </div>
+            {loading
+                ? <p>LOADING...</p>
+                : <>
+                    <Hero name={guitarData.name} brand={guitarData.brand.name} img={guitarData.main_img} />
+                    <div className="product-wrap">
+                        <Breadcrumbs>
+                            <Breadcrumb><Link href="/">Catalogue</Link></Breadcrumb>
+                            <Breadcrumb><Link>{`${guitarData.brand.name} - ${guitarData.name}`}</Link></Breadcrumb>
+                        </Breadcrumbs>
+                        <div className="product-content-container">
+                            <ProductCard key={guitarData.id} guitarData={guitarData} />
+                            <ProductContent guitarData={guitarData} />
                         </div>
-                    </>
+                    </div>
+                </>
             }
         </>
     );
