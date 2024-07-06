@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
+import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
 import Hero from './Hero';
 import ProductContent from './ProductContent';
+import ProductCard from '../catalogue/ProductCard';
 import './product.css';
 
 export default function Product({ guitarId }) {
@@ -75,7 +77,16 @@ export default function Product({ guitarId }) {
                     ? <p>{errorMessage}</p>
                     : <>
                         <Hero name={guitarData.name} brand={guitarData.brand?.name} img={guitarData.main_img} />
-                        <ProductContent guitarData={guitarData} />
+                        <div className="product-wrap">
+                            <Breadcrumbs>
+                                <Breadcrumb><Link href="/">Catalogue</Link></Breadcrumb>
+                                <Breadcrumb><Link>{`${guitarData.brand?.name} - ${guitarData.name}`}</Link></Breadcrumb>
+                            </Breadcrumbs>
+                            <div className="product-content-container">
+                                <ProductCard key={guitarData.id} guitarData={guitarData} />
+                                <ProductContent guitarData={guitarData} />
+                            </div>
+                        </div>
                     </>
             }
         </>

@@ -6,7 +6,7 @@ export default function Header() {
         <header>
             <Link href="#">
                 <span className="material-symbols-outlined">account_circle</span>
-                Sign In
+                <p>Sign In</p>
             </Link>
         </header>
     );

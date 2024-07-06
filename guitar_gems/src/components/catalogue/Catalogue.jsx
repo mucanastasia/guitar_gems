@@ -39,7 +39,6 @@ export default function Catalogue() {
 
     const renderCatalogue = () => {
         if (!guitars || guitars.length === 0) {
-            console.log("No guitars available");
             return <p>No guitars available.</p>;
         }
 

@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="subscribe-section">
                 <p>Subscribe to our newsletters</p>
                 <Form onSubmit={(e) => { e.preventDefault() }}>
-                    <TextField name="email" type="email">
+                    <TextField name="email" type="email" aria-label="email">
                         <Input placeholder='Email' />
                         <Button type="submit">Subscribe</Button>
                     </TextField>

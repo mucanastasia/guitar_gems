@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
 import './productContent.css';
 
 export default function ProductContent({ guitarData }) {
@@ -42,10 +41,6 @@ export default function ProductContent({ guitarData }) {
     return (
         <section className="product-container">
             <div className="wrap">
-                <Breadcrumbs>
-                    <Breadcrumb><Link href="/">Catalogue</Link></Breadcrumb>
-                    <Breadcrumb><Link>{`${guitarData.brand?.name} - ${guitarData.name}`}</Link></Breadcrumb>
-                </Breadcrumbs>
                 <div className="product-content">
                     <article>
                         <h2>Description</h2>

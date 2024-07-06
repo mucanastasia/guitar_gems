@@ -45,7 +45,7 @@ header>.react-aria-Link[data-hovered] {
     opacity: 1;
 }
 
-span.material-symbols-outlined {
+header span.material-symbols-outlined {
     color: var(--secondary-color);
     font-size: 28px;
     margin-right: 14px;
@@ -55,5 +55,16 @@ span.material-symbols-outlined {
 
     header {
         padding: 0 20px;
+    }
+}
+
+@media only screen and (max-width: 404px) {
+
+    header>.react-aria-Link>p {
+        display: none;
+    }
+
+    header span.material-symbols-outlined {
+        margin-right: 0;
     }
 }
