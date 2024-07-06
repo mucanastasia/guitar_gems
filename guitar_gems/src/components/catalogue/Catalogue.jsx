@@ -3,6 +3,7 @@ import { supabase } from '../../supabaseClient';
 import ProductCard from './ProductCard';
 import './catalogue.css';
 import FiltersContainer from './FiltersContainer';
+import CatalogueHeader from './CatalogueHeader';
 
 export default function Catalogue() {
     const [guitars, setGuitars] = useState([]);
@@ -51,12 +52,15 @@ export default function Catalogue() {
         <>
             {loading
                 ? <p>LOADING...</p>
-                : <div className="container">
-                    <FiltersContainer />
-                    <div className="catalogue-container">
-                        {renderCatalogue()}
+                : <>
+                    <CatalogueHeader />
+                    <div className="container">
+                        <FiltersContainer />
+                        <div className="catalogue-container">
+                            {renderCatalogue()}
+                        </div>
                     </div>
-                </div>
+                </>
             }
         </>
     );
