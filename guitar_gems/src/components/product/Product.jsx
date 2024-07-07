@@ -4,7 +4,8 @@ import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
 import Hero from './Hero';
 import ProductContent from './ProductContent';
 import ProductCard from '../catalogue/ProductCard';
-import './product.css';
+import Spinner from '../spinner/Spinner';
+import './styles/product.css';
 
 export default function Product({ guitarId }) {
     const [guitarData, setGuitarData] = useState({});
@@ -70,16 +71,16 @@ export default function Product({ guitarId }) {
     return (
         <>
             {loading
-                ? <p>LOADING...</p>
+                ? <Spinner />
                 : <>
                     <Hero name={guitarData.name} brand={guitarData.brand.name} img={guitarData.main_img} />
                     <div className="product-wrap">
                         <Breadcrumbs>
                             <Breadcrumb><Link href="/">Catalogue</Link></Breadcrumb>
-                            <Breadcrumb><Link>{`${guitarData.brand.name} - ${guitarData.name}`}</Link></Breadcrumb>
+                            <Breadcrumb><Link>{`${guitarData.brand.name} — ${guitarData.name}`}</Link></Breadcrumb>
                         </Breadcrumbs>
                         <div className="product-content-container">
-                            <ProductCard key={guitarData.id} guitarData={guitarData} />
+                            <ProductCard guitarData={guitarData} />
                             <ProductContent guitarData={guitarData} />
                         </div>
                     </div>

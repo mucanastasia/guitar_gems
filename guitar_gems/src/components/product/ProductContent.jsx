@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import './productContent.css';
+import './styles/productContent.css';
 
 export default function ProductContent({ guitarData }) {
 
@@ -39,31 +39,27 @@ export default function ProductContent({ guitarData }) {
     };
 
     return (
-        <section className="product-container">
-            <div className="wrap">
-                <div className="product-content">
-                    <article>
-                        <h2>Description</h2>
-                        <p>{guitarData.description}</p>
-                    </article>
-                    <article>
-                        <h2>Specs</h2>
-                        <table>
-                            <tbody>
-                                {renderSpecs()}
-                            </tbody>
-                        </table>
-                    </article>
-                    {guitarData.features?.length > 0 &&
-                        <article>
-                            <h2>Features</h2>
-                            <ul>
-                                {renderFeatures()}
-                            </ul>
-                        </article>
-                    }
-                </div>
-            </div>
+        <section className="product-content">
+            <article>
+                <h2>Description</h2>
+                <p>{guitarData.description}</p>
+            </article>
+            <article>
+                <h2>Specs</h2>
+                <table>
+                    <tbody>
+                        {renderSpecs()}
+                    </tbody>
+                </table>
+            </article>
+            {guitarData.features?.length > 0 &&
+                <article>
+                    <h2>Features</h2>
+                    <ul>
+                        {renderFeatures()}
+                    </ul>
+                </article>
+            }
         </section>
     );
 }

@@ -21,7 +21,7 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    padding: 40px 80px 10px 80px;
+    padding: 40px 40px 10px 40px;
     background-color: var(--bg-header-footer-color);
 }
 
@@ -149,7 +149,7 @@ footer .terms>.react-aria-Link {
     outline: none;
     border-bottom: solid 1px transparent;
     margin: 0 0 0 24px;
-    padding: 0 0 4px 0;
+    padding: 0 0 2px 0;
     transition: all var(--transition-duration) var(--transition-timing-function);
 }
 
@@ -187,5 +187,19 @@ footer .terms>.react-aria-Link[data-hovered] {
 
     footer .react-aria-Form {
         width: 100%;
+    }
+
+    footer .copyright {
+        flex-direction: column;
+        align-items: center;
+        margin-right: 0;
+    }
+
+    footer .terms {
+        justify-content: start;
+    }
+
+    footer .terms>.react-aria-Link:first-child {
+        margin-left: 0;
     }
 }

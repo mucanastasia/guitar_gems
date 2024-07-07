@@ -1,4 +1,4 @@
-import './hero.css';
+import './styles/hero.css';
 import shadowImg from './assets/shadow.png';
 
 export default function Hero({ name, brand, img }) {

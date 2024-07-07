@@ -12,19 +12,11 @@
     --border-radius: 16px;
 }
 
-.product-container {
-    display: flex;
-    flex-direction: column;
+.product-content {
+    display: grid;
     justify-content: start;
     margin: 0;
     align-items: center;
-}
-
-.product-container>.wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
     max-width: 680px;
 }
 

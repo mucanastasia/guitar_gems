@@ -14,8 +14,7 @@
 }
 
 .filters-container .react-aria-CheckboxGroup {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 14px;
     color: #000000;
     margin: 20px 0;

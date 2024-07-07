@@ -1,6 +1,6 @@
 import { Button, Input, SearchField } from 'react-aria-components';
-import logo from '../../../public/apple-touch-icon.png';
-import './catalogueHeader.css';
+import logo from '../../assets/logo.png';
+import './styles/catalogueHeader.css';
 
 export default function CatalogueHeader() {
     return (

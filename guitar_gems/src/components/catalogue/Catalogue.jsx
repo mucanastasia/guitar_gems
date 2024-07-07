@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
 import ProductCard from './ProductCard';
-import './catalogue.css';
+import './styles/catalogue.css';
 import FiltersContainer from './FiltersContainer';
 import CatalogueHeader from './CatalogueHeader';
+import Skeleton from '../spinner/Skeleton';
 
 export default function Catalogue() {
     const [guitars, setGuitars] = useState([]);
@@ -50,18 +51,16 @@ export default function Catalogue() {
 
     return (
         <>
-            {loading
-                ? <p>LOADING...</p>
-                : <>
-                    <CatalogueHeader />
-                    <div className="container">
-                        <FiltersContainer />
-                        <div className="catalogue-container">
-                            {renderCatalogue()}
-                        </div>
-                    </div>
-                </>
-            }
+            <CatalogueHeader />
+            <div className="container">
+                <FiltersContainer />
+                <div className="catalogue-container">
+                    {loading
+                        ? <Skeleton />
+                        : renderCatalogue()
+                    }
+                </div>
+            </div>
         </>
     );
 }

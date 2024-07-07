@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import './productCard.css';
+import './styles/productCard.css';
 
 export default function ProductCard({ guitarData }) {
 

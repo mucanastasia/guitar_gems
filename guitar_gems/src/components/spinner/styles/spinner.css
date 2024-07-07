@@ -1,0 +1,23 @@
+.loading-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, #aeaeae 94%, #0000) top/11.5px 11.5px no-repeat,
+        conic-gradient(#0000 30%, #aeaeae);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 11.5px), #000 0);
+    mask: radial-gradient(farthest-side, #0000 calc(100% - 11.5px), #000 0);
+    animation: spinner-c7wet2 1s infinite linear;
+}
+
+@keyframes spinner-c7wet2 {
+    100% {
+        transform: rotate(1turn);
+    }
+}

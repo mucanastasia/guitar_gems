@@ -3,7 +3,7 @@ import instagramIcn from './assets/instagram.svg';
 import facebookIcn from './assets/facebook.svg';
 import xIcn from './assets/x.svg';
 import tiktokIcn from './assets/tiktok.svg';
-import './footer.css';
+import './styles/footer.css';
 
 export default function Footer() {
     return (

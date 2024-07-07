@@ -1,18 +1,15 @@
 .container {
-    display: flex;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: 160px 4fr;
     gap: 80px;
     margin: 22px auto 120px auto;
-    max-width: 1752px;
-    padding: 0 80px;
+    width: 1672px;
+    padding: 0 40px;
 }
 
 .catalogue-container {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    align-items: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 320px);
     gap: 24px;
     margin: 20px 0;
 }
@@ -27,16 +24,17 @@
     }
 } */
 
-@media only screen and (max-width: 1752px) {
+
+@media only screen and (max-width: 1671px) {
 
     .container {
-        max-width: 1408px;
+        width: 1328px;
     }
 }
 
-@media only screen and (max-width: 1407px) {
+@media only screen and (max-width: 1327px) {
 
     .container {
-        max-width: 1068px;
+        width: 984px;
     }
 }
