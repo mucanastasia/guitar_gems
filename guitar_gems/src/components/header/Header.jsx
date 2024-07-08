@@ -4,16 +4,24 @@ import { useSession } from '../../contexts/SessionContext';
 import { supabase } from '../../supabaseClient';
 import './styles/header.css';
 import './styles/popover.css';
+import { useHistory, useLocation, Link } from 'react-router-dom';
 
 export default function Header() {
     const { session } = useSession();
     const [loading, setLoading] = useState();
+    const history = useHistory();
+    const location = useLocation();
 
     const handleSignOut = async () => {
         setLoading(true);
         const { error } = await supabase.auth.signOut();
         console.log(error);
         setLoading(false);
+    };
+
+    const handleSignInClick = () => {
+        //Probably need a more accurate name for this function or it's a workaround and need to be replaced with something else.
+        history.push('/sign-in', { from: location.pathname });
     };
 
     return (
@@ -54,9 +62,11 @@ export default function Header() {
                     </Popover>
                 </DialogTrigger>
                 :
-                <Button>
-                    <span className="material-symbols-outlined">login</span>
-                    <p>Sign In</p>
+                <Button onPress={handleSignInClick}>
+                    <Link to="/sign-in">
+                        <span className="material-symbols-outlined">login</span>
+                        <p>Sign In</p>
+                    </Link>
                 </Button>
             }
         </header>

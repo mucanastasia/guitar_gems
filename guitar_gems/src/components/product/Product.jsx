@@ -6,10 +6,12 @@ import ProductContent from './ProductContent';
 import ProductCard from '../catalogue/ProductCard';
 import Spinner from '../spinner/Spinner';
 import './styles/product.css';
+import { useParams } from 'react-router-dom';
 
-export default function Product({ guitarId }) {
+export default function Product() {
     const [guitarData, setGuitarData] = useState({});
     const [loading, setLoading] = useState(true);
+    const { id } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -52,7 +54,7 @@ export default function Product({ guitarId }) {
                                 description
                             )
                         `)
-                    .eq('id', guitarId)
+                    .eq('id', id)
                     .single();
 
                 if (error) throw error;
@@ -66,7 +68,7 @@ export default function Product({ guitarId }) {
         };
 
         fetchData();
-    }, [guitarId]);
+    }, [id]);
 
     return (
         <>

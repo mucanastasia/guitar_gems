@@ -42,7 +42,7 @@
             font-weight: 400;
             text-align: center;
 
-            .react-aria-Link {
+            a {
                 margin: 0 4px;
                 color: #008FAF;
                 text-decoration: none;
@@ -50,7 +50,7 @@
                 outline: none;
                 transition: all var(--transition-duration) var(--transition-timing-function);
 
-                &[data-hovered] {
+                &:hover {
                     background-color: #00AED4;
                     color: #ffffff;
                 }

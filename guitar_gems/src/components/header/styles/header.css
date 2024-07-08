@@ -42,11 +42,18 @@ header>.react-aria-Button {
     display: flex;
     align-items: center;
     transition: all var(--transition-duration) var(--transition-timing-function);
-}
 
-header>.react-aria-Button[data-hovered] {
-    opacity: 1;
+    &[data-hovered] {
+        opacity: 1;
 
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--secondary-color);
+    }
 }
 
 header span.material-symbols-outlined {
@@ -64,7 +71,7 @@ header span.material-symbols-outlined {
 
 @media only screen and (max-width: 404px) {
 
-    header>.react-aria-Button>p {
+    header>.react-aria-Button>a>p {
         display: none;
     }
 

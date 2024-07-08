@@ -1,29 +1,56 @@
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Product from './components/product/Product';
 import Catalogue from './components/catalogue/Catalogue';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SingUp';
-import './App.css';
 import AuthPage from './components/auth/AuthPage';
+import './App.css';
+import PrivateRoute from "./components/auth/PrivateRoute";
 
 export default function App() {
   return (
-    <>
-      <Header />
-      <Catalogue />
-      <Footer />
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <>
+            <Header />
+            <Catalogue />
+            <Footer />
+          </>
+        </Route>
 
-      <AuthPage>
-        <SignIn />
-      </AuthPage>
+        <Route path="/sign-in">
+          <AuthPage>
+            <SignIn />
+          </AuthPage>
+        </Route>
 
-      <AuthPage>
-        <SignUp />
-      </AuthPage>
+        <Route path="/sign-up">
+          <AuthPage>
+            <SignUp />
+          </AuthPage>
+        </Route>
 
-      <Product guitarId={2} />
-      <Footer />
-    </>
+        <Route path="/guitars/:id">
+          <>
+            <Header />
+            <Product />
+            <Footer />
+          </>
+        </Route>
+
+        {/* To test private route */}
+        <PrivateRoute path="/hello">
+          <p>Hello!</p>
+        </PrivateRoute>
+
+      </Switch>
+    </Router>
   );
 }

@@ -1,16 +1,24 @@
 import { useState } from 'react';
-import { Form, TextField, Input, Button, FieldError, Link } from 'react-aria-components';
+import { Form, TextField, Input, Button, FieldError } from 'react-aria-components';
 import { supabase } from '../../supabaseClient';
 import logo from '../../assets/logo.png';
 import './styles/auth.css';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+
+//TODO: A button BACK!!!
+//TODO: Logo as a link to main
 
 export default function SignIn() {
     const [fieldType, setFieldType] = useState('password');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    let history = useHistory();
+    let location = useLocation();
 
-    const handleSubmit = async (e) => {
+    let { from } = location.state || { from: { pathname: "/" } };
+
+    const handleSignIn = async (e) => {
         setLoading(true);
         e.preventDefault();
 
@@ -25,6 +33,7 @@ export default function SignIn() {
         setEmail('');
         setPassword('');
         setLoading(false);
+        if (data && !error) history.replace(from);
     };
 
     const handleClickVisible = () => {
@@ -42,7 +51,7 @@ export default function SignIn() {
     return (
         <div className="auth-form">
             <h1><img src={logo} alt="Guitar Gems logo image" />Sign In</h1>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSignIn}>
                 <TextField name="email" type="email" aria-label="Email" isRequired>
                     <Input placeholder="Email"
                         value={email}
@@ -61,7 +70,7 @@ export default function SignIn() {
                 <Button type="submit">{loading ? 'Loading...' : 'Sign In'}</Button>
             </Form>
 
-            <p>{`Don't have an account?`}<Link href="/">Sign up</Link></p>
+            <p>{`Don't have an account?`}<Link to="/sign-up">Sign up</Link></p>
         </div>
     );
 }

@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { Form, TextField, Input, Button, FieldError, Link } from 'react-aria-components';
+import { Form, TextField, Input, Button, FieldError } from 'react-aria-components';
 import { supabase } from '../../supabaseClient';
 import logo from '../../assets/logo.png';
 import './styles/auth.css';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+
+//TODO: A button BACK!!!
 
 export default function SignUp() {
     const [user, setUser] = useState({
@@ -11,6 +14,11 @@ export default function SignUp() {
         password: '',
         confirmedPassword: '',
     });
+
+    let history = useHistory();
+    let location = useLocation();
+
+    let { from } = location.state || { from: { pathname: "/" } };
 
     const [loading, setLoading] = useState(false);
 
@@ -27,8 +35,6 @@ export default function SignUp() {
             fieldType.password === 'password' ? setFieldType({ ...fieldType, password: 'text' }) : setFieldType({ ...fieldType, password: 'password' });
         } else if (targetAtr === 'confirmed-password') {
             fieldType.confirmedPass === 'password' ? setFieldType({ ...fieldType, confirmedPass: 'text' }) : setFieldType({ ...fieldType, confirmedPass: 'password' });
-
-            // setFieldType(prev => { prev.password = 'text' });
         }
     };
 
@@ -75,6 +81,7 @@ export default function SignUp() {
         });
 
         setLoading(false);
+        if (data && !error) history.replace(from);
     };
 
     return (
@@ -118,7 +125,7 @@ export default function SignUp() {
                 <Button type="submit">{loading ? 'Loading...' : 'Sign Up'}</Button>
             </Form>
 
-            <p>{`Already have an account?`}<Link href="/">Sign in</Link></p>
+            <p>{`Already have an account?`}<Link to="/sign-in">Sign in</Link></p>
         </div>
     );
 }
