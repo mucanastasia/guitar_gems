@@ -16,7 +16,7 @@ export default function SignIn() {
     let history = useHistory();
     let location = useLocation();
 
-    let { from } = location.state || { from: { pathname: "/" } };
+    let { from } = location.state || { from: { pathname: "/guitar_gems/" } };
 
     const handleSignIn = async (e) => {
         setLoading(true);
@@ -70,7 +70,7 @@ export default function SignIn() {
                 <Button type="submit">{loading ? 'Loading...' : 'Sign In'}</Button>
             </Form>
 
-            <p>{`Don't have an account?`}<Link to="/sign-up">Sign up</Link></p>
+            <p>{`Don't have an account?`}<Link to="/guitar_gems/sign-up">Sign up</Link></p>
         </div>
     );
 }

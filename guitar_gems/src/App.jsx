@@ -17,7 +17,7 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/guitar_gems/">
           <>
             <Header />
             <Catalogue />
@@ -25,19 +25,19 @@ export default function App() {
           </>
         </Route>
 
-        <Route path="/sign-in">
+        <Route path="/guitar_gems/sign-in">
           <AuthPage>
             <SignIn />
           </AuthPage>
         </Route>
 
-        <Route path="/sign-up">
+        <Route path="/guitar_gems/sign-up">
           <AuthPage>
             <SignUp />
           </AuthPage>
         </Route>
 
-        <Route path="/guitars/:id">
+        <Route path="/guitar_gems/guitars/:id">
           <>
             <Header />
             <Product />
@@ -45,12 +45,12 @@ export default function App() {
           </>
         </Route>
 
-        {/* To test private route */}
-        <PrivateRoute path="/hello">
-          <p>Hello!</p>
+        <PrivateRoute path="/guitar_gems/no">
+          <Header />
+          <h1>Hello there!</h1>
         </PrivateRoute>
 
       </Switch>
-    </Router>
+    </Router >
   );
 }

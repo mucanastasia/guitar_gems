@@ -21,7 +21,7 @@ export default function Header() {
 
     const handleSignInClick = () => {
         //Probably need a more accurate name for this function or it's a workaround and need to be replaced with something else.
-        history.push('/sign-in', { from: location.pathname });
+        history.push('/guitar_gems/sign-in', { from: location.pathname });
     };
 
     return (
@@ -63,7 +63,7 @@ export default function Header() {
                 </DialogTrigger>
                 :
                 <Button onPress={handleSignInClick}>
-                    <Link to="/sign-in">
+                    <Link to="/guitar_gems/sign-in">
                         <span className="material-symbols-outlined">login</span>
                         <p>Sign In</p>
                     </Link>

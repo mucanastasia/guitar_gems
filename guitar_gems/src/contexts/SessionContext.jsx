@@ -12,22 +12,17 @@ const SessionProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const subscription = supabase.auth.onAuthStateChange(
-            (event, session) => {
-                if (event === 'SIGNED_OUT') {
-                    setSession(null);
-                    setUser(null);
-                } else if (session) {
-                    setSession(session);
-                    setUser(session?.user);
-                    setLoading(false);
-                }
-                console.log('Session: ', session);
-            });
-
+        const { data: listener } = supabase.auth.onAuthStateChange(
+            (_event, session) => {
+                console.log('session onAuthStateChange: ', session);
+                setSession(session);
+                setUser(session?.user || null);
+                setLoading(false);
+            }
+        );
         return () => {
-            subscription.data.subscription.unsubscribe();
-        }
+            listener?.subscription.unsubscribe();
+        };
     }, []);
 
     return (

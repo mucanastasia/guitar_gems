@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
-import { Breadcrumbs, Breadcrumb, Link } from 'react-aria-components';
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Hero from './Hero';
 import ProductContent from './ProductContent';
 import ProductCard from '../catalogue/ProductCard';
 import Spinner from '../spinner/Spinner';
 import './styles/product.css';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 export default function Product() {
     const [guitarData, setGuitarData] = useState({});
@@ -78,8 +78,9 @@ export default function Product() {
                     <Hero name={guitarData.name} brand={guitarData.brand.name} img={guitarData.main_img} />
                     <div className="product-wrap">
                         <Breadcrumbs>
-                            <Breadcrumb><Link href="/">Catalogue</Link></Breadcrumb>
-                            <Breadcrumb><Link>{`${guitarData.brand.name} — ${guitarData.name}`}</Link></Breadcrumb>
+                            <Breadcrumb>
+                                <Link to="/guitar_gems/">Catalogue</Link></Breadcrumb>
+                            <Breadcrumb>{`${guitarData.brand.name} — ${guitarData.name}`}</Breadcrumb>
                         </Breadcrumbs>
                         <div className="product-content-container">
                             <ProductCard guitarData={guitarData} />
