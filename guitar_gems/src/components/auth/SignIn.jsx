@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Form, TextField, Input, Button, FieldError, Link } from 'react-aria-components';
+import { Form, TextField, Input, Button, FieldError } from 'react-aria-components';
 import { supabase } from '../../supabaseClient';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import './styles/auth.css';
 
@@ -9,8 +10,12 @@ export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    let history = useHistory();
+    let location = useLocation();
 
-    const handleSubmit = async (e) => {
+    let { from } = location.state || { from: { pathname: "/guitar_gems/" } };
+
+    const handleSignIn = async (e) => {
         setLoading(true);
         e.preventDefault();
 
@@ -25,6 +30,7 @@ export default function SignIn() {
         setEmail('');
         setPassword('');
         setLoading(false);
+        if (data && !error) history.replace(from);
     };
 
     const handleClickVisible = () => {
@@ -41,8 +47,8 @@ export default function SignIn() {
 
     return (
         <div className="auth-form">
-            <h1><img src={logo} alt="Guitar Gems logo image" />Sign In</h1>
-            <Form onSubmit={handleSubmit}>
+            <h1><img src={logo} alt="Guitar Gems logo image" onClick={() => { history.push('/guitar_gems/') }} />Sign In</h1>
+            <Form onSubmit={handleSignIn}>
                 <TextField name="email" type="email" aria-label="Email" isRequired>
                     <Input placeholder="Email"
                         value={email}
@@ -61,7 +67,7 @@ export default function SignIn() {
                 <Button type="submit">{loading ? 'Loading...' : 'Sign In'}</Button>
             </Form>
 
-            <p>{`Don't have an account?`}<Link href="/">Sign up</Link></p>
+            <p>{`Don't have an account?`}<Link to={{ pathname: '/guitar_gems/sign-up', state: { from } }}>Sign up</Link></p>
         </div>
     );
 }

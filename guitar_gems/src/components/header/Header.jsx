@@ -4,16 +4,23 @@ import { useSession } from '../../contexts/SessionContext';
 import { supabase } from '../../supabaseClient';
 import './styles/header.css';
 import './styles/popover.css';
+import { useHistory, useLocation } from 'react-router-dom';
 
 export default function Header() {
     const { session } = useSession();
     const [loading, setLoading] = useState();
+    const history = useHistory();
+    const location = useLocation();
 
     const handleSignOut = async () => {
         setLoading(true);
         const { error } = await supabase.auth.signOut();
         console.log(error);
         setLoading(false);
+    };
+
+    const handleSignInClick = () => {
+        history.push('/guitar_gems/sign-in', { from: location.pathname });
     };
 
     return (
@@ -54,7 +61,7 @@ export default function Header() {
                     </Popover>
                 </DialogTrigger>
                 :
-                <Button>
+                <Button onPress={handleSignInClick}>
                     <span className="material-symbols-outlined">login</span>
                     <p>Sign In</p>
                 </Button>

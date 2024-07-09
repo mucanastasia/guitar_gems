@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
+import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import './styles/catalogue.css';
 import FiltersContainer from './FiltersContainer';
 import CatalogueHeader from './CatalogueHeader';
 import Skeleton from '../spinner/Skeleton';
+import './styles/catalogue.css';
 
 export default function Catalogue() {
     const [guitars, setGuitars] = useState([]);
@@ -45,7 +46,7 @@ export default function Catalogue() {
         }
 
         return guitars.map((guitar) => (
-            <ProductCard key={guitar.id} guitarData={guitar} />
+            <Link key={guitar.id} to={`/guitar_gems/guitars/${guitar.id}`}><ProductCard guitarData={guitar} /></Link>
         ));
     };
 
