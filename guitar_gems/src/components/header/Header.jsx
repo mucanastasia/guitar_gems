@@ -4,7 +4,7 @@ import { useSession } from '../../contexts/SessionContext';
 import { supabase } from '../../supabaseClient';
 import './styles/header.css';
 import './styles/popover.css';
-import { useHistory, useLocation, Link } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 export default function Header() {
     const { session } = useSession();
@@ -20,7 +20,6 @@ export default function Header() {
     };
 
     const handleSignInClick = () => {
-        //Probably need a more accurate name for this function or it's a workaround and need to be replaced with something else.
         history.push('/guitar_gems/sign-in', { from: location.pathname });
     };
 
@@ -63,10 +62,8 @@ export default function Header() {
                 </DialogTrigger>
                 :
                 <Button onPress={handleSignInClick}>
-                    <Link to="/guitar_gems/sign-in">
-                        <span className="material-symbols-outlined">login</span>
-                        <p>Sign In</p>
-                    </Link>
+                    <span className="material-symbols-outlined">login</span>
+                    <p>Sign In</p>
                 </Button>
             }
         </header>

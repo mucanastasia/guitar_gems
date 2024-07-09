@@ -70,7 +70,7 @@ export default function SignIn() {
                 <Button type="submit">{loading ? 'Loading...' : 'Sign In'}</Button>
             </Form>
 
-            <p>{`Don't have an account?`}<Link to="/guitar_gems/sign-up">Sign up</Link></p>
+            <p>{`Don't have an account?`}<Link to={{ pathname: '/guitar_gems/sign-up', state: { from } }}>Sign up</Link></p>
         </div>
     );
 }
