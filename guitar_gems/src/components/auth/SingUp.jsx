@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { Form, TextField, Input, Button, FieldError } from 'react-aria-components';
 import { supabase } from '../../supabaseClient';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import './styles/auth.css';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-
-//TODO: A button BACK!!!
 
 export default function SignUp() {
     const [user, setUser] = useState({
@@ -86,7 +84,7 @@ export default function SignUp() {
 
     return (
         <div className="auth-form">
-            <h1><img src={logo} alt="Guitar Gems logo image" />Sign Up</h1>
+            <h1><img src={logo} alt="Guitar Gems logo image" onClick={() => { history.push('/guitar_gems/') }} />Sign Up</h1>
             <Form onSubmit={handleSingUp}>
                 <TextField name="name" type="text" aria-label="Name" isRequired>
                     <Input
