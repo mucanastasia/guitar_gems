@@ -4,8 +4,8 @@ import './styles/filtersContainer.css';
 import { CheckboxGroup, Checkbox, Label } from 'react-aria-components';
 import { CheckboxGroupStateContext } from 'react-aria-components';
 
-export default function FiltersContainer() {
-    const [filters, setFilters] = useState({
+export default function FiltersContainer({ selected, setSelected }) {
+    const [filterNames, setFilterNames] = useState({
         brands: [],
         guitar_types: [],
         materials: [],
@@ -34,7 +34,7 @@ export default function FiltersContainer() {
                     fetchData('countries')
                 ]);
 
-                setFilters({
+                setFilterNames({
                     brands: brands,
                     guitar_types: guitar_types,
                     materials: materials,
@@ -56,10 +56,10 @@ export default function FiltersContainer() {
 
     return (
         <div className="filters-container">
-            <CheckboxGroup>
+            <CheckboxGroup onChange={(vals) => { setSelected({ ...selected, brands: vals }) }} value={selected.brands}>
                 <Label>Brand {`(`}<SelectionCount />{`)`}</Label>
-                {filters.brands.map((filter) => (
-                    <Checkbox key={filter.id} value={filter.name}>
+                {filterNames.brands.map((filter) => (
+                    <Checkbox key={filter.id} value={filter.id} >
                         <div className="checkbox" aria-hidden="true">
                             <svg viewBox="0 0 18 18"><polyline points="1 9 7 14 15 4" /></svg>
                         </div>
@@ -68,10 +68,10 @@ export default function FiltersContainer() {
                 ))}
             </CheckboxGroup>
 
-            <CheckboxGroup>
+            <CheckboxGroup onChange={(vals) => { setSelected({ ...selected, types: vals }) }} value={selected.types}>
                 <Label>Type {`(`}<SelectionCount />{`)`}</Label>
-                {filters.guitar_types.map((filter) => (
-                    <Checkbox key={filter.id} value={filter.name}>
+                {filterNames.guitar_types.map((filter) => (
+                    <Checkbox key={filter.id} value={filter.id} >
                         <div className="checkbox" aria-hidden="true">
                             <svg viewBox="0 0 18 18"><polyline points="1 9 7 14 15 4" /></svg>
                         </div>
@@ -80,10 +80,10 @@ export default function FiltersContainer() {
                 ))}
             </CheckboxGroup>
 
-            <CheckboxGroup>
+            <CheckboxGroup onChange={(vals) => { setSelected({ ...selected, materials: vals }) }} value={selected.materials}>
                 <Label>Material {`(`}<SelectionCount />{`)`}</Label>
-                {filters.materials.map((filter) => (
-                    <Checkbox key={filter.id} value={filter.name}>
+                {filterNames.materials.map((filter) => (
+                    <Checkbox key={filter.id} value={filter.id} >
                         <div className="checkbox" aria-hidden="true">
                             <svg viewBox="0 0 18 18"><polyline points="1 9 7 14 15 4" /></svg>
                         </div>
@@ -92,10 +92,10 @@ export default function FiltersContainer() {
                 ))}
             </CheckboxGroup>
 
-            <CheckboxGroup>
+            <CheckboxGroup onChange={(vals) => { setSelected({ ...selected, countries: vals }) }} value={selected.countries}>
                 <Label>Country {`(`}<SelectionCount />{`)`}</Label>
-                {filters.countries.map((filter) => (
-                    <Checkbox key={filter.id} value={filter.name}>
+                {filterNames.countries.map((filter) => (
+                    <Checkbox key={filter.id} value={filter.id} >
                         <div className="checkbox" aria-hidden="true">
                             <svg viewBox="0 0 18 18"><polyline points="1 9 7 14 15 4" /></svg>
                         </div>
