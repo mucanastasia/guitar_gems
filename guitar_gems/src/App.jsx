@@ -12,10 +12,12 @@ import SignUp from './components/auth/SingUp';
 import AuthPage from './components/auth/AuthPage';
 import './App.css';
 import PrivateRoute from "./components/auth/PrivateRoute";
+import ScrollToTop from "./components/product/ScrollToTop";
 
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Switch>
         <Route exact path="/guitar_gems/">
           <>
@@ -45,7 +47,7 @@ export default function App() {
           </>
         </Route>
 
-        <PrivateRoute path="/guitar_gems/no">
+        <PrivateRoute path="/guitar_gems/hello">
           <Header />
           <h1>Hello there!</h1>
         </PrivateRoute>
