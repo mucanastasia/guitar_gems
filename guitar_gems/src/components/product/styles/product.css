@@ -14,6 +14,14 @@
         justify-content: center;
         gap: 80px;
         align-items: start;
+
+        .product-card {
+            cursor: default;
+        }
+
+        &:hover .product-card-img {
+            transform: rotate(-90deg) scale(1);
+        }
     }
 }
 
