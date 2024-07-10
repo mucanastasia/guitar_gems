@@ -3,6 +3,7 @@ import { supabase } from '../../supabaseClient';
 import './styles/filtersContainer.css';
 import { CheckboxGroup, Checkbox, Label } from 'react-aria-components';
 import { CheckboxGroupStateContext } from 'react-aria-components';
+import MyDateRangePicker from './MyDateRangePicker';
 
 export default function FiltersContainer({ selected, setSelected }) {
     const [filterNames, setFilterNames] = useState({
@@ -103,6 +104,10 @@ export default function FiltersContainer({ selected, setSelected }) {
                     </Checkbox>
                 ))}
             </CheckboxGroup>
+
+
+
+            <MyDateRangePicker selected={selected} setSelected={setSelected} />
         </div>
     );
 }

@@ -47,6 +47,8 @@ export default function Catalogue() {
         types: [],
         materials: [],
         countries: [],
+        date_from: '',
+        date_to: '',
     });
 
     const prepareFilter = (selectedList, fieldNames) => {
@@ -54,7 +56,6 @@ export default function Catalogue() {
             .map((fieldName) => (`${fieldName}.eq.${id}`))
             .join(',')))
             .join(',');
-        console.log('fieldNames: ', fieldNames, filter);                          //CONSOLE.LOG!!!!!!!!!!!!
         return filter;
     };
 
@@ -86,12 +87,19 @@ export default function Catalogue() {
                 if (selectedFilters.countries.length > 0) {
                     request = request.or(prepareFilter(selectedFilters.countries, ['country_id']));
                 }
-                //.gte('release_date', '2000-01-01')      //date-from
-                //.lte('release_date', '2021-01-01');     //date-to
+                if (selectedFilters.date_from && selectedFilters.date_to) {
+                    request.gte('release_date', selectedFilters.date_from);
+                    request.lte('release_date', selectedFilters.date_to);
+                }
+
+                console.log('Selected Filters: ', selectedFilters);
+                // If you select the brand filter: Fender and Gibson, the result will be Fender <OR> Gibson.
+                // If you select the brand filter: Fender and the type filter: Electric, the result will be Fender <AND> Electric.
+                // Therefore, within a filter category, it's a logical OR, but across different filter categories, it's a logical AND.
 
                 const { data, error } = await request;
 
-                console.log(data);
+                //console.log(data);
                 if (error) throw error;
 
                 setGuitars(data);
@@ -123,7 +131,7 @@ export default function Catalogue() {
                 <FiltersContainer selected={selectedFilters} setSelected={setSelectedFilters} />
                 <div className="catalogue-container">
                     {loading
-                        ? <Skeleton />
+                        ? <Skeleton count={guitars.length} />
                         : renderCatalogue()
                     }
                 </div>
