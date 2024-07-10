@@ -1,0 +1,206 @@
+.react-aria-DateRangePicker {
+    color: black;
+    margin: 20px 0;
+
+    .react-aria-Group {
+        display: flex;
+        align-items: center;
+        text-align: start;
+        width: fit-content;
+        min-width: 160px;
+        max-width: 100%;
+        height: 80px;
+        box-sizing: border-box;
+        overflow: auto;
+        position: relative;
+        padding: 6px 4px 6px 14px;
+        border: none;
+        border-radius: 0;
+        background: #f5f5f5;
+        white-space: nowrap;
+        margin: 14px 0;
+
+        &[data-pressed] {
+            box-shadow: none;
+            background: transparent;
+        }
+
+        &[data-focus-within] {
+            outline: none;
+        }
+    }
+
+    [slot=start]+span {
+        padding: 0 4px;
+    }
+
+    [slot=end] {
+        margin-right: 2rem;
+        flex: 1;
+    }
+
+    .react-aria-Button {
+        border: none;
+        color: #353535;
+        background-color: transparent;
+        forced-color-adjust: none;
+        border-radius: 0px;
+        border: none;
+        margin-left: auto;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        font-size: 22px;
+        box-sizing: content-box;
+        flex-shrink: 0;
+        position: sticky;
+        right: 6px;
+        cursor: pointer;
+
+        &[data-focus-visible] {
+            outline: none;
+        }
+
+        &[data-focused] {
+            outline: none;
+        }
+    }
+
+    .react-aria-DateInput {
+        font-size: 16px;
+        font-family: "Roboto Condensed";
+        font-weight: 300;
+        display: flex;
+        width: unset;
+        min-width: unset;
+        padding: unset;
+        border: unset;
+        outline: unset;
+
+        .react-aria-DateSegment[data-focused] {
+            outline: 2px solid #0cadd9;
+            border-radius: 2px;
+        }
+    }
+}
+
+.react-aria-Popover[data-trigger=DateRangePicker] {
+    max-width: unset;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    border: none;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    min-height: 446px;
+}
+
+.react-aria-RangeCalendar {
+    width: fit-content;
+    max-width: 100%;
+    color: black;
+    font-family: "Roboto Condensed";
+    background-color: #ffffff;
+    border-radius: 8px;
+
+    section {
+        padding: 4px 24px 14px 24px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        border-bottom: solid 1px #dddddd;
+        margin-bottom: 14px;
+        gap: 24px;
+
+        .react-aria-DateInput {
+            display: flex;
+            margin: 0 14px 0 0;
+        }
+
+        button {
+            font-family: "Roboto Condensed";
+            font-size: 16px;
+            font-weight: 300;
+            background-color: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            padding: 10px 14px;
+            margin-left: 36px;
+            border-radius: 4px;
+            transition: all var(--transition-duration) var(--transition-timing-function);
+
+            &:hover {
+                background-color: #e6e6e6;
+            }
+        }
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        margin: 0 0 20px 0;
+        background-color: white;
+
+        .react-aria-Button>.material-symbols-outlined {
+            color: #353535;
+        }
+
+        .react-aria-Heading {
+            flex: 1;
+            margin: 0;
+            text-align: center;
+            font-size: 22px;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: black;
+        }
+    }
+
+    .react-aria-CalendarGridHeader {
+        .react-aria-CalendarHeaderCell {
+            font-weight: 500;
+        }
+    }
+
+    .react-aria-Button {
+        width: 2rem;
+        height: 2rem;
+        padding: 0;
+        color: #353535;
+        outline: none;
+    }
+
+    .react-aria-CalendarCell {
+        font-weight: 300;
+        width: 34px;
+        line-height: 34px;
+        text-align: center;
+        border-radius: 6px;
+        cursor: default;
+        outline: none;
+        margin: 1px;
+        forced-color-adjust: none;
+
+        &[data-outside-month] {
+            display: none;
+        }
+
+        &[data-pressed] {
+            background: #f5f5f5;
+        }
+
+        &[data-focus-visible] {
+            outline: 2px solid #0cadd9;
+            outline-offset: 2px;
+        }
+
+        &[data-selected] {
+            background: #9ddef0;
+            color: black;
+            border-radius: 20px;
+        }
+
+        &[data-disabled] {
+            color: #7b7b7b;
+        }
+    }
+}

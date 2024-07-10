@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import './styles/productCard.css';
-
+import PropTypes from 'prop-types';
 export default function ProductCard({ guitarData }) {
 
     return (
@@ -11,3 +10,7 @@ export default function ProductCard({ guitarData }) {
         </section>
     );
 }
+
+ProductCard.propTypes = {
+    guitarData: PropTypes.object.isRequired,
+};
