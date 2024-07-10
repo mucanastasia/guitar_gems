@@ -1,12 +1,21 @@
-import { useState } from 'react';
 import { Button, CalendarCell, CalendarGrid, DateInput, DateRangePicker, DateSegment, Dialog, Group, Heading, Label, Popover, RangeCalendar } from 'react-aria-components';
 import './styles/dateRangePicker.css';
 import { I18nProvider } from 'react-aria';
+import { getLocalTimeZone, today } from '@internationalized/date';
 
 export default function MyDateRangePicker({ selected, setSelected }) {
+    const todayDate = today(getLocalTimeZone());
 
     return (
-        <DateRangePicker onChange={(e) => { setSelected({ ...selected, date_from: e.start.toLocaleString('en-GB'), date_to: e.end.toLocaleString('en-GB') }) }} >
+        <DateRangePicker
+            onChange={(e) => {
+                setSelected({ ...selected, date: e });
+            }}
+            maxValue={todayDate}
+            value={selected.date}
+            aria-label="Release date range picker"
+        // shouldCloseOnSelect={false}
+        >
             <Label>Release date</Label>
             <Group>
                 <section>
@@ -14,7 +23,7 @@ export default function MyDateRangePicker({ selected, setSelected }) {
                         <DateInput slot="start">
                             {(segment) => <DateSegment segment={segment} />}
                         </DateInput>
-                        <span aria-hidden="true"> - </span>
+                        <span aria-hidden="true">–</span>
                         <DateInput slot="end">
                             {(segment) => <DateSegment segment={segment} />}
                         </DateInput>
@@ -25,6 +34,22 @@ export default function MyDateRangePicker({ selected, setSelected }) {
             <Popover>
                 <Dialog>
                     <RangeCalendar visibleDuration={{ months: 2 }}>
+                        <section>
+                            <I18nProvider locale="en-GB">
+                                <Label>From:</Label>
+                                <DateInput slot="start">
+                                    {(segment) => <DateSegment segment={segment} />}
+                                </DateInput>
+                                <Label>To:</Label>
+                                <DateInput slot="end">
+                                    {(segment) => <DateSegment segment={segment} />}
+                                </DateInput>
+                            </I18nProvider>
+                            <button onClick={() => {
+                                setSelected({ ...selected, date: { start: null, end: null } });
+                            }}
+                            >Clear selected dates</button>
+                        </section>
                         <header>
                             <Button slot="previous"><span className="material-symbols-outlined">
                                 chevron_left

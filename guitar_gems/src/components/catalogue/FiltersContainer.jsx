@@ -105,8 +105,6 @@ export default function FiltersContainer({ selected, setSelected }) {
                 ))}
             </CheckboxGroup>
 
-
-
             <MyDateRangePicker selected={selected} setSelected={setSelected} />
         </div>
     );

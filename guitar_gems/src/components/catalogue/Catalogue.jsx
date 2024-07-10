@@ -47,8 +47,7 @@ export default function Catalogue() {
         types: [],
         materials: [],
         countries: [],
-        date_from: '',
-        date_to: '',
+        date: { start: null, end: null },
     });
 
     const prepareFilter = (selectedList, fieldNames) => {
@@ -87,9 +86,9 @@ export default function Catalogue() {
                 if (selectedFilters.countries.length > 0) {
                     request = request.or(prepareFilter(selectedFilters.countries, ['country_id']));
                 }
-                if (selectedFilters.date_from && selectedFilters.date_to) {
-                    request.gte('release_date', selectedFilters.date_from);
-                    request.lte('release_date', selectedFilters.date_to);
+                if (selectedFilters.date.start && selectedFilters.date.end) {
+                    request.gte('release_date', selectedFilters.date?.start.toLocaleString('en-GB'));
+                    request.lte('release_date', selectedFilters.date?.end.toLocaleString('en-GB'));
                 }
 
                 console.log('Selected Filters: ', selectedFilters);
@@ -111,6 +110,7 @@ export default function Catalogue() {
         };
 
         fetchData();
+        // window.scrollTo({ top: 0, behavior: 'smooth' });
 
     }, [selectedFilters]);
 
