@@ -24,7 +24,7 @@ export default function MyDateRangePicker({ selected, setSelected }) {
             </Group>
             <Popover>
                 <Dialog>
-                    <RangeCalendar>
+                    <RangeCalendar visibleDuration={{ months: 2 }}>
                         <header>
                             <Button slot="previous"><span className="material-symbols-outlined">
                                 chevron_left
@@ -34,9 +34,14 @@ export default function MyDateRangePicker({ selected, setSelected }) {
                                 chevron_right
                             </span></Button>
                         </header>
-                        <CalendarGrid>
-                            {(date) => <CalendarCell date={date} />}
-                        </CalendarGrid>
+                        <div style={{ display: 'flex', gap: 30, overflow: 'auto' }}>
+                            <CalendarGrid>
+                                {date => <CalendarCell date={date} />}
+                            </CalendarGrid>
+                            <CalendarGrid offset={{ months: 1 }}>
+                                {date => <CalendarCell date={date} />}
+                            </CalendarGrid>
+                        </div>
                     </RangeCalendar>
                 </Dialog>
             </Popover>
