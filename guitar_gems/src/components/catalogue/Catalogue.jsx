@@ -120,7 +120,7 @@ export default function Catalogue() {
         }
 
         return guitars.map((guitar) => (
-            <Link key={guitar.id} to={`/guitar_gems/guitars/${guitar.id}`}><ProductCard guitarData={guitar} /></Link>
+            <Link key={guitar.id} to={`/guitars/${guitar.id}`}><ProductCard guitarData={guitar} /></Link>
         ));
     };
 
