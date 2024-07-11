@@ -51,7 +51,7 @@ export default function Editor() {
                     <div className="product-content-container">
                         <div>
                             <ProductCard guitarData={{ main_img: (preview ? preview : defaultImg), name: data?.name, brand: data?.brand }} />
-                            <FileTrigger onSelect={(files) => { handleFileSelect(files); console.log(file); }} >
+                            <FileTrigger onSelect={(files) => { handleFileSelect(files); console.log(file); }} acceptedFileTypes={['image/png']} >
                                 <Button>Select a file</Button>
                             </FileTrigger>
                         </div>

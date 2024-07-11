@@ -41,7 +41,7 @@
                 }
 
                 &[data-invalid] {
-                    border: solid 1px #c40000;
+                    border: solid 1px #EF0000;
 
                 }
             }
