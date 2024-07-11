@@ -24,7 +24,7 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <Switch>
-        <Route exact path="/guitar_gems/">
+        <Route exact path="/">
           <>
             <Header />
             <Catalogue />
@@ -32,19 +32,19 @@ export default function App() {
           </>
         </Route>
 
-        <Route path="/guitar_gems/sign-in">
+        <Route path="/sign-in">
           <AuthPage>
             <SignIn />
           </AuthPage>
         </Route>
 
-        <Route path="/guitar_gems/sign-up">
+        <Route path="/sign-up">
           <AuthPage>
             <SignUp />
           </AuthPage>
         </Route>
 
-        <Route path="/guitar_gems/guitars/:id">
+        <Route path="/guitars/:id">
           <>
             <Header />
             <Product />
@@ -52,12 +52,7 @@ export default function App() {
           </>
         </Route>
 
-        <PrivateRoute path="/guitar_gems/hello">
-          <Header />
-          <h1>Hello there!</h1>
-        </PrivateRoute>
-
-        <PrivateRoute path="/guitar_gems/editor/add-new-guitar">
+        <PrivateRoute path="/editor/add-new-guitar">
           {
             user?.app_metadata.role === 'editor'
               ? <>
@@ -65,7 +60,7 @@ export default function App() {
                 <Editor />
                 <Footer />
               </>
-              : <Redirect push to="/guitar_gems/" />
+              : <Redirect push to="/" />
           }
         </PrivateRoute>
 

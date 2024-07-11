@@ -79,7 +79,7 @@ export default function Product() {
                     <div className="product-wrap">
                         <Breadcrumbs>
                             <Breadcrumb>
-                                <Link to="/guitar_gems/">Catalogue</Link></Breadcrumb>
+                                <Link to="/">Catalogue</Link></Breadcrumb>
                             <Breadcrumb>{`${guitarData.brand.name} — ${guitarData.name}`}</Breadcrumb>
                         </Breadcrumbs>
                         <div className="product-content-container">

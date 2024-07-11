@@ -16,7 +16,7 @@ export default function SignUp() {
     let history = useHistory();
     let location = useLocation();
 
-    let { from } = location.state || { from: { pathname: "/guitar_gems/" } };
+    let { from } = location.state || { from: { pathname: "/" } };
 
     const [loading, setLoading] = useState(false);
 
@@ -84,7 +84,7 @@ export default function SignUp() {
 
     return (
         <div className="auth-form">
-            <h1><img src={logo} alt="Guitar Gems logo image" onClick={() => { history.push('/guitar_gems/') }} />Sign Up</h1>
+            <h1><img src={logo} alt="Guitar Gems logo image" onClick={() => { history.push('/') }} />Sign Up</h1>
             <Form onSubmit={handleSingUp}>
                 <TextField name="name" type="text" aria-label="Name" isRequired>
                     <Input
@@ -123,7 +123,7 @@ export default function SignUp() {
                 <Button type="submit">{loading ? 'Loading...' : 'Sign Up'}</Button>
             </Form>
 
-            <p>{`Already have an account?`}<Link to="/guitar_gems/sign-in">Sign in</Link></p>
+            <p>{`Already have an account?`}<Link to="/sign-in">Sign in</Link></p>
         </div>
     );
 }

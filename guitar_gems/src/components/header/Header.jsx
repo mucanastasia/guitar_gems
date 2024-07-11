@@ -20,11 +20,11 @@ export default function Header() {
     };
 
     const handleSignInClick = () => {
-        history.push('/guitar_gems/sign-in', { from: location.pathname });
+        history.push('/sign-in', { from: location.pathname });
     };
 
     const handleAddingGuitarClick = () => {
-        history.push('/guitar_gems/editor/add-new-guitar');
+        history.push('/editor/add-new-guitar');
     };
 
     return (

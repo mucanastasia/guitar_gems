@@ -13,7 +13,7 @@ export default function PrivateRoute({ children, ...rest }) {
                 ) : (
                     <Redirect
                         to={{
-                            pathname: "/guitar_gems/sign-in",
+                            pathname: "/sign-in",
                             state: { from: location }
                         }}
                     />

@@ -13,7 +13,7 @@ export default function SignIn() {
     let history = useHistory();
     let location = useLocation();
 
-    let { from } = location.state || { from: { pathname: "/guitar_gems/" } };
+    let { from } = location.state || { from: { pathname: "/" } };
 
     const handleSignIn = async (e) => {
         setLoading(true);
@@ -47,7 +47,7 @@ export default function SignIn() {
 
     return (
         <div className="auth-form">
-            <h1><img src={logo} alt="Guitar Gems logo image" onClick={() => { history.push('/guitar_gems/') }} />Sign In</h1>
+            <h1><img src={logo} alt="Guitar Gems logo image" onClick={() => { history.push('/') }} />Sign In</h1>
             <Form onSubmit={handleSignIn}>
                 <TextField name="email" type="email" aria-label="Email" isRequired>
                     <Input placeholder="Email"
@@ -67,7 +67,7 @@ export default function SignIn() {
                 <Button type="submit">{loading ? 'Loading...' : 'Sign In'}</Button>
             </Form>
 
-            <p>{`Don't have an account?`}<Link to={{ pathname: '/guitar_gems/sign-up', state: { from } }}>Sign up</Link></p>
+            <p>{`Don't have an account?`}<Link to={{ pathname: '/sign-up', state: { from } }}>Sign up</Link></p>
         </div>
     );
 }
