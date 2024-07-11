@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import EditorContent from './EditorContent';
 import ProductCard from '../catalogue/ProductCard';
 import { Form, Button, FileTrigger } from 'react-aria-components';
-import defaultImg from '../../assets/img--placeholder.png';
+import defaultImg from '../../assets/img-placeholder.png';
 import Hero from '../product/Hero';
 import './styles/editor.css';
 
@@ -30,6 +30,14 @@ export default function Editor() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    const handleCancel = () => {
+        setData({
+            name: '',
+            brand: '',
+        });
+        setPreview(null);
+    };
+
     return (
         <>
             <Hero img={preview ? preview : defaultImg} name={data?.name ? data.name : 'There will be a name'} brand={data?.brand ? data.brand : 'Brand name'} />
@@ -37,7 +45,7 @@ export default function Editor() {
                 <Form onSubmit={(e) => { e.preventDefault() }}>
                     <header className="editor">
                         <h1>Add guitar</h1>
-                        <Button className="cancelBtn">Cancel</Button>
+                        <Button className="cancelBtn" onPress={handleCancel}>Cancel</Button>
                         <Button className="publishBtn" type="submit">Publish</Button>
                     </header>
                     <div className="product-content-container">
