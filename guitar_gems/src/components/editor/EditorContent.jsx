@@ -1,122 +1,177 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react';
+import { supabase } from '../../supabaseClient';
 import { TextArea, TextField } from 'react-aria-components';
 import { Button, Input, Label, Popover, FieldError } from 'react-aria-components';
-import { Calendar, CalendarCell, CalendarGrid, DateInput, DatePicker, DateSegment, Dialog, Group, Heading, Form } from 'react-aria-components';
+import { Calendar, CalendarCell, CalendarGrid, DateInput, DatePicker, DateSegment, Dialog, Group, Heading } from 'react-aria-components';
 import SpecsDropdown from './SpecsDropdown';
 import './styles/editorContent.css';
 import './styles/datePicker.css';
+import Spinner from '../spinner/Spinner';
+
+import { I18nProvider } from 'react-aria';
 
 export default function EditorContent({ data, setData }) {
+    const [loading, setLoading] = useState(true);
+    const [selectOptions, setSelectOptions] = useState({
+        brands: [],
+        guitar_types: [],
+        materials: [],
+        countries: [],
+    });
 
-    // const formatDate = (dateString) => {
-    //     const date = new Date(dateString);
-    //     const day = date.getDate();
-    //     const options = { month: 'long', year: 'numeric' };
-    //     const formattedDate = date.toLocaleDateString('en-GB', options);
-    //     return `${day} ${formattedDate}`;
-    // };
+    useEffect(() => {
+        const fetchData = async (tableName) => {
+            try {
+                const { data, error } = await supabase
+                    .from(tableName)
+                    .select(`
+                                id,
+                                name
+                            `);
+                if (error) throw error;
+                return data;
+            } catch (error) {
+                console.log(error.message);
+                throw error;
+            }
+        };
 
-    // const renderSpecs = () => {
-    // const formattedDate = formatDate(guitarData.release_date);
+        const loadSelectOptions = async () => {
+            try {
+                setLoading(true);
+                const [brands, guitar_types, materials, countries] = await Promise.all([
+                    fetchData('brands'),
+                    fetchData('guitar_types'),
+                    fetchData('materials'),
+                    fetchData('countries')
+                ]);
 
-    // const data = [
-    //     ['Brand', guitarData.brand.name],
-    //     ['Type', guitarData.type.name],
-    //     ['Body', guitarData.body_material.name],
-    //     ['Neck', guitarData.neck_material.name],
-    //     ['Fingerboard', guitarData.fingerboard_material.name],
-    //     ['Release date', formattedDate],
-    //     ['Country', guitarData.country.name],
-    // ];
+                setSelectOptions({
+                    brands: brands,
+                    guitar_types: guitar_types,
+                    materials: materials,
+                    countries: countries
+                });
+            } catch (error) {
+                console.error(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    //     return data.map((row) => (
-    //         <tr key={row[0]}>
-    //             <th><p>{row[0]}</p></th>
-    //             <td><p>{row[1]}</p></td>
-    //         </tr>
-    //     ));
-    // };
+        loadSelectOptions();
+    }, []);
 
-    // const renderFeatures = () => {
-    //     return guitarData.features.map((feature) => (
-    //         <li key={feature.id}><p>{feature.description}</p></li>
-    //     ));
-    // };
 
-    const brandVals = [
-        { id: 1, name: "Fender" },
-        { id: 2, name: "Gibson" }
-    ];
+    // console.log(selectOptions);
 
     return (
-        <section className="product-content edit-content">
-            <article>
-                <h2>Name</h2>
-                <TextField aria-label="Product name" isRequired >
-                    <Input value={data.name} onChange={(e) => { setData({ ...data, name: e.target.value }) }} />
-                    <FieldError />
-                </TextField>
-            </article>
-            <article>
-                <h2>Description</h2>
-                <TextField aria-label="Product description" isRequired>
-                    <TextArea />
-                    <FieldError />
-                </TextField>
-            </article>
-            <article>
-                <h2>Specs</h2>
-                <SpecsDropdown label="Brand" values={brandVals} />
-                <SpecsDropdown label="Type" values={brandVals} />
-                <SpecsDropdown label="Body" values={brandVals} />
-                <SpecsDropdown label="Neck" values={brandVals} />
-                <SpecsDropdown label="Fingerboard" values={brandVals} />
-
-
-                <DatePicker name="date" isRequired>
-                    <div>
-                        <Label>Release Date</Label>
-                        <Group>
-                            <DateInput>
-                                {(segment) => <DateSegment segment={segment} />}
-                            </DateInput>
-                            <Button className="react-aria-Button material-symbols-outlined">calendar_month</Button>
-                        </Group>
-                    </div>
-                    <FieldError />
-                    <Popover>
-                        <Dialog>
-                            <Calendar>
-                                <header>
-                                    <Button slot="previous"><span className="material-symbols-outlined">
-                                        chevron_left
-                                    </span></Button>
-                                    <Heading />
-                                    <Button slot="next"><span className="material-symbols-outlined">
-                                        chevron_right
-                                    </span></Button>
-                                </header>
-                                <CalendarGrid>
-                                    {(date) => <CalendarCell date={date} />}
-                                </CalendarGrid>
-                            </Calendar>
-                        </Dialog>
-                    </Popover>
-                </DatePicker>
-
-
-                <SpecsDropdown label="Country" values={brandVals} />
-            </article>
-            <article>
-                <h2>Features</h2>
-                <ul>
-                    <li>
-                        <TextField aria-label="Product feature">
-                            <Input />
+        <>
+            {loading ? <Spinner /> :
+                <section className="product-content edit-content">
+                    <article>
+                        <h2>Name</h2>
+                        <TextField aria-label="Product name" isRequired >
+                            <Input value={data.name} onChange={(e) => { setData({ ...data, name: e.target.value }) }} placeholder="Fill in a name" />
+                            <FieldError />
                         </TextField>
-                    </li>
-                </ul>
-            </article>
-        </section>
+                    </article>
+                    <article>
+                        <h2>Description</h2>
+                        <TextField aria-label="Product description" isRequired onBlur={(e) => { setData({ ...data, description: e.target.value }) }}>
+                            <TextArea placeholder="Fill in a description" />
+                            <FieldError />
+                        </TextField>
+                    </article>
+                    <article>
+                        <h2>Specs</h2>
+                        <SpecsDropdown
+                            label="Brand"
+                            values={selectOptions.brands}
+                            selected={data}
+                            setSelected={setData}
+                        />
+                        <SpecsDropdown
+                            label="Type"
+                            values={selectOptions.guitar_types}
+                            selected={data}
+                            setSelected={setData}
+                        />
+                        <SpecsDropdown
+                            label="Body"
+                            values={selectOptions.materials}
+                            selected={data}
+                            setSelected={setData}
+                        />
+                        <SpecsDropdown
+                            label="Neck"
+                            values={selectOptions.materials}
+                            selected={data}
+                            setSelected={setData}
+                        />
+                        <SpecsDropdown
+                            label="Fingerboard"
+                            values={selectOptions.materials}
+                            selected={data}
+                            setSelected={setData}
+                        />
+
+
+                        <DatePicker name="date" isRequired onChange={date => setData({ ...data, date: date.toLocaleString('en-GB') })}>
+                            <div>
+                                <Label>Release Date</Label>
+                                <Group>
+                                    <I18nProvider locale="en-GB">
+                                        <DateInput>
+                                            {(segment) => <DateSegment segment={segment} />}
+                                        </DateInput>
+                                    </I18nProvider>
+                                    <Button className="react-aria-Button material-symbols-outlined">calendar_month</Button>
+                                </Group>
+                            </div>
+                            <FieldError />
+                            <Popover>
+                                <Dialog>
+                                    <Calendar>
+                                        <header>
+                                            <Button slot="previous"><span className="material-symbols-outlined">
+                                                chevron_left
+                                            </span></Button>
+                                            <Heading />
+                                            <Button slot="next"><span className="material-symbols-outlined">
+                                                chevron_right
+                                            </span></Button>
+                                        </header>
+                                        <CalendarGrid>
+                                            {(date) => <CalendarCell date={date} />}
+                                        </CalendarGrid>
+                                    </Calendar>
+                                </Dialog>
+                            </Popover>
+                        </DatePicker>
+
+
+                        <SpecsDropdown
+                            label="Country"
+                            values={selectOptions.countries}
+                            selected={data}
+                            setSelected={setData}
+                        />
+
+                    </article>
+                    <article>
+                        <h2>Features</h2>
+                        <ul>
+                            <li>
+                                <TextField aria-label="Product feature">
+                                    <Input placeholder="Fill in a feature" />
+                                </TextField>
+                            </li>
+                        </ul>
+                    </article>
+                </section>
+            }
+        </>
     );
 }

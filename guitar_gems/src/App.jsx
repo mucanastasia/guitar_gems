@@ -33,15 +33,27 @@ export default function App() {
         </Route>
 
         <Route path="/sign-in">
-          <AuthPage>
-            <SignIn />
-          </AuthPage>
+          {
+            !user
+              ? <>
+                <AuthPage>
+                  <SignIn />
+                </AuthPage>
+              </>
+              : <Redirect push to="/" />
+          }
         </Route>
 
         <Route path="/sign-up">
-          <AuthPage>
-            <SignUp />
-          </AuthPage>
+          {
+            !user
+              ? <>
+                <AuthPage>
+                  <SignUp />
+                </AuthPage>
+              </>
+              : <Redirect push to="/" />
+          }
         </Route>
 
         <Route path="/guitars/:id">
