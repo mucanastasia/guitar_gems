@@ -34,7 +34,7 @@ export default function ProductContent({ guitarData }) {
 
     const renderFeatures = () => {
         return guitarData.features.map((feature) => (
-            <li key={feature.id}><p>{feature.description}</p></li>
+            <li key={feature}><p>{feature}</p></li>
         ));
     };
 

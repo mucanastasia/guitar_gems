@@ -20,13 +20,17 @@ export default function Header() {
     };
 
     const handleSignInClick = () => {
-        history.push('/guitar_gems/sign-in', { from: location.pathname });
+        history.push('/sign-in', { from: location.pathname });
+    };
+
+    const handleAddingGuitarClick = () => {
+        history.push('/editor/add-new-guitar');
     };
 
     return (
         <header>
             {session?.user.app_metadata.role === 'editor' &&
-                <Button>
+                <Button onPress={handleAddingGuitarClick}>
                     <span className="material-symbols-outlined">add_circle</span>
                     <p>Add guitar</p>
                 </Button>

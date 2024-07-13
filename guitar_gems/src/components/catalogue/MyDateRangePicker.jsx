@@ -6,11 +6,17 @@ import { getLocalTimeZone, today } from '@internationalized/date';
 export default function MyDateRangePicker({ selected, setSelected }) {
     const todayDate = today(getLocalTimeZone());
 
+    const handleChange = (e) => {
+        setSelected({ ...selected, date: e });
+    };
+
+    const handleResetDates = () => {
+        setSelected({ ...selected, date: { start: null, end: null } });
+    };
+
     return (
         <DateRangePicker
-            onChange={(e) => {
-                setSelected({ ...selected, date: e });
-            }}
+            onChange={handleChange}
             maxValue={todayDate}
             value={selected.date}
             aria-label="Release date range picker"
@@ -45,10 +51,7 @@ export default function MyDateRangePicker({ selected, setSelected }) {
                                     {(segment) => <DateSegment segment={segment} />}
                                 </DateInput>
                             </I18nProvider>
-                            <button onClick={() => {
-                                setSelected({ ...selected, date: { start: null, end: null } });
-                            }}
-                            >Clear selected dates</button>
+                            <button onClick={handleResetDates} >Clear selected dates</button>
                         </section>
                         <header>
                             <Button slot="previous"><span className="material-symbols-outlined">
@@ -71,6 +74,5 @@ export default function MyDateRangePicker({ selected, setSelected }) {
                 </Dialog>
             </Popover>
         </DateRangePicker>
-
     );
 }

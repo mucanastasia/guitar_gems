@@ -55,9 +55,25 @@ export default function FiltersContainer({ selected, setSelected }) {
         return state.value.length;
     }
 
+    const handleChangeBrand = (vals) => {
+        setSelected({ ...selected, brands: vals });
+    };
+
+    const handleChangeType = (vals) => {
+        setSelected({ ...selected, types: vals });
+    };
+
+    const handleChangeMaterial = (vals) => {
+        setSelected({ ...selected, materials: vals })
+    };
+
+    const handleChangeCountry = (vals) => {
+        setSelected({ ...selected, countries: vals });
+    };
+
     return (
         <div className="filters-container">
-            <CheckboxGroup onChange={(vals) => { setSelected({ ...selected, brands: vals }) }} value={selected.brands}>
+            <CheckboxGroup onChange={handleChangeBrand} value={selected.brands}>
                 <Label>Brand {`(`}<SelectionCount />{`)`}</Label>
                 {filterNames.brands.map((filter) => (
                     <Checkbox key={filter.id} value={filter.id} >
@@ -69,7 +85,7 @@ export default function FiltersContainer({ selected, setSelected }) {
                 ))}
             </CheckboxGroup>
 
-            <CheckboxGroup onChange={(vals) => { setSelected({ ...selected, types: vals }) }} value={selected.types}>
+            <CheckboxGroup onChange={handleChangeType} value={selected.types}>
                 <Label>Type {`(`}<SelectionCount />{`)`}</Label>
                 {filterNames.guitar_types.map((filter) => (
                     <Checkbox key={filter.id} value={filter.id} >
@@ -81,7 +97,7 @@ export default function FiltersContainer({ selected, setSelected }) {
                 ))}
             </CheckboxGroup>
 
-            <CheckboxGroup onChange={(vals) => { setSelected({ ...selected, materials: vals }) }} value={selected.materials}>
+            <CheckboxGroup onChange={handleChangeMaterial} value={selected.materials}>
                 <Label>Material {`(`}<SelectionCount />{`)`}</Label>
                 {filterNames.materials.map((filter) => (
                     <Checkbox key={filter.id} value={filter.id} >
@@ -93,7 +109,7 @@ export default function FiltersContainer({ selected, setSelected }) {
                 ))}
             </CheckboxGroup>
 
-            <CheckboxGroup onChange={(vals) => { setSelected({ ...selected, countries: vals }) }} value={selected.countries}>
+            <CheckboxGroup onChange={handleChangeCountry} value={selected.countries}>
                 <Label>Country {`(`}<SelectionCount />{`)`}</Label>
                 {filterNames.countries.map((filter) => (
                     <Checkbox key={filter.id} value={filter.id} >

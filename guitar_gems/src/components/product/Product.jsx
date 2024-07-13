@@ -49,10 +49,7 @@ export default function Product() {
                                 id,
                                 name
                             ),
-                            features:guitar_features(
-                                id,
-                                description
-                            )
+                            features
                         `)
                     .eq('id', id)
                     .single();
@@ -79,7 +76,7 @@ export default function Product() {
                     <div className="product-wrap">
                         <Breadcrumbs>
                             <Breadcrumb>
-                                <Link to="/guitar_gems/">Catalogue</Link></Breadcrumb>
+                                <Link to="/">Catalogue</Link></Breadcrumb>
                             <Breadcrumb>{`${guitarData.brand.name} — ${guitarData.name}`}</Breadcrumb>
                         </Breadcrumbs>
                         <div className="product-content-container">
