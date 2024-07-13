@@ -2,14 +2,10 @@
 import { Button, ComboBox, Input, Label, ListBox, ListBoxItem, Popover, FieldError } from 'react-aria-components';
 import './styles/editorContent.css';
 
-export default function SpecsDropdown({ label, values, selected, setSelected }) {
+export default function SpecsDropdown({ label, objectKey, values, selected, setSelected }) {
+
     const handleSelect = (id) => {
-        if (label === 'Brand') setSelected({ ...selected, brand: id });
-        if (label === 'Type') setSelected({ ...selected, type: id });
-        if (label === 'Body') setSelected({ ...selected, body: id });
-        if (label === 'Neck') setSelected({ ...selected, neck: id });
-        if (label === 'Fingerboard') setSelected({ ...selected, fingerboard: id });
-        if (label === 'Country') setSelected({ ...selected, country: id });
+        setSelected({ ...selected, [objectKey]: id });
     }
 
     return (

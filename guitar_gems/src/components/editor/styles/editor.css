@@ -56,6 +56,19 @@
             color: #000000;
             background: transparent;
         }
+
+        &::after {
+            content: attr(data-content);
+            display: none;
+        }
+
+        &[data-content="Success"] {
+            background: #009B5A;
+        }
+
+        &[data-content="Publishing..."] {
+            background: #393939;
+        }
     }
 
     .primary-button {

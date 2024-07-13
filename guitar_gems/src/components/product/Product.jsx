@@ -49,10 +49,7 @@ export default function Product() {
                                 id,
                                 name
                             ),
-                            features:guitar_features(
-                                id,
-                                description
-                            )
+                            features
                         `)
                     .eq('id', id)
                     .single();

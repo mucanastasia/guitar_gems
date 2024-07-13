@@ -20,6 +20,8 @@ export default function EditorContent({ data, setData }) {
         countries: [],
     });
 
+    let featureRenderCounter = 0;
+
     useEffect(() => {
         const fetchData = async (tableName) => {
             try {
@@ -63,8 +65,35 @@ export default function EditorContent({ data, setData }) {
         loadSelectOptions();
     }, []);
 
+    const handleFeatureAdd = () => {
+        const newFeature = '';
+        setData({ ...data, features: [...data.features, newFeature] });
+    };
 
-    // console.log(selectOptions);
+    const handleFeatureDelete = (index) => {
+        const newFeatures = data.features.filter((_, i) => i !== index);
+        setData({ ...data, features: newFeatures });
+    };
+
+    const handleFeatureChange = (index, value) => {
+        const newFeatures = data.features.map((feature, i) => (i === index ? value : feature));
+        setData({ ...data, features: newFeatures });
+    };
+
+    const renderFeatures = () => {
+        return data.features.map((feature, index) => (
+            <li key={'features_' + (featureRenderCounter++)}>
+                <TextField aria-label="Product feature" type="text">
+                    <Input
+                        placeholder="Fill in a feature"
+                        value={feature}
+                        onChange={(e) => handleFeatureChange(index, e.target.value)}
+                    />
+                </TextField>
+                <Button className="material-symbols-outlined" onPress={() => handleFeatureDelete(index)}>delete</Button>
+            </li>
+        ));
+    };
 
     return (
         <>
@@ -72,14 +101,14 @@ export default function EditorContent({ data, setData }) {
                 <section className="product-content edit-content">
                     <article>
                         <h2>Name</h2>
-                        <TextField aria-label="Product name" isRequired >
+                        <TextField aria-label="Product name" isRequired type="text">
                             <Input value={data.name} onChange={(e) => { setData({ ...data, name: e.target.value }) }} placeholder="Fill in a name" />
                             <FieldError />
                         </TextField>
                     </article>
                     <article>
                         <h2>Description</h2>
-                        <TextField aria-label="Product description" isRequired onBlur={(e) => { setData({ ...data, description: e.target.value }) }}>
+                        <TextField aria-label="Product description" isRequired type="text" onBlur={(e) => { setData({ ...data, description: e.target.value }) }} >
                             <TextArea placeholder="Fill in a description" />
                             <FieldError />
                         </TextField>
@@ -88,37 +117,42 @@ export default function EditorContent({ data, setData }) {
                         <h2>Specs</h2>
                         <SpecsDropdown
                             label="Brand"
+                            objectKey="brand_id"
                             values={selectOptions.brands}
                             selected={data}
                             setSelected={setData}
                         />
                         <SpecsDropdown
                             label="Type"
+                            objectKey="type_id"
                             values={selectOptions.guitar_types}
                             selected={data}
                             setSelected={setData}
                         />
                         <SpecsDropdown
                             label="Body"
+                            objectKey="body_material_id"
                             values={selectOptions.materials}
                             selected={data}
                             setSelected={setData}
                         />
                         <SpecsDropdown
                             label="Neck"
+                            objectKey="neck_material_id"
                             values={selectOptions.materials}
                             selected={data}
                             setSelected={setData}
                         />
                         <SpecsDropdown
                             label="Fingerboard"
+                            objectKey="fingerboard_material_id"
                             values={selectOptions.materials}
                             selected={data}
                             setSelected={setData}
                         />
 
 
-                        <DatePicker name="date" isRequired onChange={date => setData({ ...data, date: date.toLocaleString('en-GB') })}>
+                        <DatePicker name="date" isRequired onChange={date => setData({ ...data, release_date: date.toLocaleString('en-GB') })}>
                             <div>
                                 <Label>Release Date</Label>
                                 <Group>
@@ -154,21 +188,19 @@ export default function EditorContent({ data, setData }) {
 
                         <SpecsDropdown
                             label="Country"
+                            objectKey="country_id"
                             values={selectOptions.countries}
                             selected={data}
                             setSelected={setData}
                         />
 
                     </article>
-                    <article>
+                    <article className="edit-features">
                         <h2>Features</h2>
                         <ul>
-                            <li>
-                                <TextField aria-label="Product feature">
-                                    <Input placeholder="Fill in a feature" />
-                                </TextField>
-                            </li>
+                            {renderFeatures()}
                         </ul>
+                        <Button onPress={handleFeatureAdd}>+ Add a feature</Button>
                     </article>
                 </section>
             }
