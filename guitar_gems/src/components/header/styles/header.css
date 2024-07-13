@@ -19,12 +19,23 @@ header {
     padding: 0 40px;
     position: relative;
     top: 0;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--bg-header-footer-color);
 }
 
-header>.react-aria-Button {
+header>.logo-button.react-aria-Button {
+    opacity: 0.94;
+    padding: 0 32px 0 0;
+}
+
+nav {
+    display: flex;
+    justify-self: end;
+    align-items: center;
+}
+
+header .react-aria-Button {
     color: var(--secondary-color);
     opacity: 0.8;
     padding: 0 0 0 32px;
@@ -44,7 +55,7 @@ header>.react-aria-Button {
     transition: all var(--transition-duration) var(--transition-timing-function);
 }
 
-header>.react-aria-Button[data-hovered] {
+header .react-aria-Button[data-hovered] {
     opacity: 1;
 
 }
@@ -62,9 +73,9 @@ header span.material-symbols-outlined {
     }
 }
 
-@media only screen and (max-width: 404px) {
+@media only screen and (max-width: 710px) {
 
-    header>.react-aria-Button>p {
+    header .react-aria-Button>p {
         display: none;
     }
 
