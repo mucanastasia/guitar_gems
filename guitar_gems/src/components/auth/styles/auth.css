@@ -145,7 +145,8 @@
             font-family: "Roboto";
             font-weight: 400;
             color: #EF0000;
-            margin-top: -20px;
+            margin-top: -40px;
+            margin-bottom: 40px;
         }
 
         .password-field {
@@ -212,8 +213,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        height: 80vh;
+        justify-content: start;
+        height: 100vh;
         width: 100%;
     }
 
@@ -223,6 +224,7 @@
 
     .auth-form {
         padding: 0 20px;
+        margin-top: 40px;
     }
 }
 
