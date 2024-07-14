@@ -174,7 +174,7 @@ export default function EditGuitar() {
 					brand={displayBrandName(data.brand_id)}
 				/>
 			)}
-			<div className="product-wrap">
+			<div className="editor-wrap">
 				<Form onSubmit={handleSave}>
 					<header className="editor">
 						<h1>Edit guitar</h1>

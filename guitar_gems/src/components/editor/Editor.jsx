@@ -30,8 +30,6 @@ export default function Editor() {
 	const guitarIdRef = useRef(null);
 	const history = useHistory();
 
-	console.log(data);
-
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -140,7 +138,7 @@ export default function Editor() {
 					brand={displayBrandName(data.brand_id)}
 				/>
 			)}
-			<div className="product-wrap">
+			<div className="editor-wrap">
 				<Form onSubmit={handlePublish}>
 					<header className="editor">
 						<h1>Add guitar</h1>

@@ -141,7 +141,8 @@ export default function Product() {
 														<p>Are you sure you want to delete this guitar?</p>
 														<Button
 															className="delete-button"
-															onPress={handleDeleteClick}>
+															onPress={handleDeleteClick}
+															isDisabled={loading}>
 															Yes, delete
 														</Button>
 													</div>

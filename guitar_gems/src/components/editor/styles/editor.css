@@ -1,14 +1,42 @@
+.editor-wrap {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    padding: 0 0 100px 0;
+    margin: 0 auto 60px auto;
+
+    .product-content-container {
+        display: grid;
+        grid-template-columns: 320px auto;
+        justify-content: start;
+        gap: 80px;
+        align-items: start;
+        width: 1160px;
+        margin: 0 auto;
+        padding: 0 40px 0 40px;
+
+        .product-card {
+            cursor: default;
+        }
+
+    }
+}
+
 .react-aria-Form {
 
     header.editor {
         width: 100%;
-        background: #f5f5f5;
+        background: #c1e8ff;
         margin: 0 0 70px 0;
-        border-radius: 16px;
         height: 70px;
         display: flex;
         justify-content: space-between;
-        padding: 0 24px;
+        padding: 0 40px;
+        position: sticky;
+        z-index: 1000;
 
         h1 {
             grid-area: heading;
@@ -69,16 +97,6 @@
             background: transparent;
         }
 
-        &::after {
-            content: attr(data-content);
-            display: none;
-        }
-
-        &[data-content="Success"] {
-            background: #009B5A;
-        }
-
-        &[data-content="Publishing..."],
         &[data-disabled] {
             background: #a1a1a1;
             border: solid 2px #a1a1a1;
