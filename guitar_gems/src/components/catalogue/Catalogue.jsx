@@ -8,16 +8,14 @@ import Skeleton from '../spinner/Skeleton';
 import './styles/catalogue.css';
 
 export default function Catalogue() {
-    const [guitars, setGuitars] = useState([]);
-    const [loading, setLoading] = useState(true);
+	const [guitars, setGuitars] = useState([]);
+	const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                const { data, error } = await supabase
-                    .from('guitars')
-                    .select(`
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				setLoading(true);
+				const { data, error } = await supabase.from('guitars').select(`
                                 id,
                                 name,
                                 main_img,
@@ -27,44 +25,43 @@ export default function Catalogue() {
                                 )
                             `);
 
-                console.log('Initial load', data);                          //CONSOLE.LOG!!!!!!!!!!!!
+				console.log('Initial load', data); //CONSOLE.LOG!!!!!!!!!!!!
 
-                if (error) throw error;
+				if (error) throw error;
 
-                setGuitars(data);
-            } catch (error) {
-                console.error(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+				setGuitars(data);
+			} catch (error) {
+				console.error(error.message);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-        fetchData();
-    }, []);
+		fetchData();
+	}, []);
 
-    const [selectedFilters, setSelectedFilters] = useState({
-        brands: [],
-        types: [],
-        materials: [],
-        countries: [],
-        date: { start: null, end: null },
-    });
+	const [selectedFilters, setSelectedFilters] = useState({
+		brands: [],
+		types: [],
+		materials: [],
+		countries: [],
+		date: { start: null, end: null },
+	});
 
-    const prepareFilter = (selectedList, fieldNames) => {
-        const filter = selectedList?.map((id) => (fieldNames
-            .map((fieldName) => (`${fieldName}.eq.${id}`))
-            .join(',')))
-            .join(',');
-        return filter;
-    };
+	const prepareFilter = (selectedList, fieldNames) => {
+		const filter = selectedList
+			?.map((id) =>
+				fieldNames.map((fieldName) => `${fieldName}.eq.${id}`).join(',')
+			)
+			.join(',');
+		return filter;
+	};
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                let request = supabase
-                    .from('guitars')
-                    .select(`
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				setLoading(true);
+				let request = supabase.from('guitars').select(`
                             id,
                             name,
                             main_img,
@@ -74,74 +71,92 @@ export default function Catalogue() {
                             )
                     `);
 
-                if (selectedFilters.brands.length > 0) {
-                    request = request.or(prepareFilter(selectedFilters.brands, ['brand_id']));
-                }
-                if (selectedFilters.types.length > 0) {
-                    request = request.or(prepareFilter(selectedFilters.types, ['type_id']));
-                }
-                if (selectedFilters.materials.length > 0) {
-                    request = request.or(prepareFilter(selectedFilters.materials, ['body_material_id', 'neck_material_id', 'fingerboard_material_id']));
-                }
-                if (selectedFilters.countries.length > 0) {
-                    request = request.or(prepareFilter(selectedFilters.countries, ['country_id']));
-                }
-                if (selectedFilters.date.start && selectedFilters.date.end) {
-                    request.gte('release_date', selectedFilters.date?.start.toLocaleString('en-GB'));
-                    request.lte('release_date', selectedFilters.date?.end.toLocaleString('en-GB'));
-                }
+				if (selectedFilters.brands.length > 0) {
+					request = request.or(
+						prepareFilter(selectedFilters.brands, ['brand_id'])
+					);
+				}
+				if (selectedFilters.types.length > 0) {
+					request = request.or(
+						prepareFilter(selectedFilters.types, ['type_id'])
+					);
+				}
+				if (selectedFilters.materials.length > 0) {
+					request = request.or(
+						prepareFilter(selectedFilters.materials, [
+							'body_material_id',
+							'neck_material_id',
+							'fingerboard_material_id',
+						])
+					);
+				}
+				if (selectedFilters.countries.length > 0) {
+					request = request.or(
+						prepareFilter(selectedFilters.countries, ['country_id'])
+					);
+				}
+				if (selectedFilters.date.start && selectedFilters.date.end) {
+					request.gte(
+						'release_date',
+						selectedFilters.date?.start.toLocaleString('en-GB')
+					);
+					request.lte(
+						'release_date',
+						selectedFilters.date?.end.toLocaleString('en-GB')
+					);
+				}
 
-                console.log('Selected Filters: ', selectedFilters);
-                // If you select the brand filter: Fender and Gibson, the result will be Fender <OR> Gibson.
-                // If you select the brand filter: Fender and the type filter: Electric, the result will be Fender <AND> Electric.
-                // Therefore, within a filter category, it's a logical OR, but across different filter categories, it's a logical AND.
+				console.log('Selected Filters: ', selectedFilters);
+				// If you select the brand filter: Fender and Gibson, the result will be Fender <OR> Gibson.
+				// If you select the brand filter: Fender and the type filter: Electric, the result will be Fender <AND> Electric.
+				// Therefore, within a filter category, it's a logical OR, but across different filter categories, it's a logical AND.
 
-                const { data, error } = await request;
+				const { data, error } = await request;
 
-                //console.log(data);
-                if (error) throw error;
+				//console.log(data);
+				if (error) throw error;
 
-                setGuitars(data);
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setLoading(false);
-            }
-        };
+				setGuitars(data);
+			} catch (error) {
+				console.error(error);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-        fetchData();
-        // window.scrollTo({ top: 0, behavior: 'smooth' });
+		fetchData();
+		// window.scrollTo({ top: 0, behavior: 'smooth' });
+	}, [selectedFilters]);
 
-    }, [selectedFilters]);
+	const renderCatalogue = () => {
+		if (!guitars || guitars.length === 0) {
+			return <p>No guitars available.</p>;
+		}
 
-    const renderCatalogue = () => {
-        if (!guitars || guitars.length === 0) {
-            return <p>No guitars available.</p>;
-        }
+		return guitars.map((guitar) => (
+			<Link
+				key={guitar.id}
+				to={`/guitars/${guitar.id}`}>
+				<ProductCard guitarData={guitar} />
+			</Link>
+		));
+	};
 
-        return guitars.map((guitar) => (
-            <Link key={guitar.id} to={`/guitars/${guitar.id}`}><ProductCard guitarData={guitar} /></Link>
-        ));
-    };
-
-    return (
-        <>
-            <CatalogueHeader />
-            <div className="container">
-                <FiltersContainer selected={selectedFilters} setSelected={setSelectedFilters} />
-                <div className="catalogue-container">
-                    {loading
-                        ? <Skeleton count={guitars.length} />
-                        : renderCatalogue()
-                    }
-                </div>
-            </div>
-        </>
-    );
+	return (
+		<>
+			<CatalogueHeader />
+			<div className="container">
+				<FiltersContainer
+					selected={selectedFilters}
+					setSelected={setSelectedFilters}
+				/>
+				<div className="catalogue-container">
+					{loading ? <Skeleton count={guitars.length} /> : renderCatalogue()}
+				</div>
+			</div>
+		</>
+	);
 }
-
-
-
 
 // Brands
 //     .from('guitars')
@@ -189,7 +204,6 @@ export default function Catalogue() {
 //         )
 //     `)
 // .eq('country.id', 3);
-
 
 //Material
 // .from('guitars')

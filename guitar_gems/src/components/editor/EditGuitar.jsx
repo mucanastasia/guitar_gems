@@ -3,13 +3,16 @@ import EditorContent from './EditorContent';
 import ProductCard from '../catalogue/ProductCard';
 import { Form, Button, FileTrigger } from 'react-aria-components';
 import { supabase } from '../../supabaseClient';
-import { useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import defaultImg from '../../assets/img-placeholder.png';
 import Hero from '../product/Hero';
 import Spinner from '../spinner/Spinner';
 import './styles/editor.css';
 
-export default function Editor() {
+export default function EditGuitar() {
+	const { id } = useParams();
+	const history = useHistory();
+
 	const [data, setData] = useState({
 		name: '',
 		description: '',
@@ -26,11 +29,46 @@ export default function Editor() {
 	const [error, setError] = useState(false);
 	const [uploading, setUploading] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const [loadingData, setLoadingData] = useState(false);
 	const brandsRef = useRef({});
-	const guitarIdRef = useRef(null);
-	const history = useHistory();
 
-	console.log(data);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				setLoadingData(true);
+				const { data, error } = await supabase
+					.from('guitars')
+					.select(
+						`
+                            id,
+                            name,
+                            description,
+                            release_date,
+                            main_img,
+                            brand_id,
+                            country_id,
+                            type_id,
+                            body_material_id,
+                            neck_material_id,
+                            fingerboard_material_id,
+                            features
+                        `
+					)
+					.eq('id', id)
+					.single();
+
+				if (error) throw error;
+
+				setData(data);
+			} catch (error) {
+				console.error(error.message);
+			} finally {
+				setLoadingData(false);
+			}
+		};
+
+		fetchData();
+	}, [id]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -80,24 +118,18 @@ export default function Editor() {
 		}
 	};
 
-	const handlePublish = async (e) => {
-		setLoading(true);
+	const handleSave = async (e) => {
 		e.preventDefault();
 		if (!data.main_img) {
 			setError('A photo is required');
-			setLoading(false);
 			return;
 		}
-		const { data: responseData, error } = await supabase
-			.from('guitars')
-			.insert([data])
-			.select('id');
+		setLoading(true);
+		const { error } = await supabase.from('guitars').update(data).eq('id', id);
 		if (error) {
-			console.error('Error inserting data:', error);
+			console.error('Error updating data:', error);
 		} else {
-			guitarIdRef.current = responseData[0].id;
-
-			history.push(`/guitars/${guitarIdRef.current}`);
+			history.push(`/guitars/${id}`);
 		}
 		setLoading(false);
 	};
@@ -121,17 +153,19 @@ export default function Editor() {
 
 	const displayPublishButton = () => {
 		if (loading) {
-			return 'Publishing...';
-		} else if (guitarIdRef.current > 0) {
-			return 'Success';
+			return 'Saving...';
 		} else {
-			return 'Publish';
+			return 'Save';
 		}
+	};
+
+	const handleCancelClick = () => {
+		history.push(`/guitars/${id}`);
 	};
 
 	return (
 		<>
-			{uploading ? (
+			{loadingData ? (
 				<Spinner />
 			) : (
 				<Hero
@@ -141,15 +175,23 @@ export default function Editor() {
 				/>
 			)}
 			<div className="product-wrap">
-				<Form onSubmit={handlePublish}>
+				<Form onSubmit={handleSave}>
 					<header className="editor">
-						<h1>Add guitar</h1>
-						<Button
-							className="accent-button"
-							type="submit"
-							isDisabled={loading}>
-							{displayPublishButton()}
-						</Button>
+						<h1>Edit guitar</h1>
+						<div className="edit-header-buttons">
+							<Button
+								className="cancel-button"
+								onPress={handleCancelClick}
+								isDisabled={loading}>
+								Cancel
+							</Button>
+							<Button
+								className="accent-button"
+								type="submit"
+								isDisabled={loading}>
+								{displayPublishButton()}
+							</Button>
+						</div>
 					</header>
 					<div className="product-content-container">
 						<div>
