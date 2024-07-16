@@ -14,6 +14,11 @@ export default function Catalogue() {
 	const [hasMore, setHasMore] = useState(true);
 	const cardsPerPage = 12;
 
+	useEffect(() => {
+		setHasMore(true);
+		fetchData();
+	}, []);
+
 	const observer = useRef();
 	const lastCardRef = useCallback(
 		(node) => {
@@ -28,6 +33,11 @@ export default function Catalogue() {
 		},
 		[loading, hasMore]
 	);
+
+	const handleFilterChange = async (newFilters) => {
+		setSelectedFilters(newFilters);
+		fetchData(newFilters, true);
+	};
 
 	const [selectedFilters, setSelectedFilters] = useState({
 		brands: [],
@@ -46,7 +56,7 @@ export default function Catalogue() {
 		return filter;
 	};
 
-	const fetchData = async (reset = false) => {
+	const fetchData = async (filters = selectedFilters, reset = false) => {
 		try {
 			setLoading(true);
 			let request = supabase
@@ -65,37 +75,30 @@ export default function Catalogue() {
 				.order('id', { ascending: true })
 				.range(0, cardsPerPage - 1);
 
-			if (selectedFilters.brands.length > 0) {
-				request = request.or(
-					prepareFilter(selectedFilters.brands, ['brand_id'])
-				);
+			if (filters.brands.length > 0) {
+				request = request.or(prepareFilter(filters.brands, ['brand_id']));
 			}
-			if (selectedFilters.types.length > 0) {
-				request = request.or(prepareFilter(selectedFilters.types, ['type_id']));
+			if (filters.types.length > 0) {
+				request = request.or(prepareFilter(filters.types, ['type_id']));
 			}
-			if (selectedFilters.materials.length > 0) {
+			if (filters.materials.length > 0) {
 				request = request.or(
-					prepareFilter(selectedFilters.materials, [
+					prepareFilter(filters.materials, [
 						'body_material_id',
 						'neck_material_id',
 						'fingerboard_material_id',
 					])
 				);
 			}
-			if (selectedFilters.countries.length > 0) {
-				request = request.or(
-					prepareFilter(selectedFilters.countries, ['country_id'])
-				);
+			if (filters.countries.length > 0) {
+				request = request.or(prepareFilter(filters.countries, ['country_id']));
 			}
-			if (selectedFilters.date.start && selectedFilters.date.end) {
+			if (filters.date.start && filters.date.end) {
 				request.gte(
 					'release_date',
-					selectedFilters.date?.start.toLocaleString('en-GB')
+					filters.date?.start.toLocaleString('en-GB')
 				);
-				request.lte(
-					'release_date',
-					selectedFilters.date?.end.toLocaleString('en-GB')
-				);
+				request.lte('release_date', filters.date?.end.toLocaleString('en-GB'));
 			}
 
 			if (!reset && guitars.length > 0) {
@@ -122,11 +125,6 @@ export default function Catalogue() {
 			setLoading(false);
 		}
 	};
-
-	useEffect(() => {
-		setHasMore(true);
-		fetchData(true);
-	}, [selectedFilters]);
 
 	const renderCatalogue = () => {
 		if (!guitars || guitars.length === 0) {
@@ -161,7 +159,7 @@ export default function Catalogue() {
 			<div className="container">
 				<FiltersContainer
 					selected={selectedFilters}
-					setSelected={setSelectedFilters}
+					setSelected={handleFilterChange}
 				/>
 				<div className="catalogue-container">
 					{loading && guitars.length === 0 ? (
