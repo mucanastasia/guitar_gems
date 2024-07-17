@@ -36,7 +36,7 @@ export default function Catalogue() {
 
 	const handleFilterChange = async (newFilters) => {
 		setSelectedFilters(newFilters);
-		fetchData(newFilters, true);
+		await fetchData(newFilters, true);
 	};
 
 	const [selectedFilters, setSelectedFilters] = useState({
@@ -45,6 +45,7 @@ export default function Catalogue() {
 		materials: [],
 		countries: [],
 		date: { start: null, end: null },
+		query: '',
 	});
 
 	const prepareFilter = (selectedList, fieldNames) => {
@@ -60,20 +61,17 @@ export default function Catalogue() {
 		try {
 			setLoading(true);
 			let request = supabase
-				.from('guitars')
+				.from('searchable_guitars')
 				.select(
 					`
 						id,
 						name,
 						main_img,
-						brand:brands (
-							id,
-							name
-						)
+						brand_name
                     `
 				)
 				.order('id', { ascending: true })
-				.range(0, cardsPerPage - 1);
+				.limit(cardsPerPage);
 
 			if (filters.brands.length > 0) {
 				request = request.or(prepareFilter(filters.brands, ['brand_id']));
@@ -101,14 +99,18 @@ export default function Catalogue() {
 				request.lte('release_date', filters.date?.end.toLocaleString('en-GB'));
 			}
 
+			if (filters.query.length > 0) {
+				request.or(
+					`name.ilike.%${filters.query}%,full_text_search.wfts.${filters.query},brand_name.ilike.%${filters.query}%,type_name.ilike.%${filters.query}%,body_material_name.ilike.%${filters.query}%,neck_material_name.ilike.%${filters.query}%,fingerboard_material_name.ilike.%${filters.query}%,country_name.ilike.%${filters.query}%`
+				);
+			}
+
 			if (!reset && guitars.length > 0) {
 				const lastGuitarId = guitars[guitars.length - 1].id;
 				request.gt('id', lastGuitarId);
 			}
 
 			const { data, error } = await request;
-
-			// console.log(data);
 
 			if (error) throw error;
 
@@ -155,7 +157,10 @@ export default function Catalogue() {
 
 	return (
 		<>
-			<CatalogueHeader />
+			<CatalogueHeader
+				selected={selectedFilters}
+				setSelected={handleFilterChange}
+			/>
 			<div className="container">
 				<FiltersContainer
 					selected={selectedFilters}
