@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { supabase } from '../../supabaseClient';
 import { Link } from 'react-router-dom';
+import useWindowWidth from './hooks/useWindowWidth';
 import ProductCard from './ProductCard';
 import FiltersContainer from './FiltersContainer';
 import CatalogueHeader from './CatalogueHeader';
 import Skeleton from '../spinner/Skeleton';
+import FiltersSideBar from './FiltersSideBar';
 import './styles/catalogue.css';
 
 export default function Catalogue() {
@@ -13,6 +15,9 @@ export default function Catalogue() {
 
 	const [hasMore, setHasMore] = useState(true);
 	const cardsPerPage = 12;
+
+	const isWidth1023 = useWindowWidth();
+	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
 		setHasMore(true);
@@ -158,14 +163,27 @@ export default function Catalogue() {
 	return (
 		<>
 			<CatalogueHeader
+				setIsOpen={setIsOpen}
 				selected={selectedFilters}
 				setSelected={handleFilterChange}
 			/>
 			<div className="container">
-				<FiltersContainer
-					selected={selectedFilters}
-					setSelected={handleFilterChange}
-				/>
+				{!isWidth1023 ? (
+					<FiltersContainer
+						selected={selectedFilters}
+						setSelected={handleFilterChange}
+					/>
+				) : (
+					<FiltersSideBar
+						isOpen={isOpen}
+						setIsOpen={setIsOpen}
+						setSelected={handleFilterChange}>
+						<FiltersContainer
+							selected={selectedFilters}
+							setSelected={handleFilterChange}
+						/>
+					</FiltersSideBar>
+				)}
 				<div className="catalogue-container">
 					{loading && guitars.length === 0 ? (
 						<Skeleton count={cardsPerPage} />

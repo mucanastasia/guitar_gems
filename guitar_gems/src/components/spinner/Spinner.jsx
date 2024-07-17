@@ -1,9 +1,9 @@
 import './styles/spinner.css';
 
 export default function Spinner() {
-    return (
-        <div className="loading-page">
-            <span className="spinner"></span>
-        </div>
-    );
+	return (
+		<div className="loading-page">
+			<div className="spinner"></div>
+		</div>
+	);
 }

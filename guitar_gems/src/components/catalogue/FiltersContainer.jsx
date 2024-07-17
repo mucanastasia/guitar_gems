@@ -4,8 +4,10 @@ import './styles/filtersContainer.css';
 import { CheckboxGroup, Checkbox, Label } from 'react-aria-components';
 import { CheckboxGroupStateContext } from 'react-aria-components';
 import MyDateRangePicker from './MyDateRangePicker';
+import Spinner from '../spinner/Spinner';
 
 export default function FiltersContainer({ selected, setSelected }) {
+	const [loading, setLoading] = useState(true);
 	const [filterNames, setFilterNames] = useState({
 		brands: [],
 		guitar_types: [],
@@ -15,13 +17,20 @@ export default function FiltersContainer({ selected, setSelected }) {
 
 	useEffect(() => {
 		const fetchData = async (tableName) => {
-			const { data, error } = await supabase.from(tableName).select(`
+			setLoading(true);
+			try {
+				const { data, error } = await supabase.from(tableName).select(`
                             id,
                             name
                         `);
 
-			if (error) throw error;
-			return data;
+				if (error) throw error;
+				return data;
+			} catch (error) {
+				console.error(error.message);
+			} finally {
+				setLoading(false);
+			}
 		};
 
 		const loadFilters = async () => {
@@ -70,106 +79,112 @@ export default function FiltersContainer({ selected, setSelected }) {
 
 	return (
 		<div className="filters-container">
-			<CheckboxGroup
-				onChange={handleChangeBrand}
-				value={selected.brands}>
-				<Label>
-					Brand {`(`}
-					<SelectionCount />
-					{`)`}
-				</Label>
-				{filterNames.brands.map((filter) => (
-					<Checkbox
-						key={filter.id}
-						value={filter.id}>
-						<div
-							className="checkbox"
-							aria-hidden="true">
-							<svg viewBox="0 0 18 18">
-								<polyline points="1 9 7 14 15 4" />
-							</svg>
-						</div>
-						{filter.name}
-					</Checkbox>
-				))}
-			</CheckboxGroup>
+			{loading ? (
+				<Spinner />
+			) : (
+				<>
+					<CheckboxGroup
+						onChange={handleChangeBrand}
+						value={selected.brands}>
+						<Label>
+							Brand {`(`}
+							<SelectionCount />
+							{`)`}
+						</Label>
+						{filterNames.brands.map((filter) => (
+							<Checkbox
+								key={filter.id}
+								value={filter.id}>
+								<div
+									className="checkbox"
+									aria-hidden="true">
+									<svg viewBox="0 0 18 18">
+										<polyline points="1 9 7 14 15 4" />
+									</svg>
+								</div>
+								{filter.name}
+							</Checkbox>
+						))}
+					</CheckboxGroup>
 
-			<CheckboxGroup
-				onChange={handleChangeType}
-				value={selected.types}>
-				<Label>
-					Type {`(`}
-					<SelectionCount />
-					{`)`}
-				</Label>
-				{filterNames.guitar_types.map((filter) => (
-					<Checkbox
-						key={filter.id}
-						value={filter.id}>
-						<div
-							className="checkbox"
-							aria-hidden="true">
-							<svg viewBox="0 0 18 18">
-								<polyline points="1 9 7 14 15 4" />
-							</svg>
-						</div>
-						{filter.name}
-					</Checkbox>
-				))}
-			</CheckboxGroup>
+					<CheckboxGroup
+						onChange={handleChangeType}
+						value={selected.types}>
+						<Label>
+							Type {`(`}
+							<SelectionCount />
+							{`)`}
+						</Label>
+						{filterNames.guitar_types.map((filter) => (
+							<Checkbox
+								key={filter.id}
+								value={filter.id}>
+								<div
+									className="checkbox"
+									aria-hidden="true">
+									<svg viewBox="0 0 18 18">
+										<polyline points="1 9 7 14 15 4" />
+									</svg>
+								</div>
+								{filter.name}
+							</Checkbox>
+						))}
+					</CheckboxGroup>
 
-			<CheckboxGroup
-				onChange={handleChangeMaterial}
-				value={selected.materials}>
-				<Label>
-					Material {`(`}
-					<SelectionCount />
-					{`)`}
-				</Label>
-				{filterNames.materials.map((filter) => (
-					<Checkbox
-						key={filter.id}
-						value={filter.id}>
-						<div
-							className="checkbox"
-							aria-hidden="true">
-							<svg viewBox="0 0 18 18">
-								<polyline points="1 9 7 14 15 4" />
-							</svg>
-						</div>
-						{filter.name}
-					</Checkbox>
-				))}
-			</CheckboxGroup>
+					<CheckboxGroup
+						onChange={handleChangeMaterial}
+						value={selected.materials}>
+						<Label>
+							Material {`(`}
+							<SelectionCount />
+							{`)`}
+						</Label>
+						{filterNames.materials.map((filter) => (
+							<Checkbox
+								key={filter.id}
+								value={filter.id}>
+								<div
+									className="checkbox"
+									aria-hidden="true">
+									<svg viewBox="0 0 18 18">
+										<polyline points="1 9 7 14 15 4" />
+									</svg>
+								</div>
+								{filter.name}
+							</Checkbox>
+						))}
+					</CheckboxGroup>
 
-			<CheckboxGroup
-				onChange={handleChangeCountry}
-				value={selected.countries}>
-				<Label>
-					Country {`(`}
-					<SelectionCount />
-					{`)`}
-				</Label>
-				{filterNames.countries.map((filter) => (
-					<Checkbox
-						key={filter.id}
-						value={filter.id}>
-						<div
-							className="checkbox"
-							aria-hidden="true">
-							<svg viewBox="0 0 18 18">
-								<polyline points="1 9 7 14 15 4" />
-							</svg>
-						</div>
-						{filter.name}
-					</Checkbox>
-				))}
-			</CheckboxGroup>
+					<CheckboxGroup
+						onChange={handleChangeCountry}
+						value={selected.countries}>
+						<Label>
+							Country {`(`}
+							<SelectionCount />
+							{`)`}
+						</Label>
+						{filterNames.countries.map((filter) => (
+							<Checkbox
+								key={filter.id}
+								value={filter.id}>
+								<div
+									className="checkbox"
+									aria-hidden="true">
+									<svg viewBox="0 0 18 18">
+										<polyline points="1 9 7 14 15 4" />
+									</svg>
+								</div>
+								{filter.name}
+							</Checkbox>
+						))}
+					</CheckboxGroup>
 
-			<MyDateRangePicker
-				selected={selected}
-				setSelected={setSelected}
-			/>
+					<MyDateRangePicker
+						selected={selected}
+						setSelected={setSelected}
+					/>
+				</>
+			)}
 		</div>
 	);
 }
