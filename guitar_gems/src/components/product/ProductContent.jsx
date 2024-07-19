@@ -44,9 +44,14 @@ export default function ProductContent({ guitarData }) {
 	};
 
 	const renderDescription = () => {
-		return guitarData.description
-			.split('\n')
-			.map((paragraph, index) => <p key={index}>{paragraph}</p>);
+		const filteredDescription = guitarData.description.replace(/\n{2,}/g, '\n');
+
+		return filteredDescription.split('\n').map((paragraph, index) => {
+			if (paragraph.trim() !== '') {
+				return <p key={index}>{paragraph}</p>;
+			}
+			return null;
+		});
 	};
 
 	return (

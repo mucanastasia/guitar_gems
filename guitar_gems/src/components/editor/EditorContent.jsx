@@ -97,6 +97,14 @@ export default function EditorContent() {
 		));
 	};
 
+	const handleChangeName = (e) => {
+		setData({ ...data, name: e.target.value });
+	};
+
+	const handleChangeDescription = (value) => {
+		setData({ ...data, description: value });
+	};
+
 	return (
 		<>
 			{loading ? (
@@ -108,9 +116,7 @@ export default function EditorContent() {
 						<TextField aria-label="Product name" isRequired type="text">
 							<Input
 								value={data.name}
-								onChange={(e) => {
-									setData({ ...data, name: e.target.value });
-								}}
+								onChange={handleChangeName}
 								placeholder="Fill in a name"
 							/>
 							<FieldError />
@@ -122,10 +128,8 @@ export default function EditorContent() {
 							aria-label="Product description"
 							isRequired
 							value={data.description}
-							onChange={(value) => {
-								setData({ ...data, description: value });
-							}}>
-							<TextArea placeholder="Fill in a description" />
+							onChange={handleChangeDescription}>
+							<TextArea placeholder="Fill in a description. Press Enter for new paragraphs." />
 							<FieldError />
 						</TextField>
 					</article>
