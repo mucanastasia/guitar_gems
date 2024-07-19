@@ -125,22 +125,21 @@ export default function Product() {
 				</Breadcrumbs>
 				<div className="product-content-container">
 					<div className="product-card-container">
-						<ProductCard guitarData={guitarData} />
+						<ProductCard
+							brandName={guitarData.brand.name}
+							guitarName={guitarData.name}
+							mainImg={guitarData.main_img}
+						/>
 						{session?.user.app_metadata.role === 'editor' && (
 							<>
-								<Button
-									className="primary-button"
-									onPress={handleEditClick}>
+								<Button className="primary-button" onPress={handleEditClick}>
 									Edit
 								</Button>
 								<DialogTrigger>
 									<Button className="delete-button">Delete</Button>
 									<Popover>
 										<OverlayArrow>
-											<svg
-												width={12}
-												height={12}
-												viewBox="0 0 12 12">
+											<svg width={12} height={12} viewBox="0 0 12 12">
 												<path d="M0 0 L6 6 L12 0" />
 											</svg>
 										</OverlayArrow>

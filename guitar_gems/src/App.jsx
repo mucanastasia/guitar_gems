@@ -14,7 +14,8 @@ import SignUp from './components/auth/SingUp';
 import AuthPage from './components/auth/AuthPage';
 import PrivateRoute from './components/auth/PrivateRoute';
 import ScrollToTop from './components/product/ScrollToTop';
-import Editor from './components/editor/Editor';
+import EditorDataContextProvider from './components/editor/contexts/EditorDataContext';
+import AddGuitar from './components/editor/AddGuitar';
 import EditGuitar from './components/editor/EditGuitar';
 import NotFoundPage from './components/product/NotFoundPage';
 import './App.css';
@@ -70,7 +71,9 @@ export default function App() {
 					{user?.app_metadata.role === 'editor' ? (
 						<>
 							<Header />
-							<Editor />
+							<EditorDataContextProvider>
+								<AddGuitar />
+							</EditorDataContextProvider>
 							<Footer />
 						</>
 					) : (
@@ -82,7 +85,9 @@ export default function App() {
 					{user?.app_metadata.role === 'editor' ? (
 						<>
 							<Header />
-							<EditGuitar />
+							<EditorDataContextProvider>
+								<EditGuitar />
+							</EditorDataContextProvider>
 							<Footer />
 						</>
 					) : (

@@ -147,7 +147,11 @@ export default function Catalogue() {
 						ref={lastCardRef}
 						target="_blank"
 						rel="noopener noreferrer">
-						<ProductCard guitarData={guitar} />
+						<ProductCard
+							brandName={guitar.brand_name}
+							guitarName={guitar.name}
+							mainImg={guitar.main_img}
+						/>
 					</Link>
 				);
 			} else {
@@ -157,7 +161,11 @@ export default function Catalogue() {
 						to={`/guitars/${guitar.id}`}
 						target="_blank"
 						rel="noopener noreferrer">
-						<ProductCard guitarData={guitar} />
+						<ProductCard
+							brandName={guitar.brand_name}
+							guitarName={guitar.name}
+							mainImg={guitar.main_img}
+						/>
 					</Link>
 				);
 			}
