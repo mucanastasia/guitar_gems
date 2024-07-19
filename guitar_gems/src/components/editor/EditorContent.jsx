@@ -6,9 +6,11 @@ import { Button, Input, FieldError } from 'react-aria-components';
 import SpecsDropdown from './SpecsDropdown';
 import Spinner from '../spinner/Spinner';
 import MyDatePicker from './MyDatePicker';
+import { useEditorData } from './contexts/EditorDataContext';
 import './styles/editorContent.css';
 
-export default function EditorContent({ data, setData }) {
+export default function EditorContent() {
+	const { data, setData } = useEditorData();
 	const [loading, setLoading] = useState(true);
 	const [selectOptions, setSelectOptions] = useState({
 		brands: [],
@@ -79,9 +81,7 @@ export default function EditorContent({ data, setData }) {
 	const renderFeatures = () => {
 		return data.features.map((feature, index) => (
 			<li key={'features_' + featureRenderCounter++}>
-				<TextField
-					aria-label="Product feature"
-					type="text">
+				<TextField aria-label="Product feature" type="text">
 					<Input
 						placeholder="Fill in a feature"
 						value={feature}
@@ -105,10 +105,7 @@ export default function EditorContent({ data, setData }) {
 				<section className="product-content edit-content">
 					<article>
 						<h2>Name</h2>
-						<TextField
-							aria-label="Product name"
-							isRequired
-							type="text">
+						<TextField aria-label="Product name" isRequired type="text">
 							<Input
 								value={data.name}
 								onChange={(e) => {
@@ -124,7 +121,6 @@ export default function EditorContent({ data, setData }) {
 						<TextField
 							aria-label="Product description"
 							isRequired
-							type="text"
 							value={data.description}
 							onChange={(value) => {
 								setData({ ...data, description: value });
@@ -139,49 +135,32 @@ export default function EditorContent({ data, setData }) {
 							label="Brand"
 							objectKey="brand_id"
 							values={selectOptions.brands}
-							selected={data}
-							setSelected={setData}
 						/>
 						<SpecsDropdown
 							label="Type"
 							objectKey="type_id"
 							values={selectOptions.guitar_types}
-							selected={data}
-							setSelected={setData}
 						/>
 						<SpecsDropdown
 							label="Body"
 							objectKey="body_material_id"
 							values={selectOptions.materials}
-							selected={data}
-							setSelected={setData}
 						/>
 						<SpecsDropdown
 							label="Neck"
 							objectKey="neck_material_id"
 							values={selectOptions.materials}
-							selected={data}
-							setSelected={setData}
 						/>
 						<SpecsDropdown
 							label="Fingerboard"
 							objectKey="fingerboard_material_id"
 							values={selectOptions.materials}
-							selected={data}
-							setSelected={setData}
 						/>
-						<MyDatePicker
-							label="Release Date"
-							objectKey="release_date"
-							data={data}
-							setData={setData}
-						/>
+						<MyDatePicker label="Release Date" objectKey="release_date" />
 						<SpecsDropdown
 							label="Country"
 							objectKey="country_id"
 							values={selectOptions.countries}
-							selected={data}
-							setSelected={setData}
 						/>
 					</article>
 					<article className="edit-features">

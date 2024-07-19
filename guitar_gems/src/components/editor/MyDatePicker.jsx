@@ -15,9 +15,11 @@ import {
 } from 'react-aria-components';
 import { I18nProvider } from 'react-aria';
 import { parseDate } from '@internationalized/date';
+import { useEditorData } from './contexts/EditorDataContext';
 import './styles/datePicker.css';
 
-export default function MyDatePicker({ label, objectKey, data, setData }) {
+export default function MyDatePicker({ label, objectKey }) {
+	const { data, setData } = useEditorData();
 	const parsedDate = data[objectKey] ? parseDate(data[objectKey]) : null;
 
 	return (
