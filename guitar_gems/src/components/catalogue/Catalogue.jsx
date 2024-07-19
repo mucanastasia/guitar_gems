@@ -144,7 +144,9 @@ export default function Catalogue() {
 					<Link
 						key={guitar.id}
 						to={`/guitars/${guitar.id}`}
-						ref={lastCardRef}>
+						ref={lastCardRef}
+						target="_blank"
+						rel="noopener noreferrer">
 						<ProductCard guitarData={guitar} />
 					</Link>
 				);
@@ -152,7 +154,9 @@ export default function Catalogue() {
 				return (
 					<Link
 						key={guitar.id}
-						to={`/guitars/${guitar.id}`}>
+						to={`/guitars/${guitar.id}`}
+						target="_blank"
+						rel="noopener noreferrer">
 						<ProductCard guitarData={guitar} />
 					</Link>
 				);
