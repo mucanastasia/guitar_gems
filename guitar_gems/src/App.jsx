@@ -16,6 +16,7 @@ import PrivateRoute from './components/auth/PrivateRoute';
 import ScrollToTop from './components/product/ScrollToTop';
 import Editor from './components/editor/Editor';
 import EditGuitar from './components/editor/EditGuitar';
+import NotFoundPage from './components/product/NotFoundPage';
 import './App.css';
 
 export default function App() {
@@ -25,9 +26,7 @@ export default function App() {
 		<Router>
 			<ScrollToTop />
 			<Switch>
-				<Route
-					exact
-					path="/">
+				<Route exact path="/">
 					<>
 						<Header />
 						<Catalogue />
@@ -43,10 +42,7 @@ export default function App() {
 							</AuthPage>
 						</>
 					) : (
-						<Redirect
-							push
-							to="/"
-						/>
+						<Redirect push to="/" />
 					)}
 				</Route>
 
@@ -58,10 +54,7 @@ export default function App() {
 							</AuthPage>
 						</>
 					) : (
-						<Redirect
-							push
-							to="/"
-						/>
+						<Redirect push to="/" />
 					)}
 				</Route>
 
@@ -81,10 +74,7 @@ export default function App() {
 							<Footer />
 						</>
 					) : (
-						<Redirect
-							push
-							to="/"
-						/>
+						<Redirect push to="/" />
 					)}
 				</PrivateRoute>
 
@@ -96,12 +86,14 @@ export default function App() {
 							<Footer />
 						</>
 					) : (
-						<Redirect
-							push
-							to="/"
-						/>
+						<Redirect push to="/" />
 					)}
 				</PrivateRoute>
+				<Route path="*">
+					<Header />
+					<NotFoundPage />
+					<Footer />
+				</Route>
 			</Switch>
 		</Router>
 	);

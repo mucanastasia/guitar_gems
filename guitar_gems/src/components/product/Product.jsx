@@ -15,6 +15,7 @@ import Hero from './Hero';
 import ProductContent from './ProductContent';
 import ProductCard from '../catalogue/ProductCard';
 import Spinner from '../spinner/Spinner';
+import NotFoundPage from './NotFoundPage';
 import './styles/product.css';
 
 export default function Product() {
@@ -23,6 +24,7 @@ export default function Product() {
 	const { id } = useParams();
 	const history = useHistory();
 	const { session } = useSession();
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -70,8 +72,10 @@ export default function Product() {
 				if (error) throw error;
 
 				setGuitarData(data);
+				setError(false);
 			} catch (error) {
 				console.error(error.message);
+				setError(true);
 			} finally {
 				setLoading(false);
 			}
@@ -97,66 +101,68 @@ export default function Product() {
 		setLoading(false);
 	};
 
+	if (loading) {
+		return <Spinner />;
+	}
+
+	if (error) {
+		return <NotFoundPage />;
+	}
+
 	return (
 		<>
-			{loading ? (
-				<Spinner />
-			) : (
-				<>
-					<Hero
-						name={guitarData.name}
-						brand={guitarData.brand.name}
-						img={guitarData.main_img}
-					/>
-					<div className="product-wrap">
-						<Breadcrumbs>
-							<Breadcrumb>
-								<Link to="/">Catalogue</Link>
-							</Breadcrumb>
-							<Breadcrumb>{`${guitarData.brand.name} — ${guitarData.name}`}</Breadcrumb>
-						</Breadcrumbs>
-						<div className="product-content-container">
-							<div className="product-card-container">
-								<ProductCard guitarData={guitarData} />
-								{session?.user.app_metadata.role === 'editor' && (
-									<>
-										<Button
-											className="primary-button"
-											onPress={handleEditClick}>
-											Edit
-										</Button>
-										<DialogTrigger>
-											<Button className="delete-button">Delete</Button>
-											<Popover>
-												<OverlayArrow>
-													<svg
-														width={12}
-														height={12}
-														viewBox="0 0 12 12">
-														<path d="M0 0 L6 6 L12 0" />
-													</svg>
-												</OverlayArrow>
-												<Dialog>
-													<div className="delete-alert">
-														<p>Are you sure you want to delete this guitar?</p>
-														<Button
-															className="delete-button"
-															onPress={handleDeleteClick}
-															isDisabled={loading}>
-															Yes, delete
-														</Button>
-													</div>
-												</Dialog>
-											</Popover>
-										</DialogTrigger>
-									</>
-								)}
-							</div>
-							<ProductContent guitarData={guitarData} />
-						</div>
+			<Hero
+				name={guitarData.name}
+				brand={guitarData.brand.name}
+				img={guitarData.main_img}
+			/>
+			<div className="product-wrap">
+				<Breadcrumbs>
+					<Breadcrumb>
+						<Link to="/">Catalogue</Link>
+					</Breadcrumb>
+					<Breadcrumb>{`${guitarData.brand.name} — ${guitarData.name}`}</Breadcrumb>
+				</Breadcrumbs>
+				<div className="product-content-container">
+					<div className="product-card-container">
+						<ProductCard guitarData={guitarData} />
+						{session?.user.app_metadata.role === 'editor' && (
+							<>
+								<Button
+									className="primary-button"
+									onPress={handleEditClick}>
+									Edit
+								</Button>
+								<DialogTrigger>
+									<Button className="delete-button">Delete</Button>
+									<Popover>
+										<OverlayArrow>
+											<svg
+												width={12}
+												height={12}
+												viewBox="0 0 12 12">
+												<path d="M0 0 L6 6 L12 0" />
+											</svg>
+										</OverlayArrow>
+										<Dialog>
+											<div className="delete-alert">
+												<p>Are you sure you want to delete this guitar?</p>
+												<Button
+													className="delete-button"
+													onPress={handleDeleteClick}
+													isDisabled={loading}>
+													Yes, delete
+												</Button>
+											</div>
+										</Dialog>
+									</Popover>
+								</DialogTrigger>
+							</>
+						)}
 					</div>
-				</>
-			)}
+					<ProductContent guitarData={guitarData} />
+				</div>
+			</div>
 		</>
 	);
 }
