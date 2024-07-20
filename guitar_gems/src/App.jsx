@@ -1,10 +1,5 @@
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Redirect,
-} from 'react-router-dom';
-import { useSession } from './contexts/SessionContext';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { useSession } from './components/auth/contexts/SessionContext';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Product from './components/product/Product';
@@ -14,10 +9,10 @@ import SignUp from './components/auth/SingUp';
 import AuthPage from './components/auth/AuthPage';
 import PrivateRoute from './components/auth/PrivateRoute';
 import ScrollToTop from './components/product/ScrollToTop';
-import EditorDataContextProvider from './components/editor/contexts/EditorDataContext';
 import { FiltersProvider } from './components/catalogue/contexts/FiltersContext';
 import AddGuitar from './components/editor/AddGuitar';
 import EditGuitar from './components/editor/EditGuitar';
+import Editor from './components/editor/Editor';
 import NotFoundPage from './components/product/NotFoundPage';
 import './App.css';
 
@@ -74,9 +69,9 @@ export default function App() {
 					{user?.app_metadata.role === 'editor' ? (
 						<>
 							<Header />
-							<EditorDataContextProvider>
-								<AddGuitar />
-							</EditorDataContextProvider>
+							<AddGuitar>
+								<Editor />
+							</AddGuitar>
 							<Footer />
 						</>
 					) : (
@@ -88,9 +83,9 @@ export default function App() {
 					{user?.app_metadata.role === 'editor' ? (
 						<>
 							<Header />
-							<EditorDataContextProvider>
-								<EditGuitar />
-							</EditorDataContextProvider>
+							<EditGuitar>
+								<Editor />
+							</EditGuitar>
 							<Footer />
 						</>
 					) : (

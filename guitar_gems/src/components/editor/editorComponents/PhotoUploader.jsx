@@ -1,5 +1,5 @@
-import { useEditorData } from './contexts/EditorDataContext';
-import { supabase } from '../../supabaseClient';
+import { useEditorData } from '../contexts/EditorDataContext';
+import { supabase } from '../../../supabaseClient';
 import { Button, FileTrigger } from 'react-aria-components';
 
 export default function MyComponent() {

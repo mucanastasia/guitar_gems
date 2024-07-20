@@ -6,7 +6,7 @@ import {
 	OverlayArrow,
 	Popover,
 } from 'react-aria-components';
-import { useSession } from '../../contexts/SessionContext';
+import { useSession } from '../auth/contexts/SessionContext';
 import { supabase } from '../../supabaseClient';
 import './styles/header.css';
 import './styles/popover.css';
@@ -43,10 +43,7 @@ export default function Header() {
 			<Button
 				onPress={handleLogoClick}
 				className="logo-button react-aria-Button">
-				<img
-					src={headerLogo}
-					style={{ width: '26px', margin: '0 14px 0 0' }}
-				/>
+				<img src={headerLogo} style={{ width: '26px', margin: '0 14px 0 0' }} />
 				<p>Guitar Gems</p>
 			</Button>
 
@@ -67,10 +64,7 @@ export default function Header() {
 
 						<Popover>
 							<OverlayArrow>
-								<svg
-									width={12}
-									height={12}
-									viewBox="0 0 12 12">
+								<svg width={12} height={12} viewBox="0 0 12 12">
 									<path d="M0 0 L6 6 L12 0" />
 								</svg>
 							</OverlayArrow>

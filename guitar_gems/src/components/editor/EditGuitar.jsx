@@ -1,14 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../../supabaseClient';
 import { useParams, useHistory } from 'react-router-dom';
-import { useEditorData } from './contexts/EditorDataContext';
-import Editor from './Editor';
+import EditorDataProvider from './contexts/EditorDataContext';
 import './styles/editor.css';
+import NotFoundPage from '../product/NotFoundPage';
+import Spinner from '../spinner/Spinner';
 
-export default function EditGuitar() {
+export default function EditGuitar({ children }) {
+	const [data, setData] = useState({});
+
+	const [uploadingPhoto, setUploadingPhoto] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
+
 	const { id } = useParams();
 	const history = useHistory();
-	const { data, setData, loading, setLoading, setError } = useEditorData();
+	const [errorData, setErrorData] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -40,6 +47,7 @@ export default function EditGuitar() {
 				setData(data);
 			} catch (error) {
 				console.error(error.message);
+				setErrorData(true);
 			} finally {
 				setLoading(false);
 			}
@@ -55,7 +63,11 @@ export default function EditGuitar() {
 			return;
 		}
 		setLoading(true);
-		const { error } = await supabase.from('guitars').update(data).eq('id', id);
+		const filteredData = {
+			...data,
+			features: data.features.filter((feature) => feature.trim() !== ''),
+		};
+		const { error } = await supabase.from('guitars').update(filteredData).eq('id', id);
 		if (error) {
 			console.error('Error updating data:', error);
 		} else {
@@ -76,13 +88,30 @@ export default function EditGuitar() {
 		history.push(`/guitars/${id}`);
 	};
 
+	if (errorData) {
+		return <NotFoundPage />;
+	}
+
+	if (loading) {
+		return <Spinner />;
+	}
+
 	return (
-		<Editor
+		<EditorDataProvider
+			data={data}
+			setData={setData}
+			loading={loading}
+			setLoading={setLoading}
+			uploadingPhoto={uploadingPhoto}
+			setUploadingPhoto={setUploadingPhoto}
+			error={error}
+			setError={setError}
+			displayButtonLabel={displaySaveButton}
 			handleSubmit={handleSave}
 			title="Edit Guitar"
-			displayButtonLabel={displaySaveButton}
 			handleCancelClick={handleCancelClick}
-			id={id}
-		/>
+			id={id}>
+			{children}
+		</EditorDataProvider>
 	);
 }

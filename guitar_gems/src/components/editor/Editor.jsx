@@ -1,23 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { supabase } from '../../supabaseClient';
 import { useEditorData } from './contexts/EditorDataContext';
-import { Form, Button } from 'react-aria-components';
+import { Form } from 'react-aria-components';
 import ProductCard from '../catalogue/ProductCard';
-import EditorContent from './EditorContent';
-import Hero from '../product/Hero';
-import Spinner from '../spinner/Spinner';
-import defaultImg from '../../assets/img-placeholder.png';
-import PhotoUploader from './PhotoUploader';
+import EditorContent from './editorComponents/EditorContent';
+import PhotoUploader from './editorComponents/PhotoUploader';
 import './styles/editor.css';
+import EditorHeader from './editorComponents/EditorHeader';
+import EditorHero from './editorComponents/EditorHero';
+import defaultImg from '../../assets/img-placeholder.png';
 
-export default function Editor({
-	handleSubmit,
-	title,
-	displayButtonLabel,
-	handleCancelClick,
-	id = null,
-}) {
-	const { data, setData, loading, uploadingPhoto } = useEditorData();
+export default function Editor() {
+	const { data, handleSubmit } = useEditorData();
 	const brandsRef = useRef({});
 
 	useEffect(() => {
@@ -37,44 +31,16 @@ export default function Editor({
 	}, []);
 
 	const displayBrandName = (brandId) => {
-		const brand = Object.values(brandsRef.current).find(
-			(brand) => brand.id === brandId
-		);
+		const brand = Object.values(brandsRef.current).find((brand) => brand.id === brandId);
 		return brand ? brand.name : 'Brand Name';
 	};
 
 	return (
 		<>
-			{uploadingPhoto ? (
-				<Spinner />
-			) : (
-				<Hero
-					img={data.main_img ? data.main_img : defaultImg}
-					name={data?.name ? data.name : 'There will be a name'}
-					brand={displayBrandName(data.brand_id)}
-				/>
-			)}
+			<EditorHero displayBrandName={displayBrandName} />
 			<div className="editor-wrap">
 				<Form onSubmit={handleSubmit}>
-					<header className="editor">
-						<h1>{title}</h1>
-						<div className="edit-header-buttons">
-							{id && (
-								<Button
-									className="cancel-button"
-									onPress={handleCancelClick}
-									isDisabled={loading}>
-									Cancel
-								</Button>
-							)}
-							<Button
-								className="accent-button"
-								type="submit"
-								isDisabled={loading}>
-								{displayButtonLabel()}
-							</Button>
-						</div>
-					</header>
+					<EditorHeader />
 					<div className="product-content-container">
 						<div>
 							<ProductCard
@@ -84,7 +50,7 @@ export default function Editor({
 							/>
 							<PhotoUploader />
 						</div>
-						<EditorContent data={data} setData={setData} />
+						<EditorContent />
 					</div>
 				</Form>
 			</div>

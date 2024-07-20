@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../supabaseClient';
-import { useSession } from '../../contexts/SessionContext';
+import { useSession } from '../auth/contexts/SessionContext';
 import {
 	Breadcrumbs,
 	Breadcrumb,
