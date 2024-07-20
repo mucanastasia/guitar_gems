@@ -4,7 +4,7 @@ import {
 	Route,
 	Redirect,
 } from 'react-router-dom';
-import { useSession } from './contexts/SessionContext';
+import { useSession } from './components/auth/contexts/SessionContext';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Product from './components/product/Product';
