@@ -1,15 +1,13 @@
 import { Button } from 'react-aria-components';
 import './styles/filtersSidebar.css';
+import { useFilters } from './contexts/FiltersContext';
 
-export default function FiltersSideBar({
-	isOpen,
-	setIsOpen,
-	setSelected,
-	children,
-}) {
+export default function FiltersSideBar({ setFilters, children }) {
+	const { isOpen, setIsOpen } = useFilters();
+
 	const handleFiltersClose = () => {
 		setIsOpen((prev) => !prev);
-		setSelected({
+		setFilters({
 			brands: [],
 			types: [],
 			materials: [],
@@ -24,7 +22,7 @@ export default function FiltersSideBar({
 	};
 
 	const handleFiltersClear = () => {
-		setSelected({
+		setFilters({
 			brands: [],
 			types: [],
 			materials: [],

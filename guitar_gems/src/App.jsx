@@ -15,6 +15,7 @@ import AuthPage from './components/auth/AuthPage';
 import PrivateRoute from './components/auth/PrivateRoute';
 import ScrollToTop from './components/product/ScrollToTop';
 import EditorDataContextProvider from './components/editor/contexts/EditorDataContext';
+import { FiltersProvider } from './components/catalogue/contexts/FiltersContext';
 import AddGuitar from './components/editor/AddGuitar';
 import EditGuitar from './components/editor/EditGuitar';
 import NotFoundPage from './components/product/NotFoundPage';
@@ -30,7 +31,9 @@ export default function App() {
 				<Route exact path="/">
 					<>
 						<Header />
-						<Catalogue />
+						<FiltersProvider>
+							<Catalogue />
+						</FiltersProvider>
 						<Footer />
 					</>
 				</Route>

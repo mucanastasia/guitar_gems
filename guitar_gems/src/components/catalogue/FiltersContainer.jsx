@@ -1,12 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
 import { supabase } from '../../supabaseClient';
-import './styles/filtersContainer.css';
 import { CheckboxGroup, Checkbox, Label } from 'react-aria-components';
 import { CheckboxGroupStateContext } from 'react-aria-components';
+import { useFilters } from './contexts/FiltersContext';
 import MyDateRangePicker from './MyDateRangePicker';
 import Spinner from '../spinner/Spinner';
+import './styles/filtersContainer.css';
 
-export default function FiltersContainer({ selected, setSelected }) {
+export default function FiltersContainer({ setFilters }) {
+	const { selectedFilters } = useFilters();
+
 	const [loading, setLoading] = useState(true);
 	const [filterNames, setFilterNames] = useState({
 		brands: [],
@@ -62,19 +65,19 @@ export default function FiltersContainer({ selected, setSelected }) {
 	}
 
 	const handleChangeBrand = (vals) => {
-		setSelected({ ...selected, brands: vals });
+		setFilters({ ...selectedFilters, brands: vals });
 	};
 
 	const handleChangeType = (vals) => {
-		setSelected({ ...selected, types: vals });
+		setFilters({ ...selectedFilters, types: vals });
 	};
 
 	const handleChangeMaterial = (vals) => {
-		setSelected({ ...selected, materials: vals });
+		setFilters({ ...selectedFilters, materials: vals });
 	};
 
 	const handleChangeCountry = (vals) => {
-		setSelected({ ...selected, countries: vals });
+		setFilters({ ...selectedFilters, countries: vals });
 	};
 
 	return (
@@ -85,19 +88,15 @@ export default function FiltersContainer({ selected, setSelected }) {
 				<>
 					<CheckboxGroup
 						onChange={handleChangeBrand}
-						value={selected.brands}>
+						value={selectedFilters.brands}>
 						<Label>
 							Brand {`(`}
 							<SelectionCount />
 							{`)`}
 						</Label>
 						{filterNames.brands.map((filter) => (
-							<Checkbox
-								key={filter.id}
-								value={filter.id}>
-								<div
-									className="checkbox"
-									aria-hidden="true">
+							<Checkbox key={filter.id} value={filter.id}>
+								<div className="checkbox" aria-hidden="true">
 									<svg viewBox="0 0 18 18">
 										<polyline points="1 9 7 14 15 4" />
 									</svg>
@@ -109,19 +108,15 @@ export default function FiltersContainer({ selected, setSelected }) {
 
 					<CheckboxGroup
 						onChange={handleChangeType}
-						value={selected.types}>
+						value={selectedFilters.types}>
 						<Label>
 							Type {`(`}
 							<SelectionCount />
 							{`)`}
 						</Label>
 						{filterNames.guitar_types.map((filter) => (
-							<Checkbox
-								key={filter.id}
-								value={filter.id}>
-								<div
-									className="checkbox"
-									aria-hidden="true">
+							<Checkbox key={filter.id} value={filter.id}>
+								<div className="checkbox" aria-hidden="true">
 									<svg viewBox="0 0 18 18">
 										<polyline points="1 9 7 14 15 4" />
 									</svg>
@@ -133,19 +128,15 @@ export default function FiltersContainer({ selected, setSelected }) {
 
 					<CheckboxGroup
 						onChange={handleChangeMaterial}
-						value={selected.materials}>
+						value={selectedFilters.materials}>
 						<Label>
 							Material {`(`}
 							<SelectionCount />
 							{`)`}
 						</Label>
 						{filterNames.materials.map((filter) => (
-							<Checkbox
-								key={filter.id}
-								value={filter.id}>
-								<div
-									className="checkbox"
-									aria-hidden="true">
+							<Checkbox key={filter.id} value={filter.id}>
+								<div className="checkbox" aria-hidden="true">
 									<svg viewBox="0 0 18 18">
 										<polyline points="1 9 7 14 15 4" />
 									</svg>
@@ -157,19 +148,15 @@ export default function FiltersContainer({ selected, setSelected }) {
 
 					<CheckboxGroup
 						onChange={handleChangeCountry}
-						value={selected.countries}>
+						value={selectedFilters.countries}>
 						<Label>
 							Country {`(`}
 							<SelectionCount />
 							{`)`}
 						</Label>
 						{filterNames.countries.map((filter) => (
-							<Checkbox
-								key={filter.id}
-								value={filter.id}>
-								<div
-									className="checkbox"
-									aria-hidden="true">
+							<Checkbox key={filter.id} value={filter.id}>
+								<div className="checkbox" aria-hidden="true">
 									<svg viewBox="0 0 18 18">
 										<polyline points="1 9 7 14 15 4" />
 									</svg>
@@ -179,10 +166,7 @@ export default function FiltersContainer({ selected, setSelected }) {
 						))}
 					</CheckboxGroup>
 
-					<MyDateRangePicker
-						selected={selected}
-						setSelected={setSelected}
-					/>
+					<MyDateRangePicker setFilters={setFilters} />
 				</>
 			)}
 		</div>

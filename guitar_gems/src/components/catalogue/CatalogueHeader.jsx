@@ -3,22 +3,24 @@ import { Button, Input, SearchField } from 'react-aria-components';
 import logo from '../../assets/logo.png';
 import './styles/catalogueHeader.css';
 import useWindowWidth from './hooks/useWindowWidth';
+import { useFilters } from './contexts/FiltersContext';
 
-export default function CatalogueHeader({ setIsOpen, selected, setSelected }) {
-	const isWidth1023 = useWindowWidth();
+export default function CatalogueHeader({ setFilters }) {
+	const { selectedFilters, setIsOpen } = useFilters();
+	const isMobile = useWindowWidth();
 	const searchRef = useRef();
 
 	const handleSubmit = () => {
 		const value = searchRef.current.value.trim();
-		setSelected({ ...selected, query: value });
+		setFilters({ ...selectedFilters, query: value });
 	};
 
 	const handleClearOrEscape = (e) => {
 		if (e && e.key !== 'Escape') {
 			return;
 		}
-		if (selected.query) {
-			setSelected({ ...selected, query: '' });
+		if (selectedFilters.query) {
+			setFilters({ ...selectedFilters, query: '' });
 		}
 	};
 
@@ -29,18 +31,13 @@ export default function CatalogueHeader({ setIsOpen, selected, setSelected }) {
 	return (
 		<div className="catalogue-page-header">
 			<div className="logo">
-				<img
-					src={logo}
-					alt="Guitar Gems logo image"
-				/>
+				<img src={logo} alt="Guitar Gems logo image" />
 				<h1>Guitar Gems</h1>
 			</div>
 			<div className="catalogue-header">
 				<div className="wrap">
-					{isWidth1023 ? (
-						<div
-							className="filters-label"
-							onClick={handleFiltersClick}>
+					{isMobile ? (
+						<div className="filters-label" onClick={handleFiltersClick}>
 							<span className="material-symbols-outlined">tune</span>
 							<p>Filters</p>
 						</div>
@@ -55,9 +52,7 @@ export default function CatalogueHeader({ setIsOpen, selected, setSelected }) {
 						onSubmit={handleSubmit}
 						onClear={handleClearOrEscape}
 						onKeyDown={handleClearOrEscape}>
-						<span
-							className="material-symbols-outlined"
-							onClick={handleSubmit}>
+						<span className="material-symbols-outlined" onClick={handleSubmit}>
 							search
 						</span>
 						<Input

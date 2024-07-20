@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { supabase } from '../../supabaseClient';
 import { Link } from 'react-router-dom';
+import { useFilters } from './contexts/FiltersContext';
 import useWindowWidth from './hooks/useWindowWidth';
 import ProductCard from './ProductCard';
 import FiltersContainer from './FiltersContainer';
@@ -16,8 +17,8 @@ export default function Catalogue() {
 	const [hasMore, setHasMore] = useState(true);
 	const cardsPerPage = 12;
 
-	const isWidth1023 = useWindowWidth();
-	const [isOpen, setIsOpen] = useState(false);
+	const isMobile = useWindowWidth();
+	const { selectedFilters, setSelectedFilters } = useFilters();
 
 	useEffect(() => {
 		setHasMore(true);
@@ -39,19 +40,12 @@ export default function Catalogue() {
 		[loading, hasMore]
 	);
 
+	// TODO: Place this function in FiltersContext(?) after extracting fetchData into separate file
+	// 		 and I wouldn't need to pass setFilters as a prop
 	const handleFilterChange = async (newFilters) => {
 		setSelectedFilters(newFilters);
 		await fetchData(newFilters, true);
 	};
-
-	const [selectedFilters, setSelectedFilters] = useState({
-		brands: [],
-		types: [],
-		materials: [],
-		countries: [],
-		date: { start: null, end: null },
-		query: '',
-	});
 
 	const prepareFilter = (selectedList, fieldNames) => {
 		const filter = selectedList
@@ -174,26 +168,13 @@ export default function Catalogue() {
 
 	return (
 		<>
-			<CatalogueHeader
-				setIsOpen={setIsOpen}
-				selected={selectedFilters}
-				setSelected={handleFilterChange}
-			/>
+			<CatalogueHeader setFilters={handleFilterChange} />
 			<div className="container">
-				{!isWidth1023 ? (
-					<FiltersContainer
-						selected={selectedFilters}
-						setSelected={handleFilterChange}
-					/>
+				{!isMobile ? (
+					<FiltersContainer setFilters={handleFilterChange} />
 				) : (
-					<FiltersSideBar
-						isOpen={isOpen}
-						setIsOpen={setIsOpen}
-						setSelected={handleFilterChange}>
-						<FiltersContainer
-							selected={selectedFilters}
-							setSelected={handleFilterChange}
-						/>
+					<FiltersSideBar setFilters={handleFilterChange}>
+						<FiltersContainer setFilters={handleFilterChange} />
 					</FiltersSideBar>
 				)}
 				<div className="catalogue-container">
