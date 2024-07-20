@@ -1,25 +1,45 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { supabase } from '../../supabaseClient';
-import { useEditorData } from './contexts/EditorDataContext';
-import Editor from './Editor';
+import EditorDataProvider from './contexts/EditorDataContext';
+import Spinner from '../spinner/Spinner';
 
-export default function AddGuitar() {
+export default function AddGuitar({ children }) {
+	const [data, setData] = useState({
+		name: '',
+		description: '',
+		brand_id: '',
+		type_id: '',
+		body_material_id: '',
+		neck_material_id: '',
+		fingerboard_material_id: '',
+		release_date: '',
+		country_id: '',
+		main_img: '',
+		features: [],
+	});
+
+	const [uploadingPhoto, setUploadingPhoto] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
+
 	const guitarIdRef = useRef(null);
 	const history = useHistory();
-	const { data, loading, setLoading, setError } = useEditorData();
 
 	const handlePublish = async (e) => {
-		setLoading(true);
 		e.preventDefault();
 		if (!data.main_img) {
 			setError('A photo is required');
-			setLoading(false);
 			return;
 		}
+		setLoading(true);
+		const filteredData = {
+			...data,
+			features: data.features.filter((feature) => feature.trim() !== ''),
+		};
 		const { data: responseData, error } = await supabase
 			.from('guitars')
-			.insert([data])
+			.insert([filteredData])
 			.select('id');
 		if (error) {
 			console.error('Error inserting data:', error);
@@ -41,11 +61,24 @@ export default function AddGuitar() {
 		}
 	};
 
+	if (loading) {
+		return <Spinner />;
+	}
+
 	return (
-		<Editor
-			handleSubmit={handlePublish}
-			title="Add Guitar"
+		<EditorDataProvider
+			data={data}
+			setData={setData}
+			loading={loading}
+			setLoading={setLoading}
+			uploadingPhoto={uploadingPhoto}
+			setUploadingPhoto={setUploadingPhoto}
+			error={error}
+			setError={setError}
 			displayButtonLabel={displayPublishButton}
-		/>
+			handleSubmit={handlePublish}
+			title="Add Guitar">
+			{children}
+		</EditorDataProvider>
 	);
 }

@@ -9,15 +9,17 @@ import {
 	Popover,
 	FieldError,
 } from 'react-aria-components';
-import { useEditorData } from './contexts/EditorDataContext';
-import './styles/editorContent.css';
+import { useEditorData } from '../contexts/EditorDataContext';
+import { useSelectOptions } from '../contexts/SelectOptionsContext';
+import '../styles/editorContent.css';
 
-export default function SpecsDropdown({ label, objectKey, values }) {
+export default function SpecsDropdown({ label, objectKey, options }) {
 	const { data, setData } = useEditorData();
+	const { selectOptions } = useSelectOptions();
 
 	const handleSelectionChange = (id) => {
 		setData({
-			[objectKey]: values.find((o) => o.id === id)?.name ?? '',
+			[objectKey]: selectOptions[options].find((o) => o.id === id)?.name ?? '',
 		});
 		setData({ ...data, [objectKey]: id });
 	};
@@ -25,9 +27,9 @@ export default function SpecsDropdown({ label, objectKey, values }) {
 	return (
 		<ComboBox
 			isRequired
-			defaultItems={values}
+			defaultItems={selectOptions[options]}
 			selectedKey={data[objectKey]}
-			inputValue={values.name}
+			inputValue={selectOptions[options].name}
 			onSelectionChange={handleSelectionChange}>
 			<div>
 				<Label>{label}</Label>
