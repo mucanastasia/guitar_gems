@@ -1,12 +1,13 @@
 import { Button } from 'react-aria-components';
 import { useEditorData } from '../contexts/EditorDataContext';
+import { HeadingLarge } from '@ui/heading';
 
 function EditorHeader() {
 	const { loading, displayButtonLabel, title, handleCancelClick, id } = useEditorData();
 
 	return (
 		<header className="editor">
-			<h1>{title}</h1>
+			<HeadingLarge text={title} />
 			<div className="edit-header-buttons">
 				{id && (
 					<Button

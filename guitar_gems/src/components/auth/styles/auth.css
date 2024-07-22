@@ -17,21 +17,8 @@
         align-items: start;
         padding: 0 40px;
 
-        h1 {
-            font-family: "Bebas Neue";
-            font-weight: 400;
-            font-size: 72px;
-            letter-spacing: 1px;
-            line-height: 130%;
-            display: flex;
-            align-items: center;
-            margin: 0 0 50px 0;
-
-            img {
-                width: 72px;
-                margin: -8px 30px 0 0;
-                cursor: pointer;
-            }
+        .heading-logo {
+            margin-bottom: 20px;
         }
 
         p {
@@ -237,9 +224,5 @@
     .auth-form button.react-aria-Button {
         min-width: 280px;
         max-width: 340px;
-    }
-
-    .auth-container .auth-form h1 {
-        font-size: 48px;
     }
 }

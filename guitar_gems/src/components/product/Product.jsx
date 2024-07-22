@@ -1,20 +1,15 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@api/supabaseClient';
 import { useSession } from '../auth/contexts/SessionContext';
-import {
-	Breadcrumbs,
-	Breadcrumb,
-	Button,
-	DialogTrigger,
-	Dialog,
-	OverlayArrow,
-	Popover,
-} from 'react-aria-components';
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { Button, DialogTrigger } from 'react-aria-components';
+import { useParams, useHistory } from 'react-router-dom';
 import Hero from './Hero';
 import ProductContent from './ProductContent';
 import ProductCard from '../catalogue/ProductCard';
 import { Spinner } from '@ui/spinner';
+import { ProductLinks } from '@ui/product-links';
+import { PopOver } from '@ui/popover';
+import { TextSmall } from '@ui/text';
 import NotFoundPage from './NotFoundPage';
 import './styles/product.css';
 
@@ -117,12 +112,7 @@ export default function Product() {
 				img={guitarData.main_img}
 			/>
 			<div className="product-wrap">
-				<Breadcrumbs>
-					<Breadcrumb>
-						<Link to="/">Catalogue</Link>
-					</Breadcrumb>
-					<Breadcrumb>{`${guitarData.brand.name} — ${guitarData.name}`}</Breadcrumb>
-				</Breadcrumbs>
+				<ProductLinks name={guitarData.name} brand={guitarData.brand.name} path="/" />
 				<div className="product-content-container">
 					<div className="product-card-container">
 						<ProductCard
@@ -135,26 +125,18 @@ export default function Product() {
 								<Button className="primary-button" onPress={handleEditClick}>
 									Edit
 								</Button>
+								{/* TODO: DeleteTrigger with context and etc */}
 								<DialogTrigger>
 									<Button className="delete-button">Delete</Button>
-									<Popover>
-										<OverlayArrow>
-											<svg width={12} height={12} viewBox="0 0 12 12">
-												<path d="M0 0 L6 6 L12 0" />
-											</svg>
-										</OverlayArrow>
-										<Dialog>
-											<div className="delete-alert">
-												<p>Are you sure you want to delete this guitar?</p>
-												<Button
-													className="delete-button"
-													onPress={handleDeleteClick}
-													isDisabled={loading}>
-													Yes, delete
-												</Button>
-											</div>
-										</Dialog>
-									</Popover>
+									<PopOver>
+										<TextSmall text="Are you sure you want to delete this guitar?" />
+										<Button
+											className="delete-button"
+											onPress={handleDeleteClick}
+											isDisabled={loading}>
+											Yes, delete
+										</Button>
+									</PopOver>
 								</DialogTrigger>
 							</>
 						)}

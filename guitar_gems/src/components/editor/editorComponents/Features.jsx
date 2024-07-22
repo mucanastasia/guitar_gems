@@ -1,5 +1,6 @@
 import { useEditorData } from '../contexts/EditorDataContext';
 import { Button, Input, TextField } from 'react-aria-components';
+import { HeadingMedium } from '@ui/heading';
 
 export default function Features() {
 	const { data, setData } = useEditorData();
@@ -44,7 +45,7 @@ export default function Features() {
 
 	return (
 		<article className="edit-features">
-			<h2>Features</h2>
+			<HeadingMedium text="Features" />
 			<ul>{renderFeatures()}</ul>
 			<Button onPress={handleFeatureAdd}>+ Add a feature</Button>
 		</article>

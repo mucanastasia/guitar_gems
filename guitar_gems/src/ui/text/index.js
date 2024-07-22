@@ -1,0 +1,1 @@
+export { TextLarge, TextMedium, TextSmall } from './Text';

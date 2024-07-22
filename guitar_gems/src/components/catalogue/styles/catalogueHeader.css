@@ -11,20 +11,6 @@
     padding: 0 40px 0 280px;
     margin: 48px auto 10px auto;
     width: 1672px;
-
-    h1 {
-        font-size: 72px;
-        font-family: "Bebas Neue";
-        margin: 0;
-        padding: 0;
-        font-weight: 600;
-        letter-spacing: 1px;
-    }
-
-    img {
-        height: 68px;
-        margin: 0 32px 0 0;
-    }
 }
 
 .catalogue-header {
@@ -168,14 +154,6 @@
         padding: 0px 40px;
     }
 
-    .catalogue-page-header>.logo>h1 {
-        font-size: 58px;
-    }
-
-    .catalogue-page-header>.logo>img {
-        height: 58px;
-    }
-
     .filters-label {
         cursor: pointer;
     }
@@ -217,24 +195,6 @@
                 margin-top: 10px;
             }
         }
-    }
-
-    .catalogue-page-header>.logo>h1 {
-        font-size: 48px;
-    }
-
-    .catalogue-page-header>.logo>img {
-        height: 48px;
-    }
-}
-
-@media only screen and (max-width: 380px) {
-    .catalogue-page-header>.logo>h1 {
-        font-size: 32px;
-    }
-
-    .catalogue-page-header>.logo>img {
-        height: 32px;
     }
 }
 

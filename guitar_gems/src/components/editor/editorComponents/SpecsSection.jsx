@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@api/supabaseClient';
 import { Spinner } from '@ui/spinner';
 import { SelectOptionsProvider } from '../contexts/SelectOptionsContext';
+import { HeadingMedium } from '@ui/heading';
 
 export default function SpecsSection({ children }) {
 	const [loading, setLoading] = useState(true);
@@ -59,7 +60,7 @@ export default function SpecsSection({ children }) {
 
 	return (
 		<article>
-			<h2>Specs</h2>
+			<HeadingMedium text="Specs" />
 			<SelectOptionsProvider selectOptions={selectOptions}>
 				{children}
 			</SelectOptionsProvider>

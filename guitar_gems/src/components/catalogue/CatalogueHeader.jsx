@@ -1,9 +1,10 @@
 import { useRef } from 'react';
 import { Button, Input, SearchField } from 'react-aria-components';
-import logo from '@assets/logo.png';
+// import logo from '@assets/logo.png';
 import './styles/catalogueHeader.css';
 import useWindowWidth from './hooks/useWindowWidth';
 import { useFilters } from './contexts/FiltersContext';
+import { HeadingLogo } from '@ui/heading-logo';
 
 export default function CatalogueHeader({ setFilters }) {
 	const { selectedFilters, setIsOpen } = useFilters();
@@ -31,8 +32,7 @@ export default function CatalogueHeader({ setFilters }) {
 	return (
 		<div className="catalogue-page-header">
 			<div className="logo">
-				<img src={logo} alt="Guitar Gems logo image" />
-				<h1>Guitar Gems</h1>
+				<HeadingLogo name="Guitar Gems" path="/" />
 			</div>
 			<div className="catalogue-header">
 				<div className="wrap">

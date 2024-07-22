@@ -24,27 +24,7 @@
     margin: 0 0 60px 0;
 }
 
-.product-content h2 {
-    font-family: "Bebas Neue";
-    font-size: 32px;
-    line-height: 130%;
-    padding: 10px 0 14px 0;
-    border-bottom: solid 1px var(--divider-color);
-}
-
-.product-content h2:first-child {
-    margin-top: 0;
-    padding: 0 0 14px 0;
-}
-
-.product-content p {
-    font-family: "Roboto";
-    font-size: 16px;
-    line-height: 150%;
-}
-
-.product-content th {
-    font-weight: 600;
+.product-content th>p {
     text-transform: uppercase;
     text-align: start;
     width: 200px;

@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { Form, TextField, Input, Button } from 'react-aria-components';
 import { supabase } from '@api/supabaseClient';
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import { HeadingLogo } from '@ui/heading-logo';
 import logo from '@assets/logo.png';
 import './styles/auth.css';
 
@@ -137,16 +138,7 @@ export default function SignIn() {
 
 	return (
 		<div className="auth-form">
-			<h1>
-				<img
-					src={logo}
-					alt="Guitar Gems logo image"
-					onClick={() => {
-						history.push('/');
-					}}
-				/>
-				Sign In
-			</h1>
+			<HeadingLogo name="Sign In" path="/" />
 			<Form onSubmit={handleSignIn}>
 				<TextField name="email" type="text" aria-label="Email">
 					<Input

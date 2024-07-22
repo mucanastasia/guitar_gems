@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
+import { TextSmall } from '@ui/text';
 import './styles/productContent.css';
+import { HeadingMedium } from '@ui/heading';
 
 export default function ProductContent({ guitarData }) {
 	const formatDate = (dateString) => {
@@ -26,10 +28,10 @@ export default function ProductContent({ guitarData }) {
 		return data.map((row) => (
 			<tr key={row[0]}>
 				<th>
-					<p>{row[0]}</p>
+					<TextSmall bold text={row[0]} />
 				</th>
 				<td>
-					<p>{row[1]}</p>
+					<TextSmall text={row[1]} />
 				</td>
 			</tr>
 		));
@@ -38,7 +40,7 @@ export default function ProductContent({ guitarData }) {
 	const renderFeatures = () => {
 		return guitarData.features.map((feature) => (
 			<li key={feature}>
-				<p>{feature}</p>
+				<TextSmall text={feature} />
 			</li>
 		));
 	};
@@ -48,7 +50,7 @@ export default function ProductContent({ guitarData }) {
 
 		return filteredDescription.split('\n').map((paragraph, index) => {
 			if (paragraph.trim() !== '') {
-				return <p key={index}>{paragraph}</p>;
+				return <TextSmall key={index} text={paragraph} />;
 			}
 			return null;
 		});
@@ -57,18 +59,18 @@ export default function ProductContent({ guitarData }) {
 	return (
 		<section className="product-content">
 			<article>
-				<h2>Description</h2>
+				<HeadingMedium text="Description" />
 				{renderDescription()}
 			</article>
 			<article>
-				<h2>Specs</h2>
+				<HeadingMedium text="Specs" />
 				<table>
 					<tbody>{renderSpecs()}</tbody>
 				</table>
 			</article>
 			{guitarData.features?.length > 0 && (
 				<article>
-					<h2>Features</h2>
+					<HeadingMedium text="Features" />
 					<ul>{renderFeatures()}</ul>
 				</article>
 			)}

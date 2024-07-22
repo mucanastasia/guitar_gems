@@ -1,5 +1,6 @@
 import { TextField, FieldError, TextArea } from 'react-aria-components';
 import { useEditorData } from '../contexts/EditorDataContext';
+import { HeadingMedium } from '@ui/heading';
 
 export default function DescriptionSection() {
 	const { data, setData } = useEditorData();
@@ -10,7 +11,7 @@ export default function DescriptionSection() {
 
 	return (
 		<article>
-			<h2>Description</h2>
+			<HeadingMedium text="Description" />
 			<TextField
 				aria-label="Product description"
 				isRequired

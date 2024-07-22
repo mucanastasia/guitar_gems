@@ -40,10 +40,7 @@
 
         h1 {
             grid-area: heading;
-            margin: 0;
-            font-family: "Bebas Neue";
             font-size: 32px;
-            font-weight: 400;
         }
 
         .edit-header-buttons {

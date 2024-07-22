@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { Form, TextField, Input, Button, FieldError } from 'react-aria-components';
 import { supabase } from '@api/supabaseClient';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import logo from '@assets/logo.png';
+import { HeadingLogo } from '@ui/heading-logo';
 import './styles/auth.css';
 
 export default function SignUp() {
@@ -84,16 +84,7 @@ export default function SignUp() {
 
 	return (
 		<div className="auth-form">
-			<h1>
-				<img
-					src={logo}
-					alt="Guitar Gems logo image"
-					onClick={() => {
-						history.push('/');
-					}}
-				/>
-				Sign Up
-			</h1>
+			<HeadingLogo name="Sign Up" path="/" />
 			<Form onSubmit={handleSingUp}>
 				<TextField name="name" type="text" aria-label="Name" isRequired>
 					<Input placeholder="Name" onChange={handleChangeName} ref={nameRef} />
