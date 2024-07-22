@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { supabase } from '../../supabaseClient';
+import { supabase } from '../../api/supabaseClient';
 import EditorDataProvider from './contexts/EditorDataContext';
 import Spinner from '../spinner/Spinner';
 

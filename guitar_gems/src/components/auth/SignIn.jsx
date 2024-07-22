@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { Form, TextField, Input, Button } from 'react-aria-components';
-import { supabase } from '../../supabaseClient';
+import { supabase } from '../../api/supabaseClient';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import './styles/auth.css';
@@ -89,16 +89,10 @@ export default function SignIn() {
 	const handleChangeEmail = (e) => {
 		setErrorMessage({ ...errorMessage, general: '' });
 		const email = e.target.value;
-		if (
-			errorMessage.email === 'Please fill in this field' &&
-			email.length > 0
-		) {
+		if (errorMessage.email === 'Please fill in this field' && email.length > 0) {
 			setErrorMessage({ ...errorMessage, email: '' });
 		}
-		if (
-			errorMessage.email === 'Please provide a correct email' &&
-			validateEmail(email)
-		) {
+		if (errorMessage.email === 'Please provide a correct email' && validateEmail(email)) {
 			setErrorMessage({ ...errorMessage, email: '' });
 			emailRef.current.value = email;
 		}
@@ -125,10 +119,7 @@ export default function SignIn() {
 	const handleChangePassword = (e) => {
 		setErrorMessage({ ...errorMessage, general: '' });
 		const password = e.target.value;
-		if (
-			errorMessage.password === 'Please fill in this field' &&
-			password.length > 0
-		) {
+		if (errorMessage.password === 'Please fill in this field' && password.length > 0) {
 			setErrorMessage({ ...errorMessage, password: '' });
 		}
 		if (
@@ -157,19 +148,14 @@ export default function SignIn() {
 				Sign In
 			</h1>
 			<Form onSubmit={handleSignIn}>
-				<TextField
-					name="email"
-					type="text"
-					aria-label="Email">
+				<TextField name="email" type="text" aria-label="Email">
 					<Input
 						placeholder="Email"
 						ref={emailRef}
 						onChange={handleChangeEmail}
 						onBlur={handleBlurEmail}
 					/>
-					<span className="error">
-						{errorMessage.email && errorMessage.email}
-					</span>
+					<span className="error">{errorMessage.email && errorMessage.email}</span>
 				</TextField>
 				<TextField
 					className="password-field"
@@ -182,14 +168,10 @@ export default function SignIn() {
 						onChange={handleChangePassword}
 						onBlur={handleBlurPassword}
 					/>
-					<Button
-						className="material-symbols-outlined"
-						onPress={handleClickVisible}>
+					<Button className="material-symbols-outlined" onPress={handleClickVisible}>
 						{fieldType === 'password' ? 'visibility' : 'visibility_off'}
 					</Button>
-					<span className="error">
-						{errorMessage.password && errorMessage.password}
-					</span>
+					<span className="error">{errorMessage.password && errorMessage.password}</span>
 				</TextField>
 				<Button type="submit">{loading ? 'Loading...' : 'Sign In'}</Button>
 				<span className="error-general">

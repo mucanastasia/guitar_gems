@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { supabase } from '../../supabaseClient';
+import { supabase } from '../../api/supabaseClient';
 import { Link } from 'react-router-dom';
 import { useFilters } from './contexts/FiltersContext';
 import useWindowWidth from './hooks/useWindowWidth';
@@ -49,9 +49,7 @@ export default function Catalogue() {
 
 	const prepareFilter = (selectedList, fieldNames) => {
 		const filter = selectedList
-			.map((id) =>
-				fieldNames.map((fieldName) => `${fieldName}.eq.${id}`).join(',')
-			)
+			.map((id) => fieldNames.map((fieldName) => `${fieldName}.eq.${id}`).join(','))
 			.join(',');
 		return filter;
 	};
@@ -91,10 +89,7 @@ export default function Catalogue() {
 				request = request.or(prepareFilter(filters.countries, ['country_id']));
 			}
 			if (filters.date.start && filters.date.end) {
-				request.gte(
-					'release_date',
-					filters.date?.start.toLocaleString('en-GB')
-				);
+				request.gte('release_date', filters.date?.start.toLocaleString('en-GB'));
 				request.lte('release_date', filters.date?.end.toLocaleString('en-GB'));
 			}
 

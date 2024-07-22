@@ -1,5 +1,5 @@
 import { useEditorData } from '../contexts/EditorDataContext';
-import { supabase } from '../../../supabaseClient';
+import { supabase } from '../../../api/supabaseClient';
 import { Button, FileTrigger } from 'react-aria-components';
 
 export default function MyComponent() {
@@ -24,9 +24,7 @@ export default function MyComponent() {
 			if (uploadError) {
 				throw uploadError;
 			}
-			const { data: urlData } = supabase.storage
-				.from('guitars')
-				.getPublicUrl(imgPath);
+			const { data: urlData } = supabase.storage.from('guitars').getPublicUrl(imgPath);
 			const fullImgURL = urlData.publicUrl;
 
 			setData({ ...data, main_img: fullImgURL });

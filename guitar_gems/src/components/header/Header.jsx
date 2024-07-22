@@ -7,7 +7,7 @@ import {
 	Popover,
 } from 'react-aria-components';
 import { useSession } from '../auth/contexts/SessionContext';
-import { supabase } from '../../supabaseClient';
+import { supabase } from '../../api/supabaseClient';
 import './styles/header.css';
 import './styles/popover.css';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -40,9 +40,7 @@ export default function Header() {
 
 	return (
 		<header>
-			<Button
-				onPress={handleLogoClick}
-				className="logo-button react-aria-Button">
+			<Button onPress={handleLogoClick} className="logo-button react-aria-Button">
 				<img src={headerLogo} style={{ width: '26px', margin: '0 14px 0 0' }} />
 				<p>Guitar Gems</p>
 			</Button>

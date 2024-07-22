@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { supabase } from '../../supabaseClient';
+import { supabase } from '../../api/supabaseClient';
 import { useEditorData } from './contexts/EditorDataContext';
 import { Form } from 'react-aria-components';
 import ProductCard from '../catalogue/ProductCard';

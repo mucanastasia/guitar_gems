@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../../supabaseClient';
+import { supabase } from '../../api/supabaseClient';
 import { useParams, useHistory } from 'react-router-dom';
 import EditorDataProvider from './contexts/EditorDataContext';
 import './styles/editor.css';

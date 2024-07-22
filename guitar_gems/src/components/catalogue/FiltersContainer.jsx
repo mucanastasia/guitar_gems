@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { supabase } from '../../supabaseClient';
+import { supabase } from '../../api/supabaseClient';
 import { CheckboxGroup, Checkbox, Label } from 'react-aria-components';
 import { CheckboxGroupStateContext } from 'react-aria-components';
 import { useFilters } from './contexts/FiltersContext';
@@ -86,9 +86,7 @@ export default function FiltersContainer({ setFilters }) {
 				<Spinner />
 			) : (
 				<>
-					<CheckboxGroup
-						onChange={handleChangeBrand}
-						value={selectedFilters.brands}>
+					<CheckboxGroup onChange={handleChangeBrand} value={selectedFilters.brands}>
 						<Label>
 							Brand {`(`}
 							<SelectionCount />
@@ -106,9 +104,7 @@ export default function FiltersContainer({ setFilters }) {
 						))}
 					</CheckboxGroup>
 
-					<CheckboxGroup
-						onChange={handleChangeType}
-						value={selectedFilters.types}>
+					<CheckboxGroup onChange={handleChangeType} value={selectedFilters.types}>
 						<Label>
 							Type {`(`}
 							<SelectionCount />
@@ -146,9 +142,7 @@ export default function FiltersContainer({ setFilters }) {
 						))}
 					</CheckboxGroup>
 
-					<CheckboxGroup
-						onChange={handleChangeCountry}
-						value={selectedFilters.countries}>
+					<CheckboxGroup onChange={handleChangeCountry} value={selectedFilters.countries}>
 						<Label>
 							Country {`(`}
 							<SelectionCount />
