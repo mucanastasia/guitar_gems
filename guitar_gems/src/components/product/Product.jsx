@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../../api/supabaseClient';
+import { supabase } from '@api/supabaseClient';
 import { useSession } from '../auth/contexts/SessionContext';
 import {
 	Breadcrumbs,
@@ -14,7 +14,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import Hero from './Hero';
 import ProductContent from './ProductContent';
 import ProductCard from '../catalogue/ProductCard';
-import Spinner from '../spinner/Spinner';
+import { Spinner } from '@ui/spinner';
 import NotFoundPage from './NotFoundPage';
 import './styles/product.css';
 

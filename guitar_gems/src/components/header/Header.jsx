@@ -7,11 +7,11 @@ import {
 	Popover,
 } from 'react-aria-components';
 import { useSession } from '../auth/contexts/SessionContext';
-import { supabase } from '../../api/supabaseClient';
+import { supabase } from '@api/supabaseClient';
 import './styles/header.css';
 import './styles/popover.css';
 import { useHistory, useLocation } from 'react-router-dom';
-import headerLogo from '../../assets/logo-white.png';
+import headerLogo from '@assets/logo-white.png';
 
 export default function Header() {
 	const { session } = useSession();

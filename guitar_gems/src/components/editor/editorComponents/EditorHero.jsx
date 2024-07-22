@@ -1,7 +1,7 @@
 import { useEditorData } from '../contexts/EditorDataContext';
 import Hero from '../../product/Hero';
-import Spinner from '../../spinner/Spinner';
-import defaultImg from '../../../assets/img-placeholder.png';
+import { Spinner } from '@ui/spinner';
+import defaultImg from '@assets/img-placeholder.png';
 
 export default function EditorHero({ displayBrandName }) {
 	const { data, uploadingPhoto } = useEditorData();

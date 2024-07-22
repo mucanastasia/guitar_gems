@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../../api/supabaseClient';
+import { supabase } from '@api/supabaseClient';
 import { useParams, useHistory } from 'react-router-dom';
 import EditorDataProvider from './contexts/EditorDataContext';
 import './styles/editor.css';
 import NotFoundPage from '../product/NotFoundPage';
-import Spinner from '../spinner/Spinner';
+import { Spinner } from '@ui/spinner';
 
 export default function EditGuitar({ children }) {
 	const [data, setData] = useState({});

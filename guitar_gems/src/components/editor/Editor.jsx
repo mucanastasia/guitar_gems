@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { supabase } from '../../api/supabaseClient';
+import { supabase } from '@api/supabaseClient';
 import { useEditorData } from './contexts/EditorDataContext';
 import { Form } from 'react-aria-components';
 import ProductCard from '../catalogue/ProductCard';
@@ -8,7 +8,7 @@ import PhotoUploader from './editorComponents/PhotoUploader';
 import './styles/editor.css';
 import EditorHeader from './editorComponents/EditorHeader';
 import EditorHero from './editorComponents/EditorHero';
-import defaultImg from '../../assets/img-placeholder.png';
+import defaultImg from '@assets/img-placeholder.png';
 
 export default function Editor() {
 	const { data, handleSubmit } = useEditorData();

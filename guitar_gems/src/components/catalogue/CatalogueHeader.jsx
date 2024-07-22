@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Button, Input, SearchField } from 'react-aria-components';
-import logo from '../../assets/logo.png';
+import logo from '@assets/logo.png';
 import './styles/catalogueHeader.css';
 import useWindowWidth from './hooks/useWindowWidth';
 import { useFilters } from './contexts/FiltersContext';
@@ -55,12 +55,7 @@ export default function CatalogueHeader({ setFilters }) {
 						<span className="material-symbols-outlined" onClick={handleSubmit}>
 							search
 						</span>
-						<Input
-							aria-label="Search"
-							placeholder="Search"
-							ref={searchRef}
-							type="text"
-						/>
+						<Input aria-label="Search" placeholder="Search" ref={searchRef} type="text" />
 						<Button className="react-aria-Button material-symbols-outlined">
 							close_small
 						</Button>

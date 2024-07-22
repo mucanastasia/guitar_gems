@@ -1,0 +1,19 @@
+.skeleton-card {
+    width: 320px;
+    min-width: 320px;
+    scale: none;
+    aspect-ratio: 9 / 14;
+    background-color: #fafafa;
+    border-radius: 16px;
+    animation: pulse 1s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #ececec;
+    }
+
+    100% {
+        background-color: #fafafa;
+    }
+}

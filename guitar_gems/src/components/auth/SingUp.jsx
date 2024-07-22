@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import { Form, TextField, Input, Button, FieldError } from 'react-aria-components';
-import { supabase } from '../../api/supabaseClient';
+import { supabase } from '@api/supabaseClient';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import logo from '@assets/logo.png';
 import './styles/auth.css';
 
 export default function SignUp() {

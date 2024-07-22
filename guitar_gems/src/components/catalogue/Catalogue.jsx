@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { supabase } from '../../api/supabaseClient';
+import { supabase } from '@api/supabaseClient';
 import { Link } from 'react-router-dom';
 import { useFilters } from './contexts/FiltersContext';
 import useWindowWidth from './hooks/useWindowWidth';
 import ProductCard from './ProductCard';
 import FiltersContainer from './FiltersContainer';
 import CatalogueHeader from './CatalogueHeader';
-import Skeleton from '../spinner/Skeleton';
+import { Skeleton } from '@ui/skeleton';
 import FiltersSideBar from './FiltersSideBar';
 import './styles/catalogue.css';
 

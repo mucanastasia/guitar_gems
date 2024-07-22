@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { supabase } from '../../../api/supabaseClient';
-import Spinner from '../../spinner/Spinner';
+import { supabase } from '@api/supabaseClient';
+import { Spinner } from '@ui/spinner';
 
 const SessionContext = createContext();
 

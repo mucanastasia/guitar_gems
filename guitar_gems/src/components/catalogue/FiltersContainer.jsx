@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { supabase } from '../../api/supabaseClient';
+import { supabase } from '@api/supabaseClient';
 import { CheckboxGroup, Checkbox, Label } from 'react-aria-components';
 import { CheckboxGroupStateContext } from 'react-aria-components';
 import { useFilters } from './contexts/FiltersContext';
 import MyDateRangePicker from './MyDateRangePicker';
-import Spinner from '../spinner/Spinner';
+import { Spinner } from '@ui/spinner';
 import './styles/filtersContainer.css';
 
 export default function FiltersContainer({ setFilters }) {

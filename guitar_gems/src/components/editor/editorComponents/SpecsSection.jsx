@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../../../api/supabaseClient';
-import Spinner from '../../spinner/Spinner';
+import { supabase } from '@api/supabaseClient';
+import { Spinner } from '@ui/spinner';
 import { SelectOptionsProvider } from '../contexts/SelectOptionsContext';
 
 export default function SpecsSection({ children }) {
