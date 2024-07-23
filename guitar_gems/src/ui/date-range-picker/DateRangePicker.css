@@ -116,21 +116,9 @@
             margin: 0 14px 0 0;
         }
 
-        button {
+        button.secondary-button {
             font-family: "Roboto Condensed";
-            font-size: 16px;
-            font-weight: 300;
-            background-color: #f5f5f5;
-            border: none;
-            cursor: pointer;
-            padding: 10px 14px;
             margin-left: 36px;
-            border-radius: 4px;
-            transition: all var(--transition-duration) var(--transition-timing-function);
-
-            &:hover {
-                background-color: #e6e6e6;
-            }
         }
     }
 
@@ -140,8 +128,14 @@
         margin: 0 0 20px 0;
         background-color: white;
 
-        .react-aria-Button>.material-symbols-outlined {
-            color: #353535;
+        .react-aria-Button {
+            background: transparent;
+            border: none;
+            outline: none;
+
+            &[data-disabled]>span.material-symbols-outlined {
+                display: none;
+            }
         }
 
         .react-aria-Heading {
@@ -200,7 +194,7 @@
         }
 
         &[data-disabled] {
-            color: #7b7b7b;
+            color: #a3a3a3;
         }
     }
 }

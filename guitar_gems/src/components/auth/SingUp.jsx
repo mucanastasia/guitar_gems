@@ -1,8 +1,10 @@
 import { useState, useRef } from 'react';
-import { Form, TextField, Input, Button, FieldError } from 'react-aria-components';
+import { Form, TextField, Input, FieldError } from 'react-aria-components';
 import { supabase } from '@api/supabaseClient';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { HeadingLogo } from '@ui/heading-logo';
+import { Icon } from '@ui/icon';
+import { Button } from '@ui/button';
 import './styles/auth.css';
 
 export default function SignUp() {
@@ -109,12 +111,18 @@ export default function SignUp() {
 						onChange={handleChangePassword}
 						ref={passwordRef}
 					/>
-					<Button
+					{/* <Button
 						className="material-symbols-outlined"
 						onPress={handleClickVisible}
 						data-rec="password">
 						{fieldType.password === 'password' ? 'visibility' : 'visibility_off'}
-					</Button>
+					</Button> */}
+					<Icon
+						name={fieldType.password === 'password' ? 'visibility' : 'visibility_off'}
+						color="grey"
+						onClick={handleClickVisible}
+						dataRec="password"
+					/>
 					<span>
 						<FieldError />
 					</span>
@@ -130,17 +138,21 @@ export default function SignUp() {
 						onChange={handleChangeConfirmedPassword}
 						ref={confirmedPasswordRef}
 					/>
-					<Button
-						className="material-symbols-outlined"
-						onPress={handleClickVisible}
-						data-rec="confirmed-password">
-						{fieldType.confirmedPass === 'password' ? 'visibility' : 'visibility_off'}
-					</Button>
+					<Icon
+						name={
+							fieldType.confirmedPass === 'password' ? 'visibility' : 'visibility_off'
+						}
+						color="grey"
+						onClick={handleClickVisible}
+						dataRec="confirmed-password"
+					/>
 					<span>
 						<FieldError />
 					</span>
 				</TextField>
-				<Button type="submit">{loading ? 'Loading...' : 'Sign Up'}</Button>
+				<Button state="primary" type="submit">
+					{loading ? 'Loading...' : 'Sign Up'}
+				</Button>
 				<span>{/*There will be an error*/}</span>
 			</Form>
 			<p>

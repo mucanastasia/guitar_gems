@@ -23,92 +23,10 @@
             display: grid;
             gap: 24px;
             margin-bottom: 24px;
-
-            .primary-button,
-            .delete-button {
-                font-size: 16px;
-                font-family: "Roboto Condensed";
-                text-transform: uppercase;
-                font-weight: 500;
-                letter-spacing: 3px;
-                height: 48px;
-                width: 100%;
-                outline: none;
-                cursor: pointer;
-                transition: all var(--transition-duration) var(--transition-timing-function);
-            }
-
-            .delete-button {
-                color: #d50000;
-                border: solid 2px #d50000;
-                background: transparent;
-                outline: none;
-
-                &:hover {
-                    color: #FFFFFF;
-                    background: #d50000;
-                }
-
-                &[data-disabled] {
-                    background: #a1a1a1;
-                    border: solid 2px #a1a1a1;
-                }
-            }
-
-            .primary-button {
-                color: #000000;
-                background: transparent;
-                border: solid 2px #000000;
-                height: 48px;
-                width: 100%;
-
-                &:hover {
-                    color: #ffffff;
-                    background: #000000;
-                }
-
-                &[data-disabled] {
-                    background: transparent;
-                    border: solid 2px #a1a1a1;
-                }
-            }
         }
 
         &:hover .product-card-img {
             transform: rotate(-90deg) scale(1);
-        }
-    }
-}
-
-.delete-alert {
-    font-size: 16px;
-    font-family: "Roboto";
-    font-weight: 400;
-
-    .delete-button {
-        font-size: 16px;
-        font-family: "Roboto Condensed";
-        text-transform: uppercase;
-        font-weight: 500;
-        letter-spacing: 3px;
-        height: 48px;
-        width: 100%;
-        outline: none;
-        cursor: pointer;
-        transition: all var(--transition-duration) var(--transition-timing-function);
-        color: #d50000;
-        border: solid 2px #d50000;
-        background: transparent;
-        outline: none;
-
-        &:hover {
-            color: #FFFFFF;
-            background: #d50000;
-        }
-
-        &[data-disabled] {
-            background: #a1a1a1;
-            border: solid 2px #a1a1a1;
         }
     }
 }

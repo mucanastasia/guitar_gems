@@ -1,9 +1,9 @@
 import {
-	Button,
+	Button as AriaButton,
 	CalendarCell,
 	CalendarGrid,
 	DateInput,
-	DateRangePicker,
+	DateRangePicker as AriaDateRangePicker,
 	DateSegment,
 	Dialog,
 	Group,
@@ -13,27 +13,15 @@ import {
 	RangeCalendar,
 } from 'react-aria-components';
 import { I18nProvider } from 'react-aria';
-import { getLocalTimeZone, today } from '@internationalized/date';
-import { useFilters } from './contexts/FiltersContext';
-import './styles/dateRangePicker.css';
+import { Icon } from '@ui/icon';
+import './DateRangePicker.css';
 
-export default function MyDateRangePicker({ setFilters }) {
-	const { selectedFilters } = useFilters();
-	const todayDate = today(getLocalTimeZone());
-
-	const handleChange = (e) => {
-		setFilters({ ...selectedFilters, date: e });
-	};
-
-	const handleResetDates = () => {
-		setFilters({ ...selectedFilters, date: { start: null, end: null } });
-	};
-
+export function DateRangePicker({ onChange, maxValue, value, onClear }) {
 	return (
-		<DateRangePicker
-			onChange={handleChange}
-			maxValue={todayDate}
-			value={selectedFilters.date}
+		<AriaDateRangePicker
+			onChange={onChange}
+			maxValue={maxValue}
+			value={value}
 			aria-label="Release date range picker">
 			<Label>Release date</Label>
 			<Group>
@@ -48,9 +36,9 @@ export default function MyDateRangePicker({ setFilters }) {
 						</DateInput>
 					</I18nProvider>
 				</section>
-				<Button className="react-aria-Button material-symbols-outlined">
-					calendar_month
-				</Button>
+				<AriaButton>
+					<Icon name="calendar_month" color="black" size="small" />
+				</AriaButton>
 			</Group>
 			<Popover>
 				<Dialog>
@@ -66,21 +54,21 @@ export default function MyDateRangePicker({ setFilters }) {
 									{(segment) => <DateSegment segment={segment} />}
 								</DateInput>
 							</I18nProvider>
-							<button onClick={handleResetDates}>Clear selected dates</button>
+							<button className="secondary-button" onClick={onClear}>
+								Clear selected dates
+							</button>
 						</section>
 						<header>
-							<Button slot="previous">
-								<span className="material-symbols-outlined">chevron_left</span>
-							</Button>
+							<AriaButton slot="previous">
+								<Icon name="chevron_left" color="grey" size="medium" />
+							</AriaButton>
 							<Heading />
-							<Button slot="next">
-								<span className="material-symbols-outlined">chevron_right</span>
-							</Button>
+							<AriaButton slot="next">
+								<Icon name="chevron_right" color="grey" size="medium" />
+							</AriaButton>
 						</header>
 						<div style={{ display: 'flex', gap: 30, overflow: 'auto' }}>
-							<CalendarGrid>
-								{(date) => <CalendarCell date={date} />}
-							</CalendarGrid>
+							<CalendarGrid>{(date) => <CalendarCell date={date} />}</CalendarGrid>
 							<CalendarGrid offset={{ months: 1 }}>
 								{(date) => <CalendarCell date={date} />}
 							</CalendarGrid>
@@ -88,6 +76,6 @@ export default function MyDateRangePicker({ setFilters }) {
 					</RangeCalendar>
 				</Dialog>
 			</Popover>
-		</DateRangePicker>
+		</AriaDateRangePicker>
 	);
 }

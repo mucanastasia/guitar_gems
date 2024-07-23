@@ -1,0 +1,127 @@
+button {
+    height: 48px;
+    font-family: Roboto Condensed;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 10px 46px;
+    border-radius: 0;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.primary-button {
+    color: var(--primary-color);
+    border: solid 2px var(--primary-color);
+
+    &[data-hovered] {
+        color: var(--secondary-color);
+        background: var(--primary-color);
+    }
+
+    &[data-pressed] {
+        color: var(--secondary-color);
+        background-color: var(--primary-color);
+    }
+
+    &[data-disabled] {
+        background: transparent;
+        color: #a1a1a1;
+        border: solid 2px #a1a1a1;
+    }
+}
+
+.accent-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    color: var(--secondary-color);
+    background: var(--primary-color);
+    border: solid 2px var(--primary-color);
+    height: 48px;
+    padding: 10px 24px;
+
+    &[data-hovered] {
+        color: var(--primary-color);
+        background: transparent;
+    }
+
+    &[data-pressed] {
+        color: var(--primary-color);
+        background: var(--secondary-color);
+    }
+
+    &[data-disabled] {
+        background: #a1a1a1;
+        color: #ffffff;
+        border: solid 2px #a1a1a1;
+    }
+}
+
+.danger-button {
+    color: #d50000;
+    border: solid 2px #d50000;
+    background: transparent;
+    outline: none;
+
+    &[data-hovered] {
+        color: #FFFFFF;
+        background: #d50000;
+    }
+
+    &[data-pressed] {
+        color: #FFFFFF;
+        background: #d50000;
+    }
+
+    &[data-disabled] {
+        background: transparent;
+        color: #a1a1a1;
+        border: solid 2px #a1a1a1;
+    }
+}
+
+.secondary-button {
+    height: 40px;
+    text-align: start;
+    text-transform: none;
+    font-family: "Roboto";
+    letter-spacing: 0;
+    font-weight: 300;
+    background-color: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 4px;
+    transition: all var(--transition-duration) var(--transition-timing-function);
+
+    &[data-hovered] {
+        background-color: #e0e0e0;
+    }
+}
+
+.white-button {
+    color: var(--secondary-color);
+    border: solid 2px var(--secondary-color);
+
+    &[data-hovered] {
+        color: var(--primary-color);
+        background: var(--secondary-color);
+    }
+
+    &[data-hovered] {
+        color: var(--primary-color);
+        background: var(--secondary-color);
+    }
+
+    &[data-disabled] {
+        background: transparent;
+        color: #a1a1a1;
+        border: solid 2px #a1a1a1;
+    }
+}

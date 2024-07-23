@@ -1,11 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { supabase } from '@api/supabaseClient';
-import { CheckboxGroup, Checkbox, Label } from 'react-aria-components';
 import { CheckboxGroupStateContext } from 'react-aria-components';
 import { useFilters } from './contexts/FiltersContext';
-import MyDateRangePicker from './MyDateRangePicker';
 import { Spinner } from '@ui/spinner';
 import './styles/filtersContainer.css';
+import { FilterGroup } from '@ui/filter-group';
+import { getLocalTimeZone, today } from '@internationalized/date';
+import { DateRangePicker } from '@ui/date-range-picker';
 
 export default function FiltersContainer({ setFilters }) {
 	const { selectedFilters } = useFilters();
@@ -13,7 +14,7 @@ export default function FiltersContainer({ setFilters }) {
 	const [loading, setLoading] = useState(true);
 	const [filterNames, setFilterNames] = useState({
 		brands: [],
-		guitar_types: [],
+		types: [],
 		materials: [],
 		countries: [],
 	});
@@ -47,7 +48,7 @@ export default function FiltersContainer({ setFilters }) {
 
 				setFilterNames({
 					brands: brands,
-					guitar_types: guitar_types,
+					types: guitar_types,
 					materials: materials,
 					countries: countries,
 				});
@@ -80,89 +81,61 @@ export default function FiltersContainer({ setFilters }) {
 		setFilters({ ...selectedFilters, countries: vals });
 	};
 
+	const todayDate = today(getLocalTimeZone());
+
+	const handleChangeDates = (e) => {
+		setFilters({ ...selectedFilters, date: e });
+	};
+
+	const handleResetDates = () => {
+		setFilters({ ...selectedFilters, date: { start: null, end: null } });
+	};
+
+	if (loading) {
+		return <Spinner />;
+	}
+
 	return (
 		<div className="filters-container">
-			{loading ? (
-				<Spinner />
-			) : (
-				<>
-					<CheckboxGroup onChange={handleChangeBrand} value={selectedFilters.brands}>
-						<Label>
-							Brand {`(`}
-							<SelectionCount />
-							{`)`}
-						</Label>
-						{filterNames.brands.map((filter) => (
-							<Checkbox key={filter.id} value={filter.id}>
-								<div className="checkbox" aria-hidden="true">
-									<svg viewBox="0 0 18 18">
-										<polyline points="1 9 7 14 15 4" />
-									</svg>
-								</div>
-								{filter.name}
-							</Checkbox>
-						))}
-					</CheckboxGroup>
+			<>
+				<FilterGroup
+					label="Brand"
+					filters={filterNames.brands}
+					onChange={handleChangeBrand}
+					selectedFilters={selectedFilters.brands}
+					Counter={SelectionCount}
+				/>
+				<FilterGroup
+					label="Type"
+					filters={filterNames.types}
+					onChange={handleChangeType}
+					selectedFilters={selectedFilters.types}
+					Counter={SelectionCount}
+				/>
 
-					<CheckboxGroup onChange={handleChangeType} value={selectedFilters.types}>
-						<Label>
-							Type {`(`}
-							<SelectionCount />
-							{`)`}
-						</Label>
-						{filterNames.guitar_types.map((filter) => (
-							<Checkbox key={filter.id} value={filter.id}>
-								<div className="checkbox" aria-hidden="true">
-									<svg viewBox="0 0 18 18">
-										<polyline points="1 9 7 14 15 4" />
-									</svg>
-								</div>
-								{filter.name}
-							</Checkbox>
-						))}
-					</CheckboxGroup>
+				<FilterGroup
+					label="Material"
+					filters={filterNames.materials}
+					onChange={handleChangeMaterial}
+					selectedFilters={selectedFilters.materials}
+					Counter={SelectionCount}
+				/>
 
-					<CheckboxGroup
-						onChange={handleChangeMaterial}
-						value={selectedFilters.materials}>
-						<Label>
-							Material {`(`}
-							<SelectionCount />
-							{`)`}
-						</Label>
-						{filterNames.materials.map((filter) => (
-							<Checkbox key={filter.id} value={filter.id}>
-								<div className="checkbox" aria-hidden="true">
-									<svg viewBox="0 0 18 18">
-										<polyline points="1 9 7 14 15 4" />
-									</svg>
-								</div>
-								{filter.name}
-							</Checkbox>
-						))}
-					</CheckboxGroup>
+				<FilterGroup
+					label="Country"
+					filters={filterNames.countries}
+					onChange={handleChangeCountry}
+					selectedFilters={selectedFilters.countries}
+					Counter={SelectionCount}
+				/>
 
-					<CheckboxGroup onChange={handleChangeCountry} value={selectedFilters.countries}>
-						<Label>
-							Country {`(`}
-							<SelectionCount />
-							{`)`}
-						</Label>
-						{filterNames.countries.map((filter) => (
-							<Checkbox key={filter.id} value={filter.id}>
-								<div className="checkbox" aria-hidden="true">
-									<svg viewBox="0 0 18 18">
-										<polyline points="1 9 7 14 15 4" />
-									</svg>
-								</div>
-								{filter.name}
-							</Checkbox>
-						))}
-					</CheckboxGroup>
-
-					<MyDateRangePicker setFilters={setFilters} />
-				</>
-			)}
+				<DateRangePicker
+					value={selectedFilters.date}
+					maxValue={todayDate}
+					onChange={handleChangeDates}
+					onClear={handleResetDates}
+				/>
+			</>
 		</div>
 	);
 }

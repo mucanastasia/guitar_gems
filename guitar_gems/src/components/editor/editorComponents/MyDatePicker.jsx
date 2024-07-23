@@ -8,7 +8,6 @@ import {
 	Dialog,
 	Group,
 	Heading,
-	Label,
 	Popover,
 	Button,
 	FieldError,
@@ -17,6 +16,8 @@ import { I18nProvider } from 'react-aria';
 import { parseDate } from '@internationalized/date';
 import { useEditorData } from '../contexts/EditorDataContext';
 import '../styles/datePicker.css';
+import { Label } from '@ui/label';
+import { Icon } from '../../../ui/icon';
 
 export default function MyDatePicker({ label, objectKey }) {
 	const { data, setData } = useEditorData();
@@ -34,12 +35,10 @@ export default function MyDatePicker({ label, objectKey }) {
 				<Label>{label}</Label>
 				<Group>
 					<I18nProvider locale="en-GB">
-						<DateInput>
-							{(segment) => <DateSegment segment={segment} />}
-						</DateInput>
+						<DateInput>{(segment) => <DateSegment segment={segment} />}</DateInput>
 					</I18nProvider>
-					<Button className="react-aria-Button material-symbols-outlined">
-						calendar_month
+					<Button>
+						<Icon name="calendar_month" size="small" />
 					</Button>
 				</Group>
 			</div>
@@ -49,16 +48,14 @@ export default function MyDatePicker({ label, objectKey }) {
 					<Calendar>
 						<header>
 							<Button slot="previous">
-								<span className="material-symbols-outlined">chevron_left</span>
+								<Icon name="keyboard_arrow_left" size="medium" color="grey" />
 							</Button>
 							<Heading />
 							<Button slot="next">
-								<span className="material-symbols-outlined">chevron_right</span>
+								<Icon name="keyboard_arrow_right" size="medium" color="grey" />
 							</Button>
 						</header>
-						<CalendarGrid>
-							{(date) => <CalendarCell date={date} />}
-						</CalendarGrid>
+						<CalendarGrid>{(date) => <CalendarCell date={date} />}</CalendarGrid>
 					</Calendar>
 				</Dialog>
 			</Popover>

@@ -24,8 +24,7 @@
     margin: 0 0 60px 0;
 }
 
-.product-content th>p {
-    text-transform: uppercase;
+.product-content th {
     text-align: start;
     width: 200px;
     margin: 0 24px 0 0;

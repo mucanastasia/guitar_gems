@@ -2,6 +2,7 @@
 import { TextSmall } from '@ui/text';
 import './styles/productContent.css';
 import { HeadingMedium } from '@ui/heading';
+import { Label } from '@ui/label';
 
 export default function ProductContent({ guitarData }) {
 	const formatDate = (dateString) => {
@@ -28,7 +29,7 @@ export default function ProductContent({ guitarData }) {
 		return data.map((row) => (
 			<tr key={row[0]}>
 				<th>
-					<TextSmall bold text={row[0]} />
+					<Label>{row[0]}</Label>
 				</th>
 				<td>
 					<TextSmall text={row[1]} />

@@ -12,8 +12,6 @@
     transition: all var(--transition-duration) var(--transition-timing-function);
 
     span.material-symbols-outlined {
-        color: var(--secondary-color);
-        font-size: 28px;
         margin-right: 14px;
     }
 

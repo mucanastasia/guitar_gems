@@ -32,11 +32,11 @@
 
 @media only screen and (max-width: 1023px) {
 
-    h1.heading-logo {
+    .heading-logo>h1.heading-logo {
         font-size: 58px;
     }
 
-    img.heading-logo {
+    .heading-logo>img.heading-logo {
         height: 58px;
         margin: 0 24px 0 0;
     }
@@ -44,22 +44,22 @@
 
 @media only screen and (max-width: 580px) {
 
-    h1.heading-logo {
+    .heading-logo>h1.heading-logo {
         font-size: 48px;
     }
 
-    img.heading-logo {
+    .heading-logo>img.heading-logo {
         height: 48px;
     }
 }
 
 @media only screen and (max-width: 380px) {
 
-    h1.heading-logo {
+    .heading-logo>h1.heading-logo {
         font-size: 32px;
     }
 
-    img.heading-logo {
+    .heading-logo>img.heading-logo {
         height: 32px;
         margin: 0 14px 0 0;
     }

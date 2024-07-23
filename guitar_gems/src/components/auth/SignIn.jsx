@@ -1,9 +1,10 @@
 import { useState, useRef } from 'react';
-import { Form, TextField, Input, Button } from 'react-aria-components';
+import { Form, TextField, Input } from 'react-aria-components';
 import { supabase } from '@api/supabaseClient';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { HeadingLogo } from '@ui/heading-logo';
-import logo from '@assets/logo.png';
+import { Icon } from '@ui/icon';
+import { Button } from '@ui/button';
 import './styles/auth.css';
 
 export default function SignIn() {
@@ -160,12 +161,16 @@ export default function SignIn() {
 						onChange={handleChangePassword}
 						onBlur={handleBlurPassword}
 					/>
-					<Button className="material-symbols-outlined" onPress={handleClickVisible}>
-						{fieldType === 'password' ? 'visibility' : 'visibility_off'}
-					</Button>
+					<Icon
+						name={fieldType === 'password' ? 'visibility' : 'visibility_off'}
+						color="grey"
+						onClick={handleClickVisible}
+					/>
 					<span className="error">{errorMessage.password && errorMessage.password}</span>
 				</TextField>
-				<Button type="submit">{loading ? 'Loading...' : 'Sign In'}</Button>
+				<Button state="primary" type="submit">
+					{loading ? 'Loading...' : 'Sign In'}
+				</Button>
 				<span className="error-general">
 					{errorMessage.general && errorMessage.general}
 				</span>

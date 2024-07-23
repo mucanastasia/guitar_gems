@@ -49,7 +49,6 @@
                 width: 28px;
                 height: 28px;
                 padding: 0;
-                font-size: 22px;
                 cursor: pointer;
 
                 &[data-focus-visible] {
@@ -61,9 +60,8 @@
                 }
 
                 span.material-symbols-outlined {
-                    font-size: 24px;
                     position: relative;
-                    top: 8px;
+                    top: 6px;
                 }
             }
         }
@@ -169,7 +167,6 @@
                 }
 
                 .material-symbols-outlined {
-                    color: #353535;
                     background: transparent;
                     border: none;
                     cursor: pointer;

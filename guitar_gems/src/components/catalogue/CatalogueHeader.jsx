@@ -1,10 +1,11 @@
 import { useRef } from 'react';
-import { Button, Input, SearchField } from 'react-aria-components';
-// import logo from '@assets/logo.png';
+import { Label } from '@ui/label';
 import './styles/catalogueHeader.css';
 import useWindowWidth from './hooks/useWindowWidth';
 import { useFilters } from './contexts/FiltersContext';
 import { HeadingLogo } from '@ui/heading-logo';
+import { Icon } from '../../ui/icon';
+import { SearchField } from '@ui/search-field';
 
 export default function CatalogueHeader({ setFilters }) {
 	const { selectedFilters, setIsOpen } = useFilters();
@@ -36,30 +37,17 @@ export default function CatalogueHeader({ setFilters }) {
 			</div>
 			<div className="catalogue-header">
 				<div className="wrap">
-					{isMobile ? (
-						<div className="filters-label" onClick={handleFiltersClick}>
-							<span className="material-symbols-outlined">tune</span>
-							<p>Filters</p>
-						</div>
-					) : (
-						<div className="filters-label">
-							<span className="material-symbols-outlined">tune</span>
-							<p>Filters</p>
-						</div>
-					)}
+					<div
+						className="filters-label"
+						onClick={isMobile ? handleFiltersClick : undefined}>
+						<Icon name="tune" />
+						<Label>Filters</Label>
+					</div>
 					<SearchField
-						aria-label="Search"
 						onSubmit={handleSubmit}
 						onClear={handleClearOrEscape}
-						onKeyDown={handleClearOrEscape}>
-						<span className="material-symbols-outlined" onClick={handleSubmit}>
-							search
-						</span>
-						<Input aria-label="Search" placeholder="Search" ref={searchRef} type="text" />
-						<Button className="react-aria-Button material-symbols-outlined">
-							close_small
-						</Button>
-					</SearchField>
+						searchRef={searchRef}
+					/>
 				</div>
 			</div>
 		</div>

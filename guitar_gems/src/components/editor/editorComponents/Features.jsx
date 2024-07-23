@@ -1,6 +1,8 @@
 import { useEditorData } from '../contexts/EditorDataContext';
-import { Button, Input, TextField } from 'react-aria-components';
+import { Input, TextField } from 'react-aria-components';
 import { HeadingMedium } from '@ui/heading';
+import { Icon } from '@ui/icon';
+import { Button } from '@ui/button';
 
 export default function Features() {
 	const { data, setData } = useEditorData();
@@ -34,11 +36,7 @@ export default function Features() {
 						onChange={(e) => handleFeatureChange(index, e.target.value)}
 					/>
 				</TextField>
-				<Button
-					className="material-symbols-outlined"
-					onPress={() => handleFeatureDelete(index)}>
-					delete
-				</Button>
+				<Icon name="delete" size="medium" onClick={() => handleFeatureDelete(index)} />
 			</li>
 		));
 	};
@@ -47,7 +45,13 @@ export default function Features() {
 		<article className="edit-features">
 			<HeadingMedium text="Features" />
 			<ul>{renderFeatures()}</ul>
-			<Button onPress={handleFeatureAdd}>+ Add a feature</Button>
+			<Button
+				state="secondary"
+				width="89%"
+				margin="0 0 0 28px"
+				onClick={handleFeatureAdd}>
+				+ Add a feature
+			</Button>
 		</article>
 	);
 }

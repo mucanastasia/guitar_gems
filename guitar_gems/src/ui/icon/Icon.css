@@ -1,0 +1,38 @@
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined.black {
+    color: #000000;
+}
+
+.material-symbols-outlined.grey {
+    color: #666666;
+}
+
+.material-symbols-outlined.white {
+    color: #FFFFFF;
+}
+
+.material-symbols-outlined.large {
+    font-size: 28px;
+}
+
+.material-symbols-outlined.medium {
+    font-size: 24px;
+}
+
+.material-symbols-outlined.small {
+    font-size: 22px;
+}

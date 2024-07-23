@@ -16,6 +16,16 @@ nav {
     align-items: center;
 }
 
+.popover {
+    .accent-button span {
+        transition: all var(--transition-duration) var(--transition-timing-function);
+    }
+
+    .accent-button[data-hovered] span {
+        color: var(--primary-color);
+    }
+}
+
 @media only screen and (max-width: 934px) {
 
     header {

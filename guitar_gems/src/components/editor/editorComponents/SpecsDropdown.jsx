@@ -3,7 +3,6 @@ import {
 	Button,
 	ComboBox,
 	Input,
-	Label,
 	ListBox,
 	ListBoxItem,
 	Popover,
@@ -12,6 +11,8 @@ import {
 import { useEditorData } from '../contexts/EditorDataContext';
 import { useSelectOptions } from '../contexts/SelectOptionsContext';
 import '../styles/editorContent.css';
+import { Icon } from '@ui/icon';
+import { Label } from '@ui/label';
 
 export default function SpecsDropdown({ label, objectKey, options }) {
 	const { data, setData } = useEditorData();
@@ -36,17 +37,13 @@ export default function SpecsDropdown({ label, objectKey, options }) {
 				<div>
 					<Input placeholder={`Select ${label} or start to type`} />
 					<Button>
-						<span className="material-symbols-outlined">
-							keyboard_arrow_down
-						</span>
+						<Icon name="keyboard_arrow_down" size="medium" />
 					</Button>
 				</div>
 			</div>
 			<FieldError />
 			<Popover>
-				<ListBox>
-					{(item) => <ListBoxItem id={item.id}>{item.name}</ListBoxItem>}
-				</ListBox>
+				<ListBox>{(item) => <ListBoxItem id={item.id}>{item.name}</ListBoxItem>}</ListBox>
 			</Popover>
 		</ComboBox>
 	);

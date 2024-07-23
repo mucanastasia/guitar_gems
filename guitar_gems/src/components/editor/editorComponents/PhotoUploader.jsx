@@ -1,6 +1,7 @@
 import { useEditorData } from '../contexts/EditorDataContext';
 import { supabase } from '@api/supabaseClient';
-import { Button, FileTrigger } from 'react-aria-components';
+import { FileTrigger } from 'react-aria-components';
+import { Button } from '@ui/button';
 
 export default function MyComponent() {
 	const { data, setData, uploadingPhoto, setUploadingPhoto, setError, error } =
@@ -49,21 +50,17 @@ export default function MyComponent() {
 	return (
 		<>
 			<FileTrigger onSelect={uploadImg} acceptedFileTypes={['image/png']}>
-				<Button
-					className="primary-button"
-					style={{ width: '100%', margin: '24px 0' }}
-					isDisabled={uploadingPhoto}>
+				<Button state="primary" margin="24px 0" disabled={uploadingPhoto}>
 					{displayUploadButton()}
 				</Button>
 			</FileTrigger>
 			{error && <span className="error">{error}</span>}
 			{data.main_img && (
 				<Button
-					className="cancel-button"
-					onPress={() => {
+					state="danger"
+					onClick={() => {
 						setData({ ...data, main_img: '' });
-					}}
-					style={{ width: '100%' }}>
+					}}>
 					Delete photo
 				</Button>
 			)}

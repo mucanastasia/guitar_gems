@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@api/supabaseClient';
 import { useSession } from '../auth/contexts/SessionContext';
-import { Button, DialogTrigger } from 'react-aria-components';
+import { DialogTrigger } from 'react-aria-components';
 import { useParams, useHistory } from 'react-router-dom';
 import Hero from './Hero';
 import ProductContent from './ProductContent';
 import ProductCard from '../catalogue/ProductCard';
 import { Spinner } from '@ui/spinner';
-import { ProductLinks } from '@ui/product-links';
-import { PopOver } from '@ui/popover';
+import { Breadcrumbs } from '@ui/breadcrumbs';
+import { Popover } from '@ui/popover';
 import { TextSmall } from '@ui/text';
+import { Button } from '@ui/button';
 import NotFoundPage from './NotFoundPage';
 import './styles/product.css';
 
@@ -112,7 +113,7 @@ export default function Product() {
 				img={guitarData.main_img}
 			/>
 			<div className="product-wrap">
-				<ProductLinks name={guitarData.name} brand={guitarData.brand.name} path="/" />
+				<Breadcrumbs name={guitarData.name} brand={guitarData.brand.name} path="/" />
 				<div className="product-content-container">
 					<div className="product-card-container">
 						<ProductCard
@@ -122,21 +123,18 @@ export default function Product() {
 						/>
 						{session?.user.app_metadata.role === 'editor' && (
 							<>
-								<Button className="primary-button" onPress={handleEditClick}>
+								<Button state="primary" onClick={handleEditClick}>
 									Edit
 								</Button>
 								{/* TODO: DeleteTrigger with context and etc */}
 								<DialogTrigger>
-									<Button className="delete-button">Delete</Button>
-									<PopOver>
+									<Button state="danger">Delete</Button>
+									<Popover>
 										<TextSmall text="Are you sure you want to delete this guitar?" />
-										<Button
-											className="delete-button"
-											onPress={handleDeleteClick}
-											isDisabled={loading}>
+										<Button state="danger" onClick={handleDeleteClick} disabled={loading}>
 											Yes, delete
 										</Button>
-									</PopOver>
+									</Popover>
 								</DialogTrigger>
 							</>
 						)}

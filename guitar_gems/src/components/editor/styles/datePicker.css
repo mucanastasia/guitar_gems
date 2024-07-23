@@ -48,20 +48,14 @@
 
             .react-aria-Button {
                 border: none;
-                color: #353535;
                 background-color: transparent;
                 forced-color-adjust: none;
                 border-radius: 0px;
                 border: none;
                 margin-left: auto;
-                width: 28px;
-                height: 28px;
-                padding: 0;
-                font-size: 22px;
+                padding: 4px 8px 0 0;
                 box-sizing: content-box;
                 flex-shrink: 0;
-                position: sticky;
-                right: 6px;
                 cursor: pointer;
 
                 &[data-focus-visible] {
@@ -123,8 +117,9 @@
         margin: 0 0 20px 0;
         background-color: white;
 
-        .react-aria-Button>.material-symbols-outlined {
-            color: #353535;
+        .react-aria-Button {
+            border: none;
+            background: transparent;
         }
 
         .react-aria-Heading {
