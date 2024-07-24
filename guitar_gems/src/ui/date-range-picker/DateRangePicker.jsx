@@ -9,7 +9,7 @@ import {
 	Group,
 	Heading,
 	Label,
-	Popover,
+	Popover as AriaPopover,
 	RangeCalendar,
 } from 'react-aria-components';
 import { I18nProvider } from 'react-aria';
@@ -40,7 +40,7 @@ export function DateRangePicker({ onChange, maxValue, value, onClear }) {
 					<Icon name="calendar_month" color="black" size="small" />
 				</AriaButton>
 			</Group>
-			<Popover>
+			<AriaPopover>
 				<Dialog>
 					<RangeCalendar visibleDuration={{ months: 2 }}>
 						<section>
@@ -75,7 +75,7 @@ export function DateRangePicker({ onChange, maxValue, value, onClear }) {
 						</div>
 					</RangeCalendar>
 				</Dialog>
-			</Popover>
+			</AriaPopover>
 		</AriaDateRangePicker>
 	);
 }

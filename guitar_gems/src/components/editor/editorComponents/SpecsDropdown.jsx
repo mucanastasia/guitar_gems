@@ -5,7 +5,7 @@ import {
 	Input,
 	ListBox,
 	ListBoxItem,
-	Popover,
+	Popover as AriaPopover,
 	FieldError,
 } from 'react-aria-components';
 import { useEditorData } from '../contexts/EditorDataContext';
@@ -42,9 +42,9 @@ export default function SpecsDropdown({ label, objectKey, options }) {
 				</div>
 			</div>
 			<FieldError />
-			<Popover>
+			<AriaPopover>
 				<ListBox>{(item) => <ListBoxItem id={item.id}>{item.name}</ListBoxItem>}</ListBox>
-			</Popover>
+			</AriaPopover>
 		</ComboBox>
 	);
 }
