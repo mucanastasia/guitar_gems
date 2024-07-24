@@ -1,5 +1,5 @@
 import { Popover as AriaPopover, OverlayArrow, Dialog } from 'react-aria-components';
-import './Popover.css';
+import './MyPopover.css';
 
 export function MyPopover({ children }) {
 	return (
