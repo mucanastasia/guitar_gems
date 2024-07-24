@@ -8,7 +8,7 @@ import ProductContent from './ProductContent';
 import ProductCard from '../catalogue/ProductCard';
 import { Spinner } from '@ui/spinner';
 import { Breadcrumbs } from '@ui/breadcrumbs';
-import { MyPopover } from '@ui/popover';
+import { Popover } from '@ui/popover';
 import { Text } from '@ui/text';
 import { Button } from '@ui/button';
 import NotFoundPage from './NotFoundPage';
@@ -129,14 +129,14 @@ export default function Product() {
 								{/* TODO: DeleteTrigger with context and etc */}
 								<DialogTrigger>
 									<Button state="danger">Delete</Button>
-									<MyPopover>
+									<Popover>
 										<Text size="xsmall">
 											Are you sure you want to delete this guitar?
 										</Text>
 										<Button state="danger" onClick={handleDeleteClick} disabled={loading}>
 											Yes, delete
 										</Button>
-									</MyPopover>
+									</Popover>
 								</DialogTrigger>
 							</>
 						)}

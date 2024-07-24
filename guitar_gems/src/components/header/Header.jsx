@@ -4,7 +4,7 @@ import { useSession } from '../auth/contexts/SessionContext';
 import { supabase } from '@api/supabaseClient';
 import { useLocation } from 'react-router-dom';
 import { Logo, Link } from '@ui/link';
-import { MyPopover } from '@ui/popover';
+import { Popover } from '@ui/popover';
 import { Button } from '@ui/button';
 import { Icon } from '@ui/icon';
 import './styles/header.css';
@@ -34,12 +34,12 @@ export default function Header() {
 					<DialogTrigger>
 						<Link name={session.user.user_metadata.name} icon="account_circle" />
 						{/* TODO: SignOutTrigger with context and etc */}
-						<MyPopover>
+						<Popover>
 							<Button state="accent" onClick={handleSignOut}>
 								<Icon color="white" name="logout" />
 								{loading ? 'Loading...' : 'Sign Out'}
 							</Button>
-						</MyPopover>
+						</Popover>
 					</DialogTrigger>
 				) : (
 					<Link
