@@ -4,7 +4,7 @@ import { FileTrigger } from 'react-aria-components';
 import { Button } from '@ui/button';
 import { TextError } from '@ui/text-error';
 
-export default function MyComponent() {
+export default function PhotoUploader() {
 	const { data, setData, uploadingPhoto, setUploadingPhoto, setError, error } =
 		useEditorData();
 
@@ -46,6 +46,10 @@ export default function MyComponent() {
 		}
 	};
 
+	const handleDeletePhoto = () => {
+		setData({ ...data, main_img: '' });
+	};
+
 	return (
 		<>
 			<FileTrigger onSelect={uploadImg} acceptedFileTypes={['image/png']}>
@@ -55,11 +59,7 @@ export default function MyComponent() {
 			</FileTrigger>
 			<TextError>{error}</TextError>
 			{data.main_img && (
-				<Button
-					state="danger"
-					onClick={() => {
-						setData({ ...data, main_img: '' });
-					}}>
+				<Button state="danger" onClick={handleDeletePhoto}>
 					Delete photo
 				</Button>
 			)}
