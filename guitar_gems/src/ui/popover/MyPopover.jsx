@@ -1,7 +1,7 @@
 import { Popover as AriaPopover, OverlayArrow, Dialog } from 'react-aria-components';
 import './Popover.css';
 
-export function Popover({ children }) {
+export function MyPopover({ children }) {
 	return (
 		<AriaPopover>
 			<OverlayArrow>
