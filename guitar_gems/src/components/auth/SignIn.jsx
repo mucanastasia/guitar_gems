@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react';
 import { Form, TextField, Input } from 'react-aria-components';
 import { supabase } from '@api/supabaseClient';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { HeadingLogo } from '@ui/heading-logo';
 import { Icon } from '@ui/icon';
 import { Button } from '@ui/button';
 import './styles/auth.css';
+import { LinkAuth } from '@ui/link';
+import { Text } from '@ui/text';
 
 export default function SignIn() {
 	const emailRef = useRef(null);
@@ -175,10 +177,10 @@ export default function SignIn() {
 					{errorMessage.general && errorMessage.general}
 				</span>
 			</Form>
-			<p>
+			<Text size="small">
 				{`Don't have an account?`}
-				<Link to={{ pathname: '/sign-up', state: { from } }}>Sign up</Link>
-			</p>
+				<LinkAuth path={{ pathname: '/sign-up', state: { from } }} name="Sign up" />
+			</Text>
 		</div>
 	);
 }

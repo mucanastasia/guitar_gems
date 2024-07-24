@@ -1,16 +1,18 @@
-import { Input, Link, Form, TextField } from 'react-aria-components';
+import { Input, Form, TextField } from 'react-aria-components';
 import instagramIcn from './assets/instagram.svg';
 import facebookIcn from './assets/facebook.svg';
 import xIcn from './assets/x.svg';
 import tiktokIcn from './assets/tiktok.svg';
 import { Button } from '@ui/button';
 import './styles/footer.css';
+import { LinkTerms } from '@ui/link';
+import { Text } from '@ui/text';
 
 export default function Footer() {
 	return (
 		<footer>
 			<div className="subscribe-section">
-				<p>Subscribe to our newsletters</p>
+				<Text size="xlarge">Subscribe to our newsletters</Text>
 				<Form
 					onSubmit={(e) => {
 						e.preventDefault();
@@ -30,10 +32,10 @@ export default function Footer() {
 				<img src={tiktokIcn} />
 			</div>
 			<div className="copyright">
-				<p>© 2024 Guitar gems company. All Rights Reserved</p>
+				<Text size="small">© 2024 Guitar gems company. All Rights Reserved</Text>
 				<div className="terms">
-					<Link href="">Privacy & Policy</Link>
-					<Link href="">Terms & Condition</Link>
+					<LinkTerms name="Privacy & Policy" />
+					<LinkTerms name="Terms & Condition" />
 				</div>
 			</div>
 		</footer>

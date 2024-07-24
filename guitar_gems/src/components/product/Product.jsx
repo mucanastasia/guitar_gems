@@ -9,7 +9,7 @@ import ProductCard from '../catalogue/ProductCard';
 import { Spinner } from '@ui/spinner';
 import { Breadcrumbs } from '@ui/breadcrumbs';
 import { Popover } from '@ui/popover';
-import { TextSmall } from '@ui/text';
+import { Text } from '@ui/text';
 import { Button } from '@ui/button';
 import NotFoundPage from './NotFoundPage';
 import './styles/product.css';
@@ -130,7 +130,9 @@ export default function Product() {
 								<DialogTrigger>
 									<Button state="danger">Delete</Button>
 									<Popover>
-										<TextSmall text="Are you sure you want to delete this guitar?" />
+										<Text size="xsmall">
+											Are you sure you want to delete this guitar?
+										</Text>
 										<Button state="danger" onClick={handleDeleteClick} disabled={loading}>
 											Yes, delete
 										</Button>

@@ -3,10 +3,6 @@ p {
     font-weight: 400;
 }
 
-p.bold {
-    font-weight: 600;
-}
-
 p.light {
     color: var(--primary-color);
 }
@@ -27,15 +23,30 @@ p.text-medium {
     position: absolute;
     top: 378px;
     color: #646464;
-    font-family: "Roboto Condensed";
     text-transform: uppercase;
     margin: 2px 30px;
 }
 
-
 p.text-small {
+    font-size: 16px;
+    line-height: 150%;
+    text-transform: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+p.text-xsmall {
     font-family: "Roboto";
     font-size: 16px;
     line-height: 150%;
     text-transform: none;
+}
+
+p.text-xlarge {
+    color: var(--secondary-color);
+    font-family: "Bebas Neue";
+    font-size: 40px;
+    left: 150%;
+    letter-spacing: 3px;
+    margin: 24px 40px 20px 0;
 }

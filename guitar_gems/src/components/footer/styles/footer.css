@@ -18,15 +18,6 @@ footer>.subscribe-section {
     margin: 20px 0;
 }
 
-footer>.subscribe-section>p {
-    color: var(--secondary-color);
-    font-family: "Bebas Neue";
-    font-size: 40px;
-    left: 150%;
-    letter-spacing: 3px;
-    margin: 24px 40px 20px 0;
-}
-
 footer .react-aria-Form {
     display: flex;
     flex-wrap: nowrap;
@@ -50,33 +41,6 @@ footer .react-aria-Input {
 footer .react-aria-Input[data-focused] {
     outline: none;
 }
-
-/* footer .react-aria-Button {
-    color: var(--secondary-color);
-    font-family: "Roboto Condensed";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 150%;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 10px 46px;
-    border: solid 2px var(--bg-secondary-color);
-    background-color: transparent;
-    transition: all var(--transition-duration) var(--transition-timing-function);
-}
-
-footer .react-aria-Button[data-hovered] {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-}
-
-footer .react-aria-Button[data-focused] {
-    outline: none;
-}
-
-footer .react-aria-Button[data-pressed] {
-    transform: scale(0.98);
-} */
 
 footer>.social-media {
     margin: 10px 0;
@@ -107,11 +71,7 @@ footer>.copyright {
 
 footer>.copyright>p {
     color: var(--secondary-color);
-    font-family: "Roboto Condensed";
-    font-size: 16px;
     font-weight: 300;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     margin-right: 20px;
 }
 
@@ -120,26 +80,6 @@ footer .terms {
     flex-wrap: wrap;
     justify-content: end;
     align-items: center;
-}
-
-footer .terms>.react-aria-Link {
-    color: var(--secondary-color);
-    font-size: 16px;
-    font-family: "Roboto Condensed";
-    font-weight: 300;
-    letter-spacing: 1px;
-    line-height: 150%;
-    text-decoration: none;
-    cursor: pointer;
-    outline: none;
-    border-bottom: solid 1px transparent;
-    margin: 0 0 0 24px;
-    padding: 0 0 2px 0;
-    transition: all var(--transition-duration) var(--transition-timing-function);
-}
-
-footer .terms>.react-aria-Link[data-hovered] {
-    border-bottom: solid 1px var(--secondary-color);
 }
 
 @media only screen and (max-width: 934px) {
@@ -178,13 +118,17 @@ footer .terms>.react-aria-Link[data-hovered] {
         flex-direction: column;
         align-items: center;
         margin-right: 0;
+
+        p {
+            text-align: center;
+        }
     }
 
     footer .terms {
         justify-content: start;
     }
 
-    footer .terms>.react-aria-Link:first-child {
+    footer .terms>.terms-link:first-child {
         margin-left: 0;
     }
 }

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { TextSmall } from '@ui/text';
+import { Text } from '@ui/text';
 import './styles/productContent.css';
 import { HeadingMedium } from '@ui/heading';
 import { Label } from '@ui/label';
@@ -32,7 +32,7 @@ export default function ProductContent({ guitarData }) {
 					<Label>{row[0]}</Label>
 				</th>
 				<td>
-					<TextSmall text={row[1]} />
+					<Text size="xsmall">{row[1]}</Text>
 				</td>
 			</tr>
 		));
@@ -41,7 +41,7 @@ export default function ProductContent({ guitarData }) {
 	const renderFeatures = () => {
 		return guitarData.features.map((feature) => (
 			<li key={feature}>
-				<TextSmall text={feature} />
+				<Text size="xsmall">{feature}</Text>
 			</li>
 		));
 	};
@@ -51,7 +51,11 @@ export default function ProductContent({ guitarData }) {
 
 		return filteredDescription.split('\n').map((paragraph, index) => {
 			if (paragraph.trim() !== '') {
-				return <TextSmall key={index} text={paragraph} />;
+				return (
+					<Text key={index} size="xsmall">
+						{paragraph}
+					</Text>
+				);
 			}
 			return null;
 		});

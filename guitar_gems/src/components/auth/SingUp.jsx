@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react';
 import { Form, TextField, Input, FieldError } from 'react-aria-components';
 import { supabase } from '@api/supabaseClient';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { HeadingLogo } from '@ui/heading-logo';
 import { Icon } from '@ui/icon';
 import { Button } from '@ui/button';
 import './styles/auth.css';
+import { LinkAuth } from '@ui/link';
+import { Text } from '@ui/text';
 
 export default function SignUp() {
 	const nameRef = useRef(null);
@@ -111,12 +113,6 @@ export default function SignUp() {
 						onChange={handleChangePassword}
 						ref={passwordRef}
 					/>
-					{/* <Button
-						className="material-symbols-outlined"
-						onPress={handleClickVisible}
-						data-rec="password">
-						{fieldType.password === 'password' ? 'visibility' : 'visibility_off'}
-					</Button> */}
 					<Icon
 						name={fieldType.password === 'password' ? 'visibility' : 'visibility_off'}
 						color="grey"
@@ -155,10 +151,10 @@ export default function SignUp() {
 				</Button>
 				<span>{/*There will be an error*/}</span>
 			</Form>
-			<p>
+			<Text size="small">
 				{`Already have an account?`}
-				<Link to="/sign-in">Sign in</Link>
-			</p>
+				<LinkAuth path="/sign-in" name="Sign in" />
+			</Text>
 		</div>
 	);
 }

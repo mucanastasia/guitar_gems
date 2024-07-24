@@ -20,3 +20,15 @@ export function Link({ name, path = null, icon }) {
 		</RouterLink>
 	);
 }
+
+export function LinkAuth({ name, path }) {
+	return (
+		<RouterLink to={path} className="auth-link">
+			{name}
+		</RouterLink>
+	);
+}
+
+export function LinkTerms({ name }) {
+	return <a className="terms-link">{name}</a>;
+}
