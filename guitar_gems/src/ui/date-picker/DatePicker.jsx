@@ -3,7 +3,7 @@ import {
 	CalendarCell,
 	CalendarGrid,
 	DateInput,
-	DatePicker,
+	DatePicker as AriaDatePicker,
 	DateSegment,
 	Dialog,
 	Group,
@@ -13,24 +13,13 @@ import {
 	FieldError,
 } from 'react-aria-components';
 import { I18nProvider } from 'react-aria';
-import { parseDate } from '@internationalized/date';
-import { useEditorData } from '../contexts/EditorDataContext';
-import '../styles/datePicker.css';
+import './DatePicker.css';
 import { Label } from '@ui/label';
 import { Icon } from '@ui/icon';
 
-export default function MyDatePicker({ label, objectKey }) {
-	const { data, setData } = useEditorData();
-	const parsedDate = data[objectKey] ? parseDate(data[objectKey]) : null;
-
+export function DatePicker({ label, value, onChange }) {
 	return (
-		<DatePicker
-			name="date"
-			isRequired
-			value={parsedDate}
-			onChange={(date) =>
-				setData({ ...data, [objectKey]: date.toLocaleString('en-GB') })
-			}>
+		<AriaDatePicker name="date" isRequired value={value} onChange={onChange}>
 			<div>
 				<Label>{label}</Label>
 				<Group>
@@ -59,6 +48,6 @@ export default function MyDatePicker({ label, objectKey }) {
 					</Calendar>
 				</Dialog>
 			</AriaPopover>
-		</DatePicker>
+		</AriaDatePicker>
 	);
 }
