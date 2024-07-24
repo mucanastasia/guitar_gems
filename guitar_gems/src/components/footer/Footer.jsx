@@ -1,4 +1,5 @@
-import { Input, Form, TextField } from 'react-aria-components';
+import { Form } from 'react-aria-components';
+import { TextField } from '@ui/text-field';
 import instagramIcn from './assets/instagram.svg';
 import facebookIcn from './assets/facebook.svg';
 import xIcn from './assets/x.svg';
@@ -17,12 +18,10 @@ export default function Footer() {
 					onSubmit={(e) => {
 						e.preventDefault();
 					}}>
-					<TextField name="email" type="email" aria-label="email">
-						<Input placeholder="Email" />
-						<Button state="white" type="submit" width="none">
-							Subscribe
-						</Button>
-					</TextField>
+					<TextField name="Email" />
+					<Button state="white" type="submit" width="none">
+						Subscribe
+					</Button>
 				</Form>
 			</div>
 			<div className="social-media">

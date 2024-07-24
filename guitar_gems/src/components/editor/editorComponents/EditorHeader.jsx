@@ -1,14 +1,17 @@
 import { useEditorData } from '../contexts/EditorDataContext';
 import { HeadingLarge } from '@ui/heading';
 import { Button } from '@ui/button';
+import { TextError } from '@ui/text-error';
 
-function EditorHeader() {
-	const { loading, displayButtonLabel, title, handleCancelClick, id } = useEditorData();
+export default function EditorHeader() {
+	const { loading, displayButtonLabel, title, handleCancelClick, id, error } =
+		useEditorData();
 
 	return (
 		<header className="editor">
 			<HeadingLarge text={title} />
 			<div className="edit-header-buttons">
+				<TextError>{error}</TextError>
 				{id && (
 					<Button
 						state="danger"
@@ -25,5 +28,3 @@ function EditorHeader() {
 		</header>
 	);
 }
-
-export default EditorHeader;

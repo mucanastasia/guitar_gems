@@ -20,26 +20,20 @@ footer>.subscribe-section {
 
 footer .react-aria-Form {
     display: flex;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
     flex-wrap: nowrap;
-}
 
-footer .react-aria-Input {
-    height: 48px;
-    width: 340px;
-    margin-right: 14px;
-    font-family: "Roboto Condensed";
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 0 14px;
-    border: none;
-    border-radius: 0;
-}
+    .react-aria-TextField {
+        display: flex;
+        flex-direction: row;
+        width: 340px;
 
-footer .react-aria-Input[data-focused] {
-    outline: none;
+        .react-aria-Input {
+            width: 340px;
+        }
+    }
 }
 
 footer>.social-media {
@@ -92,10 +86,19 @@ footer .terms {
     }
 
     footer .white-button,
-    footer>.subscribe-section>.react-aria-Form>.react-aria-TextField>.react-aria-Input {
-        width: 100%;
+    footer>.subscribe-section>.react-aria-Form {
+        width: 80%;
         margin: 0;
         margin-top: 14px;
+
+        .react-aria-TextField {
+            justify-content: center;
+            width: 100%;
+
+            .react-aria-Input {
+                width: 80%;
+            }
+        }
     }
 
     footer>.subscribe-section>p {
@@ -110,8 +113,17 @@ footer .terms {
 
 @media only screen and (max-width: 600px) {
 
-    footer .react-aria-Form {
+    footer .white-button,
+    footer>.subscribe-section>.react-aria-Form {
         width: 100%;
+
+        .react-aria-TextField {
+            width: 100%;
+
+            .react-aria-Input {
+                width: 100%;
+            }
+        }
     }
 
     footer .copyright {

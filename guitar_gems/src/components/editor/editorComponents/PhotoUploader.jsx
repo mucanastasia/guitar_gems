@@ -2,6 +2,7 @@ import { useEditorData } from '../contexts/EditorDataContext';
 import { supabase } from '@api/supabaseClient';
 import { FileTrigger } from 'react-aria-components';
 import { Button } from '@ui/button';
+import { TextError } from '@ui/text-error';
 
 export default function MyComponent() {
 	const { data, setData, uploadingPhoto, setUploadingPhoto, setError, error } =
@@ -18,12 +19,10 @@ export default function MyComponent() {
 			const imgName = `${Date.now()}.png`;
 			const imgPath = `${imgName}`;
 
-			const { error: uploadError } = await supabase.storage
-				.from('guitars')
-				.upload(imgPath, img);
+			const { error } = await supabase.storage.from('guitars').upload(imgPath, img);
 
-			if (uploadError) {
-				throw uploadError;
+			if (error) {
+				throw error;
 			}
 			const { data: urlData } = supabase.storage.from('guitars').getPublicUrl(imgPath);
 			const fullImgURL = urlData.publicUrl;
@@ -54,7 +53,7 @@ export default function MyComponent() {
 					{displayUploadButton()}
 				</Button>
 			</FileTrigger>
-			{error && <span className="error">{error}</span>}
+			<TextError>{error}</TextError>
 			{data.main_img && (
 				<Button
 					state="danger"

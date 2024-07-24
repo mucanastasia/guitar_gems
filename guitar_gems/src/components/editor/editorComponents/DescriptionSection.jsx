@@ -1,4 +1,4 @@
-import { TextField, FieldError, TextArea } from 'react-aria-components';
+import { TextArea } from '@ui/text-area';
 import { useEditorData } from '../contexts/EditorDataContext';
 import { HeadingMedium } from '@ui/heading';
 
@@ -12,14 +12,12 @@ export default function DescriptionSection() {
 	return (
 		<article>
 			<HeadingMedium text="Description" />
-			<TextField
-				aria-label="Product description"
-				isRequired
+			<TextArea
+				name="Product description"
 				value={data.description}
-				onChange={handleChangeDescription}>
-				<TextArea placeholder="Fill in a description. Press Enter for new paragraphs." />
-				<FieldError />
-			</TextField>
+				onChange={handleChangeDescription}
+				placeholder="Press Enter for new paragraphs"
+			/>
 		</article>
 	);
 }

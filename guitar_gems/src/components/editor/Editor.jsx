@@ -5,10 +5,10 @@ import { Form } from 'react-aria-components';
 import ProductCard from '../catalogue/ProductCard';
 import EditorContent from './editorComponents/EditorContent';
 import PhotoUploader from './editorComponents/PhotoUploader';
-import './styles/editor.css';
 import EditorHeader from './editorComponents/EditorHeader';
 import EditorHero from './editorComponents/EditorHero';
 import defaultImg from '@assets/img-placeholder.png';
+import './styles/editor.css';
 
 export default function Editor() {
 	const { data, handleSubmit } = useEditorData();

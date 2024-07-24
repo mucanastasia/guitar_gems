@@ -57,23 +57,27 @@ export default function EditGuitar({ children }) {
 	}, [id]);
 
 	const handleSave = async (e) => {
-		e.preventDefault();
-		if (!data.main_img) {
-			setError('A photo is required');
-			return;
+		try {
+			e.preventDefault();
+			if (!data.main_img) {
+				throw new Error('A photo is required');
+			}
+			setLoading(true);
+			const filteredData = {
+				...data,
+				features: data.features.filter((feature) => feature.trim() !== ''),
+			};
+			const { error } = await supabase.from('guitars').update(filteredData).eq('id', id);
+			if (error) {
+				throw error;
+			} else {
+				history.push(`/guitars/${id}`);
+			}
+		} catch (error) {
+			setError(error.message);
+		} finally {
+			setLoading(false);
 		}
-		setLoading(true);
-		const filteredData = {
-			...data,
-			features: data.features.filter((feature) => feature.trim() !== ''),
-		};
-		const { error } = await supabase.from('guitars').update(filteredData).eq('id', id);
-		if (error) {
-			console.error('Error updating data:', error);
-		} else {
-			history.push(`/guitars/${id}`);
-		}
-		setLoading(false);
 	};
 
 	const displaySaveButton = () => {
