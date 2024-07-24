@@ -76,41 +76,6 @@
 
 .popover {
     margin: 14px;
-
-    /* .react-aria-Button {
-        font-size: 16px;
-        font-family: "Roboto Condensed";
-        letter-spacing: 3px;
-        font-weight: 500;
-        text-transform: uppercase;
-        outline: none;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        color: #FFFFFF;
-        background: #000000;
-        border: solid 2px #000000;
-        padding: 8px 24px;
-        cursor: pointer;
-        transition: all var(--transition-duration) var(--transition-timing-function);
-
-        &[data-hovered] {
-
-            color: #000000;
-            background: #ffffff;
-        }
-
-        &[data-hovered] span {
-            color: #000000;
-        }
-
-        span {
-            color: #FFFFFF;
-            transition: all var(--transition-duration) var(--transition-timing-function);
-        }
-    }*/
-
 }
 
 @keyframes popover-slide {

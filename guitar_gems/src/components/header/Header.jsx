@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { Logo, Link } from '@ui/link';
 import { Popover } from '@ui/popover';
 import { Button } from '@ui/button';
-import { Icon } from '../../ui/icon';
+import { Icon } from '@ui/icon';
 import './styles/header.css';
 
 export default function Header() {

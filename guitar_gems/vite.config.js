@@ -12,7 +12,7 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
       '@ui': path.resolve(__dirname, './src/ui'),
       '@helpers': path.resolve(__dirname, './src/helpers'),
-      'features': path.resolve(__dirname, './src/features'),
+      '@features': path.resolve(__dirname, './src/features'),
     },
   },
 })
