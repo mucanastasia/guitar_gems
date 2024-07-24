@@ -1,0 +1,66 @@
+.react-aria-ComboBox {
+    color: #000000;
+
+    div {
+        display: flex;
+        align-items: center;
+        margin: 10px 0 0 0;
+
+        .react-aria-Label {
+            width: 198px;
+            margin: 10px 0 0 0;
+        }
+
+        .react-aria-Input {
+            font-family: "Roboto";
+            font-weight: 400;
+            font-size: 16px;
+            margin: 0;
+            width: 482px;
+            background: #f5f5f5;
+            color: #000000;
+            border-radius: 0px;
+            border: none;
+            height: 48px;
+            padding: 8px 32px 8px 18px;
+            vertical-align: middle;
+
+            &[data-focused] {
+                outline: none;
+                outline: 2px solid var(--focus-ring-color);
+                outline-offset: -1px;
+            }
+
+            &[aria-invalid] {
+                border: solid 1px #EF0000;
+            }
+        }
+
+        .react-aria-Button {
+            border: none;
+            color: #353535;
+            background-color: transparent;
+            forced-color-adjust: none;
+            border-radius: 0px;
+            border: none;
+            margin-left: -36px;
+            width: 28px;
+            height: 28px;
+            padding: 0;
+            cursor: pointer;
+
+            &[data-focus-visible] {
+                outline: none;
+            }
+
+            &[data-focused] {
+                outline: none;
+            }
+
+            span.material-symbols-outlined {
+                position: relative;
+                top: 6px;
+            }
+        }
+    }
+}

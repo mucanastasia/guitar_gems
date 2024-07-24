@@ -30,110 +30,15 @@
             flex-direction: column;
             align-items: start;
             gap: 34px;
-
-            .react-aria-TextField {
-                display: flex;
-                flex-direction: column;
-                width: 400px;
-
-                .react-aria-Input {
-                    font-family: "Roboto Condensed";
-                    font-size: 18px;
-                    font-weight: 400;
-                    letter-spacing: 1px;
-                    width: 400px;
-                    height: 48px;
-                    background-color: #f5f5f5;
-                    border: none;
-                    border-radius: 0;
-                    outline: none;
-                    padding: 10px 24px;
-
-                    &::placeholder {
-                        font-weight: 500;
-                        font-size: 16px;
-                        text-transform: uppercase;
-                    }
-                }
-            }
-        }
-
-        span {
-            height: 16px;
         }
 
         .react-aria-FieldError {
+            height: 16px;
             font-size: 14px;
             font-family: "Roboto";
             font-weight: 400;
             color: #EF0000;
             margin-top: 4px;
-        }
-
-        span.error {
-            font-size: 14px;
-            font-family: "Roboto";
-            font-weight: 400;
-            color: #EF0000;
-            margin-top: 4px;
-        }
-
-        span.error-general {
-            font-size: 14px;
-            font-family: "Roboto";
-            font-weight: 400;
-            color: #EF0000;
-            margin-top: -40px;
-            margin-bottom: 40px;
-        }
-
-        .password-field {
-            display: grid;
-            grid-template-areas:
-                "input button"
-                "help help";
-            grid-template-columns: 1fr auto;
-            align-items: center;
-            width: fit-content;
-
-            .react-aria-Input {
-                grid-area: input;
-                padding: 10px 50px 10px 24px;
-                margin: 0;
-                height: 48px;
-                width: 400px;
-                border: none;
-                border-radius: 0;
-                background: #f5f5f5;
-                font-size: 18px;
-                font-family: "Roboto Condensed";
-                letter-spacing: 1px;
-                font-weight: 400;
-                color: #000000;
-                outline: none;
-
-                &::placeholder {
-                    font-weight: 500;
-                    font-size: 16px;
-                    text-transform: uppercase;
-                }
-
-            }
-
-            .material-symbols-outlined {
-                grid-area: button;
-                width: 28px;
-                height: 28px;
-                margin-left: -44px;
-                line-height: 100%;
-                vertical-align: middle;
-                text-align: center;
-                background: transparent;
-                border: none;
-                padding: 0;
-                cursor: pointer;
-                outline: none;
-            }
         }
     }
 }

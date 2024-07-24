@@ -1,13 +1,15 @@
 import { useState, useRef } from 'react';
-import { Form, TextField, Input } from 'react-aria-components';
+import { Form } from 'react-aria-components';
 import { supabase } from '@api/supabaseClient';
 import { useHistory, useLocation } from 'react-router-dom';
 import { HeadingLogo } from '@ui/heading-logo';
-import { Icon } from '@ui/icon';
 import { Button } from '@ui/button';
 import './styles/auth.css';
 import { LinkAuth } from '@ui/link';
 import { Text } from '@ui/text';
+import { TextField } from '@ui/text-field';
+import { PasswordField } from '../../ui/password-field';
+import { TextError } from '../../ui/text-error';
 
 export default function SignIn() {
 	const emailRef = useRef(null);
@@ -25,48 +27,59 @@ export default function SignIn() {
 	const { from } = location.state || { from: { pathname: '/' } };
 
 	const handleSignIn = async (e) => {
-		setLoading(true);
-		e.preventDefault();
+		try {
+			e.preventDefault();
+			setLoading(true);
 
-		const email = emailRef.current.value;
-		const password = passwordRef.current.value;
+			const email = emailRef.current.value;
+			const password = passwordRef.current.value;
 
-		if (email.length === 0 && password.length === 0) {
-			setErrorMessage({
-				...errorMessage,
-				email: 'Please fill in this field',
-				password: 'Please fill in this field',
-			});
-		} else if (email.length === 0) {
-			setErrorMessage({ ...errorMessage, email: 'Please fill in this field' });
-		} else if (password.length === 0) {
-			setErrorMessage({
-				...errorMessage,
-				password: 'Please fill in this field',
-			});
-		}
-
-		if (validateEmail(email) && password.length >= 6) {
-			const { data, error } = await supabase.auth.signInWithPassword({
-				email: email,
-				password: password,
-			});
-
-			if (error) {
+			if (email.length === 0 && password.length === 0) {
 				setErrorMessage({
 					...errorMessage,
-					general: 'Invalid email or password. Please try again',
+					email: 'Please fill in this field',
+					password: 'Please fill in this field',
+				});
+			} else if (email.length === 0) {
+				setErrorMessage({ ...errorMessage, email: 'Please fill in this field' });
+			} else if (password.length === 0) {
+				setErrorMessage({
+					...errorMessage,
+					password: 'Please fill in this field',
 				});
 			}
 
-			if (data && !error) {
-				history.replace(from);
-				emailRef.current.value = '';
-				passwordRef.current.value = '';
-				setErrorMessage({ email: '', password: '', general: '' });
+			if (validateEmail(email) && password.length >= 6) {
+				const { data, error } = await supabase.auth.signInWithPassword({
+					email: email,
+					password: password,
+				});
+
+				if (error) throw error;
+
+				if (data && !error) {
+					history.replace(from);
+					clearInputs();
+					clearErrors();
+				}
 			}
+		} catch (error) {
+			setErrorMessage({
+				...errorMessage,
+				general: 'Invalid email or password. Please try again',
+			});
+		} finally {
+			setLoading(false);
 		}
-		setLoading(false);
+	};
+
+	const clearInputs = () => {
+		emailRef.current.value = '';
+		passwordRef.current.value = '';
+	};
+
+	const clearErrors = () => {
+		setErrorMessage({ email: '', password: '', general: '' });
 	};
 
 	const validateEmail = (email) => {
@@ -143,39 +156,26 @@ export default function SignIn() {
 		<div className="auth-form">
 			<HeadingLogo name="Sign In" path="/" />
 			<Form onSubmit={handleSignIn}>
-				<TextField name="email" type="text" aria-label="Email">
-					<Input
-						placeholder="Email"
-						ref={emailRef}
-						onChange={handleChangeEmail}
-						onBlur={handleBlurEmail}
-					/>
-					<span className="error">{errorMessage.email && errorMessage.email}</span>
-				</TextField>
 				<TextField
-					className="password-field"
-					name="password"
+					name="Email"
+					refValue={emailRef}
+					onChange={handleChangeEmail}
+					onBlur={handleBlurEmail}
+					error={errorMessage.email}
+				/>
+				<PasswordField
+					name="Password"
 					type={fieldType}
-					aria-label="Password">
-					<Input
-						placeholder="Password"
-						ref={passwordRef}
-						onChange={handleChangePassword}
-						onBlur={handleBlurPassword}
-					/>
-					<Icon
-						name={fieldType === 'password' ? 'visibility' : 'visibility_off'}
-						color="grey"
-						onClick={handleClickVisible}
-					/>
-					<span className="error">{errorMessage.password && errorMessage.password}</span>
-				</TextField>
+					refValue={passwordRef}
+					onChange={handleChangePassword}
+					onBlur={handleBlurPassword}
+					onIconClick={handleClickVisible}
+					error={errorMessage.password}
+				/>
 				<Button state="primary" type="submit">
 					{loading ? 'Loading...' : 'Sign In'}
 				</Button>
-				<span className="error-general">
-					{errorMessage.general && errorMessage.general}
-				</span>
+				<TextError>{errorMessage.general}</TextError>
 			</Form>
 			<Text size="small">
 				{`Don't have an account?`}
