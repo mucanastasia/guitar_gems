@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { useSession } from './components/auth/contexts/SessionContext';
-import Header from './components/header/Header';
 import Product from './components/product/Product';
 import Catalogue from './components/catalogue/Catalogue';
 import SignIn from './components/auth/SignIn';
@@ -15,6 +14,7 @@ import Editor from './components/editor/Editor';
 import NotFoundPage from './components/product/NotFoundPage';
 import './App.css';
 import { Footer } from '@features/footer';
+import { Header } from '@features/header';
 
 export default function App() {
 	const { user } = useSession();
