@@ -8,12 +8,12 @@ export function NavigationContainer() {
 	const currentPath = location.pathname;
 
 	const isLoggedIn = session !== null;
-	const isEditor = isLoggedIn && user.app_metadata.role === 'editor';
+	const isUserEditor = isLoggedIn && user.app_metadata.role === 'editor';
 
 	return (
 		<Navigation
 			isLoggedIn={isLoggedIn}
-			isEditor={isEditor}
+			isUserEditor={isUserEditor}
 			userName={user?.user_metadata.name}
 			currentPath={currentPath}
 		/>

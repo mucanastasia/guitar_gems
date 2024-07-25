@@ -1,4 +1,4 @@
-import { Subscription } from '@features/footer/components/subscription';
+import { Subscription } from '../components/subscription';
 
 export function SubscriptionContainer() {
 	const handleSubscribe = (e) => {

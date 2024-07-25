@@ -3,10 +3,12 @@ import { SIGN_IN_PATH, ADD_GUITAR_PATH } from '@features/router/constants/routeP
 import { SignOutTriggerContainer, SignOutPopoverContainer } from '../../containers';
 import './Navigation.css';
 
-export function Navigation({ isLoggedIn, isEditor, userName, currentPath }) {
+export function Navigation({ isLoggedIn, isUserEditor, userName, currentPath }) {
 	return (
 		<nav>
-			{isEditor && <Link name="Add guitar" path={ADD_GUITAR_PATH} icon="add_circle" />}
+			{isUserEditor && (
+				<Link name="Add guitar" path={ADD_GUITAR_PATH} icon="add_circle" />
+			)}
 
 			{isLoggedIn ? (
 				<SignOutTriggerContainer>
