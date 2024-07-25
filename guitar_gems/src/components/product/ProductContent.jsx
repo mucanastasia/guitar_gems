@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Text } from '@ui/text';
 import './styles/productContent.css';
 import { HeadingMedium } from '@ui/heading';

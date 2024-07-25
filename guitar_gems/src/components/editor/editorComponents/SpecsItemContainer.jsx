@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { ComboBox } from '@ui/combo-box';
 import { useEditorData } from '../contexts/EditorDataContext';
 import { useSelectOptions } from '../contexts/SelectOptionsContext';

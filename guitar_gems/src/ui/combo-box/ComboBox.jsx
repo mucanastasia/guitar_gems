@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {
 	Button as AriaButton,
 	ComboBox as AriaComboBox,
