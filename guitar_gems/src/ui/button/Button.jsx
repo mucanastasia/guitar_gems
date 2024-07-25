@@ -21,9 +21,3 @@ export function Button({
 		</AriaButton>
 	);
 }
-
-//primary-button
-//accent-button
-//secondary-button
-//danger-button
-//white-button
