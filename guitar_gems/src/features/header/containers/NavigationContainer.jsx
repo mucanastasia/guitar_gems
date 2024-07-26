@@ -1,4 +1,4 @@
-import { useSession } from '../../../components/auth/contexts/SessionContext'; //SESSION CONTEXT
+import { useSession } from '@features/auth/contexts/SessionContext';
 import { useLocation } from 'react-router-dom';
 import { Navigation } from '../components/navigation';
 

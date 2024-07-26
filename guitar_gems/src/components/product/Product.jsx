@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@api/supabaseClient';
-import { useSession } from '../auth/contexts/SessionContext';
+import { useSession } from '@features/auth/contexts/SessionContext';
 import { DialogTrigger } from 'react-aria-components';
 import { useParams, useHistory } from 'react-router-dom';
 import { Hero } from '@ui/hero';

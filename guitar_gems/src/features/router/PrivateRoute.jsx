@@ -1,5 +1,5 @@
 import { Route, Redirect } from 'react-router-dom';
-import { useSession } from './contexts/SessionContext';
+import { useSession } from '@features/auth/contexts/SessionContext';
 
 export default function PrivateRoute({ children, ...rest }) {
 	const { user } = useSession();

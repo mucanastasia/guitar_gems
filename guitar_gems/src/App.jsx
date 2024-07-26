@@ -1,11 +1,8 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { useSession } from './components/auth/contexts/SessionContext';
+import { useSession } from '@features/auth/contexts/SessionContext';
 import Product from './components/product/Product';
 import Catalogue from './components/catalogue/Catalogue';
-import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/SingUp';
-import AuthPage from './components/auth/AuthPage';
-import PrivateRoute from './components/auth/PrivateRoute';
+import PrivateRoute from '@features/router/PrivateRoute';
 import ScrollToTop from './components/product/ScrollToTop';
 import { FiltersProvider } from './components/catalogue/contexts/FiltersContext';
 import AddGuitar from './components/editor/AddGuitar';
@@ -15,6 +12,8 @@ import NotFoundPage from './components/product/NotFoundPage';
 import './App.css';
 import { Footer } from '@features/footer';
 import { Header } from '@features/header';
+import { SignInPage } from '@features/auth';
+import { SignUpPage } from '@features/auth';
 
 export default function App() {
 	const { user } = useSession();
@@ -33,29 +32,9 @@ export default function App() {
 					</>
 				</Route>
 
-				<Route path="/sign-in">
-					{!user ? (
-						<>
-							<AuthPage>
-								<SignIn />
-							</AuthPage>
-						</>
-					) : (
-						<Redirect push to="/" />
-					)}
-				</Route>
+				<Route path="/sign-in">{!user ? <SignInPage /> : <Redirect push to="/" />}</Route>
 
-				<Route path="/sign-up">
-					{!user ? (
-						<>
-							<AuthPage>
-								<SignUp />
-							</AuthPage>
-						</>
-					) : (
-						<Redirect push to="/" />
-					)}
-				</Route>
+				<Route path="/sign-up">{!user ? <SignUpPage /> : <Redirect push to="/" />}</Route>
 
 				<Route path="/guitars/:id">
 					<>

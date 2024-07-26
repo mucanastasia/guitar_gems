@@ -1,30 +1,26 @@
 import { useState, useRef } from 'react';
-import { Form } from 'react-aria-components';
-import { supabase } from '@api/supabaseClient';
 import { useHistory, useLocation } from 'react-router-dom';
-import { HeadingLogo } from '@ui/heading-logo';
-import { Button } from '@ui/button';
-import './styles/auth.css';
-import { LinkAuth } from '@ui/link';
-import { Text } from '@ui/text';
-import { TextField } from '@ui/text-field';
-import { PasswordField } from '../../ui/password-field';
-import { TextError } from '../../ui/text-error';
+import { supabase } from '@api/supabaseClient';
+import { validateEmail, clearInputs, clearErrors } from '../helpers/formHelpers';
+import { ROOT_PATH } from '@features/router/constants/routePaths';
 
-export default function SignIn() {
+export const useSignIn = () => {
 	const emailRef = useRef(null);
 	const passwordRef = useRef(null);
+
 	const [errorMessage, setErrorMessage] = useState({
 		email: '',
 		password: '',
 		general: '',
 	});
+
 	const [loading, setLoading] = useState(false);
 	const [fieldType, setFieldType] = useState('password');
+
 	const history = useHistory();
 	const location = useLocation();
 
-	const { from } = location.state || { from: { pathname: '/' } };
+	const { from } = location.state || { from: { pathname: ROOT_PATH } };
 
 	const handleSignIn = async (e) => {
 		try {
@@ -71,21 +67,6 @@ export default function SignIn() {
 		} finally {
 			setLoading(false);
 		}
-	};
-
-	const clearInputs = () => {
-		emailRef.current.value = '';
-		passwordRef.current.value = '';
-	};
-
-	const clearErrors = () => {
-		setErrorMessage({ email: '', password: '', general: '' });
-	};
-
-	const validateEmail = (email) => {
-		const emailPattern =
-			/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-		return emailPattern.test(email);
 	};
 
 	const handleBlurEmail = (e) => {
@@ -152,35 +133,17 @@ export default function SignIn() {
 		fieldType === 'password' ? setFieldType('text') : setFieldType('password');
 	};
 
-	return (
-		<div className="auth-form">
-			<HeadingLogo name="Sign In" path="/" />
-			<Form onSubmit={handleSignIn}>
-				<TextField
-					name="Email"
-					refValue={emailRef}
-					onChange={handleChangeEmail}
-					onBlur={handleBlurEmail}
-					error={errorMessage.email}
-				/>
-				<PasswordField
-					name="Password"
-					type={fieldType}
-					refValue={passwordRef}
-					onChange={handleChangePassword}
-					onBlur={handleBlurPassword}
-					onIconClick={handleClickVisible}
-					error={errorMessage.password}
-				/>
-				<Button state="primary" type="submit">
-					{loading ? 'Loading...' : 'Sign In'}
-				</Button>
-				<TextError>{errorMessage.general}</TextError>
-			</Form>
-			<Text size="small">
-				{`Don't have an account?`}
-				<LinkAuth path={{ pathname: '/sign-up', state: { from } }} name="Sign up" />
-			</Text>
-		</div>
-	);
-}
+	return {
+		emailRef,
+		passwordRef,
+		errorMessage,
+		loading,
+		fieldType,
+		handleSignIn,
+		handleBlurEmail,
+		handleChangeEmail,
+		handleBlurPassword,
+		handleChangePassword,
+		handleClickVisible,
+	};
+};
