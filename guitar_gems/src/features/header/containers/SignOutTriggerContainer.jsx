@@ -9,7 +9,7 @@ export function SignOutTriggerContainer({ children }) {
 	const handleSignOut = async () => {
 		setLoading(true);
 		const { error } = await supabase.auth.signOut();
-		console.log(error);
+		if (error) console.error(error);
 		setLoading(false);
 	};
 
