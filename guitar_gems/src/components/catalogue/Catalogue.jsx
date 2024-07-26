@@ -138,7 +138,7 @@ export default function Catalogue() {
 						rel="noopener noreferrer">
 						<ProductCard
 							brand={guitar.brand_name}
-							guitar={guitar.name}
+							name={guitar.name}
 							image={guitar.main_img}
 						/>
 					</Link>
