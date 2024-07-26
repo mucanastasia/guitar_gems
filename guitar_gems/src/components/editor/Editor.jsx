@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { supabase } from '@api/supabaseClient';
 import { useEditorData } from './contexts/EditorDataContext';
 import { Form } from 'react-aria-components';
-import ProductCard from '../catalogue/ProductCard';
+import { ProductCard } from '@ui/product-card';
 import EditorContent from './editorComponents/EditorContent';
 import PhotoUploader from './editorComponents/PhotoUploader';
 import EditorHeader from './editorComponents/EditorHeader';
@@ -44,9 +44,9 @@ export default function Editor() {
 					<div className="product-content-container">
 						<div>
 							<ProductCard
-								brandName={displayBrandName(data.brand_id)}
-								guitarName={data?.name ? data.name : 'There will be a name'}
-								mainImg={data.main_img ? data.main_img : defaultImg}
+								brand={displayBrandName(data.brand_id)}
+								name={data?.name ? data.name : 'There will be a name'}
+								image={data.main_img ? data.main_img : defaultImg}
 							/>
 							<PhotoUploader />
 						</div>

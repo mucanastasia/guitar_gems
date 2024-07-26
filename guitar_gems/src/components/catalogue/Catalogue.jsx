@@ -3,7 +3,7 @@ import { supabase } from '@api/supabaseClient';
 import { Link } from 'react-router-dom';
 import { useFilters } from './contexts/FiltersContext';
 import useWindowWidth from './hooks/useWindowWidth';
-import ProductCard from './ProductCard';
+import { ProductCard } from '@ui/product-card';
 import FiltersContainer from './FiltersContainer';
 import CatalogueHeader from './CatalogueHeader';
 import { Skeleton } from '@ui/skeleton';
@@ -137,9 +137,9 @@ export default function Catalogue() {
 						target="_blank"
 						rel="noopener noreferrer">
 						<ProductCard
-							brandName={guitar.brand_name}
-							guitarName={guitar.name}
-							mainImg={guitar.main_img}
+							brand={guitar.brand_name}
+							guitar={guitar.name}
+							image={guitar.main_img}
 						/>
 					</Link>
 				);
@@ -151,9 +151,9 @@ export default function Catalogue() {
 						target="_blank"
 						rel="noopener noreferrer">
 						<ProductCard
-							brandName={guitar.brand_name}
-							guitarName={guitar.name}
-							mainImg={guitar.main_img}
+							brand={guitar.brand_name}
+							name={guitar.name}
+							image={guitar.main_img}
 						/>
 					</Link>
 				);

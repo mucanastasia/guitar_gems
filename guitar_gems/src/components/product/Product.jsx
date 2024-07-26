@@ -3,9 +3,9 @@ import { supabase } from '@api/supabaseClient';
 import { useSession } from '../auth/contexts/SessionContext';
 import { DialogTrigger } from 'react-aria-components';
 import { useParams, useHistory } from 'react-router-dom';
-import Hero from './Hero';
+import { Hero } from '@ui/hero';
 import ProductContent from './ProductContent';
-import ProductCard from '../catalogue/ProductCard';
+import { ProductCard } from '@ui/product-card';
 import { Spinner } from '@ui/spinner';
 import { Breadcrumbs } from '@ui/breadcrumbs';
 import { Popover } from '@ui/popover';
@@ -117,9 +117,9 @@ export default function Product() {
 				<div className="product-content-container">
 					<div className="product-card-container">
 						<ProductCard
-							brandName={guitarData.brand.name}
-							guitarName={guitarData.name}
-							mainImg={guitarData.main_img}
+							brand={guitarData.brand.name}
+							name={guitarData.name}
+							image={guitarData.main_img}
 						/>
 						{session?.user.app_metadata.role === 'editor' && (
 							<>

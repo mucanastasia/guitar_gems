@@ -13,10 +13,14 @@ export default function PhotoUploader() {
 		try {
 			setUploadingPhoto(true);
 			if (!file || file.length === 0) {
-				throw new Error('You must select an image to upload.');
+				throw new Error('You must select an image to upload');
 			}
 			const img = file[0];
-			const imgName = `${Date.now()}.png`;
+			const imgExtension = img.name.split('.').pop();
+			if (!['png', 'webp'].includes(imgExtension.toLowerCase())) {
+				throw new Error('Only PNG and WebP files are allowed');
+			}
+			const imgName = `${Date.now()}.${imgExtension}`;
 			const imgPath = `${imgName}`;
 
 			const { error } = await supabase.storage.from('guitars').upload(imgPath, img);
@@ -52,7 +56,7 @@ export default function PhotoUploader() {
 
 	return (
 		<>
-			<FileTrigger onSelect={uploadImg} acceptedFileTypes={['image/png']}>
+			<FileTrigger onSelect={uploadImg} acceptedFileTypes={['image/png', 'image/webp']}>
 				<Button state="primary" margin="24px 0" disabled={uploadingPhoto}>
 					{displayUploadButton()}
 				</Button>

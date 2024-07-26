@@ -1,9 +1,9 @@
 import { HeadingLarge } from '@ui/heading';
 import { Text } from '@ui/text';
 import shadowImg from './assets/shadow.png';
-import './styles/hero.css';
+import './Hero.css';
 
-export default function Hero({ name, brand, img }) {
+export function Hero({ name, brand, img }) {
 	return (
 		<section className="product-hero">
 			<div className="wrap">
