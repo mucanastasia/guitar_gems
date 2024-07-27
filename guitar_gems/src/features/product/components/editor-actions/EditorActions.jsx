@@ -3,12 +3,9 @@ import { Popover } from '@ui/popover';
 import { Text } from '@ui/text';
 import { DialogTrigger } from 'react-aria-components';
 
-export function EditorActions({
-	isUserEditor,
-	handleEditClick,
-	handleDeleteClick,
-	loading,
-}) {
+export function EditorActions({ ...props }) {
+	const { isUserEditor, handleEditClick, handleDeleteClick, loading } = props;
+
 	if (!isUserEditor) {
 		return null;
 	}

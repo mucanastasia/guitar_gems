@@ -8,7 +8,7 @@ export default function SpecsItemContainer({ label, objectKey, options }) {
 
 	const handleSelectionChange = (id) => {
 		setData({
-			[objectKey]: selectOptions[options].find((o) => o.id === id)?.name ?? '',
+			[objectKey]: selectOptions[options].find((option) => option.id === id)?.name ?? '',
 		});
 		setData({ ...data, [objectKey]: id });
 	};

@@ -33,12 +33,12 @@ export function EditorActionsContainer() {
 		setLoading(false);
 	};
 
-	return (
-		<EditorActions
-			loading={loading}
-			handleEditClick={handleEditClick}
-			handleDeleteClick={handleDeleteClick}
-			isUserEditor={isUserEditor}
-		/>
-	);
+	const props = {
+		loading,
+		handleEditClick,
+		handleDeleteClick,
+		isUserEditor,
+	};
+
+	return <EditorActions {...props} />;
 }

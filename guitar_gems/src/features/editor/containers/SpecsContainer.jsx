@@ -2,10 +2,8 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@api/supabaseClient';
 import { Spinner } from '@ui/spinner';
 import { SelectOptionsProvider } from '../contexts/SelectOptionsContext';
-import { HeadingMedium } from '@ui/heading';
-import { HEADING_SPECS } from '@features/product/constants/productHeadingNames';
 
-export default function SpecsSection({ children }) {
+export function SpecsContainer({ children }) {
 	const [loading, setLoading] = useState(true);
 	const [selectOptions, setSelectOptions] = useState({
 		brands: [],
@@ -51,7 +49,6 @@ export default function SpecsSection({ children }) {
 				setLoading(false);
 			}
 		};
-
 		loadSelectOptions();
 	}, []);
 
@@ -60,11 +57,8 @@ export default function SpecsSection({ children }) {
 	}
 
 	return (
-		<article>
-			<HeadingMedium text={HEADING_SPECS} />
-			<SelectOptionsProvider selectOptions={selectOptions}>
-				{children}
-			</SelectOptionsProvider>
-		</article>
+		<SelectOptionsProvider selectOptions={selectOptions}>
+			{children}
+		</SelectOptionsProvider>
 	);
 }

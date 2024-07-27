@@ -3,12 +3,14 @@ import { supabase } from '@api/supabaseClient';
 import { useEditorData } from './contexts/EditorDataContext';
 import { Form } from 'react-aria-components';
 import { ProductCard } from '@ui/product-card';
-import EditorContent from './editorComponents/EditorContent';
+// import EditorContent from './editorComponents/EditorContent';
 import PhotoUploader from './editorComponents/PhotoUploader';
 import EditorHeader from './editorComponents/EditorHeader';
 import EditorHero from './editorComponents/EditorHero';
 import defaultImg from '@assets/img-placeholder.png';
 import './styles/editor.css';
+
+import { EditorFormContainer } from '@features/editor/containers/EditorFormContainer';
 
 export default function Editor() {
 	const { data, handleSubmit } = useEditorData();
@@ -50,7 +52,8 @@ export default function Editor() {
 							/>
 							<PhotoUploader />
 						</div>
-						<EditorContent />
+						{/* <EditorContent /> */}
+						<EditorFormContainer />
 					</div>
 				</Form>
 			</div>
