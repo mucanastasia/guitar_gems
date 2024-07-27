@@ -37,7 +37,7 @@ export default function FiltersContainer({ setFilters }) {
 				// How to make it more smooth?
 				setTimeout(() => {
 					setLoading(false);
-				}, 2300);
+				}, 300);
 			}
 		};
 
