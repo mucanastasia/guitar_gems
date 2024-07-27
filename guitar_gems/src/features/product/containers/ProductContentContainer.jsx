@@ -1,7 +1,7 @@
 import { useGuitar } from '../contexts/GuitarContext';
 import { ProductContent } from '../components/product-content';
 import { formatDate, formatDescription } from '../helpers/productContentHelpers';
-import { SPECS } from '../constants/specsNames';
+import { SPECS_LABELS } from '../constants/specsNames';
 
 export function ProductContentContainer() {
 	const { guitar } = useGuitar();
@@ -22,13 +22,13 @@ export function ProductContentContainer() {
 	const formattedDescription = formatDescription(description);
 
 	const specsList = [
-		[SPECS.BRAND, brand.name],
-		[SPECS.TYPE, type.name],
-		[SPECS.BODY, body_material.name],
-		[SPECS.NECK, neck_material.name],
-		[SPECS.FINGERBOARD, fingerboard_material.name],
-		[SPECS.RELEASE_DATE, releaseDate],
-		[SPECS.COUNTRY, country.name],
+		[SPECS_LABELS.BRAND, brand.name],
+		[SPECS_LABELS.TYPE, type.name],
+		[SPECS_LABELS.BODY, body_material.name],
+		[SPECS_LABELS.NECK, neck_material.name],
+		[SPECS_LABELS.FINGERBOARD, fingerboard_material.name],
+		[SPECS_LABELS.RELEASE_DATE, releaseDate],
+		[SPECS_LABELS.COUNTRY, country.name],
 	];
 
 	return (

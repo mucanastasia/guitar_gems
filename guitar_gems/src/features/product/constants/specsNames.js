@@ -1,4 +1,4 @@
-export const SPECS = {
+export const SPECS_LABELS = {
     BRAND: 'Brand',
     TYPE: 'Type',
     BODY: 'Body',
