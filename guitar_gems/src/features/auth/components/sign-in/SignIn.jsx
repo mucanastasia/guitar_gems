@@ -2,6 +2,7 @@ import { TextField } from '@ui/text-field';
 import { PasswordField } from '@ui/password-field';
 import { Button } from '@ui/button';
 import { TextError } from '@ui/text-error';
+import { SIGN_IN_NAME } from '../../constants/auth';
 
 export function SignIn({ ...props }) {
 	const {
@@ -36,7 +37,7 @@ export function SignIn({ ...props }) {
 				error={passwordError}
 			/>
 			<Button state="primary" type="submit">
-				{loading ? 'Loading...' : 'Sign In'}
+				{loading ? 'Loading...' : SIGN_IN_NAME}
 			</Button>
 			<TextError>{generalError}</TextError>
 		</>

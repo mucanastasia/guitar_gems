@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { AuthPrompt } from '../components/auth-prompt';
 import { useRouteMatch } from 'react-router-dom';
 import {
@@ -5,7 +6,12 @@ import {
 	SIGN_UP_PATH,
 	ROOT_PATH,
 } from '@features/router/constants/routePaths';
-import { useLocation } from 'react-router-dom';
+import {
+	SIGN_IN_NAME,
+	SIGN_UP_NAME,
+	PROMPT_TEXT_SIGN_IN,
+	PROMPT_TEXT_SIGN_UP,
+} from '../constants/auth';
 
 export function AuthPromptContainer() {
 	const location = useLocation();
@@ -13,11 +19,11 @@ export function AuthPromptContainer() {
 
 	const isOnSignInPage = Boolean(useRouteMatch(SIGN_IN_PATH));
 
-	const name = isOnSignInPage ? 'Sign Up' : 'Sign In';
+	const name = isOnSignInPage ? SIGN_UP_NAME : SIGN_IN_NAME;
 	const path = isOnSignInPage
 		? { pathname: SIGN_UP_PATH, state: { from } }
 		: SIGN_IN_PATH;
-	const text = isOnSignInPage ? `Don't have an account?` : 'Already have an account?';
+	const text = isOnSignInPage ? PROMPT_TEXT_SIGN_UP : PROMPT_TEXT_SIGN_IN;
 
 	return <AuthPrompt text={text} name={name} path={path} />;
 }
