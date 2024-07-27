@@ -8,7 +8,7 @@ import { FiltersProvider } from './components/catalogue/contexts/FiltersContext'
 import AddGuitar from './components/editor/AddGuitar';
 import EditGuitar from './components/editor/EditGuitar';
 import Editor from './components/editor/Editor';
-import NotFoundPage from './components/product/NotFoundPage';
+import { NotFoundPage } from '@features/not-found';
 import './App.css';
 import { Footer } from '@features/footer';
 import { Header } from '@features/header';

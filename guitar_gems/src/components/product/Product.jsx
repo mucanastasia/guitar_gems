@@ -11,7 +11,7 @@ import { Breadcrumbs } from '@ui/breadcrumbs';
 import { Popover } from '@ui/popover';
 import { Text } from '@ui/text';
 import { Button } from '@ui/button';
-import NotFoundPage from './NotFoundPage';
+import { NotFoundPage } from '@features/not-found';
 import './styles/product.css';
 
 export default function Product() {
