@@ -2,11 +2,12 @@ import { useState, useEffect, useContext } from 'react';
 import { supabase } from '@api/supabaseClient';
 import { CheckboxGroupStateContext } from 'react-aria-components';
 import { useFilters } from './contexts/FiltersContext';
-import { Spinner } from '@ui/spinner';
+// import { Spinner } from '@ui/spinner';
 import './styles/filtersContainer.css';
 import { FilterGroup } from '@ui/filter-group';
 import { getLocalTimeZone, today } from '@internationalized/date';
 import { DateRangePicker } from '@ui/date-range-picker';
+import { SkeletonFilters } from '../../ui/skeleton';
 
 export default function FiltersContainer({ setFilters }) {
 	const { selectedFilters } = useFilters();
@@ -33,7 +34,10 @@ export default function FiltersContainer({ setFilters }) {
 			} catch (error) {
 				console.error(error.message);
 			} finally {
-				setLoading(false);
+				// How to make it more smooth?
+				setTimeout(() => {
+					setLoading(false);
+				}, 300);
 			}
 		};
 
@@ -92,50 +96,49 @@ export default function FiltersContainer({ setFilters }) {
 	};
 
 	if (loading) {
-		return <Spinner />;
+		// return <Spinner />;
+		return <SkeletonFilters />;
 	}
 
 	return (
 		<div className="filters-container">
-			<>
-				<FilterGroup
-					label="Brand"
-					filters={filterNames.brands}
-					onChange={handleChangeBrand}
-					selectedFilters={selectedFilters.brands}
-					Counter={SelectionCount}
-				/>
-				<FilterGroup
-					label="Type"
-					filters={filterNames.types}
-					onChange={handleChangeType}
-					selectedFilters={selectedFilters.types}
-					Counter={SelectionCount}
-				/>
+			<FilterGroup
+				label="Brand"
+				filters={filterNames.brands}
+				onChange={handleChangeBrand}
+				selectedFilters={selectedFilters.brands}
+				Counter={SelectionCount}
+			/>
+			<FilterGroup
+				label="Type"
+				filters={filterNames.types}
+				onChange={handleChangeType}
+				selectedFilters={selectedFilters.types}
+				Counter={SelectionCount}
+			/>
 
-				<FilterGroup
-					label="Material"
-					filters={filterNames.materials}
-					onChange={handleChangeMaterial}
-					selectedFilters={selectedFilters.materials}
-					Counter={SelectionCount}
-				/>
+			<FilterGroup
+				label="Material"
+				filters={filterNames.materials}
+				onChange={handleChangeMaterial}
+				selectedFilters={selectedFilters.materials}
+				Counter={SelectionCount}
+			/>
 
-				<FilterGroup
-					label="Country"
-					filters={filterNames.countries}
-					onChange={handleChangeCountry}
-					selectedFilters={selectedFilters.countries}
-					Counter={SelectionCount}
-				/>
+			<FilterGroup
+				label="Country"
+				filters={filterNames.countries}
+				onChange={handleChangeCountry}
+				selectedFilters={selectedFilters.countries}
+				Counter={SelectionCount}
+			/>
 
-				<DateRangePicker
-					value={selectedFilters.date}
-					maxValue={todayDate}
-					onChange={handleChangeDates}
-					onClear={handleResetDates}
-				/>
-			</>
+			<DateRangePicker
+				value={selectedFilters.date}
+				maxValue={todayDate}
+				onChange={handleChangeDates}
+				onClear={handleResetDates}
+			/>
 		</div>
 	);
 }

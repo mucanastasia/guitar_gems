@@ -30,9 +30,9 @@ export default function Catalogue() {
 		(node) => {
 			if (loading) return;
 			if (observer.current) observer.current.disconnect();
-			observer.current = new IntersectionObserver((entries) => {
+			observer.current = new IntersectionObserver(async (entries) => {
 				if (entries[0].isIntersecting && hasMore) {
-					fetchData();
+					await fetchData();
 				}
 			});
 			if (node) observer.current.observe(node);
@@ -57,6 +57,13 @@ export default function Catalogue() {
 	const fetchData = async (filters = selectedFilters, reset = false) => {
 		try {
 			setLoading(true);
+
+			if (reset) {
+				setGuitars([]);
+			}
+
+			await new Promise((resolve) => setTimeout(resolve, 300));
+
 			let request = supabase
 				.from('searchable_guitars')
 				.select(

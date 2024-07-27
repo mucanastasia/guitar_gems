@@ -10,6 +10,7 @@
 .catalogue-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, 320px);
+    grid-template-rows: repeat(auto-fill, 498px);
     gap: 24px;
     margin: 20px 0;
     content-visibility: auto;

@@ -53,22 +53,26 @@ footer {
 
 @media only screen and (max-width: 600px) {
 
-    footer .copyright-section {
-        flex-direction: column;
-        align-items: center;
-        margin-right: 0;
+    @media only screen and (max-width: 600px) {
+        footer {
+            .copyright-section {
+                flex-direction: column;
+                align-items: center;
+                margin-right: 0;
 
-        p {
-            text-align: center;
+                p {
+                    text-align: center;
+                }
+            }
+
+            .terms-links {
+                justify-content: start;
+            }
+
+            .terms-links>.terms-link:first-child {
+                margin-left: 0;
+            }
         }
-    }
-
-    footer .terms-links {
-        justify-content: start;
-    }
-
-    footer .terms-links>.terms-link:first-child {
-        margin-left: 0;
     }
 }
 
