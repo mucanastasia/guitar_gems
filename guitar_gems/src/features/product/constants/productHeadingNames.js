@@ -1,7 +1,7 @@
+export const HEADING_NAME = 'Name';
 
-export const HEADINGS_NAMES = {
-    NAME: 'Name',
-    DESCRIPTION: 'Description',
-    SPECS: 'Specs',
-    FEATURES: 'Features',
-};
+export const HEADING_DESCRIPTION = 'Description';
+
+export const HEADING_SPECS = 'Specs';
+
+export const HEADING_FEATURES = 'Features';

@@ -3,6 +3,7 @@ import { Input, TextField } from 'react-aria-components';
 import { HeadingMedium } from '@ui/heading';
 import { Icon } from '@ui/icon';
 import { Button } from '@ui/button';
+import { HEADING_FEATURES } from '@features/product/constants/productHeadingNames';
 
 export default function Features() {
 	const { data, setData } = useEditorData();
@@ -43,7 +44,7 @@ export default function Features() {
 
 	return (
 		<article className="edit-features">
-			<HeadingMedium text="Features" />
+			<HeadingMedium text={HEADING_FEATURES} />
 			<ul>{renderFeatures()}</ul>
 			<Button
 				state="secondary"

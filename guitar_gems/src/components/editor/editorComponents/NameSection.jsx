@@ -1,6 +1,7 @@
 import { EditorField } from '@ui/editor-field';
 import { useEditorData } from '../contexts/EditorDataContext';
 import { HeadingMedium } from '@ui/heading';
+import { HEADING_NAME } from '@features/product/constants/productHeadingNames';
 
 export default function NameSection() {
 	const { data, setData } = useEditorData();
@@ -11,7 +12,7 @@ export default function NameSection() {
 
 	return (
 		<article>
-			<HeadingMedium text="Name" />
+			<HeadingMedium text={HEADING_NAME} />
 			<EditorField
 				name="Product name"
 				value={data.name}

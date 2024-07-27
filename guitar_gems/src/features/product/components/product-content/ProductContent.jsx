@@ -1,7 +1,11 @@
 import { HeadingMedium } from '@ui/heading';
 import { Text } from '@ui/text';
 import { Label } from '@ui/label';
-import { HEADINGS_NAMES } from '../../constants/productHeadingNames';
+import {
+	HEADING_DESCRIPTION,
+	HEADING_SPECS,
+	HEADING_FEATURES,
+} from '../../constants/productHeadingNames';
 import './ProductContent.css';
 
 export function ProductContent({ description, specs, features }) {
@@ -42,18 +46,18 @@ export function ProductContent({ description, specs, features }) {
 	return (
 		<section className="product-content">
 			<article>
-				<HeadingMedium text={HEADINGS_NAMES.DESCRIPTION} />
+				<HeadingMedium text={HEADING_DESCRIPTION} />
 				{renderDescription()}
 			</article>
 			<article>
-				<HeadingMedium text={HEADINGS_NAMES.SPECS} />
+				<HeadingMedium text={HEADING_SPECS} />
 				<table>
 					<tbody>{renderSpecs()}</tbody>
 				</table>
 			</article>
 			{features?.length > 0 && (
 				<article>
-					<HeadingMedium text={HEADINGS_NAMES.FEATURES} />
+					<HeadingMedium text={HEADING_FEATURES} />
 					<ul>{renderFeatures()}</ul>
 				</article>
 			)}
