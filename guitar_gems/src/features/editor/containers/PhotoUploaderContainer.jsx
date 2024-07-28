@@ -10,7 +10,6 @@ export function PhotoUploaderContainer() {
 	const uploadPhoto = async (file) => {
 		setError(false);
 		try {
-			setUploadingPhoto(true);
 			if (!file || file.length === 0) {
 				throw new Error('You must select an image to upload');
 			}
@@ -19,6 +18,7 @@ export function PhotoUploaderContainer() {
 			if (!['png', 'webp'].includes(imgExtension.toLowerCase())) {
 				throw new Error('Only PNG and WebP files are allowed');
 			}
+			setUploadingPhoto(true);
 			const imgName = `${Date.now()}.${imgExtension}`;
 			const imgPath = `${imgName}`;
 

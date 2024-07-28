@@ -45,7 +45,9 @@ export function EditorContainer({ handleSubmit }) {
 	}
 
 	return (
-		<UploadingPhotoProvider value={{ uploadingPhoto, setUploadingPhoto }}>
+		<UploadingPhotoProvider
+			uploadingPhoto={uploadingPhoto}
+			setUploadingPhoto={setUploadingPhoto}>
 			<Editor {...props} />
 		</UploadingPhotoProvider>
 	);

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { supabase } from '@api/supabaseClient';
 import { EditorDataProvider } from '../contexts/EditorDataContext';
 import { EditorContainer } from './EditorContainer';
+import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 
 export default function AddGuitarContainer() {
 	const [data, setData] = useState({
@@ -44,7 +45,7 @@ export default function AddGuitarContainer() {
 				throw error;
 			} else {
 				guitarIdRef.current = responseData[0].id;
-				history.push(`/guitars/${guitarIdRef.current}`);
+				history.push(`${GUITAR_PATH_DIR}${guitarIdRef.current}`);
 			}
 		} catch (error) {
 			setError(error.message);
