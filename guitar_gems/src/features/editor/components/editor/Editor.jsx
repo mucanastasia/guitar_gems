@@ -7,22 +7,14 @@ import { EditorHeroContainer } from '../../containers/EditorHeroContainer';
 import { IMG_PLACEHOLDER_URL, NAME_PLACEHOLDER } from '../../constants/editor';
 import './Editor.css';
 
-export function Editor({
-	handleSubmit,
-	displayBrandName,
-	uploadingPhoto,
-	setUploadingPhoto,
-	name,
-	brandId,
-	image,
-}) {
+export function Editor({ handleSubmit, displayBrandName, name, brandId, image }) {
 	return (
 		<>
 			<EditorHeroContainer
 				displayBrandName={displayBrandName}
 				image={image}
-				uploadingPhoto={uploadingPhoto}
 				brandId={brandId}
+				name={name}
 			/>
 			<div className="editor-wrap">
 				<Form onSubmit={handleSubmit}>
@@ -34,10 +26,7 @@ export function Editor({
 								name={name ? name : NAME_PLACEHOLDER}
 								image={image ? image : IMG_PLACEHOLDER_URL}
 							/>
-							<PhotoUploaderContainer
-								uploadingPhoto={uploadingPhoto}
-								setUploadingPhoto={setUploadingPhoto}
-							/>
+							<PhotoUploaderContainer />
 						</div>
 						<EditorFormContainer />
 					</div>

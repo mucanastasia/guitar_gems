@@ -46,7 +46,9 @@ export function SpecsContainer({ children }) {
 			} catch (error) {
 				console.error(error.message);
 			} finally {
-				setLoading(false);
+				setTimeout(() => {
+					setLoading(false);
+				}, 150);
 			}
 		};
 		loadSelectOptions();

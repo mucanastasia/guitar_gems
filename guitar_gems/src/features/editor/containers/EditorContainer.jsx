@@ -4,6 +4,7 @@ import { useEditorData } from '../contexts/EditorDataContext';
 import { supabase } from '@api/supabaseClient';
 import { BRAND_PLACEHOLDER } from '../constants/editor';
 import { Spinner } from '@ui/spinner';
+import { UploadingPhotoProvider } from '../contexts/UploadingPhotoContext';
 
 export function EditorContainer({ handleSubmit }) {
 	const brandsRef = useRef({});
@@ -34,8 +35,6 @@ export function EditorContainer({ handleSubmit }) {
 	const props = {
 		handleSubmit,
 		displayBrandName,
-		uploadingPhoto,
-		setUploadingPhoto,
 		brandId: data.brand_id,
 		name: data.name,
 		image: data.main_img,
@@ -45,5 +44,9 @@ export function EditorContainer({ handleSubmit }) {
 		return <Spinner />;
 	}
 
-	return <Editor {...props} />;
+	return (
+		<UploadingPhotoProvider value={{ uploadingPhoto, setUploadingPhoto }}>
+			<Editor {...props} />
+		</UploadingPhotoProvider>
+	);
 }

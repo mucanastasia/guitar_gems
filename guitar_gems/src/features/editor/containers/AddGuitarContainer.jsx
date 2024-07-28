@@ -1,8 +1,7 @@
 import { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { supabase } from '@api/supabaseClient';
-import EditorDataProvider from '../contexts/EditorDataContext';
-import { Spinner } from '@ui/spinner';
+import { EditorDataProvider } from '../contexts/EditorDataContext';
 import { EditorContainer } from './EditorContainer';
 
 export default function AddGuitarContainer() {
@@ -20,7 +19,7 @@ export default function AddGuitarContainer() {
 		features: [],
 	});
 
-	const [loading, setLoading] = useState(false);
+	const [submitting, setSubmitting] = useState(false);
 	const [error, setError] = useState(false);
 
 	const guitarIdRef = useRef(null);
@@ -32,7 +31,7 @@ export default function AddGuitarContainer() {
 			if (!data.main_img) {
 				throw new Error('A photo is required');
 			}
-			setLoading(true);
+			setSubmitting(true);
 			const filteredData = {
 				...data,
 				features: data.features.filter((feature) => feature.trim() !== ''),
@@ -50,24 +49,17 @@ export default function AddGuitarContainer() {
 		} catch (error) {
 			setError(error.message);
 		} finally {
-			setLoading(false);
+			setSubmitting(false);
 		}
 	};
-
-	if (loading) {
-		return <Spinner />;
-	}
 
 	return (
 		<EditorDataProvider
 			data={data}
 			setData={setData}
-			loading={loading}
-			setLoading={setLoading}
+			submitting={submitting}
 			error={error}
-			setError={setError}
-			buttonLabel={loading ? 'Publishing...' : 'Publish'}
-			title="Add Guitar">
+			setError={setError}>
 			<EditorContainer handleSubmit={handlePublish} />
 		</EditorDataProvider>
 	);

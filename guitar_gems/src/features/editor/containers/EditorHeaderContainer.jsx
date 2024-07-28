@@ -1,22 +1,30 @@
 import { EditorHeader } from '../components/editor-header';
 import { useEditorData } from '../contexts/EditorDataContext';
 import { Button } from '@ui/button';
-import { useRouteMatch } from 'react-router-dom';
+import { useParams, useHistory, useRouteMatch } from 'react-router-dom';
 import {
 	ADD_GUITAR_PATH,
 	EDIT_GUITAR_PATH_DIR,
+	GUITAR_PATH_DIR,
 } from '@features/router/constants/routePaths';
 
 export function EditorHeaderContainer() {
-	const { loading, handleCancelClick, error } = useEditorData();
+	const { submitting, error } = useEditorData();
 
 	const isOnAddGuitarPage = Boolean(useRouteMatch(ADD_GUITAR_PATH));
 	const isOnEditGuitarPage = Boolean(useRouteMatch(EDIT_GUITAR_PATH_DIR));
 
 	const buttonName = isOnAddGuitarPage ? 'Publish' : 'Save';
-	const buttonLoadingName = isOnAddGuitarPage ? 'Publishing...' : 'Saving...'; //TODO: Fix this, doesn't work
+	const buttonLoadingName = isOnAddGuitarPage ? 'Publishing...' : 'Saving...';
 
 	const title = isOnAddGuitarPage ? 'Add Guitar' : 'Edit Guitar';
+
+	const { id } = useParams();
+	const history = useHistory();
+
+	const handleCancelClick = () => {
+		history.push(`${GUITAR_PATH_DIR}${id}`);
+	};
 
 	const Buttons = () => {
 		return (
@@ -25,13 +33,13 @@ export function EditorHeaderContainer() {
 					<Button
 						state="danger"
 						onClick={handleCancelClick}
-						disabled={loading}
+						disabled={submitting}
 						width="180px">
 						Cancel
 					</Button>
 				)}
-				<Button state="accent" type="submit" width="180px" disabled={loading}>
-					{loading ? buttonLoadingName : buttonName}
+				<Button state="accent" type="submit" width="180px" disabled={submitting}>
+					{submitting ? buttonLoadingName : buttonName}
 				</Button>
 			</>
 		);

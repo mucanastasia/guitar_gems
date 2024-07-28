@@ -1,14 +1,11 @@
 import { Hero } from '@ui/hero';
 import { Spinner } from '@ui/spinner';
 import { IMG_PLACEHOLDER_URL, NAME_PLACEHOLDER } from '../constants/editor';
+import { useUploadingPhoto } from '../contexts/UploadingPhotoContext';
 
-export function EditorHeroContainer({
-	displayBrandName,
-	image,
-	uploadingPhoto,
-	name,
-	brandId,
-}) {
+export function EditorHeroContainer({ displayBrandName, image, name, brandId }) {
+	const { uploadingPhoto } = useUploadingPhoto();
+
 	if (uploadingPhoto) {
 		return <Spinner />;
 	}

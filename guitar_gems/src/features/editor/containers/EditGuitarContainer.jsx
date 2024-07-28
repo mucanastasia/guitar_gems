@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@api/supabaseClient';
 import { useParams, useHistory } from 'react-router-dom';
-import EditorDataProvider from '../contexts/EditorDataContext';
+import { EditorDataProvider } from '../contexts/EditorDataContext';
 import { NotFoundPage } from '@features/not-found';
-import { Spinner } from '@ui/spinner';
 import { EditorContainer } from './EditorContainer';
 import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 
@@ -11,11 +10,12 @@ export default function EditGuitarContainer() {
 	const [data, setData] = useState({});
 
 	const [loading, setLoading] = useState(false);
+	const [submitting, setSubmitting] = useState(false);
 	const [error, setError] = useState(false);
 
 	const { id } = useParams();
 	const history = useHistory();
-	const [errorData, setErrorData] = useState(false);
+	const [notFound, setNotFound] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -47,7 +47,7 @@ export default function EditGuitarContainer() {
 				setData(data);
 			} catch (error) {
 				console.error(error.message);
-				setErrorData(true);
+				setNotFound(true);
 			} finally {
 				setLoading(false);
 			}
@@ -62,9 +62,7 @@ export default function EditGuitarContainer() {
 			if (!data.main_img) {
 				throw new Error('A photo is required');
 			}
-			setLoading(true);
-
-			await new Promise((resolve) => setTimeout(resolve, 2000));
+			setSubmitting(true);
 
 			const filteredData = {
 				...data,
@@ -79,20 +77,12 @@ export default function EditGuitarContainer() {
 		} catch (error) {
 			setError(error.message);
 		} finally {
-			setLoading(false);
+			setSubmitting(false);
 		}
 	};
 
-	const handleCancelClick = () => {
-		history.push(`${GUITAR_PATH_DIR}${id}`);
-	};
-
-	if (errorData) {
+	if (notFound) {
 		return <NotFoundPage />;
-	}
-
-	if (loading) {
-		return <Spinner />;
 	}
 
 	return (
@@ -100,10 +90,9 @@ export default function EditGuitarContainer() {
 			data={data}
 			setData={setData}
 			loading={loading}
-			setLoading={setLoading}
+			submitting={submitting}
 			error={error}
-			setError={setError}
-			handleCancelClick={handleCancelClick}>
+			setError={setError}>
 			<EditorContainer handleSubmit={handleSave} />
 		</EditorDataProvider>
 	);

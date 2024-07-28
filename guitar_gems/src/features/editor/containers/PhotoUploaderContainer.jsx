@@ -1,9 +1,11 @@
 import { useEditorData } from '../contexts/EditorDataContext';
 import { supabase } from '@api/supabaseClient';
 import { PhotoUploader } from '../components/photo-uploader/PhotoUploader';
+import { useUploadingPhoto } from '../contexts/UploadingPhotoContext';
 
-export function PhotoUploaderContainer({ uploadingPhoto, setUploadingPhoto }) {
+export function PhotoUploaderContainer() {
 	const { data, setData, setError, error } = useEditorData();
+	const { uploadingPhoto, setUploadingPhoto } = useUploadingPhoto();
 
 	const uploadPhoto = async (file) => {
 		setError(false);
