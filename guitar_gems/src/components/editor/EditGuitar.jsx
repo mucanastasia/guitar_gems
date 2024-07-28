@@ -80,6 +80,7 @@ export default function EditGuitar({ children }) {
 		}
 	};
 
+	//don't need this anymore
 	const displaySaveButton = () => {
 		if (loading) {
 			return 'Saving...';
@@ -106,12 +107,12 @@ export default function EditGuitar({ children }) {
 			setData={setData}
 			loading={loading}
 			setLoading={setLoading}
-			uploadingPhoto={uploadingPhoto}
-			setUploadingPhoto={setUploadingPhoto}
 			error={error}
 			setError={setError}
 			displayButtonLabel={displaySaveButton}
 			handleSubmit={handleSave}
+			uploadingPhoto={uploadingPhoto}
+			setUploadingPhoto={setUploadingPhoto}
 			title="Edit Guitar"
 			handleCancelClick={handleCancelClick}
 			id={id}>

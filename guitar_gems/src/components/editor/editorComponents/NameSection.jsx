@@ -1,5 +1,5 @@
 import { EditorField } from '@ui/editor-field';
-import { useEditorData } from '../contexts/EditorDataContext';
+import { useEditorData } from '../../../features/editor/contexts/EditorDataContext';
 import { HeadingMedium } from '@ui/heading';
 import { HEADING_NAME } from '@features/product/constants/productHeadingNames';
 

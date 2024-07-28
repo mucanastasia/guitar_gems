@@ -2,13 +2,13 @@ import { SpecsSection } from '../specs-section';
 import { HeadingMedium } from '@ui/heading';
 import { EditorField } from '@ui/editor-field';
 import { TextArea } from '@ui/text-area';
+import { GuitarFeaturesContainer } from '../../containers/GuitarFeaturesContainer';
 import {
 	HEADING_NAME,
 	HEADING_DESCRIPTION,
 	HEADING_SPECS,
 } from '@features/product/constants/productHeadingNames';
 import './EditorForm.css';
-import { GuitarFeaturesContainer } from '../../containers/GuitarFeaturesContainer';
 
 export function EditorForm({ ...props }) {
 	const { name, description, handleChangeName, handleChangeDescription } = props;

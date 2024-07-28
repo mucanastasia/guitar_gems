@@ -11,6 +11,8 @@ import {
 	SPEC_LABEL_COUNTRY,
 } from '@features/product/constants/specNames';
 
+//TODO: Think how the SpecItemContainer[s] can get the information about guitarKey and optionsKey
+
 export function SpecsSection() {
 	return (
 		<>

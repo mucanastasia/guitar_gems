@@ -1,5 +1,5 @@
 import { GuitarFeatures } from '../components/guitar-features';
-import { useEditorData } from '../../../components/editor/contexts/EditorDataContext';
+import { useEditorData } from '../contexts/EditorDataContext';
 
 export function GuitarFeaturesContainer() {
 	const { data, setData } = useEditorData();

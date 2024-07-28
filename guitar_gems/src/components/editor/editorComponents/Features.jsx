@@ -1,4 +1,4 @@
-import { useEditorData } from '../contexts/EditorDataContext';
+import { useEditorData } from '../../../features/editor/contexts/EditorDataContext';
 import { Input, TextField } from 'react-aria-components';
 import { HeadingMedium } from '@ui/heading';
 import { Icon } from '@ui/icon';

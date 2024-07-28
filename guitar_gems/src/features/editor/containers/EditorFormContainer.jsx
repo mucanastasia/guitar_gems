@@ -1,5 +1,5 @@
 import { EditorForm } from '../components/editor-form/EditorForm';
-import { useEditorData } from '../../../components/editor/contexts/EditorDataContext';
+import { useEditorData } from '../contexts/EditorDataContext';
 
 export function EditorFormContainer() {
 	const { data, setData } = useEditorData();

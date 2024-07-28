@@ -1,5 +1,5 @@
 import { ComboBox } from '@ui/combo-box';
-import { useEditorData } from '../../../components/editor/contexts/EditorDataContext'; //TODO: UPDATE
+import { useEditorData } from '../contexts/EditorDataContext'; //TODO: UPDATE
 import { useSelectOptions } from '../contexts/SelectOptionsContext'; //TODO: UPDATE
 
 export function SpecItemContainer({ label, guitarKey, optionsKey }) {

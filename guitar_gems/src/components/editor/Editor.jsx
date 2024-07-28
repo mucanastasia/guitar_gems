@@ -1,16 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { supabase } from '@api/supabaseClient';
-import { useEditorData } from './contexts/EditorDataContext';
+import { useEditorData } from '../../features/editor/contexts/EditorDataContext';
 import { Form } from 'react-aria-components';
 import { ProductCard } from '@ui/product-card';
 // import EditorContent from './editorComponents/EditorContent';
-import PhotoUploader from './editorComponents/PhotoUploader';
+// import PhotoUploader from './editorComponents/PhotoUploader';
 import EditorHeader from './editorComponents/EditorHeader';
 import EditorHero from './editorComponents/EditorHero';
 import defaultImg from '@assets/img-placeholder.png';
 import './styles/editor.css';
 
 import { EditorFormContainer } from '@features/editor/containers/EditorFormContainer';
+import { PhotoUploaderContainer } from '../../features/editor/containers/PhotoUploaderContainer';
 
 export default function Editor() {
 	const { data, handleSubmit } = useEditorData();
@@ -50,7 +51,7 @@ export default function Editor() {
 								name={data?.name ? data.name : 'There will be a name'}
 								image={data.main_img ? data.main_img : defaultImg}
 							/>
-							<PhotoUploader />
+							<PhotoUploaderContainer />
 						</div>
 						{/* <EditorContent /> */}
 						<EditorFormContainer />

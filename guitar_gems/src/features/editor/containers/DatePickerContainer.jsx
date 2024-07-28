@@ -1,5 +1,5 @@
 import { parseDate } from '@internationalized/date';
-import { useEditorData } from '../../../components/editor/contexts/EditorDataContext';
+import { useEditorData } from '../contexts/EditorDataContext';
 import { DatePicker } from '@ui/date-picker';
 
 export function DatePickerContainer({ label, guitarKey }) {

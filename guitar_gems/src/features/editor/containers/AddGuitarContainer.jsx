@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { supabase } from '@api/supabaseClient';
-import EditorDataProvider from './contexts/EditorDataContext';
+import EditorDataProvider from '../contexts/EditorDataContext';
 import { Spinner } from '@ui/spinner';
+import { EditorContainer } from './EditorContainer';
 
-export default function AddGuitar({ children }) {
+export default function AddGuitarContainer() {
 	const [data, setData] = useState({
 		name: '',
 		description: '',
@@ -19,7 +20,6 @@ export default function AddGuitar({ children }) {
 		features: [],
 	});
 
-	const [uploadingPhoto, setUploadingPhoto] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 
@@ -54,17 +54,6 @@ export default function AddGuitar({ children }) {
 		}
 	};
 
-	//don't need this anymore
-	const displayPublishButton = () => {
-		if (loading) {
-			return 'Publishing...';
-		} else if (guitarIdRef.current > 0) {
-			return 'Success';
-		} else {
-			return 'Publish';
-		}
-	};
-
 	if (loading) {
 		return <Spinner />;
 	}
@@ -75,14 +64,11 @@ export default function AddGuitar({ children }) {
 			setData={setData}
 			loading={loading}
 			setLoading={setLoading}
-			uploadingPhoto={uploadingPhoto}
-			setUploadingPhoto={setUploadingPhoto}
 			error={error}
 			setError={setError}
-			displayButtonLabel={displayPublishButton}
-			handleSubmit={handlePublish}
+			buttonLabel={loading ? 'Publishing...' : 'Publish'}
 			title="Add Guitar">
-			{children}
+			<EditorContainer handleSubmit={handlePublish} />
 		</EditorDataProvider>
 	);
 }

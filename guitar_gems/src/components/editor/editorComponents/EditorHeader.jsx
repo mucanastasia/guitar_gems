@@ -1,4 +1,4 @@
-import { useEditorData } from '../contexts/EditorDataContext';
+import { useEditorData } from '../../../features/editor/contexts/EditorDataContext';
 import { HeadingLarge } from '@ui/heading';
 import { Button } from '@ui/button';
 import { TextError } from '@ui/text-error';

@@ -5,9 +5,9 @@ import Catalogue from './components/catalogue/Catalogue';
 import PrivateRoute from '@features/router/PrivateRoute';
 import { ScrollToTop } from '@helpers/ScrollToTop';
 import { FiltersProvider } from './components/catalogue/contexts/FiltersContext';
-import AddGuitar from './components/editor/AddGuitar';
-import EditGuitar from './components/editor/EditGuitar';
-import Editor from './components/editor/Editor';
+// import AddGuitar from './components/editor/AddGuitar';
+// import EditGuitar from './components/editor/EditGuitar';
+// import Editor from './components/editor/Editor';
 import { NotFoundPage } from '@features/not-found';
 import './App.css';
 import { Footer } from '@features/footer';
@@ -15,6 +15,8 @@ import { Header } from '@features/header';
 import { SignInPage } from '@features/auth';
 import { SignUpPage } from '@features/auth';
 import { ProductPage } from '@features/product';
+import { EditGuitarPage } from '@features/editor';
+import { AddGuitarPage } from '@features/editor';
 
 export default function App() {
 	const { user } = useSession();
@@ -49,9 +51,7 @@ export default function App() {
 					{user?.app_metadata.role === 'editor' ? (
 						<>
 							<Header />
-							<AddGuitar>
-								<Editor />
-							</AddGuitar>
+							<AddGuitarPage />
 							<Footer />
 						</>
 					) : (
@@ -63,9 +63,7 @@ export default function App() {
 					{user?.app_metadata.role === 'editor' ? (
 						<>
 							<Header />
-							<EditGuitar>
-								<Editor />
-							</EditGuitar>
+							<EditGuitarPage />
 							<Footer />
 						</>
 					) : (

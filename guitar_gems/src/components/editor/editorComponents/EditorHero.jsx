@@ -1,4 +1,4 @@
-import { useEditorData } from '../contexts/EditorDataContext';
+import { useEditorData } from '../../../features/editor/contexts/EditorDataContext';
 import { Hero } from '@ui/hero';
 import { Spinner } from '@ui/spinner';
 import defaultImg from '@assets/img-placeholder.png';
