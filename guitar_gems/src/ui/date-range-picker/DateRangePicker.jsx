@@ -16,14 +16,14 @@ import { I18nProvider } from 'react-aria';
 import { Icon } from '@ui/icon';
 import './DateRangePicker.css';
 
-export function DateRangePicker({ onChange, maxValue, value, onClear }) {
+export function DateRangePicker({ label, onChange, maxValue, value, onClear }) {
 	return (
 		<AriaDateRangePicker
 			onChange={onChange}
 			maxValue={maxValue}
 			value={value}
 			aria-label="Release date range picker">
-			<Label>Release date</Label>
+			<Label>{label}</Label>
 			<Group>
 				<section>
 					<I18nProvider locale="en-GB">

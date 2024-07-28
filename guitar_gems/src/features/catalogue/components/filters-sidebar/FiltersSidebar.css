@@ -1,0 +1,6 @@
+.filters-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 160px;
+    margin-bottom: 120px;
+}

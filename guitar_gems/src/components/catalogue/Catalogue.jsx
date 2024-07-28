@@ -1,21 +1,28 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '@api/supabaseClient';
 import { Link } from 'react-router-dom';
-import { useFilters } from './contexts/FiltersContext';
+import { useFilters } from '@features/catalogue/contexts/FiltersContext';
 import useWindowWidth from './hooks/useWindowWidth';
 import { ProductCard } from '@ui/product-card';
-import FiltersContainer from './FiltersContainer';
-import CatalogueHeader from './CatalogueHeader';
+// import FiltersContainer from './FiltersContainer';
+// import CatalogueHeader from './CatalogueHeader';
 import { Skeleton } from '@ui/skeleton';
-import FiltersSideBar from './FiltersSideBar';
+// import FiltersSideBar from './FiltersSideBar';
 import './styles/catalogue.css';
+import { CARDS_PER_PAGE, NO_MATCH_TEXT } from '@features/catalogue/constants/catalogue';
+import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
+import { Text } from '@ui/text';
+import { useInfiniteScroll } from '@features/catalogue/helpers/useInfiniteScroll';
+import { prepareFilter } from '@features/catalogue/helpers/filterHelpers';
+import { CatalogueHeaderContainer } from '@features/catalogue/containers/CatalogueHeaderContainer';
+import { FiltersDrawerContainer } from '@features/catalogue/containers/FiltersDrawerContainer';
+import { FiltersSidebarContainer } from '@features/catalogue/containers/FiltersSidebarContainer';
 
 export default function Catalogue() {
 	const [guitars, setGuitars] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	const [hasMore, setHasMore] = useState(true);
-	const cardsPerPage = 12;
 
 	const isMobile = useWindowWidth();
 	const { selectedFilters, setSelectedFilters } = useFilters();
@@ -25,33 +32,11 @@ export default function Catalogue() {
 		fetchData();
 	}, []);
 
-	const observer = useRef();
-	const lastCardRef = useCallback(
-		(node) => {
-			if (loading) return;
-			if (observer.current) observer.current.disconnect();
-			observer.current = new IntersectionObserver(async (entries) => {
-				if (entries[0].isIntersecting && hasMore) {
-					await fetchData();
-				}
-			});
-			if (node) observer.current.observe(node);
-		},
-		[loading, hasMore]
-	);
-
 	// TODO: Place this function in FiltersContext(?) after extracting fetchData into separate file
 	// 		 and I wouldn't need to pass setFilters as a prop
 	const handleFilterChange = async (newFilters) => {
 		setSelectedFilters(newFilters);
 		await fetchData(newFilters, true);
-	};
-
-	const prepareFilter = (selectedList, fieldNames) => {
-		const filter = selectedList
-			.map((id) => fieldNames.map((fieldName) => `${fieldName}.eq.${id}`).join(','))
-			.join(',');
-		return filter;
 	};
 
 	const fetchData = async (filters = selectedFilters, reset = false) => {
@@ -75,7 +60,7 @@ export default function Catalogue() {
                     `
 				)
 				.order('id', { ascending: true })
-				.limit(cardsPerPage);
+				.limit(CARDS_PER_PAGE);
 
 			if (filters.brands.length > 0) {
 				request = request.or(prepareFilter(filters.brands, ['brand_id']));
@@ -117,7 +102,7 @@ export default function Catalogue() {
 
 			setGuitars(reset ? data : [...guitars, ...data]);
 
-			if (data.length < cardsPerPage) {
+			if (data.length < CARDS_PER_PAGE) {
 				setHasMore(false);
 			} else {
 				setHasMore(true);
@@ -129,9 +114,11 @@ export default function Catalogue() {
 		}
 	};
 
-	const renderCatalogue = () => {
+	const lastCardRef = useInfiniteScroll({ loading, hasMore, fetchData });
+
+	const renderGuitars = () => {
 		if (!guitars || guitars.length === 0) {
-			return <p>No guitars available.</p>;
+			return <Text size="large">{NO_MATCH_TEXT}</Text>;
 		}
 
 		return guitars.map((guitar, index) => {
@@ -139,7 +126,7 @@ export default function Catalogue() {
 				return (
 					<Link
 						key={guitar.id}
-						to={`/guitars/${guitar.id}`}
+						to={`${GUITAR_PATH_DIR}${guitar.id}`}
 						ref={lastCardRef}
 						target="_blank"
 						rel="noopener noreferrer">
@@ -154,7 +141,7 @@ export default function Catalogue() {
 				return (
 					<Link
 						key={guitar.id}
-						to={`/guitars/${guitar.id}`}
+						to={`${GUITAR_PATH_DIR}${guitar.id}`}
 						target="_blank"
 						rel="noopener noreferrer">
 						<ProductCard
@@ -170,22 +157,22 @@ export default function Catalogue() {
 
 	return (
 		<>
-			<CatalogueHeader setFilters={handleFilterChange} />
+			<CatalogueHeaderContainer setFilters={handleFilterChange} />
 			<div className="container">
 				{!isMobile ? (
-					<FiltersContainer setFilters={handleFilterChange} />
+					<FiltersSidebarContainer setFilters={handleFilterChange} />
 				) : (
-					<FiltersSideBar setFilters={handleFilterChange}>
-						<FiltersContainer setFilters={handleFilterChange} />
-					</FiltersSideBar>
+					<FiltersDrawerContainer setFilters={handleFilterChange}>
+						<FiltersSidebarContainer setFilters={handleFilterChange} />
+					</FiltersDrawerContainer>
 				)}
 				<div className="catalogue-container">
 					{loading && guitars.length === 0 ? (
-						<Skeleton count={cardsPerPage} />
+						<Skeleton count={CARDS_PER_PAGE} />
 					) : (
-						renderCatalogue()
+						renderGuitars()
 					)}
-					{loading && guitars.length > 0 && <Skeleton count={cardsPerPage} />}
+					{loading && guitars.length > 0 && <Skeleton count={CARDS_PER_PAGE} />}
 				</div>
 			</div>
 		</>

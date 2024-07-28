@@ -2,13 +2,11 @@ import { useState, useEffect, useContext } from 'react';
 import { supabase } from '@api/supabaseClient';
 import { CheckboxGroupStateContext } from 'react-aria-components';
 import { useFilters } from '@features/catalogue/contexts/FiltersContext';
-import './styles/filtersContainer.css';
-import { FilterGroup } from '@ui/filter-group';
 import { getLocalTimeZone, today } from '@internationalized/date';
-import { DateRangePicker } from '@ui/date-range-picker';
-import { SkeletonFilters } from '../../ui/skeleton';
+import { SkeletonFilters } from '@ui/skeleton';
+import { FiltersSidebar } from '@features/catalogue/components/filters-sidebar';
 
-export default function FiltersContainer({ setFilters }) {
+export function FiltersSidebarContainer({ setFilters }) {
 	const { selectedFilters } = useFilters();
 
 	const [loading, setLoading] = useState(true);
@@ -83,59 +81,40 @@ export default function FiltersContainer({ setFilters }) {
 		setFilters({ ...selectedFilters, countries: vals });
 	};
 
-	const todayDate = today(getLocalTimeZone());
-
-	const handleChangeDates = (e) => {
-		setFilters({ ...selectedFilters, date: e });
+	const handleChangeDates = (vals) => {
+		setFilters({ ...selectedFilters, date: vals });
 	};
+
+	// TODO: Tried to unite all handlers above into one, but it didn't work. Need to investigate or left as is.
+	// const handleChangeFilter = (vals, filterKey) => {
+	// 	setFilters({ ...selectedFilters, [filterKey]: vals });
+	// };
+
+	const todayDate = today(getLocalTimeZone());
 
 	const handleResetDates = () => {
 		setFilters({ ...selectedFilters, date: { start: null, end: null } });
+	};
+
+	const props = {
+		brands: filterNames.brands,
+		types: filterNames.types,
+		materials: filterNames.materials,
+		countries: filterNames.countries,
+		selectedFilters,
+		handleChangeBrand,
+		handleChangeType,
+		handleChangeMaterial,
+		handleChangeCountry,
+		handleChangeDates,
+		handleResetDates,
+		SelectionCount,
+		todayDate,
 	};
 
 	if (loading) {
 		return <SkeletonFilters />;
 	}
 
-	return (
-		<div className="filters-container">
-			<FilterGroup
-				label="Brand"
-				filters={filterNames.brands}
-				onChange={handleChangeBrand}
-				selectedFilters={selectedFilters.brands}
-				Counter={SelectionCount}
-			/>
-			<FilterGroup
-				label="Type"
-				filters={filterNames.types}
-				onChange={handleChangeType}
-				selectedFilters={selectedFilters.types}
-				Counter={SelectionCount}
-			/>
-
-			<FilterGroup
-				label="Material"
-				filters={filterNames.materials}
-				onChange={handleChangeMaterial}
-				selectedFilters={selectedFilters.materials}
-				Counter={SelectionCount}
-			/>
-
-			<FilterGroup
-				label="Country"
-				filters={filterNames.countries}
-				onChange={handleChangeCountry}
-				selectedFilters={selectedFilters.countries}
-				Counter={SelectionCount}
-			/>
-
-			<DateRangePicker
-				value={selectedFilters.date}
-				maxValue={todayDate}
-				onChange={handleChangeDates}
-				onClear={handleResetDates}
-			/>
-		</div>
-	);
+	return <FiltersSidebar {...props} />;
 }

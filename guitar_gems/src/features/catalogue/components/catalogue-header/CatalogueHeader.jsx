@@ -1,36 +1,14 @@
-import { useRef } from 'react';
 import { Label } from '@ui/label';
-import './styles/catalogueHeader.css';
-import useWindowWidth from './hooks/useWindowWidth';
-import { useFilters } from './contexts/FiltersContext';
 import { HeadingLogo } from '@ui/heading-logo';
-import { Icon } from '../../ui/icon';
+import { Icon } from '@ui/icon';
 import { SearchField } from '@ui/search-field';
 import { PROJECT_NAME } from '@features/catalogue/constants/catalogue';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
+import './CatalogueHeader.css';
 
-export default function CatalogueHeader({ setFilters }) {
-	const { selectedFilters, setIsOpen } = useFilters();
-	const isMobile = useWindowWidth();
-	const searchRef = useRef();
-
-	const handleSubmit = () => {
-		const value = searchRef.current.value.trim();
-		setFilters({ ...selectedFilters, query: value });
-	};
-
-	const handleClearOrEscape = (e) => {
-		if (e && e.key !== 'Escape') {
-			return;
-		}
-		if (selectedFilters.query) {
-			setFilters({ ...selectedFilters, query: '' });
-		}
-	};
-
-	const handleFiltersClick = () => {
-		setIsOpen((prev) => !prev);
-	};
+export function CatalogueHeader({ ...props }) {
+	const { isMobile, searchRef, handleSubmit, handleClearOrEscape, handleFiltersClick } =
+		props;
 
 	return (
 		<div className="catalogue-page-header">
