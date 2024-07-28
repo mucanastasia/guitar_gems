@@ -85,7 +85,7 @@ export function FiltersSidebarContainer({ setFilters }) {
 		setFilters({ ...selectedFilters, date: vals });
 	};
 
-	// TODO: Tried to unite all handlers above into one, but it didn't work. Need to investigate or left as is.
+	// TODO: Tried to unite all handlers above into one, but failed. Need to investigate or leave handlers as they are.
 	// const handleChangeFilter = (vals, filterKey) => {
 	// 	setFilters({ ...selectedFilters, [filterKey]: vals });
 	// };
