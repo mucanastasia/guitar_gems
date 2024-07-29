@@ -1,5 +1,5 @@
 import { useSignUp } from '../helpers/useSignUp';
-import { Form } from '../components/form/Form';
+import { Form } from '../components/form';
 import { SignUp } from '../components/sign-up';
 
 export function SignUpFormContainer() {
@@ -23,26 +23,28 @@ export function SignUpFormContainer() {
 		handleBlurConfirmedPassword,
 	} = useSignUp();
 
+	const props = {
+		loading,
+		nameRef,
+		emailRef,
+		passwordRef,
+		confirmedPasswordRef,
+		error: errorMessage,
+		fieldType,
+		handleBlurName,
+		handleChangeName,
+		handleBlurEmail,
+		handleChangeEmail,
+		handleBlurPassword,
+		handleChangePassword,
+		handleBlurConfirmedPassword,
+		handleChangeConfirmedPassword,
+		handleClickVisible,
+	};
+
 	return (
 		<Form onSubmit={handleSignUp}>
-			<SignUp
-				loading={loading}
-				nameRef={nameRef}
-				emailRef={emailRef}
-				passwordRef={passwordRef}
-				confirmedPasswordRef={confirmedPasswordRef}
-				error={errorMessage}
-				fieldType={fieldType}
-				handleBlurName={handleBlurName}
-				handleChangeName={handleChangeName}
-				handleBlurEmail={handleBlurEmail}
-				handleChangeEmail={handleChangeEmail}
-				handleBlurPassword={handleBlurPassword}
-				handleChangePassword={handleChangePassword}
-				handleBlurConfirmedPassword={handleBlurConfirmedPassword}
-				handleChangeConfirmedPassword={handleChangeConfirmedPassword}
-				handleClickVisible={handleClickVisible}
-			/>
+			<SignUp {...props} />
 		</Form>
 	);
 }
