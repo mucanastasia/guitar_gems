@@ -1,7 +1,8 @@
 import { Route, Redirect } from 'react-router-dom';
 import { useSession } from '@features/auth/contexts/SessionContext';
+import { SIGN_IN_PATH } from '@features/router/constants/routePaths';
 
-export default function PrivateRoute({ children, ...rest }) {
+export function PrivateRouteContainer({ children, ...rest }) {
 	const { user } = useSession();
 
 	return (
@@ -13,7 +14,7 @@ export default function PrivateRoute({ children, ...rest }) {
 				) : (
 					<Redirect
 						to={{
-							pathname: '/sign-in',
+							pathname: SIGN_IN_PATH,
 							state: { from: location },
 						}}
 					/>
