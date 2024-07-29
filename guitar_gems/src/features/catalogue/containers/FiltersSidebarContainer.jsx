@@ -5,9 +5,11 @@ import { useFilters } from '@features/catalogue/contexts/FiltersContext';
 import { getLocalTimeZone, today } from '@internationalized/date';
 import { SkeletonFilters } from '@ui/skeleton';
 import { FiltersSidebar } from '@features/catalogue/components/filters-sidebar';
+import { useGuitars } from '../contexts/GuitarsContext';
 
-export function FiltersSidebarContainer({ setFilters }) {
+export function FiltersSidebarContainer() {
 	const { selectedFilters } = useFilters();
+	const { setFilters } = useGuitars();
 
 	const [loading, setLoading] = useState(true);
 	const [filterNames, setFilterNames] = useState({

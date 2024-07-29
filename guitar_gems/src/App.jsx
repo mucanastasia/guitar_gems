@@ -1,10 +1,9 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { useSession } from '@features/auth/contexts/SessionContext';
 // import Product from './components/product/Product';
-import Catalogue from './components/catalogue/Catalogue';
+// import Catalogue from './components/catalogue/Catalogue';
 import PrivateRoute from '@features/router/PrivateRoute';
 import { ScrollToTop } from '@helpers/ScrollToTop';
-import { FiltersProvider } from '@features/catalogue/contexts/FiltersContext';
 // import AddGuitar from './components/editor/AddGuitar';
 // import EditGuitar from './components/editor/EditGuitar';
 // import Editor from './components/editor/Editor';
@@ -16,6 +15,9 @@ import { SignUpPage } from '@features/auth';
 import { ProductPage } from '@features/product';
 import { EditGuitarPage } from '@features/editor';
 import { AddGuitarPage } from '@features/editor';
+// import { FiltersProvider } from '@features/catalogue/contexts/FiltersContext';
+// import { GuitarsProvider } from './features/catalogue/contexts/GuitarsContext';
+import { CataloguePage } from '@features/catalogue';
 
 export default function App() {
 	const { user } = useSession();
@@ -27,9 +29,7 @@ export default function App() {
 				<Route exact path="/">
 					<>
 						<Header />
-						<FiltersProvider>
-							<Catalogue />
-						</FiltersProvider>
+						<CataloguePage />
 						<Footer />
 					</>
 				</Route>
