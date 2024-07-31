@@ -1,73 +1,14 @@
-import { useState, useRef } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { supabase } from '@api/supabaseClient';
-import { validateEmail, clearInputs, clearErrors } from '../helpers/formHelpers';
-import { ROOT_PATH } from '@features/router/constants/routePaths';
+import { useState } from 'react';
+import { validateEmail } from '../helpers/formHelpers';
 
-export const useSignIn = () => {
-	const emailRef = useRef(null);
-	const passwordRef = useRef(null);
-
+export const useSignIn = ({ emailRef, passwordRef }) => {
 	const [errorMessage, setErrorMessage] = useState({
 		email: '',
 		password: '',
 		general: '',
 	});
 
-	const [loading, setLoading] = useState(false);
 	const [fieldType, setFieldType] = useState('password');
-
-	const history = useHistory();
-	const location = useLocation();
-
-	const { from } = location.state || { from: { pathname: ROOT_PATH } };
-
-	const handleSignIn = async (e) => {
-		try {
-			e.preventDefault();
-			setLoading(true);
-
-			const email = emailRef.current.value;
-			const password = passwordRef.current.value;
-
-			if (email.length === 0 && password.length === 0) {
-				setErrorMessage({
-					...errorMessage,
-					email: 'Please fill in this field',
-					password: 'Please fill in this field',
-				});
-			} else if (email.length === 0) {
-				setErrorMessage({ ...errorMessage, email: 'Please fill in this field' });
-			} else if (password.length === 0) {
-				setErrorMessage({
-					...errorMessage,
-					password: 'Please fill in this field',
-				});
-			}
-
-			if (validateEmail(email) && password.length >= 6) {
-				const { data, error } = await supabase.auth.signInWithPassword({
-					email: email,
-					password: password,
-				});
-
-				if (error) throw error;
-
-				if (data && !error) {
-					history.replace(from);
-					clearInputs();
-					clearErrors();
-				}
-			}
-		} catch (error) {
-			setErrorMessage({
-				...errorMessage,
-				general: 'Invalid email or password. Please try again',
-			});
-		} finally {
-			setLoading(false);
-		}
-	};
 
 	const handleBlurEmail = (e) => {
 		const email = e.target.value;
@@ -125,7 +66,7 @@ export const useSignIn = () => {
 			password.length >= 6
 		) {
 			setErrorMessage({ ...errorMessage, password: '' });
-			emailRef.current.value = password;
+			passwordRef.current.value = password;
 		}
 	};
 
@@ -134,12 +75,9 @@ export const useSignIn = () => {
 	};
 
 	return {
-		emailRef,
-		passwordRef,
 		errorMessage,
-		loading,
+		setErrorMessage,
 		fieldType,
-		handleSignIn,
 		handleBlurEmail,
 		handleChangeEmail,
 		handleBlurPassword,

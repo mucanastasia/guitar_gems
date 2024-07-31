@@ -1,5 +1,3 @@
-// import guitar from '@assets/guitar.webp';
-
 import { HeadingLogo } from '@ui/heading-logo';
 import { AuthPromptContainer } from '../../containers/AuthPromptContainer';
 import { AUTH_IMG_URL } from '../../constants/auth';

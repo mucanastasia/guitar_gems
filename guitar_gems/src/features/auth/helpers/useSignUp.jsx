@@ -1,16 +1,7 @@
-import { useState, useRef } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { supabase } from '@api/supabaseClient';
-import { validateEmail, clearInputs, clearErrors } from '../helpers/formHelpers';
-import { ROOT_PATH } from '@features/router/constants/routePaths';
+import { useState } from 'react';
+import { validateEmail } from '../helpers/formHelpers';
 
-export const useSignUp = () => {
-	const nameRef = useRef(null);
-	const emailRef = useRef(null);
-	const passwordRef = useRef(null);
-	const confirmedPasswordRef = useRef(null);
-
-	const [loading, setLoading] = useState(false);
+export const useSignUp = ({ nameRef, emailRef, passwordRef, confirmedPasswordRef }) => {
 	const [fieldType, setFieldType] = useState({
 		password: 'password',
 		confirmedPass: 'password',
@@ -23,88 +14,6 @@ export const useSignUp = () => {
 		confirmedPass: '',
 		general: '',
 	});
-
-	const history = useHistory();
-	const location = useLocation();
-
-	const { from } = location.state || { from: { pathname: ROOT_PATH } };
-
-	const handleSignUp = async (e) => {
-		try {
-			setLoading(true);
-			e.preventDefault();
-
-			const name = nameRef.current.value;
-			const email = emailRef.current.value;
-			const password = passwordRef.current.value;
-			const confirmedPass = confirmedPasswordRef.current.value;
-
-			if (
-				name.trim().length === 0 ||
-				email.trim().length === 0 ||
-				password.trim().length === 0 ||
-				confirmedPass.trim().length === 0
-			) {
-				setErrorMessage({
-					...errorMessage,
-					name:
-						name.trim().length === 0 ? 'Please fill in this field' : errorMessage.name,
-					email:
-						email.trim().length === 0 ? 'Please fill in this field' : errorMessage.email,
-					password:
-						password.trim().length === 0
-							? 'Please fill in this field'
-							: errorMessage.password,
-					confirmedPass:
-						confirmedPass.trim().length === 0
-							? 'Please fill in this field'
-							: errorMessage.confirmedPass,
-				});
-				return;
-			}
-
-			if (name && password && email && confirmedPass) {
-				if (!validateEmail(email)) {
-					setErrorMessage({
-						...errorMessage,
-						email: 'Please provide a correct email',
-					});
-					return;
-				}
-				if (password === confirmedPass) {
-					const { data, error } = await supabase.auth.signUp({
-						email: emailRef.current.value,
-						password: passwordRef.current.value,
-						options: {
-							data: {
-								name: nameRef.current.value,
-							},
-						},
-					});
-
-					if (error) throw error;
-
-					if (data && !error) {
-						history.replace(from);
-						clearInputs();
-						clearErrors();
-					}
-				} else {
-					setErrorMessage({
-						...errorMessage,
-						confirmedPass: 'Password and Confirmed Password must be the same',
-					});
-				}
-			}
-		} catch (error) {
-			setErrorMessage({
-				...errorMessage,
-				general: error.message,
-			});
-		} finally {
-			setLoading(false);
-		}
-	};
 
 	const handleClickVisible = (e) => {
 		const targetAtr = e.target.getAttribute('data-rec');
@@ -211,14 +120,9 @@ export const useSignUp = () => {
 	};
 
 	return {
-		nameRef,
-		emailRef,
-		passwordRef,
-		confirmedPasswordRef,
-		loading,
-		fieldType,
 		errorMessage,
-		handleSignUp,
+		setErrorMessage,
+		fieldType,
 		handleClickVisible,
 		handleChangeName,
 		handleBlurName,

@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import { AuthPrompt } from '../components/auth-prompt';
 import { useRouteMatch } from 'react-router-dom';
 import {
 	SIGN_IN_PATH,
@@ -12,6 +11,8 @@ import {
 	PROMPT_TEXT_SIGN_IN,
 	PROMPT_TEXT_SIGN_UP,
 } from '../constants/auth';
+import { Text } from '@ui/text';
+import { LinkAuth } from '@ui/link';
 
 export function AuthPromptContainer() {
 	const location = useLocation();
@@ -25,5 +26,10 @@ export function AuthPromptContainer() {
 		: SIGN_IN_PATH;
 	const text = isOnSignInPage ? PROMPT_TEXT_SIGN_UP : PROMPT_TEXT_SIGN_IN;
 
-	return <AuthPrompt text={text} name={name} path={path} />;
+	return (
+		<Text size="small">
+			{text}
+			<LinkAuth path={path} name={name} />
+		</Text>
+	);
 }
