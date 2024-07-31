@@ -1,11 +1,14 @@
 import { useEditorData } from '../contexts/EditorDataContext';
 import { supabase } from '@api/supabaseClient';
-import { PhotoUploader } from '../components/photo-uploader/PhotoUploader';
 import { useUploadingPhoto } from '../contexts/UploadingPhotoContext';
+import { Button } from '@ui/button';
+import { FileTrigger } from 'react-aria-components';
+import { TextError } from '@ui/text-error';
 
 export function PhotoUploaderContainer() {
 	const { data, setData, setError, error } = useEditorData();
 	const { uploadingPhoto, setUploadingPhoto } = useUploadingPhoto();
+	const { main_img } = data;
 
 	const uploadPhoto = async (file) => {
 		setError(false);
@@ -43,13 +46,24 @@ export function PhotoUploaderContainer() {
 		setData({ ...data, main_img: '' });
 	};
 
-	const props = {
-		img: data.main_img,
-		uploadingPhoto,
-		uploadPhoto,
-		handleDeletePhoto,
-		error,
+	const displayUploadButton = () => {
+		if (!main_img) return 'Upload photo';
+		return uploadingPhoto ? 'Uploading ...' : 'Change photo';
 	};
 
-	return <PhotoUploader {...props} />;
+	return (
+		<>
+			<FileTrigger onSelect={uploadPhoto} acceptedFileTypes={['image/png', 'image/webp']}>
+				<Button state="primary" margin="24px 0" disabled={uploadingPhoto}>
+					{displayUploadButton()}
+				</Button>
+			</FileTrigger>
+			<TextError>{error}</TextError>
+			{main_img && (
+				<Button state="danger" onClick={handleDeletePhoto}>
+					Delete photo
+				</Button>
+			)}
+		</>
+	);
 }

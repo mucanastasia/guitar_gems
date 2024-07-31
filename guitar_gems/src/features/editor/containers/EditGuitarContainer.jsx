@@ -85,18 +85,21 @@ export function EditGuitarContainer() {
 		}
 	};
 
+	const props = {
+		data,
+		setData,
+		loading,
+		submitting,
+		error,
+		setError,
+	};
+
 	if (notFound) {
 		return <NotFoundPage />;
 	}
 
 	return (
-		<EditorDataProvider
-			data={data}
-			setData={setData}
-			loading={loading}
-			submitting={submitting}
-			error={error}
-			setError={setError}>
+		<EditorDataProvider {...props}>
 			<EditorContainer handleSubmit={handleSave} />
 		</EditorDataProvider>
 	);

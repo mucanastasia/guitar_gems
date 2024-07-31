@@ -58,13 +58,16 @@ export function AddGuitarContainer() {
 		}
 	};
 
+	const props = {
+		data,
+		setData,
+		submitting,
+		error,
+		setError,
+	};
+
 	return (
-		<EditorDataProvider
-			data={data}
-			setData={setData}
-			submitting={submitting}
-			error={error}
-			setError={setError}>
+		<EditorDataProvider {...props}>
 			<EditorContainer handleSubmit={handlePublish} />
 		</EditorDataProvider>
 	);
