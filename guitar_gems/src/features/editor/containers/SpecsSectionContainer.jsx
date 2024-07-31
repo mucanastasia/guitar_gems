@@ -1,6 +1,6 @@
-import { SpecsContainer } from '../../containers/SpecsContainer';
-import { SpecItemContainer } from '../../containers/SpecItemContainer';
-import { DatePickerContainer } from '../../containers/DatePickerContainer';
+import { SpecsContainer } from './SpecsContainer';
+import { SpecItemContainer } from './SpecItemContainer';
+import { DatePickerContainer } from './DatePickerContainer';
 import {
 	SPEC_LABEL_BRAND,
 	SPEC_LABEL_TYPE,
@@ -11,9 +11,7 @@ import {
 	SPEC_LABEL_COUNTRY,
 } from '@features/product/constants/specNames';
 
-//TODO: Think how the SpecItemContainer[s] can get the information about guitarKey and optionsKey
-
-export function SpecsSection() {
+export function SpecsSectionContainer() {
 	return (
 		<>
 			<SpecsContainer>

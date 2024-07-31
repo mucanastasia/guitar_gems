@@ -1,8 +1,8 @@
-import { SpecsSection } from '../specs-section';
 import { HeadingMedium } from '@ui/heading';
 import { EditorField } from '@ui/editor-field';
 import { TextArea } from '@ui/text-area';
 import { GuitarFeaturesContainer } from '../../containers/GuitarFeaturesContainer';
+import { SpecsSectionContainer } from '../../containers/SpecsSectionContainer';
 import {
 	HEADING_NAME,
 	HEADING_DESCRIPTION,
@@ -37,7 +37,7 @@ export function EditorForm({ ...props }) {
 
 			<article>
 				<HeadingMedium text={HEADING_SPECS} />
-				<SpecsSection />
+				<SpecsSectionContainer />
 			</article>
 			<GuitarFeaturesContainer />
 		</section>

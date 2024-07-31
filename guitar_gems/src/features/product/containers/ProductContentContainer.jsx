@@ -27,8 +27,8 @@ export function ProductContentContainer() {
 		[specNames.SPEC_LABEL_BODY, body_material.name],
 		[specNames.SPEC_LABEL_NECK, neck_material.name],
 		[specNames.SPEC_LABEL_FINGERBOARD, fingerboard_material.name],
-		[specNames.SPEC_LABEL_RELEASE_DATE, releaseDate],
 		[specNames.SPEC_LABEL_COUNTRY, country.name],
+		[specNames.SPEC_LABEL_RELEASE_DATE, releaseDate],
 	];
 
 	return (
