@@ -1,9 +1,14 @@
 import { Link } from '@ui/link';
 import { SIGN_IN_PATH, ADD_GUITAR_PATH } from '@features/router/constants/routePaths';
-import { SignOutTriggerContainer, SignOutPopoverContainer } from '../../containers';
+import { DialogTrigger, Popover } from 'react-aria-components';
+import { Button } from '@ui/button';
+import { Icon } from '@ui/icon';
 import './Navigation.css';
 
-export function Navigation({ isLoggedIn, isUserEditor, userName, currentPath }) {
+export function Navigation({ ...props }) {
+	const { isLoggedIn, isUserEditor, userName, currentPath, loading, handleSignOut } =
+		props;
+
 	return (
 		<nav>
 			{isUserEditor && (
@@ -11,10 +16,17 @@ export function Navigation({ isLoggedIn, isUserEditor, userName, currentPath }) 
 			)}
 
 			{isLoggedIn ? (
-				<SignOutTriggerContainer>
-					<Link name={userName} icon="account_circle" />
-					<SignOutPopoverContainer />
-				</SignOutTriggerContainer>
+				<>
+					<DialogTrigger>
+						<Link name={userName} icon="account_circle" />
+						<Popover>
+							<Button state="accent" onClick={handleSignOut}>
+								<Icon color="white" name="logout" />
+								{loading ? 'Loading...' : 'Sign Out'}
+							</Button>
+						</Popover>
+					</DialogTrigger>
+				</>
 			) : (
 				<Link
 					name="Sign In"

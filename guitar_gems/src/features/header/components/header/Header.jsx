@@ -1,5 +1,5 @@
 import { Logo } from '@ui/link';
-import { NavigationContainer } from '../../containers';
+import { NavigationContainer } from '../../containers/NavigationContainer';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
 import './Header.css';
 
