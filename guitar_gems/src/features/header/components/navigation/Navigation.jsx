@@ -1,6 +1,7 @@
 import { Link } from '@ui/link';
 import { SIGN_IN_PATH, ADD_GUITAR_PATH } from '@features/router/constants/routePaths';
-import { DialogTrigger, Popover } from 'react-aria-components';
+import { DialogTrigger } from 'react-aria-components';
+import { Popover } from '@ui/popover';
 import { Button } from '@ui/button';
 import { Icon } from '@ui/icon';
 import './Navigation.css';
