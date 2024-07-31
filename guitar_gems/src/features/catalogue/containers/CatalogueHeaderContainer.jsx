@@ -3,10 +3,13 @@ import { useWindowWidth } from '@helpers/useWindowWidth';
 import { useFilters } from '../contexts/FiltersContext';
 import { CatalogueHeader } from '../components/catalogue-header';
 import { useGuitars } from '../contexts/GuitarsContext';
+import { useDrawer } from '../contexts/DrawerContext';
 
 export function CatalogueHeaderContainer() {
-	const { selectedFilters, setIsOpen } = useFilters();
+	const { selectedFilters } = useFilters();
+	const { setIsOpen } = useDrawer();
 	const { setFilters } = useGuitars();
+
 	const isMobile = useWindowWidth();
 	const searchRef = useRef();
 

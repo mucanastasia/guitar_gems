@@ -16,11 +16,9 @@ export const FiltersProvider = ({ children }) => {
 
 	const [selectedFilters, setSelectedFilters] = useState(initialFilters);
 
-	const [isOpen, setIsOpen] = useState(false);
-
 	return (
 		<FiltersContext.Provider
-			value={{ selectedFilters, setSelectedFilters, isOpen, setIsOpen, initialFilters }}>
+			value={{ selectedFilters, setSelectedFilters, initialFilters }}>
 			{children}
 		</FiltersContext.Provider>
 	);

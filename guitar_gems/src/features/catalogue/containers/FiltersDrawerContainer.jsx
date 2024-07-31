@@ -2,9 +2,11 @@ import { useFilters } from '@features/catalogue/contexts/FiltersContext';
 import { useDrawerSwipe } from '@features/catalogue/helpers/useDrawerSwipe';
 import { FiltersDrawer } from '@features/catalogue/components/filters-drawer';
 import { useGuitars } from '../contexts/GuitarsContext';
+import { useDrawer } from '../contexts/DrawerContext';
 
 export function FiltersDrawerContainer({ children }) {
-	const { isOpen, setIsOpen, initialFilters } = useFilters();
+	const { initialFilters } = useFilters();
+	const { isOpen, setIsOpen } = useDrawer();
 	const { handleTouchStart, handleTouchMove, handleTouchEnd } = useDrawerSwipe(setIsOpen);
 	const { setFilters } = useGuitars();
 

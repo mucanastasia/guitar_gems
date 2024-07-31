@@ -6,6 +6,7 @@ import { Catalogue } from '../components/catalogue/Catalogue';
 import { GuitarsProvider } from '../contexts/GuitarsContext';
 import { useFilters } from '../contexts/FiltersContext';
 import { useWindowWidth } from '@helpers/useWindowWidth';
+import { DrawerProvider } from '../contexts/DrawerContext';
 
 export function CatalogueContainer() {
 	const [guitars, setGuitars] = useState([]);
@@ -15,6 +16,7 @@ export function CatalogueContainer() {
 	const { selectedFilters, setSelectedFilters } = useFilters();
 	const isMobile = useWindowWidth();
 
+	// TODO: Move this function to another place (useFilters???)
 	const handleFilterChange = async (newFilters) => {
 		setSelectedFilters(newFilters);
 		await fetchGuitars(newFilters, true);
@@ -106,7 +108,9 @@ export function CatalogueContainer() {
 
 	return (
 		<GuitarsProvider {...props}>
-			<Catalogue isMobile={isMobile} />
+			<DrawerProvider>
+				<Catalogue isMobile={isMobile} />
+			</DrawerProvider>
 		</GuitarsProvider>
 	);
 }
