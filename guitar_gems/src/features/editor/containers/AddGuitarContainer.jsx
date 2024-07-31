@@ -4,8 +4,10 @@ import { supabase } from '@api/supabaseClient';
 import { EditorDataProvider } from '../contexts/EditorDataContext';
 import { EditorContainer } from './EditorContainer';
 import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
+import { useTitle } from '@helpers/useTitle';
+import { ADD_GUITAR_TITLE } from '../constants/editor';
 
-export default function AddGuitarContainer() {
+export function AddGuitarContainer() {
 	const [data, setData] = useState({
 		name: '',
 		description: '',
@@ -25,6 +27,8 @@ export default function AddGuitarContainer() {
 
 	const guitarIdRef = useRef(null);
 	const history = useHistory();
+
+	useTitle(ADD_GUITAR_TITLE);
 
 	const handlePublish = async (e) => {
 		try {

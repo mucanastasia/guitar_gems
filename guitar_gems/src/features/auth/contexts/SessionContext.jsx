@@ -6,7 +6,7 @@ const SessionContext = createContext();
 
 export const useSession = () => useContext(SessionContext);
 
-const SessionProvider = ({ children }) => {
+export const SessionProvider = ({ children }) => {
 	const [session, setSession] = useState(null);
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -29,5 +29,3 @@ const SessionProvider = ({ children }) => {
 		</SessionContext.Provider>
 	);
 };
-
-export default SessionProvider;

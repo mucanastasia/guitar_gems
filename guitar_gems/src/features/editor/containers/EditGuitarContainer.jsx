@@ -5,8 +5,10 @@ import { EditorDataProvider } from '../contexts/EditorDataContext';
 import { NotFoundPage } from '@features/not-found';
 import { EditorContainer } from './EditorContainer';
 import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
+import { useTitle } from '@helpers/useTitle';
+import { EDIT_GUITAR_TITLE } from '../constants/editor';
 
-export default function EditGuitarContainer() {
+export function EditGuitarContainer() {
 	const [data, setData] = useState({});
 
 	const [loading, setLoading] = useState(false);
@@ -16,6 +18,8 @@ export default function EditGuitarContainer() {
 	const { id } = useParams();
 	const history = useHistory();
 	const [notFound, setNotFound] = useState(false);
+
+	useTitle(`${EDIT_GUITAR_TITLE} - ${data?.name}`);
 
 	useEffect(() => {
 		const fetchData = async () => {

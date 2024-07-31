@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import SessionProvider from '@features/auth/contexts/SessionContext.jsx';
+import { SessionProvider } from '@features/auth/contexts/SessionContext.jsx';
 import { Router } from '@features/router';
 
 const App = () => {

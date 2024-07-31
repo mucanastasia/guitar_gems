@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { supabase } from '@api/supabaseClient';
 import { Spinner } from '@ui/spinner';
 import { NotFoundPage } from '@features/not-found';
+import { useTitle } from '@helpers/useTitle';
 
 export function ProductContainer() {
 	const [guitar, setGuitar] = useState({});
@@ -69,6 +70,8 @@ export function ProductContainer() {
 
 		fetchData();
 	}, [id]);
+
+	useTitle(`${guitar?.brand?.name} - ${guitar?.name}`);
 
 	if (loading) {
 		return <Spinner />;

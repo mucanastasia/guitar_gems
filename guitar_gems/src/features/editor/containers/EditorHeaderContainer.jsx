@@ -7,6 +7,7 @@ import {
 	EDIT_GUITAR_PATH_DIR,
 	GUITAR_PATH_DIR,
 } from '@features/router/constants/routePaths';
+import { ADD_GUITAR_TITLE, EDIT_GUITAR_TITLE } from '../constants/editor';
 
 export function EditorHeaderContainer() {
 	const { submitting, error } = useEditorData();
@@ -17,7 +18,7 @@ export function EditorHeaderContainer() {
 	const buttonName = isOnAddGuitarPage ? 'Publish' : 'Save';
 	const buttonLoadingName = isOnAddGuitarPage ? 'Publishing...' : 'Saving...';
 
-	const title = isOnAddGuitarPage ? 'Add Guitar' : 'Edit Guitar';
+	const title = isOnAddGuitarPage ? ADD_GUITAR_TITLE : EDIT_GUITAR_TITLE;
 
 	const { id } = useParams();
 	const history = useHistory();
