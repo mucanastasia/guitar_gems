@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { validateEmail } from '../helpers/formHelpers';
+import { validateEmail } from './formHelpers';
 
-export const useSignUp = ({ nameRef, emailRef, passwordRef, confirmedPasswordRef }) => {
+export const useSignUpHandles = ({ ...props }) => {
+	const { nameRef, emailRef, passwordRef, confirmedPasswordRef } = props;
+
 	const [fieldType, setFieldType] = useState({
 		password: 'password',
 		confirmedPass: 'password',

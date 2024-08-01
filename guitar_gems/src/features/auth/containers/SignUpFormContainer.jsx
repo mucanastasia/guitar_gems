@@ -1,15 +1,15 @@
-import { useState, useRef } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { supabase } from '@api/supabaseClient';
+import { useRef } from 'react';
+// import { useHistory, useLocation } from 'react-router-dom';
 import { validateEmail, clearInputs, clearErrors } from '../helpers/formHelpers';
-import { ROOT_PATH } from '@features/router/constants/routePaths';
-import { useSignUp } from '../helpers/useSignUp';
+// import { ROOT_PATH } from '@features/router/constants/routePaths';
+import { useSignUpHandles } from '../helpers/useSignUpHandles';
 import { Form } from '../components/form';
 import { TextField } from '@ui/text-field';
 import { PasswordField } from '@ui/password-field';
 import { Button } from '@ui/button';
 import { TextError } from '@ui/text-error';
 import { SIGN_UP_NAME } from '../constants/auth';
+import { useSignUp } from '@api/useSignUp';
 
 export function SignUpFormContainer() {
 	const nameRef = useRef(null);
@@ -30,7 +30,7 @@ export function SignUpFormContainer() {
 		handleBlurPassword,
 		handleChangeConfirmedPassword,
 		handleBlurConfirmedPassword,
-	} = useSignUp({ nameRef, emailRef, passwordRef, confirmedPasswordRef });
+	} = useSignUpHandles({ nameRef, emailRef, passwordRef, confirmedPasswordRef });
 
 	const {
 		name: nameError,
@@ -40,87 +40,76 @@ export function SignUpFormContainer() {
 		general: generalError,
 	} = errorMessage;
 
-	const [loading, setLoading] = useState(false);
+	const { mutate, isLoading } = useSignUp();
 
-	const history = useHistory();
-	const location = useLocation();
+	// const [loading, setLoading] = useState(false);
 
-	const { from } = location.state || { from: { pathname: ROOT_PATH } };
+	// const history = useHistory();
+	// const location = useLocation();
 
-	const handleSignUp = async (e) => {
-		try {
-			setLoading(true);
-			e.preventDefault();
+	// const { from } = location.state || { from: { pathname: ROOT_PATH } };
 
-			const name = nameRef.current.value;
-			const email = emailRef.current.value;
-			const password = passwordRef.current.value;
-			const confirmedPass = confirmedPasswordRef.current.value;
+	const handleSignUp = (e) => {
+		e.preventDefault();
 
-			if (
-				name.trim().length === 0 ||
-				email.trim().length === 0 ||
-				password.trim().length === 0 ||
-				confirmedPass.trim().length === 0
-			) {
+		const name = nameRef.current.value;
+		const email = emailRef.current.value;
+		const password = passwordRef.current.value;
+		const confirmedPass = confirmedPasswordRef.current.value;
+
+		if (
+			name.trim().length === 0 ||
+			email.trim().length === 0 ||
+			password.trim().length === 0 ||
+			confirmedPass.trim().length === 0
+		) {
+			setErrorMessage({
+				...errorMessage,
+				name: name.trim().length === 0 ? 'Please fill in this field' : errorMessage.name,
+				email:
+					email.trim().length === 0 ? 'Please fill in this field' : errorMessage.email,
+				password:
+					password.trim().length === 0
+						? 'Please fill in this field'
+						: errorMessage.password,
+				confirmedPass:
+					confirmedPass.trim().length === 0
+						? 'Please fill in this field'
+						: errorMessage.confirmedPass,
+			});
+			return;
+		}
+
+		if (name && password && email && confirmedPass) {
+			if (!validateEmail(email)) {
 				setErrorMessage({
 					...errorMessage,
-					name:
-						name.trim().length === 0 ? 'Please fill in this field' : errorMessage.name,
-					email:
-						email.trim().length === 0 ? 'Please fill in this field' : errorMessage.email,
-					password:
-						password.trim().length === 0
-							? 'Please fill in this field'
-							: errorMessage.password,
-					confirmedPass:
-						confirmedPass.trim().length === 0
-							? 'Please fill in this field'
-							: errorMessage.confirmedPass,
+					email: 'Please provide a correct email',
 				});
 				return;
 			}
-
-			if (name && password && email && confirmedPass) {
-				if (!validateEmail(email)) {
-					setErrorMessage({
-						...errorMessage,
-						email: 'Please provide a correct email',
-					});
-					return;
-				}
-				if (password === confirmedPass) {
-					const { data, error } = await supabase.auth.signUp({
-						email: emailRef.current.value,
-						password: passwordRef.current.value,
-						options: {
-							data: {
-								name: nameRef.current.value,
-							},
+			if (password === confirmedPass) {
+				mutate(
+					{ email, password, name },
+					{
+						onSuccess: () => {
+							clearInputs();
+							clearErrors();
 						},
-					});
-
-					if (error) throw error;
-
-					if (data && !error) {
-						history.replace(from);
-						clearInputs();
-						clearErrors();
+						onError: (mutationError) => {
+							setErrorMessage({
+								...errorMessage,
+								general: mutationError.message,
+							});
+						},
 					}
-				} else {
-					setErrorMessage({
-						...errorMessage,
-						confirmedPass: 'Password and Confirmed Password must be the same',
-					});
-				}
+				);
+			} else {
+				setErrorMessage({
+					...errorMessage,
+					confirmedPass: 'Password and Confirmed Password must be the same',
+				});
 			}
-		} catch (error) {
-			setErrorMessage({
-				...errorMessage,
-				general: error.message,
-			});
-		} finally {
-			setLoading(false);
 		}
 	};
 
@@ -164,7 +153,7 @@ export function SignUpFormContainer() {
 				error={confirmedPassError}
 			/>
 			<Button state="primary" type="submit">
-				{loading ? 'Loading...' : SIGN_UP_NAME}
+				{isLoading ? 'Loading...' : SIGN_UP_NAME}
 			</Button>
 			<TextError>{generalError}</TextError>
 		</Form>
