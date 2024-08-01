@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { useSession } from '@features/auth/contexts/SessionContext';
 import { PrivateRouteContainer } from '@features/router/containers/PrivateRouteContainer';
 import { ScrollToTop } from '@helpers/ScrollToTop';
 import { AppLayoutContainer } from '@features/router/containers/AppLayoutContainer';
@@ -18,9 +17,10 @@ import {
 	ADD_GUITAR_PATH,
 	EDIT_GUITAR_PATH,
 } from '@features/router/constants/routePaths';
+import { useUser } from '@api/useUser';
 
 export function Router() {
-	const { user } = useSession();
+	const { data: user } = useUser();
 	const isUserEditor = user?.app_metadata.role === 'editor';
 
 	return (

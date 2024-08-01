@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { supabase } from '@api/supabaseClient';
-import { useSession } from '@features/auth/contexts/SessionContext';
 import { useParams, useHistory } from 'react-router-dom';
 import { ROOT_PATH, EDIT_GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 import { Button } from '@ui/button';
 import { Popover } from '@ui/popover';
 import { Text } from '@ui/text';
 import { DialogTrigger } from 'react-aria-components';
+import { useUser } from '@api/useUser';
 
 export function EditorActionsContainer() {
 	const [loading, setLoading] = useState(false);
 
-	const { user } = useSession();
+	const { data: user } = useUser();
 	const isUserEditor = user?.app_metadata.role === 'editor';
 
 	const { id } = useParams();
