@@ -3,7 +3,7 @@ import { SIGN_IN_PATH, SIGN_UP_PATH } from '@features/router/constants/routePath
 import { AppLayout } from '@features/router/components/app-layout';
 
 export function AppLayoutContainer({ children }) {
-	const isOnAuthPage = Boolean(useRouteMatch(SIGN_IN_PATH || SIGN_UP_PATH));
+	const isOnAuthPage = Boolean(useRouteMatch([SIGN_IN_PATH, SIGN_UP_PATH]));
 
 	return (
 		<AppLayout shouldShowHeader={!isOnAuthPage} shouldShowFooter={!isOnAuthPage}>

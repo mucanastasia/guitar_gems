@@ -1,7 +1,5 @@
 import { useRef } from 'react';
-// import { useHistory, useLocation } from 'react-router-dom';
 import { validateEmail, clearInputs, clearErrors } from '../helpers/formHelpers';
-// import { ROOT_PATH } from '@features/router/constants/routePaths';
 import { useSignUpHandles } from '../helpers/useSignUpHandles';
 import { Form } from '../components/form';
 import { TextField } from '@ui/text-field';
@@ -40,16 +38,9 @@ export function SignUpFormContainer() {
 		general: generalError,
 	} = errorMessage;
 
-	const { mutate, isLoading } = useSignUp();
+	const { mutate, isPending } = useSignUp();
 
-	// const [loading, setLoading] = useState(false);
-
-	// const history = useHistory();
-	// const location = useLocation();
-
-	// const { from } = location.state || { from: { pathname: ROOT_PATH } };
-
-	const handleSignUp = (e) => {
+	const handleSignUp = async (e) => {
 		e.preventDefault();
 
 		const name = nameRef.current.value;
@@ -89,7 +80,7 @@ export function SignUpFormContainer() {
 				return;
 			}
 			if (password === confirmedPass) {
-				mutate(
+				await mutate(
 					{ email, password, name },
 					{
 						onSuccess: () => {
@@ -153,7 +144,7 @@ export function SignUpFormContainer() {
 				error={confirmedPassError}
 			/>
 			<Button state="primary" type="submit">
-				{isLoading ? 'Loading...' : SIGN_UP_NAME}
+				{isPending ? 'Loading...' : SIGN_UP_NAME}
 			</Button>
 			<TextError>{generalError}</TextError>
 		</Form>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { validateEmail } from '../helpers/formHelpers';
 
-export const useSignIn = ({ emailRef, passwordRef }) => {
+export const useSignInHandles = ({ emailRef, passwordRef }) => {
 	const [errorMessage, setErrorMessage] = useState({
 		email: '',
 		password: '',

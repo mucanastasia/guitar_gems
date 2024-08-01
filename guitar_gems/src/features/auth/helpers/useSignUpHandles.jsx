@@ -31,7 +31,7 @@ export const useSignUpHandles = ({ ...props }) => {
 	};
 
 	const handleChangeName = (e) => {
-		setErrorMessage({ ...errorMessage, name: '' });
+		setErrorMessage({ ...errorMessage, general: '', name: '' });
 		nameRef.current.value = e.target.value;
 	};
 
@@ -47,7 +47,7 @@ export const useSignUpHandles = ({ ...props }) => {
 	};
 
 	const handleChangeEmail = (e) => {
-		setErrorMessage({ ...errorMessage, email: '' });
+		setErrorMessage({ ...errorMessage, general: '', email: '' });
 		emailRef.current.value = e.target.value;
 	};
 
@@ -63,7 +63,7 @@ export const useSignUpHandles = ({ ...props }) => {
 	};
 
 	const handleChangePassword = (e) => {
-		setErrorMessage({ ...errorMessage, password: '' });
+		setErrorMessage({ ...errorMessage, general: '', password: '' });
 		passwordRef.current.value = e.target.value;
 		if (
 			confirmedPasswordRef.current.value >= 6 &&
@@ -94,7 +94,7 @@ export const useSignUpHandles = ({ ...props }) => {
 	};
 
 	const handleChangeConfirmedPassword = (e) => {
-		setErrorMessage({ ...errorMessage, confirmedPass: '' });
+		setErrorMessage({ ...errorMessage, general: '', confirmedPass: '' });
 		confirmedPasswordRef.current.value = e.target.value;
 		if (
 			passwordRef.current.value >= 6 &&

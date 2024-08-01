@@ -3,15 +3,10 @@ import { supabase } from '@api/supabaseClient';
 import { useHistory, useLocation } from 'react-router-dom';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
 
-const signUp = async ({ name, email, password }) => {
-	const { data, error } = await supabase.auth.signUp({
+const signIn = async ({ email, password }) => {
+	const { data, error } = await supabase.auth.signInWithPassword({
 		email: email,
 		password: password,
-		options: {
-			data: {
-				name: name,
-			},
-		},
 	});
 	if (error) {
 		throw new Error(error.message);
@@ -19,14 +14,14 @@ const signUp = async ({ name, email, password }) => {
 	return data;
 };
 
-export const useSignUp = () => {
+export const useSignIn = () => {
 	const history = useHistory();
 	const location = useLocation();
 	const { from } = location.state || { from: { pathname: ROOT_PATH } };
 
 	return useMutation({
-		mutationKey: ['signUp'],
-		mutationFn: signUp,
+		mutationKey: ['signIn'],
+		mutationFn: signIn,
 		onSuccess: () => {
 			history.replace(from);
 		},
