@@ -1,10 +1,12 @@
-import { useGuitar } from '../contexts/GuitarContext';
+import { useParams } from 'react-router-dom';
+import { useGuitarData } from '@api/useGuitarData';
 import { ProductContent } from '../components/product-content';
 import { formatDate, formatDescription } from '../helpers/productContentHelpers';
 import * as specNames from '../constants/specNames';
 
 export function ProductContentContainer() {
-	const { guitar } = useGuitar();
+	const { id } = useParams();
+	const { data: guitar } = useGuitarData(id);
 	const {
 		release_date,
 		description,

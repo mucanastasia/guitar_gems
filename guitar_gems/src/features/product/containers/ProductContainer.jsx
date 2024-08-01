@@ -1,4 +1,3 @@
-import { GuitarProvider } from '../contexts/GuitarContext';
 import { Product } from '../components/product';
 import { useParams } from 'react-router-dom';
 import { Spinner } from '@ui/spinner';
@@ -20,9 +19,5 @@ export function ProductContainer() {
 		return <NotFoundPage />;
 	}
 
-	return (
-		<GuitarProvider guitar={guitar}>
-			<Product name={guitar.name} brand={guitar.brand.name} img={guitar.main_img} />
-		</GuitarProvider>
-	);
+	return <Product name={guitar.name} brand={guitar.brand.name} img={guitar.main_img} />;
 }
