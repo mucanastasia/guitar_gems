@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { ProductCard } from '@ui/product-card';
 import './GuitarList.css';
 
-export function GuitarList({ guitars, loading, lastCardRef }) {
+export function GuitarList({ guitars, isFetchingNextPage, isFetching, lastCardRef }) {
 	return (
 		<div className="catalogue-container">
-			{loading && guitars.length === 0 ? (
+			{isFetching && guitars.length === 0 ? (
 				<Skeleton count={CARDS_PER_PAGE} />
 			) : (
 				guitars.map((guitar, index) => {
@@ -44,7 +44,7 @@ export function GuitarList({ guitars, loading, lastCardRef }) {
 					}
 				})
 			)}
-			{loading && guitars.length > 0 && <Skeleton count={CARDS_PER_PAGE} />}
+			{isFetchingNextPage && guitars.length > 0 && <Skeleton count={CARDS_PER_PAGE} />}
 		</div>
 	);
 }

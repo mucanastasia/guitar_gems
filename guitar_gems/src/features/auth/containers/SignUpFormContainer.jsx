@@ -88,10 +88,12 @@ export function SignUpFormContainer() {
 							clearErrors();
 						},
 						onError: (mutationError) => {
-							setErrorMessage({
-								...errorMessage,
-								general: mutationError.message,
-							});
+							if (mutationError.message) {
+								setErrorMessage({
+									...errorMessage,
+									general: mutationError.message,
+								});
+							}
 						},
 					}
 				);

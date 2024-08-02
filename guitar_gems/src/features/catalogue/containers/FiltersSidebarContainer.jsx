@@ -4,12 +4,10 @@ import { useSelectedFilters } from '@features/catalogue/contexts/SelectedFilters
 import { getLocalTimeZone, today } from '@internationalized/date';
 import { SkeletonFilters } from '@ui/skeleton';
 import { FiltersSidebar } from '@features/catalogue/components/filters-sidebar';
-import { useGuitars } from '../contexts/GuitarsContext';
 import { useFilters } from '@api/useFilters';
 
 export function FiltersSidebarContainer() {
-	const { selectedFilters } = useSelectedFilters();
-	const { setFilters } = useGuitars();
+	const { selectedFilters, setSelectedFilters } = useSelectedFilters();
 
 	const { data: filterNames, isPending } = useFilters();
 
@@ -19,34 +17,34 @@ export function FiltersSidebarContainer() {
 	}
 
 	const handleChangeBrand = (vals) => {
-		setFilters({ ...selectedFilters, brands: vals });
+		setSelectedFilters({ ...selectedFilters, brands: vals });
 	};
 
 	const handleChangeType = (vals) => {
-		setFilters({ ...selectedFilters, types: vals });
+		setSelectedFilters({ ...selectedFilters, types: vals });
 	};
 
 	const handleChangeMaterial = (vals) => {
-		setFilters({ ...selectedFilters, materials: vals });
+		setSelectedFilters({ ...selectedFilters, materials: vals });
 	};
 
 	const handleChangeCountry = (vals) => {
-		setFilters({ ...selectedFilters, countries: vals });
+		setSelectedFilters({ ...selectedFilters, countries: vals });
 	};
 
 	const handleChangeDates = (vals) => {
-		setFilters({ ...selectedFilters, date: vals });
+		setSelectedFilters({ ...selectedFilters, date: vals });
 	};
 
 	// TODO: Tried to unite all handlers above into one, but failed. Need to investigate or leave handlers as they are.
 	// const handleChangeFilter = (vals, filterKey) => {
-	// 	setFilters({ ...selectedFilters, [filterKey]: vals });
+	// 	setSelectedFilters({ ...selectedFilters, [filterKey]: vals });
 	// };
 
 	const todayDate = today(getLocalTimeZone());
 
 	const handleResetDates = () => {
-		setFilters({ ...selectedFilters, date: { start: null, end: null } });
+		setSelectedFilters({ ...selectedFilters, date: { start: null, end: null } });
 	};
 
 	const props = {

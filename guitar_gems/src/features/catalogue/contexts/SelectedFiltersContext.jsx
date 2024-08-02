@@ -16,9 +16,17 @@ export const SelectedFiltersProvider = ({ children }) => {
 
 	const [selectedFilters, setSelectedFilters] = useState(initialFilters);
 
+	const handleResetFilters = () => {
+		setSelectedFilters(initialFilters);
+	};
+
 	return (
 		<SelectedFiltersContext.Provider
-			value={{ selectedFilters, setSelectedFilters, initialFilters }}>
+			value={{
+				selectedFilters,
+				setSelectedFilters,
+				handleResetFilters,
+			}}>
 			{children}
 		</SelectedFiltersContext.Provider>
 	);

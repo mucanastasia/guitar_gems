@@ -38,9 +38,6 @@ export function AddGuitarContainer() {
 			...data,
 			features: data.features.filter((feature) => feature.trim() !== ''),
 		};
-
-		console.log('Filtered Data:', filteredData);
-
 		await mutate(
 			{ filteredData },
 			{

@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 
 const fetchFilters = async (tableName) => {
+	await new Promise((resolve) => setTimeout(resolve, 400));
+
 	const { data, error } = await supabase.from(tableName).select(`id, name`);
 	if (error) console.error(error.message);
 	return data;

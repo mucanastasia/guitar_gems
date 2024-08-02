@@ -38,5 +38,6 @@ export const useEditableGuitar = (id) => {
 				return getGuitar(id);
 			}
 		},
+		retry: 0,
 	});
 };

@@ -1,20 +1,18 @@
 import { useSelectedFilters } from '@features/catalogue/contexts/SelectedFiltersContext';
 import { useDrawerSwipe } from '@features/catalogue/helpers/useDrawerSwipe';
 import { FiltersDrawer } from '@features/catalogue/components/filters-drawer';
-import { useGuitars } from '../contexts/GuitarsContext';
 import { useDrawer } from '../contexts/DrawerContext';
 
 export function FiltersDrawerContainer({ children }) {
-	const { initialFilters } = useSelectedFilters();
+	const { handleResetFilters } = useSelectedFilters();
 	const { isOpen, setIsOpen } = useDrawer();
 	const { handleTouchStart, handleTouchMove, handleTouchEnd } = useDrawerSwipe(setIsOpen);
-	const { setFilters } = useGuitars();
 
 	const handleFiltersClose = (e) => {
 		e.preventDefault();
 		e.stopPropagation();
 		setIsOpen(false);
-		setFilters(initialFilters);
+		handleResetFilters();
 	};
 
 	const handleFiltersApply = () => {
@@ -22,7 +20,7 @@ export function FiltersDrawerContainer({ children }) {
 	};
 
 	const handleFiltersClear = () => {
-		setFilters(initialFilters);
+		handleResetFilters();
 	};
 
 	const props = {

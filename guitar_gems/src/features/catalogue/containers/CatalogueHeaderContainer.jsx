@@ -2,20 +2,18 @@ import { useRef } from 'react';
 import { useWindowWidth } from '@helpers/useWindowWidth';
 import { useSelectedFilters } from '../contexts/SelectedFiltersContext';
 import { CatalogueHeader } from '../components/catalogue-header';
-import { useGuitars } from '../contexts/GuitarsContext';
 import { useDrawer } from '../contexts/DrawerContext';
 
 export function CatalogueHeaderContainer() {
-	const { selectedFilters } = useSelectedFilters();
+	const { selectedFilters, setSelectedFilters } = useSelectedFilters();
 	const { setIsOpen } = useDrawer();
-	const { setFilters } = useGuitars();
 
 	const isMobile = useWindowWidth();
 	const searchRef = useRef();
 
 	const handleSubmit = () => {
 		const value = searchRef.current.value.trim();
-		setFilters({ ...selectedFilters, query: value });
+		setSelectedFilters({ ...selectedFilters, query: value });
 	};
 
 	const handleClearOrEscape = (e) => {
@@ -23,7 +21,7 @@ export function CatalogueHeaderContainer() {
 			return;
 		}
 		if (selectedFilters.query) {
-			setFilters({ ...selectedFilters, query: '' });
+			setSelectedFilters({ ...selectedFilters, query: '' });
 		}
 	};
 

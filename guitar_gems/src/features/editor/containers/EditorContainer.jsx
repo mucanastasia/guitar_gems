@@ -11,6 +11,7 @@ export function EditorContainer({ handleSubmit }) {
 	const { data: brandsList } = useBrands();
 
 	const displayBrandName = (brandId) => {
+		if (!brandsList) return BRAND_PLACEHOLDER;
 		const brand = Object.values(brandsList).find((brand) => brand.id === brandId);
 		return brand ? brand.name : BRAND_PLACEHOLDER;
 	};

@@ -49,5 +49,6 @@ export const useGuitarData = (id) => {
 	return useQuery({
 		queryKey: ['guitarData', id],
 		queryFn: () => getGuitar(id),
+		retry: 0,
 	});
 };

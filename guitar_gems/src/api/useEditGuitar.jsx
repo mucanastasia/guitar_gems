@@ -22,7 +22,7 @@ export const useEditGuitar = (id) => {
 			history.push(`${GUITAR_PATH_DIR}${id}`);
 			queryClient.invalidateQueries(['editableGuitar', id]);
 			queryClient.invalidateQueries(['guitarData', id]);
-			//TODO: Unite the two queries above into one query
+			queryClient.invalidateQueries(['guitars']);
 		},
 	});
 };

@@ -62,10 +62,17 @@ export function SignInFormContainer() {
 						clearErrors();
 					},
 					onError: (mutationError) => {
-						setErrorMessage({
-							...errorMessage,
-							general: mutationError.message,
-						});
+						if (mutationError.message === 'Invalid login credentials') {
+							setErrorMessage({
+								...errorMessage,
+								general: 'Invalid email or password. Please try again',
+							});
+						} else if (mutationError.message) {
+							setErrorMessage({
+								...errorMessage,
+								general: mutationError.message,
+							});
+						}
 					},
 				}
 			);
