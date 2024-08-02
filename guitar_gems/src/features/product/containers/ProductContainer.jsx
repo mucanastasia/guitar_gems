@@ -7,11 +7,11 @@ import { useGuitarData } from '@api/useGuitarData';
 
 export function ProductContainer() {
 	const { id } = useParams();
-	const { data: guitar, isLoading, isError } = useGuitarData(id);
+	const { data: guitar, isPending, isError } = useGuitarData(id);
 
 	useTitle(`${guitar?.brand?.name} - ${guitar?.name}`);
 
-	if (isLoading) {
+	if (isPending) {
 		return <Spinner />;
 	}
 

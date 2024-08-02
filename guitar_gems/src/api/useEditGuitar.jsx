@@ -1,0 +1,28 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { supabase } from '@api/supabaseClient';
+import { useHistory } from 'react-router-dom';
+import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
+
+const editGuitar = async ({ filteredData, id }) => {
+	const { error } = await supabase.from('guitars').update(filteredData).eq('id', id);
+	if (error) {
+		throw new Error(error.message);
+	}
+	await new Promise((resolve) => setTimeout(resolve, 300));
+};
+
+export const useEditGuitar = (id) => {
+	const history = useHistory();
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationKey: ['editGuitar'],
+		mutationFn: editGuitar,
+		onSuccess: () => {
+			history.push(`${GUITAR_PATH_DIR}${id}`);
+			queryClient.invalidateQueries(['editableGuitar', id]);
+			queryClient.invalidateQueries(['guitarData', id]);
+			//TODO: Unite the two queries above into one query
+		},
+	});
+};

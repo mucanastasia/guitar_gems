@@ -3,12 +3,11 @@ import { Editor } from '../components/editor';
 import { useEditorData } from '../contexts/EditorDataContext';
 import { supabase } from '@api/supabaseClient';
 import { BRAND_PLACEHOLDER } from '../constants/editor';
-import { Spinner } from '@ui/spinner';
 import { UploadingPhotoProvider } from '../contexts/UploadingPhotoContext';
 
 export function EditorContainer({ handleSubmit }) {
 	const brandsRef = useRef({});
-	const { data, loading } = useEditorData();
+	const { data } = useEditorData();
 	const [uploadingPhoto, setUploadingPhoto] = useState(false);
 
 	useEffect(() => {
@@ -40,9 +39,9 @@ export function EditorContainer({ handleSubmit }) {
 		image: data.main_img,
 	};
 
-	if (loading) {
-		return <Spinner />;
-	}
+	// if (loading) {
+	// 	return <Spinner />;
+	// }
 
 	return (
 		<UploadingPhotoProvider

@@ -1,11 +1,10 @@
-import { useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { supabase } from '@api/supabaseClient';
+import { useState, useEffect } from 'react';
 import { EditorDataProvider } from '../contexts/EditorDataContext';
 import { EditorContainer } from './EditorContainer';
-import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 import { useTitle } from '@helpers/useTitle';
 import { ADD_GUITAR_TITLE } from '../constants/editor';
+import { Spinner } from '@ui/spinner';
+import { useAddGuitar } from '@api/useAddGuitar';
 
 export function AddGuitarContainer() {
 	const [data, setData] = useState({
@@ -22,49 +21,55 @@ export function AddGuitarContainer() {
 		features: [],
 	});
 
-	const [submitting, setSubmitting] = useState(false);
-	const [error, setError] = useState(false);
+	const { mutate, isPending } = useAddGuitar();
 
-	const guitarIdRef = useRef(null);
-	const history = useHistory();
+	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	useTitle(ADD_GUITAR_TITLE);
 
 	const handlePublish = async (e) => {
-		try {
-			e.preventDefault();
-			if (!data.main_img) {
-				throw new Error('A photo is required');
-			}
-			setSubmitting(true);
-			const filteredData = {
-				...data,
-				features: data.features.filter((feature) => feature.trim() !== ''),
-			};
-			const { data: responseData, error } = await supabase
-				.from('guitars')
-				.insert([filteredData])
-				.select('id');
-			if (error) {
-				throw error;
-			} else {
-				guitarIdRef.current = responseData[0].id;
-				history.push(`${GUITAR_PATH_DIR}${guitarIdRef.current}`);
-			}
-		} catch (error) {
-			setError(error.message);
-		} finally {
-			setSubmitting(false);
+		e.preventDefault();
+		if (!data.main_img) {
+			setError('A photo is required');
+			return;
 		}
+		const filteredData = {
+			...data,
+			features: data.features.filter((feature) => feature.trim() !== ''),
+		};
+
+		console.log('Filtered Data:', filteredData);
+
+		await mutate(
+			{ filteredData },
+			{
+				onError: (mutationError) => {
+					setError(mutationError.message);
+				},
+			}
+		);
 	};
 
 	const props = {
 		data,
 		setData,
-		submitting,
+		submitting: isPending,
 		error,
 		setError,
 	};
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setLoading(false);
+		}, 200);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	if (loading || isPending) {
+		return <Spinner />;
+	}
 
 	return (
 		<EditorDataProvider {...props}>
