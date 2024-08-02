@@ -1,33 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Editor } from '../components/editor';
 import { useEditorData } from '../contexts/EditorDataContext';
-import { supabase } from '@api/supabaseClient';
 import { BRAND_PLACEHOLDER } from '../constants/editor';
 import { UploadingStatusProvider } from '../contexts/UploadingStatusContext';
+import { useBrands } from '@api/useBrands';
 
 export function EditorContainer({ handleSubmit }) {
-	const brandsRef = useRef({});
 	const { data } = useEditorData();
 	const [uploadingPhoto, setUploadingPhoto] = useState(false);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const { data, error } = await supabase.from('brands').select(`id,name`);
-
-				if (error) throw error;
-
-				brandsRef.current = data;
-			} catch (error) {
-				console.error(error.message);
-			}
-		};
-
-		fetchData();
-	}, []);
+	const { data: brandsList } = useBrands();
 
 	const displayBrandName = (brandId) => {
-		const brand = Object.values(brandsRef.current).find((brand) => brand.id === brandId);
+		const brand = Object.values(brandsList).find((brand) => brand.id === brandId);
 		return brand ? brand.name : BRAND_PLACEHOLDER;
 	};
 
