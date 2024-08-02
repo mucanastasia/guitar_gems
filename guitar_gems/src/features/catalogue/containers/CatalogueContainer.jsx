@@ -4,7 +4,7 @@ import { CARDS_PER_PAGE } from '../constants/catalogue';
 import { prepareFilter } from '../helpers/filterHelpers';
 import { Catalogue } from '../components/catalogue/Catalogue';
 import { GuitarsProvider } from '../contexts/GuitarsContext';
-import { useFilters } from '../contexts/FiltersContext';
+import { useSelectedFilters } from '../contexts/SelectedFiltersContext';
 import { useWindowWidth } from '@helpers/useWindowWidth';
 import { DrawerProvider } from '../contexts/DrawerContext';
 
@@ -13,7 +13,7 @@ export function CatalogueContainer() {
 	const [loading, setLoading] = useState(true);
 	const [hasMore, setHasMore] = useState(true);
 
-	const { selectedFilters, setSelectedFilters } = useFilters();
+	const { selectedFilters, setSelectedFilters } = useSelectedFilters();
 	const isMobile = useWindowWidth();
 
 	// TODO: Move this function to another place (useFilters???)

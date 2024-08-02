@@ -10,7 +10,7 @@ export function FilterGroup({ label, filters, onChange, selectedFilters, Counter
 				<Counter />
 				{`)`}
 			</Label>
-			{filters.map((filter) => (
+			{filters?.map((filter) => (
 				<Checkbox key={filter.id} value={filter.id}>
 					<div className="checkbox" aria-hidden="true">
 						<svg viewBox="0 0 18 18">

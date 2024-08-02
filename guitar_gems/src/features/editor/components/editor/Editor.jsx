@@ -7,7 +7,14 @@ import { EditorHeroContainer } from '../../containers/EditorHeroContainer';
 import { IMG_PLACEHOLDER_URL, NAME_PLACEHOLDER } from '../../constants/editor';
 import './Editor.css';
 
-export function Editor({ handleSubmit, displayBrandName, name, brandId, image }) {
+export function Editor({
+	handleSubmit,
+	displayBrandName,
+	name,
+	brandId,
+	image,
+	uploadingPhoto,
+}) {
 	return (
 		<>
 			<EditorHeroContainer
@@ -25,6 +32,7 @@ export function Editor({ handleSubmit, displayBrandName, name, brandId, image })
 								brand={displayBrandName(brandId)}
 								name={name ? name : NAME_PLACEHOLDER}
 								image={image ? image : IMG_PLACEHOLDER_URL}
+								loading={uploadingPhoto}
 							/>
 							<PhotoUploaderContainer />
 						</div>

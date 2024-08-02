@@ -3,7 +3,7 @@ import { Editor } from '../components/editor';
 import { useEditorData } from '../contexts/EditorDataContext';
 import { supabase } from '@api/supabaseClient';
 import { BRAND_PLACEHOLDER } from '../constants/editor';
-import { UploadingPhotoProvider } from '../contexts/UploadingPhotoContext';
+import { UploadingStatusProvider } from '../contexts/UploadingStatusContext';
 
 export function EditorContainer({ handleSubmit }) {
 	const brandsRef = useRef({});
@@ -37,17 +37,14 @@ export function EditorContainer({ handleSubmit }) {
 		brandId: data.brand_id,
 		name: data.name,
 		image: data.main_img,
+		uploadingPhoto,
 	};
 
-	// if (loading) {
-	// 	return <Spinner />;
-	// }
-
 	return (
-		<UploadingPhotoProvider
+		<UploadingStatusProvider
 			uploadingPhoto={uploadingPhoto}
 			setUploadingPhoto={setUploadingPhoto}>
 			<Editor {...props} />
-		</UploadingPhotoProvider>
+		</UploadingStatusProvider>
 	);
 }

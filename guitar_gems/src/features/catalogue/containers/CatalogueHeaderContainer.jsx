@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 import { useWindowWidth } from '@helpers/useWindowWidth';
-import { useFilters } from '../contexts/FiltersContext';
+import { useSelectedFilters } from '../contexts/SelectedFiltersContext';
 import { CatalogueHeader } from '../components/catalogue-header';
 import { useGuitars } from '../contexts/GuitarsContext';
 import { useDrawer } from '../contexts/DrawerContext';
 
 export function CatalogueHeaderContainer() {
-	const { selectedFilters } = useFilters();
+	const { selectedFilters } = useSelectedFilters();
 	const { setIsOpen } = useDrawer();
 	const { setFilters } = useGuitars();
 

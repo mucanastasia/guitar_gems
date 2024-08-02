@@ -23,7 +23,7 @@ export function SpecsSectionContainer() {
 				<SpecItemContainer
 					label={SPEC_LABEL_TYPE}
 					guitarKey="type_id"
-					optionsKey="guitar_types"
+					optionsKey="types"
 				/>
 				<SpecItemContainer
 					label={SPEC_LABEL_BODY}

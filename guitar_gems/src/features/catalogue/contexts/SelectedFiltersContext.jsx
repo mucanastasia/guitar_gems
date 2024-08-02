@@ -1,10 +1,10 @@
 import { createContext, useContext, useState } from 'react';
 
-export const FiltersContext = createContext();
+export const SelectedFiltersContext = createContext();
 
-export const useFilters = () => useContext(FiltersContext);
+export const useSelectedFilters = () => useContext(SelectedFiltersContext);
 
-export const FiltersProvider = ({ children }) => {
+export const SelectedFiltersProvider = ({ children }) => {
 	const initialFilters = {
 		brands: [],
 		types: [],
@@ -17,9 +17,9 @@ export const FiltersProvider = ({ children }) => {
 	const [selectedFilters, setSelectedFilters] = useState(initialFilters);
 
 	return (
-		<FiltersContext.Provider
+		<SelectedFiltersContext.Provider
 			value={{ selectedFilters, setSelectedFilters, initialFilters }}>
 			{children}
-		</FiltersContext.Provider>
+		</SelectedFiltersContext.Provider>
 	);
 };
