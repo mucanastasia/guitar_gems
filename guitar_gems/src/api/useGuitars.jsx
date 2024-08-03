@@ -11,7 +11,8 @@ const fetchGuitars = async ({ pageParam = 0, queryKey }) => {
 		.from('searchable_guitars')
 		.select('id, name, main_img, brand_name')
 		.order('id', { ascending: true })
-		.range(pageParam * CARDS_PER_PAGE, (pageParam + 1) * CARDS_PER_PAGE - 1);
+		.gt('id', pageParam)
+		.limit(CARDS_PER_PAGE);
 
 	if (filters.brands.length > 0) {
 		request = request.or(prepareFilter(filters.brands, ['brand_id']));
@@ -53,11 +54,11 @@ export const useGuitars = (selectedFilters) => {
 		queryKey: ['guitars', selectedFilters],
 		queryFn: fetchGuitars,
 		initialPageParam: 0,
-		getNextPageParam: (lastPage, allPages) => {
+		getNextPageParam: (lastPage) => {
 			if (lastPage.length < CARDS_PER_PAGE) {
 				return undefined;
 			}
-			return allPages.length;
+			return lastPage[lastPage.length - 1].id;
 		},
 		retry: 1,
 	});
