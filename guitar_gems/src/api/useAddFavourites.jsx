@@ -24,8 +24,8 @@ export const useAddFavourites = () => {
 		},
 		onSuccess: (_data, variables) => {
 			queryClient.invalidateQueries(['guitars']);
-			//queryClient.invalidateQueries(['favourites', user?.id]);
-			queryClient.invalidateQueries(['guitarData', variables.guitarId, user?.id]);
+			queryClient.invalidateQueries(['favourites', user?.id]);
+			queryClient.invalidateQueries(['guitarData', variables.guitarId]);
 		},
 		onError: (error) => {
 			console.error('Error adding to favourites:', error.message);

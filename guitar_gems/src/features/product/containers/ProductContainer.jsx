@@ -24,7 +24,7 @@ export function ProductContainer() {
 
 	const handleFavourites = async () => {
 		!isFavourite && (await addFavourites({ guitarId: id }));
-		isFavourite && (await deleteFavourites({ favoriteId: guitar.favourites[0].id }));
+		isFavourite && (await deleteFavourites({ guitarId: id }));
 	};
 
 	if (isPending) {

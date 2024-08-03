@@ -15,7 +15,7 @@ export function Favourites({
 	lastCardRef,
 	isFetching,
 }) {
-	if (favourites.length === 0 || isError) {
+	if ((!isFetching && favourites.length === 0) || isError) {
 		return (
 			<div className="empty-favourites">
 				<Text size="large">{`You haven't added any guitars to your picks, yet!`}</Text>

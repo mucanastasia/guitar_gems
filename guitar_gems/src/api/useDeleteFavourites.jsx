@@ -2,11 +2,17 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 import { useUser } from '@api/useUser';
 
-const deleteFavourites = async ({ favoriteId }) => {
-	const { error } = await supabase.from('favourites').delete().eq('id', favoriteId);
+const deleteFavourites = async ({ guitarId, userId }) => {
+	const { data, error } = await supabase
+		.from('favourites')
+		.delete()
+		.eq('guitar_id', guitarId)
+		.eq('user_id', userId)
+		.select('guitar_id');
 	if (error) {
 		console.error(error.message);
 	}
+	return data;
 };
 
 export const useDeleteFavourites = () => {
@@ -15,12 +21,13 @@ export const useDeleteFavourites = () => {
 
 	return useMutation({
 		mutationKey: ['deleteFavourites'],
-		mutationFn: ({ favoriteId }) => {
-			deleteFavourites({ favoriteId });
+		mutationFn: ({ guitarId }) => {
+			deleteFavourites({ guitarId, userId: user?.id });
 		},
 		onSuccess: (_data, variables) => {
 			queryClient.invalidateQueries(['guitars']);
-			queryClient.invalidateQueries(['guitarData', variables.favoriteId, user?.id]);
+			queryClient.invalidateQueries(['favourites', user?.id]);
+			queryClient.invalidateQueries(['guitarData', variables.guitarId]);
 		},
 	});
 };
