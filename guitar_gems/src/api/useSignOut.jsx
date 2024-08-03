@@ -13,7 +13,7 @@ export const useSignOut = () => {
 		mutationKey: ['signOut'],
 		mutationFn: signOut,
 		onSuccess: () => {
-			queryClient.invalidateQueries(['user']);
+			queryClient.removeQueries();
 		},
 	});
 };
