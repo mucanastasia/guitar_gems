@@ -9,7 +9,7 @@ const fetchGuitars = async ({ pageParam = 0, queryKey }) => {
 
 	let request = supabase
 		.from('searchable_guitars')
-		.select('id, name, main_img, brand_name')
+		.select('id, name, main_img, brand_name, is_favourite')
 		.order('id', { ascending: true })
 		.gt('id', pageParam)
 		.limit(CARDS_PER_PAGE);

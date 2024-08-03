@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { EditorDataProvider } from '../contexts/EditorDataContext';
 import { EditorContainer } from './EditorContainer';
 import { useTitle } from '@helpers/useTitle';
@@ -24,7 +24,6 @@ export function AddGuitarContainer() {
 	const { mutate, isPending } = useAddGuitar();
 
 	const [error, setError] = useState(false);
-	const [loading, setLoading] = useState(true);
 
 	useTitle(ADD_GUITAR_TITLE);
 
@@ -56,15 +55,7 @@ export function AddGuitarContainer() {
 		setError,
 	};
 
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setLoading(false);
-		}, 200);
-
-		return () => clearTimeout(timer);
-	}, []);
-
-	if (loading || isPending) {
+	if (isPending) {
 		return <Spinner />;
 	}
 

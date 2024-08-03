@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
+import { useUser } from '@api/useUser';
 
-const getGuitar = async (id) => {
-	const { data, error } = await supabase
+const getGuitar = async (guitarId, userId) => {
+	let query = supabase
 		.from('guitars')
 		.select(
 			`
@@ -36,19 +37,31 @@ const getGuitar = async (id) => {
                                 name
                             ),
                             features
+                            ${userId ? ',favourites (id)' : ''}
                         `
 		)
-		.eq('id', id)
-		.single();
+		.eq('id', guitarId);
+
+	if (userId) {
+		query = query.eq('favourites.user_id', userId);
+	}
+
+	const { data, error } = await query.single();
 
 	if (error) throw new Error(error.message);
-	return data;
+
+	const isFavorite = userId ? data.favourites.length > 0 : false;
+
+	return { ...data, isFavorite };
 };
 
-export const useGuitarData = (id) => {
+export const useGuitarData = (guitarId) => {
+	const { data: user } = useUser();
+
 	return useQuery({
-		queryKey: ['guitarData', id],
-		queryFn: () => getGuitar(id),
+		queryKey: ['guitarData', guitarId, user?.id],
+		queryFn: () => getGuitar(guitarId, user?.id),
+		enabled: !!guitarId,
 		retry: 0,
 	});
 };

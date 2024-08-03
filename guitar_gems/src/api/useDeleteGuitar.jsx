@@ -16,7 +16,7 @@ export const useDeleteGuitar = (id) => {
 	const queryClient = useQueryClient();
 
 	return useMutation({
-		mutationKey: ['editGuitar'],
+		mutationKey: ['deleteGuitar'],
 		mutationFn: deleteGuitar,
 		onSuccess: () => {
 			history.push(ROOT_PATH);
