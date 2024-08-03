@@ -14,6 +14,8 @@ export function ProductContainer() {
 	const { data: guitar, isPending, isError } = useGuitarData(id);
 	const { data: user } = useUser();
 
+	useTitle(`${guitar?.brand?.name} - ${guitar?.name}`);
+
 	const isLoggedIn = user !== null;
 	const isFavourite = guitar?.isFavorite;
 
@@ -21,14 +23,9 @@ export function ProductContainer() {
 	const { mutate: deleteFavourites } = useDeleteFavourites();
 
 	const handleFavourites = async () => {
-		if (isFavourite) {
-			await deleteFavourites({ favoriteId: guitar.favourites[0].id });
-		} else {
-			await addFavourites({ guitarId: id });
-		}
+		!isFavourite && (await addFavourites({ guitarId: id }));
+		isFavourite && (await deleteFavourites({ favoriteId: guitar.favourites[0].id }));
 	};
-
-	useTitle(`${guitar?.brand?.name} - ${guitar?.name}`);
 
 	if (isPending) {
 		return <Spinner />;
@@ -44,7 +41,7 @@ export function ProductContainer() {
 			brand={guitar.brand.name}
 			img={guitar.main_img}
 			isLoggedIn={isLoggedIn}
-			isFavourite={isFavourite}
+			isFavorite={isFavourite}
 			handleFavourites={handleFavourites}
 		/>
 	);

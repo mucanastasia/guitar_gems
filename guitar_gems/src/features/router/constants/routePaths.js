@@ -10,6 +10,8 @@ export const ADD_GUITAR_PATH = '/editor/add-new-guitar';
 
 export const EDIT_GUITAR_PATH = '/editor/edit-guitar/:id';
 
+export const FAVOURITES_PATH = '/my-picks';
+
 //directory paths
 export const GUITAR_PATH_DIR = '/guitars/';
 

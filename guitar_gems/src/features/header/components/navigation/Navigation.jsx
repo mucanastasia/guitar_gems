@@ -1,5 +1,9 @@
 import { Link } from '@ui/link';
-import { SIGN_IN_PATH, ADD_GUITAR_PATH } from '@features/router/constants/routePaths';
+import {
+	SIGN_IN_PATH,
+	ADD_GUITAR_PATH,
+	FAVOURITES_PATH,
+} from '@features/router/constants/routePaths';
 import { DialogTrigger } from 'react-aria-components';
 import { Popover } from '@ui/popover';
 import { Button } from '@ui/button';
@@ -18,6 +22,8 @@ export function Navigation({ ...props }) {
 
 			{isLoggedIn ? (
 				<>
+					<Link name="My picks" path={FAVOURITES_PATH} icon="favorite" />
+
 					<DialogTrigger>
 						<Link name={userName} icon="account_circle" />
 						<Popover>

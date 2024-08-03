@@ -1,0 +1,17 @@
+.favourites {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin: 100px 40px;
+}
+
+.empty-favourites {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 40px;
+    height: 40vh;
+}

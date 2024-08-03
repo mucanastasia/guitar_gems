@@ -6,6 +6,7 @@ import { CataloguePage } from '@features/catalogue';
 import { SignInPage } from '@features/auth';
 import { SignUpPage } from '@features/auth';
 import { ProductPage } from '@features/product';
+import { FavouritesPage } from '@features/favourites';
 import { EditGuitarPage } from '@features/editor';
 import { AddGuitarPage } from '@features/editor';
 import { NotFoundPage } from '@features/not-found';
@@ -14,6 +15,7 @@ import {
 	SIGN_IN_PATH,
 	SIGN_UP_PATH,
 	GUITAR_PATH,
+	FAVOURITES_PATH,
 	ADD_GUITAR_PATH,
 	EDIT_GUITAR_PATH,
 } from '@features/router/constants/routePaths';
@@ -44,6 +46,10 @@ export function Router() {
 					<Route path={GUITAR_PATH}>
 						<ProductPage />
 					</Route>
+
+					<PrivateRouteContainer path={FAVOURITES_PATH}>
+						<FavouritesPage />
+					</PrivateRouteContainer>
 
 					<PrivateRouteContainer path={ADD_GUITAR_PATH}>
 						{isUserEditor ? <AddGuitarPage /> : <Redirect push to={ROOT_PATH} />}

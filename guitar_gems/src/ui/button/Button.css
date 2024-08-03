@@ -125,3 +125,13 @@ button {
         border: solid 2px #a1a1a1;
     }
 }
+
+.toggle-primary-button {
+    color: var(--primary-color);
+    background: transparent;
+}
+
+.toggle-accent-button {
+    color: var(--secondary-color);
+    background: var(--primary-color);
+}

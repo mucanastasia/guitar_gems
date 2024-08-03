@@ -3,11 +3,11 @@ import { ProductCard } from '@ui/product-card';
 import { EditorActionsContainer } from '@features/product/containers/EditorActionsContainer';
 import { ProductContentContainer } from '@features/product/containers/ProductContentContainer';
 import { Breadcrumbs } from '@ui/breadcrumbs';
-import { Button } from '@ui/button';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
+import { Button } from '@ui/button';
 import './Product.css';
 
-export function Product({ name, brand, img, isLoggedIn, isFavourite, handleFavourites }) {
+export function Product({ name, brand, img, isLoggedIn, isFavorite, handleFavourites }) {
 	return (
 		<>
 			<Hero brand={brand} name={name} img={img} />
@@ -18,8 +18,10 @@ export function Product({ name, brand, img, isLoggedIn, isFavourite, handleFavou
 						<ProductCard brand={brand.name} name={name} image={img} />
 
 						{isLoggedIn && (
-							<Button state="primary" onClick={handleFavourites}>
-								{isFavourite ? 'Delete from my picks' : 'Add to my picks'}
+							<Button
+								state={isFavorite ? 'toggle-accent' : 'toggle-primary'}
+								onClick={handleFavourites}>
+								{isFavorite ? 'Delete from my picks' : 'Add to my picks'}
 							</Button>
 						)}
 						<EditorActionsContainer />

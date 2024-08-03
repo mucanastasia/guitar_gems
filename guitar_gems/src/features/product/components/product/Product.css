@@ -28,6 +28,13 @@
         &:hover .product-card-img {
             transform: rotate(-90deg) scale(1);
         }
+
+        .react-aria-ToggleButton {
+            &[data-selected] {
+                background-color: #000000;
+                color: #ffffff;
+            }
+        }
     }
 }
 
