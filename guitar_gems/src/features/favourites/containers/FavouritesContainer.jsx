@@ -13,7 +13,7 @@ export function FavouritesContainer() {
 		isError,
 	} = useFavourites();
 
-	const favourites = (data?.pages.flat() || []).filter((guitar) => guitar.is_favourite);
+	const favourites = data?.pages.flat() || [];
 
 	const lastCardRef = useInfiniteScroll({ isFetching, hasMore, fetchGuitars });
 

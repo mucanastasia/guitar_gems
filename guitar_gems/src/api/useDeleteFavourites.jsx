@@ -26,7 +26,7 @@ export const useDeleteFavourites = () => {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({
-				queryKey: ['guitars'],
+				queryKey: ['favourites'],
 			});
 		},
 	});
