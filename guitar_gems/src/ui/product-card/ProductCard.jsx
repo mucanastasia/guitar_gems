@@ -8,18 +8,18 @@ export function ProductCard({ brand, name, image, loading, isFavourite, onClick 
 	const [isClicked, setIsClicked] = useState(isFavourite);
 	return (
 		<section className="product-card">
-			<span
-				className={`material-symbols-outlined ${isClicked && 'filled'} ${
-					!isClicked && 'outlined'
-				}`}
-				onClick={(e) => {
-					setIsClicked((prevState) => !prevState);
-					e.preventDefault();
-					e.stopPropagation();
-					onClick();
-				}}>
-				favorite
-			</span>
+			{onClick && (
+				<span
+					className={`material-symbols-outlined ${isClicked ? 'filled' : 'outlined'}`}
+					onClick={(e) => {
+						setIsClicked((prevState) => !prevState);
+						e.preventDefault();
+						e.stopPropagation();
+						onClick();
+					}}>
+					favorite
+				</span>
+			)}
 			{loading ? (
 				<Spinner />
 			) : (

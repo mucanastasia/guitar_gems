@@ -17,10 +17,6 @@
 
         .product-card {
             cursor: default;
-
-            span.material-symbols-outlined {
-                display: none;
-            }
         }
 
         .product-card-container {

@@ -22,6 +22,10 @@
             cursor: default;
         }
 
+        &:hover .product-card-img {
+            transform: rotate(-90deg) scale(1);
+        }
+
     }
 }
 

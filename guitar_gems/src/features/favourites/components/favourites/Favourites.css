@@ -5,6 +5,10 @@
     justify-content: center;
     gap: 24px;
     margin: 100px 40px;
+
+    .product-card:has(.outlined) {
+        display: none;
+    }
 }
 
 .empty-favourites {
