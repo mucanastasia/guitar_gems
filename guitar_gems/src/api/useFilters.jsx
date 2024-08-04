@@ -11,20 +11,36 @@ const fetchFilters = async (tableName) => {
 
 export const useFilters = () => {
 	const brandsQuery = useQuery({
-		queryKey: ['brands'],
+		queryKey: ['brands_filters'],
 		queryFn: () => fetchFilters('brands'),
+		gcTime: 3600000,
+		refetchOnMount: false,
+		refetchOnWindowFocus: false,
+		refetchOnReconnect: false,
 	});
 	const typesQuery = useQuery({
-		queryKey: ['guitar_types'],
+		queryKey: ['guitar_types_filters'],
 		queryFn: () => fetchFilters('guitar_types'),
+		gcTime: 3600000,
+		refetchOnMount: false,
+		refetchOnWindowFocus: false,
+		refetchOnReconnect: false,
 	});
 	const materialsQuery = useQuery({
-		queryKey: ['materials'],
+		queryKey: ['materials_filters'],
 		queryFn: () => fetchFilters('materials'),
+		gcTime: 3600000,
+		refetchOnMount: false,
+		refetchOnWindowFocus: false,
+		refetchOnReconnect: false,
 	});
 	const countriesQuery = useQuery({
-		queryKey: ['countries'],
+		queryKey: ['countries_filters'],
 		queryFn: () => fetchFilters('countries'),
+		gcTime: 3600000,
+		refetchOnMount: false,
+		refetchOnWindowFocus: false,
+		refetchOnReconnect: false,
 	});
 
 	const isPending =

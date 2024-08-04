@@ -22,10 +22,10 @@ export const useAddFavourites = () => {
 		mutationFn: ({ guitarId }) => {
 			addToFavourites({ guitarId, userId: user.id });
 		},
-		onSuccess: (_data, variables) => {
-			queryClient.invalidateQueries(['guitars']);
-			queryClient.invalidateQueries(['favourites', user?.id]);
-			queryClient.invalidateQueries(['guitarData', variables.guitarId]);
+		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey: ['guitars'],
+			});
 		},
 		onError: (error) => {
 			console.error('Error adding to favourites:', error.message);

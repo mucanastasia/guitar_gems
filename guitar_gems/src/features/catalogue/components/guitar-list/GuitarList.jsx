@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 import { ProductCard } from '@ui/product-card';
 import './GuitarList.css';
 
-export function GuitarList({ guitars, isFetchingNextPage, isFetching, lastCardRef }) {
+export function GuitarList({ ...props }) {
+	const { guitars, isFetchingNextPage, isFetching, lastCardRef, handleFavourites } =
+		props;
+
 	return (
 		<div className="catalogue-container">
 			{isFetching && guitars.length === 0 ? (
@@ -24,6 +27,10 @@ export function GuitarList({ guitars, isFetchingNextPage, isFetching, lastCardRe
 									brand={guitar.brand_name}
 									name={guitar.name}
 									image={guitar.main_img}
+									isFavourite={guitar.is_favourite}
+									onClick={() => {
+										handleFavourites(guitar);
+									}}
 								/>
 							</Link>
 						);
@@ -38,6 +45,10 @@ export function GuitarList({ guitars, isFetchingNextPage, isFetching, lastCardRe
 									brand={guitar.brand_name}
 									name={guitar.name}
 									image={guitar.main_img}
+									isFavourite={guitar.is_favourite}
+									onClick={() => {
+										handleFavourites(guitar);
+									}}
 								/>
 							</Link>
 						);

@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 import { useHistory } from 'react-router-dom';
 import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
@@ -17,14 +17,12 @@ const addGuitar = async ({ filteredData }) => {
 
 export const useAddGuitar = () => {
 	const history = useHistory();
-	const queryClient = useQueryClient();
 
 	return useMutation({
 		mutationKey: ['addGuitar'],
 		mutationFn: addGuitar,
 		onSuccess: (responseData) => {
 			history.push(`${GUITAR_PATH_DIR}${responseData[0].id}`);
-			queryClient.invalidateQueries(['guitars']);
 		},
 	});
 };

@@ -50,16 +50,16 @@ const getGuitar = async (guitarId, userId) => {
 
 	if (error) throw new Error(error.message);
 
-	const isFavorite = userId ? data.favourites.length > 0 : false;
+	const isFavourite = userId ? data.favourites.length > 0 : false;
 
-	return { ...data, isFavorite };
+	return { ...data, isFavourite };
 };
 
 export const useGuitarData = (guitarId) => {
 	const { data: user } = useUser();
 
 	return useQuery({
-		queryKey: ['guitarData', guitarId, user?.id],
+		queryKey: ['guitarData', guitarId],
 		queryFn: () => getGuitar(guitarId, user?.id),
 		enabled: !!guitarId,
 		retry: 0,

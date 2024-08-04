@@ -24,10 +24,10 @@ export const useDeleteFavourites = () => {
 		mutationFn: ({ guitarId }) => {
 			deleteFavourites({ guitarId, userId: user?.id });
 		},
-		onSuccess: (_data, variables) => {
-			queryClient.invalidateQueries(['guitars']);
-			queryClient.invalidateQueries(['favourites', user?.id]);
-			queryClient.invalidateQueries(['guitarData', variables.guitarId]);
+		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey: ['guitars'],
+			});
 		},
 	});
 };

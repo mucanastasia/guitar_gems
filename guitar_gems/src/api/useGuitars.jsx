@@ -4,7 +4,7 @@ import { CARDS_PER_PAGE } from '@features/catalogue/constants/catalogue';
 import { prepareFilter } from '@features/catalogue/helpers/filterHelpers';
 
 const fetchGuitars = async ({ pageParam = 0, queryKey }) => {
-	await new Promise((resolve) => setTimeout(resolve, 400));
+	await new Promise((resolve) => setTimeout(resolve, 200));
 	const filters = queryKey[1];
 
 	let request = supabase
@@ -60,6 +60,8 @@ export const useGuitars = (selectedFilters) => {
 			}
 			return lastPage[lastPage.length - 1].id;
 		},
-		retry: 1,
+		gcTime: 0,
+		refetchOnMount: true,
+		refetchOnWindowFocus: true,
 	});
 };

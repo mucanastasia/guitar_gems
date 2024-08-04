@@ -4,7 +4,7 @@ import { CARDS_PER_PAGE } from '@features/catalogue/constants/catalogue';
 import { useUser } from '@api/useUser';
 
 const fetchFavourites = async ({ pageParam = 0 }) => {
-	await new Promise((resolve) => setTimeout(resolve, 400));
+	await new Promise((resolve) => setTimeout(resolve, 200));
 
 	const { data, error } = await supabase
 		.from('searchable_guitars')
@@ -32,6 +32,5 @@ export const useFavourites = () => {
 			}
 			return lastPage[lastPage.length - 1].id;
 		},
-		retry: 1,
 	});
 };

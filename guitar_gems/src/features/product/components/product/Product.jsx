@@ -7,7 +7,7 @@ import { ROOT_PATH } from '@features/router/constants/routePaths';
 import { Button } from '@ui/button';
 import './Product.css';
 
-export function Product({ name, brand, img, isLoggedIn, isFavorite, handleFavourites }) {
+export function Product({ name, brand, img, isLoggedIn, handleFavourites, isFavorite }) {
 	return (
 		<>
 			<Hero brand={brand} name={name} img={img} />

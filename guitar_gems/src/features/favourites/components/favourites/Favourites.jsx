@@ -14,6 +14,7 @@ export function Favourites({
 	isFetchingNextPage,
 	lastCardRef,
 	isFetching,
+	deleteFavourites,
 }) {
 	if ((!isFetching && favourites.length === 0) || isError) {
 		return (
@@ -43,6 +44,10 @@ export function Favourites({
 									brand={guitar.brand_name}
 									name={guitar.name}
 									image={guitar.main_img}
+									isFavourite={guitar.is_favourite}
+									onClick={() => {
+										deleteFavourites({ guitarId: guitar.id });
+									}}
 								/>
 							</Link>
 						);
@@ -57,6 +62,10 @@ export function Favourites({
 									brand={guitar.brand_name}
 									name={guitar.name}
 									image={guitar.main_img}
+									isFavourite={guitar.is_favourite}
+									onClick={() => {
+										deleteFavourites({ guitarId: guitar.id });
+									}}
 								/>
 							</Link>
 						);

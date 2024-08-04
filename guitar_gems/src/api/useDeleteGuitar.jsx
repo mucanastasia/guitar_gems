@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 import { useHistory } from 'react-router-dom';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
@@ -11,18 +11,14 @@ const deleteGuitar = async ({ id }) => {
 	await new Promise((resolve) => setTimeout(resolve, 300));
 };
 
-export const useDeleteGuitar = (id) => {
+export const useDeleteGuitar = () => {
 	const history = useHistory();
-	const queryClient = useQueryClient();
 
 	return useMutation({
 		mutationKey: ['deleteGuitar'],
 		mutationFn: deleteGuitar,
 		onSuccess: () => {
 			history.push(ROOT_PATH);
-			queryClient.removeQueries(['editableGuitar', id]);
-			queryClient.removeQueries(['guitarData', id]);
-			queryClient.invalidateQueries(['guitars']);
 		},
 	});
 };

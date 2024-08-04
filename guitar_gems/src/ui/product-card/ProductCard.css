@@ -16,6 +16,33 @@
     .spinner {
         margin: 0 134px;
     }
+
+    .material-symbols-outlined,
+    .material-symbols-filled.outlined {
+        transition: all var(--transition-duration) var(--transition-timing-function);
+        font-size: 24px;
+        color: #000000;
+        opacity: 0.4;
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        z-index: 2;
+        border: none;
+        outline: none;
+        padding: 0px 2px;
+        height: 28px;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &.filled,
+        &[data-selected] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            color: #000000;
+            opacity: 1;
+        }
+    }
 }
 
 .product-card-img {
