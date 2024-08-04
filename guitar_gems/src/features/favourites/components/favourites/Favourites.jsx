@@ -28,51 +28,55 @@ export function Favourites({
 	}
 	return (
 		<div className="favourites">
-			{isFetching && favourites.length === 0 ? (
-				<Skeleton count={CARDS_PER_PAGE} />
-			) : (
-				favourites.map((guitar, index) => {
-					if (favourites.length === index + 1) {
-						return (
-							<Link
-								key={guitar.id}
-								to={`${GUITAR_PATH_DIR}${guitar.id}`}
-								ref={lastCardRef}
-								target="_blank"
-								rel="noopener noreferrer">
-								<ProductCard
-									brand={guitar.brand_name}
-									name={guitar.name}
-									image={guitar.main_img}
-									isFavourite={guitar.is_favourite}
-									onClick={() => {
-										deleteFavourites({ guitarId: guitar.id });
-									}}
-								/>
-							</Link>
-						);
-					} else {
-						return (
-							<Link
-								key={guitar.id}
-								to={`${GUITAR_PATH_DIR}${guitar.id}`}
-								target="_blank"
-								rel="noopener noreferrer">
-								<ProductCard
-									brand={guitar.brand_name}
-									name={guitar.name}
-									image={guitar.main_img}
-									isFavourite={guitar.is_favourite}
-									onClick={() => {
-										deleteFavourites({ guitarId: guitar.id });
-									}}
-								/>
-							</Link>
-						);
-					}
-				})
-			)}
-			{isFetchingNextPage && favourites.length > 0 && <Skeleton count={CARDS_PER_PAGE} />}
+			<div className="favourites-container">
+				{isFetching && favourites.length === 0 ? (
+					<Skeleton count={CARDS_PER_PAGE} />
+				) : (
+					favourites.map((guitar, index) => {
+						if (favourites.length === index + 1) {
+							return (
+								<Link
+									key={guitar.id}
+									to={`${GUITAR_PATH_DIR}${guitar.id}`}
+									ref={lastCardRef}
+									target="_blank"
+									rel="noopener noreferrer">
+									<ProductCard
+										brand={guitar.brand_name}
+										name={guitar.name}
+										image={guitar.main_img}
+										isFavourite={guitar.is_favourite}
+										onClick={() => {
+											deleteFavourites({ guitarId: guitar.id });
+										}}
+									/>
+								</Link>
+							);
+						} else {
+							return (
+								<Link
+									key={guitar.id}
+									to={`${GUITAR_PATH_DIR}${guitar.id}`}
+									target="_blank"
+									rel="noopener noreferrer">
+									<ProductCard
+										brand={guitar.brand_name}
+										name={guitar.name}
+										image={guitar.main_img}
+										isFavourite={guitar.is_favourite}
+										onClick={() => {
+											deleteFavourites({ guitarId: guitar.id });
+										}}
+									/>
+								</Link>
+							);
+						}
+					})
+				)}
+				{isFetchingNextPage && favourites.length > 0 && (
+					<Skeleton count={CARDS_PER_PAGE} />
+				)}
+			</div>
 		</div>
 	);
 }
