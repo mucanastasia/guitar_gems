@@ -11,5 +11,9 @@ export const useBrands = () => {
 	return useQuery({
 		queryKey: ['brands'],
 		queryFn: fetchBrands,
+		gcTime: 3600000,
+		refetchOnMount: false,
+		refetchOnWindowFocus: false,
+		refetchOnReconnect: false,
 	});
 };

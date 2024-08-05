@@ -60,7 +60,6 @@ export const useGuitars = (selectedFilters) => {
 			}
 			return lastPage[lastPage.length - 1].id;
 		},
-		gcTime: 0,
 		refetchOnMount: true,
 		refetchOnWindowFocus: true,
 	});

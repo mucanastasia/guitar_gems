@@ -32,12 +32,11 @@ export const useEditableGuitar = (id) => {
 	const { data: user } = useUser();
 
 	return useQuery({
-		queryKey: ['editableGuitar', id],
+		queryKey: ['editable_guitar', id],
 		queryFn: () => {
 			if (user?.app_metadata.role === 'editor') {
 				return getGuitar(id);
 			}
 		},
-		retry: 0,
 	});
 };

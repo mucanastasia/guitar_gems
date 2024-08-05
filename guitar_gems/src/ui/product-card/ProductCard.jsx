@@ -1,11 +1,16 @@
+import { useLayoutEffect, useState } from 'react';
 import { HeadingSmall } from '@ui/heading';
 import { Text } from '@ui/text';
 import { Spinner } from '@ui/spinner';
-import { useState } from 'react';
 import './ProductCard.css';
 
 export function ProductCard({ brand, name, image, loading, isFavourite, onClick }) {
-	const [isClicked, setIsClicked] = useState(isFavourite);
+	const [isClicked, setIsClicked] = useState(false);
+
+	useLayoutEffect(() => {
+		setIsClicked(isFavourite);
+	}, [isFavourite]);
+
 	return (
 		<section className="product-card">
 			{onClick && (

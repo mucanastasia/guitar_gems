@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 import { useHistory, useLocation } from 'react-router-dom';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
@@ -18,12 +18,14 @@ export const useSignIn = () => {
 	const history = useHistory();
 	const location = useLocation();
 	const { from } = location.state || { from: { pathname: ROOT_PATH } };
+	const queryClient = useQueryClient();
 
 	return useMutation({
 		mutationKey: ['signIn'],
 		mutationFn: signIn,
 		onSuccess: () => {
 			history.replace(from);
+			queryClient.invalidateQueries(['user']);
 		},
 	});
 };

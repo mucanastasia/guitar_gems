@@ -59,9 +59,8 @@ export const useGuitarData = (guitarId) => {
 	const { data: user } = useUser();
 
 	return useQuery({
-		queryKey: ['guitarData', guitarId],
+		queryKey: ['data_guitar', guitarId],
 		queryFn: () => getGuitar(guitarId, user?.id),
 		enabled: !!guitarId,
-		retry: 0,
 	});
 };
