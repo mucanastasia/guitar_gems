@@ -5,7 +5,7 @@ import { Spinner } from '@ui/spinner';
 import './ProductCard.css';
 
 export function ProductCard({ brand, name, image, loading, isFavourite, onClick }) {
-	const [isClicked, setIsClicked] = useState(false);
+	const [isClicked, setIsClicked] = useState(isFavourite || false);
 
 	useLayoutEffect(() => {
 		setIsClicked(isFavourite);

@@ -19,7 +19,7 @@ export function ProductContainer() {
 
 	const isLoggedIn = user !== null;
 
-	const [isFavourite, setIsFavourite] = useState(null);
+	const [isFavourite, setIsFavourite] = useState(guitar?.isFavourite || false);
 
 	useEffect(() => {
 		setIsFavourite(guitar?.isFavourite);
