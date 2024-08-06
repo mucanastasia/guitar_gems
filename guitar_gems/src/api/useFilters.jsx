@@ -14,6 +14,7 @@ export const useFilters = () => {
 		queryKey: ['brands_filters'],
 		queryFn: () => fetchFilters('brands'),
 		gcTime: 3600000,
+		staleTime: Infinity,
 		refetchOnMount: false,
 		refetchOnWindowFocus: false,
 		refetchOnReconnect: false,

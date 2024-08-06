@@ -24,16 +24,46 @@ export const useDeleteFavourites = () => {
 		mutationFn: ({ guitarId }) => {
 			deleteFavourites({ guitarId, userId: user?.id });
 		},
-		onSuccess: (_data, variables) => {
+		onMutate: async (variables) => {
+			queryClient.setQueryData(['data_guitar', variables.guitarId], (oldData) => {
+				if (oldData) {
+					return {
+						...oldData,
+						isFavourite: false,
+					};
+				}
+				return oldData;
+			});
+			// queryClient.setQueryData(['favourites', user?.id], (oldData) => {
+			// 	if (oldData) {
+			// 		console.log(oldData?.pages[oldData?.pageParams.length - 1]);
+			// 		// return;
+			// 		return oldData?.pages[oldData?.pageParams.length - 1].filter(
+			// 			(item) => item.id !== variables.guitarId
+			// 		);
+			// 	}
+			// 	return;
+			// });
+		},
+		onSuccess: () => {
 			queryClient.invalidateQueries({
-				queryKey: ['favourites'],
+				queryKey: ['favourites', user?.id],
 			});
 			queryClient.invalidateQueries({
 				queryKey: ['guitars'],
 			});
-			queryClient.invalidateQueries({
-				queryKey: ['data_guitar', variables.guitarId],
+		},
+		onError: (error, variables) => {
+			queryClient.setQueryData(['data_guitar', variables.guitarId], (oldData) => {
+				if (oldData) {
+					return {
+						...oldData,
+						isFavourite: true,
+					};
+				}
+				return oldData;
 			});
+			console.error('Error deleting from favourites:', error.message);
 		},
 	});
 };

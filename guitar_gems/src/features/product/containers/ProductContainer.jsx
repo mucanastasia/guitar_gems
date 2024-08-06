@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Product } from '../components/product';
 import { useParams } from 'react-router-dom';
 import { Spinner } from '@ui/spinner';
@@ -19,19 +18,12 @@ export function ProductContainer() {
 
 	const isLoggedIn = user !== null;
 
-	const [isFavourite, setIsFavourite] = useState(guitar?.isFavourite || false);
-
-	useEffect(() => {
-		setIsFavourite(guitar?.isFavourite);
-	}, [guitar?.isFavourite]);
-
 	const { mutate: addFavourites } = useAddFavourites();
 	const { mutate: deleteFavourites } = useDeleteFavourites();
 
 	const handleFavourites = async () => {
-		setIsFavourite((prevState) => !prevState);
-		!isFavourite && (await addFavourites({ guitarId: id }));
-		isFavourite && (await deleteFavourites({ guitarId: id }));
+		!guitar.isFavourite && (await addFavourites({ guitarId: id }));
+		guitar.isFavourite && (await deleteFavourites({ guitarId: id }));
 	};
 
 	if (isPending) {
@@ -48,7 +40,7 @@ export function ProductContainer() {
 			brand={guitar.brand.name}
 			img={guitar.main_img}
 			isLoggedIn={isLoggedIn}
-			isFavorite={isFavourite}
+			isFavorite={guitar.isFavourite}
 			handleFavourites={handleFavourites}
 		/>
 	);

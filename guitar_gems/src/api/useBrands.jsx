@@ -9,9 +9,10 @@ const fetchBrands = async () => {
 
 export const useBrands = () => {
 	return useQuery({
-		queryKey: ['brands'],
+		queryKey: ['brands_filters'],
 		queryFn: fetchBrands,
 		gcTime: 3600000,
+		staleTime: Infinity,
 		refetchOnMount: false,
 		refetchOnWindowFocus: false,
 		refetchOnReconnect: false,
