@@ -9,6 +9,7 @@ import { useSelectedFilters } from '@features/catalogue/contexts/SelectedFilters
 import { useHistory } from 'react-router-dom';
 import { useUser } from '@api/useUser';
 import { SIGN_IN_PATH } from '@features/router/constants/routePaths';
+import { useFavouritesList } from '@api/useFavouritesList';
 
 export function GuitarListContainer() {
 	const { selectedFilters } = useSelectedFilters();
@@ -24,7 +25,12 @@ export function GuitarListContainer() {
 		isFetchingNextPage,
 	} = useGuitars(selectedFilters);
 
-	const guitars = data?.pages.flat() || [];
+	const { data: favourites } = useFavouritesList();
+
+	const guitars =
+		data?.pages.flat().map((guitar) => {
+			return { ...guitar, is_favourite: favourites?.has(guitar.id) || false };
+		}) || [];
 
 	const lastCardRef = useInfiniteScroll({ isFetching, hasMore, fetchGuitars });
 

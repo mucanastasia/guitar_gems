@@ -25,7 +25,7 @@ export const useDeleteGuitar = () => {
 				queryKey: ['guitars'],
 			});
 			queryClient.invalidateQueries({
-				queryKey: ['favourites', user?.id],
+				queryKey: ['favourites_page', user?.id],
 			});
 			queryClient.removeQueries({
 				queryKey: ['data_guitar', variables.id],

@@ -3,6 +3,7 @@ import { supabase } from '@api/supabaseClient';
 import { useUser } from '@api/useUser';
 
 const addToFavourites = async ({ guitarId, userId }) => {
+	// await new Promise((resolve) => setTimeout(resolve, 400));
 	const { data, error } = await supabase
 		.from('favourites')
 		.upsert([{ user_id: userId, guitar_id: guitarId }])
@@ -19,39 +20,58 @@ export const useAddFavourites = () => {
 
 	return useMutation({
 		mutationKey: ['addFavourites'],
-		mutationFn: ({ guitarId }) => {
-			addToFavourites({ guitarId, userId: user.id });
+		mutationFn: async ({ guitarId }) => {
+			return await addToFavourites({ guitarId, userId: user.id });
 		},
 		onMutate: async (variables) => {
-			queryClient.setQueryData(['data_guitar', variables.guitarId], (oldData) => {
-				if (oldData) {
-					return {
-						...oldData,
-						isFavourite: true,
-					};
-				}
-				return oldData;
-			});
+			const previousGuitarData = queryClient.getQueryData([
+				'data_guitar',
+				variables.guitarId,
+			]);
+			const previousFavourites = queryClient.getQueryData([
+				'list_of_favourites',
+				user?.id,
+			]);
+
+			if (previousFavourites) {
+				queryClient.setQueryData(
+					['list_of_favourites', user?.id],
+					new Set([...previousFavourites, variables.guitarId])
+				);
+			}
+			if (previousGuitarData) {
+				queryClient.setQueryData(['data_guitar', variables.guitarId], {
+					...previousGuitarData,
+					isFavourite: true,
+				});
+			}
+			return { previousFavourites, previousGuitarData };
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({
-				queryKey: ['guitars'],
-			});
-			queryClient.invalidateQueries({
-				queryKey: ['favourites'],
+				queryKey: ['favourites_page', user?.id],
 			});
 		},
-		onError: (error, variables) => {
-			queryClient.setQueryData(['data_guitar', variables.guitarId], (oldData) => {
-				if (oldData) {
-					return {
-						...oldData,
-						isFavourite: false,
-					};
-				}
-				return oldData;
-			});
+		onError: (error, variables, context) => {
+			queryClient.setQueryData(
+				['list_of_favourites', user?.id],
+				context.previousFavourites
+			);
+			queryClient.setQueryData(
+				['data_guitar', variables.guitarId],
+				context.previousGuitarData
+			);
 			console.error('Error adding to favourites:', error.message);
+		},
+		onSettled: (_data, _error, variables) => {
+			queryClient.invalidateQueries({
+				queryKey: ['list_of_favourites', user?.id],
+				refetchType: 'inactive',
+			});
+			queryClient.invalidateQueries({
+				queryKey: ['data_guitar', variables.guitarId],
+				refetchType: 'inactive',
+			});
 		},
 	});
 };

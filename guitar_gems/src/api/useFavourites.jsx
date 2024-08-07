@@ -21,9 +21,10 @@ const fetchFavourites = async ({ pageParam = 0 }) => {
 
 export const useFavourites = () => {
 	const { data: user } = useUser();
+	const userId = user?.id || 'guest';
 
 	return useInfiniteQuery({
-		queryKey: ['favourites', user?.id],
+		queryKey: ['favourites_page', userId],
 		queryFn: fetchFavourites,
 		initialPageParam: 0,
 		getNextPageParam: (lastPage) => {
@@ -32,6 +33,5 @@ export const useFavourites = () => {
 			}
 			return lastPage[lastPage.length - 1].id;
 		},
-		refetchOnWindowFocus: true,
 	});
 };

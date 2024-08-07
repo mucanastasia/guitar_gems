@@ -8,8 +8,8 @@ import { AuthProvider } from '@features/auth/context/AuthContext';
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
-			gcTime: 300000,
 			retry: false,
+			refetchOnWindowFocus: true,
 		},
 	},
 });

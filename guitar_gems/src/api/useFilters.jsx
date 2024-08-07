@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 
 const fetchFilters = async (tableName) => {
-	await new Promise((resolve) => setTimeout(resolve, 400));
+	await new Promise((resolve) => setTimeout(resolve, 200));
 
 	const { data, error } = await supabase.from(tableName).select(`id, name`);
 	if (error) console.error(error.message);
@@ -15,36 +15,24 @@ export const useFilters = () => {
 		queryFn: () => fetchFilters('brands'),
 		gcTime: 3600000,
 		staleTime: Infinity,
-		refetchOnMount: false,
-		refetchOnWindowFocus: false,
-		refetchOnReconnect: false,
 	});
 	const typesQuery = useQuery({
 		queryKey: ['guitar_types_filters'],
 		queryFn: () => fetchFilters('guitar_types'),
 		gcTime: 3600000,
 		staleTime: Infinity,
-		refetchOnMount: false,
-		refetchOnWindowFocus: false,
-		refetchOnReconnect: false,
 	});
 	const materialsQuery = useQuery({
 		queryKey: ['materials_filters'],
 		queryFn: () => fetchFilters('materials'),
 		gcTime: 3600000,
 		staleTime: Infinity,
-		refetchOnMount: false,
-		refetchOnWindowFocus: false,
-		refetchOnReconnect: false,
 	});
 	const countriesQuery = useQuery({
 		queryKey: ['countries_filters'],
 		queryFn: () => fetchFilters('countries'),
 		gcTime: 3600000,
 		staleTime: Infinity,
-		refetchOnMount: false,
-		refetchOnWindowFocus: false,
-		refetchOnReconnect: false,
 	});
 
 	const isPending =

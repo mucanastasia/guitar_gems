@@ -21,49 +21,58 @@ export const useDeleteFavourites = () => {
 
 	return useMutation({
 		mutationKey: ['deleteFavourites'],
-		mutationFn: ({ guitarId }) => {
-			deleteFavourites({ guitarId, userId: user?.id });
+		mutationFn: async ({ guitarId }) => {
+			return await deleteFavourites({ guitarId, userId: user?.id });
 		},
 		onMutate: async (variables) => {
-			queryClient.setQueryData(['data_guitar', variables.guitarId], (oldData) => {
-				if (oldData) {
-					return {
-						...oldData,
-						isFavourite: false,
-					};
-				}
-				return oldData;
-			});
-			// queryClient.setQueryData(['favourites', user?.id], (oldData) => {
-			// 	if (oldData) {
-			// 		console.log(oldData?.pages[oldData?.pageParams.length - 1]);
-			// 		// return;
-			// 		return oldData?.pages[oldData?.pageParams.length - 1].filter(
-			// 			(item) => item.id !== variables.guitarId
-			// 		);
-			// 	}
-			// 	return;
-			// });
+			const previousFavourites = queryClient.getQueryData([
+				'list_of_favourites',
+				user?.id,
+			]);
+			const previousGuitarData = queryClient.getQueryData([
+				'data_guitar',
+				variables.guitarId,
+			]);
+
+			if (previousFavourites) {
+				queryClient.setQueryData(
+					['list_of_favourites', user?.id],
+					new Set([...previousFavourites].filter((id) => id !== variables.guitarId))
+				);
+			}
+			if (previousGuitarData) {
+				queryClient.setQueryData(['data_guitar', variables.guitarId], {
+					...previousGuitarData,
+					isFavourite: false,
+				});
+			}
+			return { previousFavourites, previousGuitarData };
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({
-				queryKey: ['favourites', user?.id],
-			});
-			queryClient.invalidateQueries({
-				queryKey: ['guitars'],
+				queryKey: ['favourites_page', user?.id],
 			});
 		},
-		onError: (error, variables) => {
-			queryClient.setQueryData(['data_guitar', variables.guitarId], (oldData) => {
-				if (oldData) {
-					return {
-						...oldData,
-						isFavourite: true,
-					};
-				}
-				return oldData;
-			});
+		onError: (error, variables, context) => {
+			queryClient.setQueryData(
+				['list_of_favourites', user?.id],
+				context.previousFavourites
+			);
+			queryClient.setQueryData(
+				['data_guitar', variables.guitarId],
+				context.previousGuitarData
+			);
 			console.error('Error deleting from favourites:', error.message);
+		},
+		onSettled: (_data, _error, variables) => {
+			queryClient.invalidateQueries({
+				queryKey: ['list_of_favourites', user?.id],
+				refetchType: 'inactive',
+			});
+			queryClient.invalidateQueries({
+				queryKey: ['data_guitar', variables.guitarId],
+				refetchType: 'inactive',
+			});
 		},
 	});
 };

@@ -9,7 +9,7 @@ const fetchGuitars = async ({ pageParam = 0, queryKey }) => {
 
 	let request = supabase
 		.from('searchable_guitars')
-		.select('id, name, main_img, brand_name, is_favourite')
+		.select('id, name, main_img, brand_name')
 		.order('id', { ascending: true })
 		.gt('id', pageParam)
 		.limit(CARDS_PER_PAGE);
@@ -60,7 +60,5 @@ export const useGuitars = (selectedFilters) => {
 			}
 			return lastPage[lastPage.length - 1].id;
 		},
-		refetchOnMount: true,
-		refetchOnWindowFocus: true,
 	});
 };
