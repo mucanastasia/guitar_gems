@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 	useEffect(() => {
 		const { data: listener } = supabase.auth.onAuthStateChange(async (event) => {
 			if (event === 'SIGNED_OUT' || event === 'SIGNED_IN') {
-				queryClient.invalidateQueries(['user']);
+				queryClient.invalidateQueries({ queryKey: ['user'] });
 			}
 		});
 

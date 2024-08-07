@@ -1,5 +1,5 @@
 import { useParams, useHistory } from 'react-router-dom';
-import { EDIT_GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
+import { EDIT_GUITAR_PATH_DIR, ROOT_PATH } from '@features/router/constants/routePaths';
 import { Button } from '@ui/button';
 import { Popover } from '@ui/popover';
 import { Text } from '@ui/text';
@@ -21,7 +21,14 @@ export function EditorActionsContainer() {
 	};
 
 	const handleDeleteClick = async () => {
-		await mutate({ id });
+		await mutate(
+			{ id },
+			{
+				onSuccess: () => {
+					history.push(ROOT_PATH);
+				},
+			}
+		);
 	};
 
 	if (!isUserEditor) {

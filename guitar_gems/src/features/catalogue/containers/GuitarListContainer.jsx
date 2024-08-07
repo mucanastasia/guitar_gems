@@ -16,6 +16,7 @@ export function GuitarListContainer() {
 	const history = useHistory();
 	const { data: user } = useUser();
 	const isAnonym = user === null;
+	const isUserEditor = user?.app_metadata.role === 'editor';
 
 	const {
 		data,
@@ -25,7 +26,10 @@ export function GuitarListContainer() {
 		isFetchingNextPage,
 	} = useGuitars(selectedFilters);
 
-	const { data: favourites } = useFavouritesList();
+	const { data: favourites, isPending: isFavouritesPending } = useFavouritesList();
+
+	const isLoading = isFetching || isFavouritesPending;
+	const isLoadingNextPage = isFetchingNextPage || isFavouritesPending;
 
 	const guitars =
 		data?.pages.flat().map((guitar) => {
@@ -49,10 +53,11 @@ export function GuitarListContainer() {
 
 	const props = {
 		guitars,
-		isFetching,
-		isFetchingNextPage,
+		isLoading,
+		isLoadingNextPage,
 		lastCardRef,
 		handleFavourites,
+		isUserEditor,
 	};
 
 	if (!isFetching && (!guitars || guitars.length === 0)) {

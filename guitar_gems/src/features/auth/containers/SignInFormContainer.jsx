@@ -58,8 +58,8 @@ export function SignInFormContainer() {
 				{ email, password },
 				{
 					onSuccess: () => {
-						clearInputs();
-						clearErrors();
+						clearInputs(emailRef, passwordRef);
+						clearErrors(setErrorMessage);
 					},
 					onError: (mutationError) => {
 						if (mutationError.message === 'Invalid login credentials') {

@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 import { useHistory } from 'react-router-dom';
 import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
+import { useUser } from '@api/useUser';
 
 const editGuitar = async ({ filteredData, id }) => {
 	const { error } = await supabase.from('guitars').update(filteredData).eq('id', id);
@@ -14,13 +15,14 @@ const editGuitar = async ({ filteredData, id }) => {
 export const useEditGuitar = (id) => {
 	const history = useHistory();
 	const queryClient = useQueryClient();
+	const { data: user } = useUser();
 
 	return useMutation({
 		mutationKey: ['editGuitar'],
 		mutationFn: editGuitar,
 		onSuccess: (_data, variables) => {
 			queryClient.invalidateQueries({
-				queryKey: ['favourites'],
+				queryKey: ['favourites_page', user?.id],
 			});
 			queryClient.invalidateQueries({
 				queryKey: ['guitars'],

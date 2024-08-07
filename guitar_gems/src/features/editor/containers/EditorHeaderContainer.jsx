@@ -1,7 +1,7 @@
 import { EditorHeader } from '../components/editor-header';
 import { useEditorData } from '../contexts/EditorDataContext';
 import { Button } from '@ui/button';
-import { useParams, useHistory, useRouteMatch } from 'react-router-dom';
+import { useParams, useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import {
 	ADD_GUITAR_PATH,
 	EDIT_GUITAR_PATH_DIR,
@@ -22,8 +22,13 @@ export function EditorHeaderContainer() {
 
 	const { id } = useParams();
 	const history = useHistory();
+	const location = useLocation();
 
 	const handleCancelClick = () => {
+		if (location.state?.from) {
+			history.push(location.state?.from);
+			return;
+		}
 		history.push(`${GUITAR_PATH_DIR}${id}`);
 	};
 

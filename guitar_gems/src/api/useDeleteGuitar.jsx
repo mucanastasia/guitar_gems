@@ -1,7 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
-import { useHistory } from 'react-router-dom';
-import { ROOT_PATH } from '@features/router/constants/routePaths';
 import { useUser } from '@api/useUser';
 
 const deleteGuitar = async ({ id }) => {
@@ -13,7 +11,6 @@ const deleteGuitar = async ({ id }) => {
 };
 
 export const useDeleteGuitar = () => {
-	const history = useHistory();
 	const queryClient = useQueryClient();
 	const { data: user } = useUser();
 
@@ -33,7 +30,6 @@ export const useDeleteGuitar = () => {
 			queryClient.removeQueries({
 				queryKey: ['editable_guitar', variables.id],
 			});
-			history.push(ROOT_PATH);
 		},
 	});
 };

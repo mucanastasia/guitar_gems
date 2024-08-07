@@ -3,15 +3,22 @@ import { CARDS_PER_PAGE } from '../../constants/catalogue';
 import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 import { Link } from 'react-router-dom';
 import { ProductCard } from '@ui/product-card';
+import { EditorActionsContainer } from '../../containers/EditorActionsContainer';
 import './GuitarList.css';
 
 export function GuitarList({ ...props }) {
-	const { guitars, isFetchingNextPage, isFetching, lastCardRef, handleFavourites } =
-		props;
+	const {
+		guitars,
+		isLoading,
+		isLoadingNextPage,
+		lastCardRef,
+		handleFavourites,
+		isUserEditor,
+	} = props;
 
 	return (
 		<div className="catalogue-container">
-			{isFetching && guitars.length === 0 ? (
+			{isLoading && guitars.length === 0 ? (
 				<Skeleton count={CARDS_PER_PAGE} />
 			) : (
 				guitars.map((guitar, index) => {
@@ -28,9 +35,12 @@ export function GuitarList({ ...props }) {
 									name={guitar.name}
 									image={guitar.main_img}
 									isFavourite={guitar.is_favourite}
-									onClick={() => {
+									onFavouriteClick={() => {
 										handleFavourites(guitar);
 									}}
+									EditorActions={
+										isUserEditor ? <EditorActionsContainer guitarId={guitar.id} /> : false
+									}
 								/>
 							</Link>
 						);
@@ -46,16 +56,19 @@ export function GuitarList({ ...props }) {
 									name={guitar.name}
 									image={guitar.main_img}
 									isFavourite={guitar.is_favourite}
-									onClick={() => {
+									onFavouriteClick={() => {
 										handleFavourites(guitar);
 									}}
+									EditorActions={
+										isUserEditor ? <EditorActionsContainer guitarId={guitar.id} /> : false
+									}
 								/>
 							</Link>
 						);
 					}
 				})
 			)}
-			{isFetchingNextPage && guitars.length > 0 && <Skeleton count={CARDS_PER_PAGE} />}
+			{isLoadingNextPage && guitars.length > 0 && <Skeleton count={CARDS_PER_PAGE} />}
 		</div>
 	);
 }

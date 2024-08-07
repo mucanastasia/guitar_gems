@@ -46,7 +46,7 @@ export function Favourites({
 										name={guitar.name}
 										image={guitar.main_img}
 										isFavourite={guitar.is_favourite}
-										onClick={() => {
+										onFavouriteClick={() => {
 											deleteFavourites({ guitarId: guitar.id });
 										}}
 									/>
@@ -64,7 +64,7 @@ export function Favourites({
 										name={guitar.name}
 										image={guitar.main_img}
 										isFavourite={guitar.is_favourite}
-										onClick={() => {
+										onFavouriteClick={() => {
 											deleteFavourites({ guitarId: guitar.id });
 										}}
 									/>

@@ -33,5 +33,6 @@ export const useFavourites = () => {
 			}
 			return lastPage[lastPage.length - 1].id;
 		},
+		enabled: !!userId,
 	});
 };

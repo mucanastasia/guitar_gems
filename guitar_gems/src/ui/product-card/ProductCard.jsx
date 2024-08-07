@@ -3,20 +3,35 @@ import { Text } from '@ui/text';
 import { Spinner } from '@ui/spinner';
 import './ProductCard.css';
 
-export function ProductCard({ brand, name, image, loading, isFavourite, onClick }) {
+export function ProductCard({
+	brand,
+	name,
+	image,
+	loading,
+	isFavourite,
+	onFavouriteClick,
+	EditorActions,
+}) {
 	return (
 		<section className="product-card">
-			{onClick && (
-				<span
-					className={`material-symbols-outlined ${isFavourite ? 'filled' : 'outlined'}`}
-					onClick={(e) => {
-						e.preventDefault();
-						e.stopPropagation();
-						onClick();
-					}}>
-					favorite
-				</span>
-			)}
+			<div className="product-card-actions">
+				{onFavouriteClick && (
+					<span
+						className={`material-symbols-outlined ${isFavourite ? 'filled' : 'outlined'}`}
+						onClick={(e) => {
+							e.preventDefault();
+							e.stopPropagation();
+							onFavouriteClick();
+						}}>
+						favorite
+					</span>
+				)}
+				{EditorActions && (
+					<div className="product-card-editor-actions" id="product-card-editor-actions">
+						{EditorActions}
+					</div>
+				)}
+			</div>
 			{loading ? (
 				<Spinner />
 			) : (
