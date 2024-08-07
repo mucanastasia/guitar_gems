@@ -1,6 +1,6 @@
 import { CatalogueContainer } from './containers/CatalogueContainer';
-import { SelectedFiltersProvider } from '@features/catalogue/contexts/SelectedFiltersContext';
-import { PROJECT_NAME } from '@features/catalogue/constants/catalogue';
+import { SelectedFiltersProvider } from './contexts/SelectedFiltersContext';
+import { PROJECT_NAME } from './constants/catalogue';
 import { useTitle } from '@helpers/useTitle';
 
 export function CataloguePage() {

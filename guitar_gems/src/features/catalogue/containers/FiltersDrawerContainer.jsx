@@ -1,6 +1,6 @@
-import { useSelectedFilters } from '@features/catalogue/contexts/SelectedFiltersContext';
-import { useDrawerSwipe } from '@features/catalogue/helpers/useDrawerSwipe';
-import { FiltersDrawer } from '@features/catalogue/components/filters-drawer';
+import { useSelectedFilters } from '../contexts/SelectedFiltersContext';
+import { useDrawerSwipe } from '../helpers/useDrawerSwipe';
+import { FiltersDrawer } from '../components/filters-drawer';
 import { useDrawer } from '../contexts/DrawerContext';
 
 export function FiltersDrawerContainer({ children }) {

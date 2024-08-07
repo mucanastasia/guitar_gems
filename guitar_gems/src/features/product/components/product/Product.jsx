@@ -1,7 +1,7 @@
 import { Hero } from '@ui/hero';
 import { ProductCard } from '@ui/product-card';
-import { EditorActionsContainer } from '@features/product/containers/EditorActionsContainer';
-import { ProductContentContainer } from '@features/product/containers/ProductContentContainer';
+import { EditorActionsContainer } from '../../containers/EditorActionsContainer';
+import { ProductContentContainer } from '../../containers/ProductContentContainer';
 import { Breadcrumbs } from '@ui/breadcrumbs';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
 import { Button } from '@ui/button';

@@ -1,5 +1,5 @@
 import { Route, Redirect } from 'react-router-dom';
-import { SIGN_IN_PATH } from '@features/router/constants/routePaths';
+import { SIGN_IN_PATH } from '../constants/routePaths';
 import { useUser } from '@api/useUser';
 import { Spinner } from '@ui/spinner';
 

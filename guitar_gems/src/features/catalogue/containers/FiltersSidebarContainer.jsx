@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { CheckboxGroupStateContext } from 'react-aria-components';
-import { useSelectedFilters } from '@features/catalogue/contexts/SelectedFiltersContext';
+import { useSelectedFilters } from '../contexts/SelectedFiltersContext';
 import { getLocalTimeZone, today } from '@internationalized/date';
 import { SkeletonFilters } from '@ui/skeleton';
-import { FiltersSidebar } from '@features/catalogue/components/filters-sidebar';
+import { FiltersSidebar } from '../components/filters-sidebar';
 import { useFilters } from '@api/useFilters';
 
 export function FiltersSidebarContainer() {

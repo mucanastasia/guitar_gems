@@ -1,5 +1,5 @@
 import { Skeleton } from '@ui/skeleton';
-import { CARDS_PER_PAGE } from '@features/catalogue/constants/catalogue';
+import { CARDS_PER_PAGE } from '../../constants/catalogue';
 import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 import { Link } from 'react-router-dom';
 import { ProductCard } from '@ui/product-card';

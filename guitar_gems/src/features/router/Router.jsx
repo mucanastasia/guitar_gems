@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { PrivateRouteContainer } from '@features/router/containers/PrivateRouteContainer';
+import { PrivateRouteContainer } from './containers/PrivateRouteContainer';
 import { ScrollToTop } from '@helpers/ScrollToTop';
-import { AppLayoutContainer } from '@features/router/containers/AppLayoutContainer';
+import { AppLayoutContainer } from './containers/AppLayoutContainer';
 import { CataloguePage } from '@features/catalogue';
 import { SignInPage } from '@features/auth';
 import { SignUpPage } from '@features/auth';

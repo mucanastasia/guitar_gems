@@ -2,7 +2,7 @@ import { Label } from '@ui/label';
 import { HeadingLogo } from '@ui/heading-logo';
 import { Icon } from '@ui/icon';
 import { SearchField } from '@ui/search-field';
-import { PROJECT_NAME } from '@features/catalogue/constants/catalogue';
+import { PROJECT_NAME } from '../../constants/catalogue';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
 import './CatalogueHeader.css';
 

@@ -1,11 +1,11 @@
-import { useInfiniteScroll } from '@features/catalogue/helpers/useInfiniteScroll';
+import { useInfiniteScroll } from '../helpers/useInfiniteScroll';
 import { GuitarList } from '../components/guitar-list';
 import { NO_MATCH_TEXT } from '../constants/catalogue';
 import { Text } from '@ui/text';
 import { useGuitars } from '@api/useGuitars';
 import { useAddFavourites } from '@api/useAddFavourites';
 import { useDeleteFavourites } from '@api/useDeleteFavourites';
-import { useSelectedFilters } from '@features/catalogue/contexts/SelectedFiltersContext';
+import { useSelectedFilters } from '../contexts/SelectedFiltersContext';
 import { useHistory } from 'react-router-dom';
 import { useUser } from '@api/useUser';
 import { SIGN_IN_PATH } from '@features/router/constants/routePaths';

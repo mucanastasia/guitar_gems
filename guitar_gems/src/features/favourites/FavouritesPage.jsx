@@ -1,6 +1,6 @@
 import { useTitle } from '@helpers/useTitle';
-import { FavouritesHeader } from '@features/favourites/components/favourites-header';
-import { FavouritesContainer } from '@features/favourites/containers/FavouritesContainer';
+import { FavouritesHeader } from './components/favourites-header';
+import { FavouritesContainer } from './containers/FavouritesContainer';
 import { useUser } from '@api/useUser';
 
 export function FavouritesPage() {
