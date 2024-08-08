@@ -30,7 +30,7 @@ export const useSignUp = () => {
 		mutationFn: signUp,
 		onSuccess: () => {
 			history.replace(from);
-			queryClient.invalidateQueries(['user']);
+			queryClient.invalidateQueries({ queryKey: ['user'] });
 		},
 	});
 };

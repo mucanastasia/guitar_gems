@@ -9,8 +9,8 @@ import './GuitarList.css';
 export function GuitarList({ ...props }) {
 	const {
 		guitars,
-		isLoading,
-		isLoadingNextPage,
+		isFetching,
+		isFetchingNextPage,
 		lastCardRef,
 		handleFavourites,
 		isUserEditor,
@@ -18,7 +18,7 @@ export function GuitarList({ ...props }) {
 
 	return (
 		<div className="catalogue-container">
-			{isLoading && guitars.length === 0 ? (
+			{isFetching && guitars.length === 0 ? (
 				<Skeleton count={CARDS_PER_PAGE} />
 			) : (
 				guitars.map((guitar, index) => {
@@ -68,7 +68,7 @@ export function GuitarList({ ...props }) {
 					}
 				})
 			)}
-			{isLoadingNextPage && guitars.length > 0 && <Skeleton count={CARDS_PER_PAGE} />}
+			{isFetchingNextPage && guitars.length > 0 && <Skeleton count={CARDS_PER_PAGE} />}
 		</div>
 	);
 }

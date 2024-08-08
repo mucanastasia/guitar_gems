@@ -13,7 +13,12 @@ export const useSignOut = () => {
 		mutationKey: ['signOut'],
 		mutationFn: signOut,
 		onSuccess: () => {
-			queryClient.removeQueries();
+			queryClient.removeQueries({ queryKey: ['user'] });
+			queryClient.removeQueries({ queryKey: ['list_of_favourites'] });
+			queryClient.removeQueries({ queryKey: ['favourites_page'] });
+			queryClient.removeQueries({ queryKey: ['guitars'] });
+			queryClient.removeQueries({ queryKey: ['data_guitar'] });
+			queryClient.removeQueries({ queryKey: ['editable_guitar'] });
 		},
 	});
 };

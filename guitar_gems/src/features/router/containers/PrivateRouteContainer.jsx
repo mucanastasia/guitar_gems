@@ -1,18 +1,23 @@
 import { Route, Redirect } from 'react-router-dom';
 import { SIGN_IN_PATH } from '../constants/routePaths';
-import { useQueryClient } from '@tanstack/react-query';
+import { useUser } from '@api/useUser';
+import { Spinner } from '@ui/spinner';
 
 export function PrivateRouteContainer({ children, ...rest }) {
-	const queryClient = useQueryClient();
-	const user = queryClient.getQueryData(['user']);
+	const { data: user, isPending } = useUser();
 
 	return (
 		<Route
 			{...rest}
 			render={({ location }) =>
-				user ? (
+				isPending ? (
 					<>
-						{/* {console.log('user', user)} */}
+						{/* {console.log('isPending', location)} */}
+						<Spinner />
+					</>
+				) : user ? (
+					<>
+						{/* {console.log('user', location)} */}
 						{children}
 					</>
 				) : (

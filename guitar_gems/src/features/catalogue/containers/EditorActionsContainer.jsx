@@ -30,7 +30,6 @@ export function EditorActionsContainer({ guitarId }) {
 	};
 
 	const deleteGuitar = async (guitarId) => {
-		console.log('guitarId:', guitarId);
 		await mutate({ id: guitarId });
 	};
 

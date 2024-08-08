@@ -12,5 +12,6 @@ export const useUser = () => {
 	return useQuery({
 		queryKey: ['user'],
 		queryFn: getUser,
+		staleTime: Infinity,
 	});
 };

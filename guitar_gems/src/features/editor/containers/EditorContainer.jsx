@@ -12,10 +12,6 @@ export function EditorContainer({ handleSubmit }) {
 	const queryClient = useQueryClient();
 	const brandsList = queryClient.getQueryData(['brands_filters']);
 
-	if (!brandsList) {
-		queryClient.fetchQuery({ queryKey: ['brands_filters'] });
-	}
-
 	const displayBrandName = (brandId) => {
 		if (!brandsList) return BRAND_PLACEHOLDER;
 		const brand = Object.values(brandsList).find((brand) => brand.id === brandId);

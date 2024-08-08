@@ -26,10 +26,7 @@ export function GuitarListContainer() {
 		isFetchingNextPage,
 	} = useGuitars(selectedFilters);
 
-	const { data: favourites, isPending: isFavouritesPending } = useFavouritesList();
-
-	const isLoading = isFetching || isFavouritesPending;
-	const isLoadingNextPage = isFetchingNextPage || isFavouritesPending;
+	const { data: favourites } = useFavouritesList();
 
 	const guitars =
 		data?.pages.flat().map((guitar) => {
@@ -53,8 +50,8 @@ export function GuitarListContainer() {
 
 	const props = {
 		guitars,
-		isLoading,
-		isLoadingNextPage,
+		isFetching,
+		isFetchingNextPage,
 		lastCardRef,
 		handleFavourites,
 		isUserEditor,
