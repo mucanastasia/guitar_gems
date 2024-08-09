@@ -37,7 +37,7 @@ footer {
         opacity: 0.6;
 
         p {
-            color: var(--secondary-color);
+            color: #FFFFFF;
             font-weight: 300;
             margin-right: 20px;
         }

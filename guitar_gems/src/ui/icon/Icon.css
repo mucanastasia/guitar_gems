@@ -14,11 +14,11 @@
 }
 
 .material-symbols-outlined.black {
-    color: #000000;
+    color: var(--primary-color);
 }
 
 .material-symbols-outlined.grey {
-    color: #666666;
+    color: var(--grey-color);
 }
 
 .material-symbols-outlined.white {

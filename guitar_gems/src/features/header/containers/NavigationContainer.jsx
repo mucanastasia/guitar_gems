@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { Navigation } from '../components/navigation';
 import { useUser } from '@api/useUser';
 import { useSignOut } from '@api/useSignOut';
+import { useTheme } from '@helpers/ThemeContext';
 
 export function NavigationContainer() {
 	const location = useLocation();
@@ -14,6 +15,8 @@ export function NavigationContainer() {
 		await mutate();
 	};
 
+	const { theme, toggleTheme } = useTheme();
+
 	const props = {
 		isLoggedIn: user !== null,
 		isUserEditor: user?.app_metadata.role === 'editor',
@@ -21,6 +24,8 @@ export function NavigationContainer() {
 		currentPath,
 		loading: isPending,
 		handleSignOut,
+		theme,
+		toggleTheme,
 	};
 
 	return <Navigation {...props} />;

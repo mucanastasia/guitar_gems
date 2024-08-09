@@ -23,6 +23,7 @@
 }
 
 .product-content li {
+    color: var(--primary-color);
     margin: 28px 0;
 }
 

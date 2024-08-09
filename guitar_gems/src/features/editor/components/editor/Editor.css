@@ -33,7 +33,7 @@
 
     header.editor {
         width: 100%;
-        background: #c1e8ff;
+        background: var(--editor-header-color);
         margin: 0 0 70px 0;
         height: 70px;
         display: flex;

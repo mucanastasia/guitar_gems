@@ -1,6 +1,6 @@
 .edit-content>article {
     .react-aria-DatePicker {
-        color: black;
+        color: var(--primary-color);
         margin: 0;
 
         div {
@@ -27,7 +27,7 @@
                 padding: 6px 4px 6px 18px;
                 border: none;
                 border-radius: 0;
-                background: #f5f5f5;
+                background: var(--bg-secondary-color);
                 white-space: nowrap;
                 margin: 10px 0 0 0;
 
@@ -41,7 +41,7 @@
                 }
 
                 &[data-invalid] {
-                    border: solid 1px #EF0000;
+                    border: solid 1px var(--error-color);
 
                 }
             }
@@ -90,19 +90,19 @@
 
 .react-aria-Popover[data-trigger=DatePicker] {
     max-width: unset;
-    background-color: #ffffff;
+    background-color: var(--background-color);
     border-radius: 8px;
     padding: 20px;
     border: none;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    box-shadow: var(--box-shadow);
 }
 
 .react-aria-Calendar {
     width: fit-content;
     max-width: 100%;
-    color: black;
+    color: var(--primary-color);
     font-family: "Roboto Condensed";
-    background-color: #ffffff;
+    background-color: var(--background-color);
     border-radius: 8px;
 
     .react-aria-DateInput {
@@ -115,7 +115,7 @@
         display: flex;
         align-items: center;
         margin: 0 0 20px 0;
-        background-color: white;
+        background-color: var(--background-color);
 
         .react-aria-Button {
             border: none;
@@ -129,7 +129,7 @@
             font-size: 22px;
             text-transform: uppercase;
             font-weight: 500;
-            color: black;
+            color: var(--primary-color);
         }
     }
 
@@ -163,7 +163,7 @@
         }
 
         &[data-pressed] {
-            background: #f5f5f5;
+            background: var(--bg-secondary-color);
         }
 
         &[data-focus-visible] {
@@ -184,7 +184,8 @@
         }
 
         &[data-disabled] {
-            color: #7b7b7b;
+            opacity: 0.5;
+            color: var(--placeholder-color);
         }
     }
 

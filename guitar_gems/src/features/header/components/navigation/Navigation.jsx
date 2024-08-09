@@ -8,11 +8,20 @@ import { DialogTrigger } from 'react-aria-components';
 import { Popover } from '@ui/popover';
 import { Button } from '@ui/button';
 import { Icon } from '@ui/icon';
+import { Switch } from '@ui/switch';
 import './Navigation.css';
 
 export function Navigation({ ...props }) {
-	const { isLoggedIn, isUserEditor, userName, currentPath, loading, handleSignOut } =
-		props;
+	const {
+		isLoggedIn,
+		isUserEditor,
+		userName,
+		currentPath,
+		loading,
+		handleSignOut,
+		theme,
+		toggleTheme,
+	} = props;
 
 	return (
 		<nav>
@@ -27,6 +36,7 @@ export function Navigation({ ...props }) {
 					<DialogTrigger>
 						<Link name={userName} icon="account_circle" />
 						<Popover>
+							<Switch label="Dark theme" theme={theme} onChange={toggleTheme} />
 							<Button state="accent" onClick={handleSignOut}>
 								<Icon color="white" name="logout" />
 								{loading ? 'Loading...' : 'Sign Out'}
@@ -35,11 +45,20 @@ export function Navigation({ ...props }) {
 					</DialogTrigger>
 				</>
 			) : (
-				<Link
-					name="Sign In"
-					path={{ pathname: SIGN_IN_PATH, state: { from: currentPath } }}
-					icon="login"
-				/>
+				<>
+					<DialogTrigger>
+						<Link icon="dark_mode" />
+						<Popover>
+							<Switch label="Dark theme" theme={theme} onChange={toggleTheme} />
+						</Popover>
+					</DialogTrigger>
+
+					<Link
+						name="Sign In"
+						path={{ pathname: SIGN_IN_PATH, state: { from: currentPath } }}
+						icon="login"
+					/>
+				</>
 			)}
 		</nav>
 	);

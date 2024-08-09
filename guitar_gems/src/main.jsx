@@ -4,6 +4,7 @@ import { Router } from '@features/router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AuthProvider } from '@features/auth/context/AuthContext';
+import { ThemeProvider } from './helpers/ThemeContext';
 import './main.css';
 
 const queryClient = new QueryClient({
@@ -17,10 +18,12 @@ const queryClient = new QueryClient({
 const App = () => {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<AuthProvider>
-				<Router />
-				<ReactQueryDevtools initialIsOpen={false} />
-			</AuthProvider>
+			<ThemeProvider>
+				<AuthProvider>
+					<Router />
+				</AuthProvider>
+			</ThemeProvider>
+			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>
 	);
 };

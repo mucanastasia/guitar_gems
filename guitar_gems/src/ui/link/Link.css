@@ -1,5 +1,5 @@
 .header-link {
-    color: var(--secondary-color);
+    color: #FFFFFF;
     opacity: 0.8;
     padding: 0 0 0 32px;
     background-color: transparent;
@@ -16,6 +16,7 @@
     }
 
     p {
+        color: #FFFFFF;
         font-size: 16px;
         font-family: "Roboto Condensed";
         font-weight: 500;
@@ -50,12 +51,12 @@
 
     &:hover {
         background-color: #00AED4;
-        color: #ffffff;
+        color: #FFFFFF;
     }
 }
 
 .terms-link {
-    color: var(--secondary-color);
+    color: #FFFFFF;
     font-size: 16px;
     font-family: "Roboto Condensed";
     font-weight: 300;
@@ -71,7 +72,7 @@
 
 
     &:hover {
-        border-bottom: solid 1px var(--secondary-color);
+        border-bottom: solid 1px #FFFFFF;
     }
 
 }

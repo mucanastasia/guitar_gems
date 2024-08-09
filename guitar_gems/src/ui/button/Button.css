@@ -87,13 +87,14 @@ button {
 }
 
 .secondary-button {
+    color: var(--primary-color);
     height: 40px;
     text-align: start;
     text-transform: none;
     font-family: "Roboto";
     letter-spacing: 0;
     font-weight: 300;
-    background-color: #f5f5f5;
+    background-color: var(--bg-secondary-color);
     border: none;
     cursor: pointer;
     padding: 8px 14px;
@@ -101,22 +102,17 @@ button {
     transition: all var(--transition-duration) var(--transition-timing-function);
 
     &[data-hovered] {
-        background-color: #e0e0e0;
+        background-color: var(--hover-secondary-button-color);
     }
 }
 
 .white-button {
-    color: var(--secondary-color);
-    border: solid 2px var(--secondary-color);
+    color: #FFFFFF;
+    border: solid 2px #FFFFFF;
 
     &[data-hovered] {
-        color: var(--primary-color);
-        background: var(--secondary-color);
-    }
-
-    &[data-hovered] {
-        color: var(--primary-color);
-        background: var(--secondary-color);
+        color: #000000;
+        background: #FFFFFF;
     }
 
     &[data-disabled] {
@@ -129,9 +125,11 @@ button {
 .toggle-primary-button {
     color: var(--primary-color);
     background: transparent;
+    border: solid 2px var(--primary-color);
 }
 
 .toggle-accent-button {
     color: var(--secondary-color);
     background: var(--primary-color);
+    border: solid 2px var(--primary-color);
 }

@@ -1,19 +1,16 @@
 .react-aria-Popover {
-    --background-color: #FFFFFF;
-
     max-width: unset;
-    background-color: #ffffff;
+    background-color: var(--background-color);
     border-radius: 8px;
     padding: 24px;
     border: none;
     outline: none;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-
+    box-shadow: var(--box-shadow);
 
     .react-aria-OverlayArrow svg {
         display: block;
         fill: var(--background-color);
-        stroke: #FFFFFF;
+        stroke: var(--background-color);
         stroke-width: 1px;
     }
 

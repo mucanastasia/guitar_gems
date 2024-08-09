@@ -15,7 +15,7 @@ export function Product({ name, brand, img, isLoggedIn, handleFavourites, isFavo
 				<Breadcrumbs name={name} brand={brand} path={ROOT_PATH} />
 				<div className="product-content-container">
 					<div className="product-card-container">
-						<ProductCard brand={brand.name} name={name} image={img} />
+						<ProductCard brand={brand} name={name} image={img} />
 
 						{isLoggedIn && (
 							<Button

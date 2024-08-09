@@ -1,19 +1,12 @@
 p {
     font-family: "Roboto Condensed";
     font-weight: 400;
-}
-
-p.light {
     color: var(--primary-color);
-}
-
-p.dark {
-    color: var(--secondary-color);
 }
 
 p.text-large {
     font-size: 20px;
-    color: #646464;
+    color: var(--grey-color);
     line-height: 120%;
     text-transform: uppercase;
     margin: 10px 0;
@@ -22,7 +15,7 @@ p.text-large {
 p.text-medium {
     position: absolute;
     top: 378px;
-    color: #646464;
+    color: var(--grey-color);
     text-transform: uppercase;
     margin: 2px 30px;
 }
@@ -43,7 +36,7 @@ p.text-xsmall {
 }
 
 p.text-xlarge {
-    color: var(--secondary-color);
+    color: #FFFFFF;
     font-family: "Bebas Neue";
     font-size: 40px;
     left: 150%;

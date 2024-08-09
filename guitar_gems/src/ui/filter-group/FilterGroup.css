@@ -1,14 +1,9 @@
 .react-aria-CheckboxGroup {
     display: grid;
     gap: 14px;
-    color: #000000;
     margin: 20px 0;
 
     .react-aria-Checkbox {
-        --selected-color: #FFFFFF;
-        --selected-color-pressed: black;
-        --checkmark-color: black;
-
         display: flex;
         align-items: center;
         gap: 14px;
@@ -17,7 +12,7 @@
         font-weight: 400;
         text-transform: uppercase;
         letter-spacing: 1px;
-        color: var(--text-color);
+        color: var(--primary-color);
         forced-color-adjust: none;
 
         .checkbox {
@@ -35,7 +30,7 @@
             width: 16px;
             height: 16px;
             fill: none;
-            stroke: var(--checkmark-color);
+            stroke: var(--primary-color);
             stroke-width: 3px;
             stroke-dasharray: 22px;
             stroke-dashoffset: 66;
@@ -43,24 +38,24 @@
         }
 
         &[data-pressed] .checkbox {
-            border-color: var(--border-color-pressed);
+            border-color: var(--primary-color);
         }
 
         &[data-focus-visible] .checkbox {
-            outline: 2px solid var(--focus-ring-color);
+            outline: 2px solid var(--primary-color);
             outline-offset: 2px;
         }
 
         &[data-selected],
         &[data-indeterminate] {
             .checkbox {
-                border-color: var(--selected-color-pressed);
-                background: var(--selected-color);
+                border-color: var(--primary-color);
+                background: transparent;
             }
 
             &[data-pressed] .checkbox {
-                border-color: var(--selected-color-pressed);
-                background: var(--selected-color);
+                border-color: var(--primary-color);
+                background: transparent;
             }
 
             svg {
@@ -71,7 +66,7 @@
         &[data-indeterminate] {
             & svg {
                 stroke: none;
-                fill: var(--checkmark-color);
+                fill: var(--primary-color);
             }
         }
     }

@@ -15,6 +15,7 @@
 }
 
 .not-found-text {
+    color: var(--primary-color);
     font-family: 'Bebas Neue';
     font-size: 32px;
     letter-spacing: 2px;
@@ -24,20 +25,20 @@
 }
 
 .back-to-home-link {
-    border: solid 2px #000000;
+    border: solid 2px var(--primary-color);
     padding: 12px 84px;
     font-family: 'Roboto Condensed';
     font-size: 16px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: #000000;
+    color: var(--primary-color);
     text-decoration: none;
     margin: 44px 0 0 54px;
     transition: all var(--transition-duration) var(--transition-timing-function);
 
     &:hover {
-        color: #ffffff;
-        background-color: #000000;
+        color: var(--secondary-color);
+        background-color: var(--primary-color);
     }
 }

@@ -12,6 +12,7 @@
                 align-items: center;
 
                 &::before {
+                    color: var(--primary-color);
                     content: '•';
                 }
 
@@ -27,7 +28,7 @@
                     transition: all var(--transition-duration) var(--transition-timing-function);
 
                     &:hover {
-                        color: #EF0000;
+                        color: var(--error-color);
                     }
                 }
             }

@@ -18,8 +18,8 @@
     align-items: center;
     height: 70px;
     padding: 20px 0;
-    border-top: solid 1px #CCCCCC;
-    border-bottom: solid 1px #CCCCCC;
+    border-top: solid 1px var(--divider-color);
+    border-bottom: solid 1px var(--divider-color);
     justify-content: center;
 
     .wrap {

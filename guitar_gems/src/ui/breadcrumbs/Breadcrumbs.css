@@ -10,7 +10,7 @@
     letter-spacing: 1px;
     font-weight: 400;
     text-transform: uppercase;
-    color: #666666;
+    color: var(--grey-color);
     transition: all var(--transition-duration) var(--transition-timing-function);
 
     .react-aria-Breadcrumb:not(:last-child)::after {
@@ -22,7 +22,7 @@
     }
 
     a {
-        color: #666666;
+        color: var(--grey-color);
         outline: none;
         position: relative;
         text-decoration: none;
@@ -31,7 +31,7 @@
         transition: all var(--transition-duration) var(--transition-timing-function);
 
         &:hover {
-            border-bottom: solid 1px #666666;
+            border-bottom: solid 1px var(--grey-color);
         }
     }
 }

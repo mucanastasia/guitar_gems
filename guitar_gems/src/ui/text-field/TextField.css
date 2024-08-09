@@ -4,19 +4,21 @@
     width: 400px;
 
     .react-aria-Input {
+        color: var(--primary-color);
         font-family: "Roboto Condensed";
         font-size: 18px;
         font-weight: 400;
         letter-spacing: 1px;
         width: 400px;
         height: 48px;
-        background-color: #f5f5f5;
+        background-color: var(--bg-secondary-color);
         border: none;
         border-radius: 0;
         outline: none;
         padding: 10px 24px;
 
         &::placeholder {
+            color: var(--placeholder-color);
             font-weight: 500;
             font-size: 16px;
             text-transform: uppercase;
@@ -29,6 +31,6 @@ span.error {
     font-size: 14px;
     font-family: "Roboto";
     font-weight: 400;
-    color: #EF0000;
+    color: var(--error-color);
     margin-top: 4px;
 }
