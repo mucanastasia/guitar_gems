@@ -14,7 +14,7 @@ export function ProductContainer() {
 	const { data: user } = useUser();
 	const { data: guitar, isPending, isError } = useGuitarData(id);
 
-	useTitle(`${guitar?.brand?.name} - ${guitar?.name}`);
+	useTitle(guitar && `${guitar.brand.name} - ${guitar.name}`);
 
 	const isLoggedIn = user !== null;
 

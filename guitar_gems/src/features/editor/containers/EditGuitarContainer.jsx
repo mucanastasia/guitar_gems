@@ -23,7 +23,7 @@ export function EditGuitarContainer() {
 		}
 	}, [guitar]);
 
-	useTitle(`${EDIT_GUITAR_TITLE} - ${data?.name}`);
+	useTitle(guitar && `${EDIT_GUITAR_TITLE} - ${guitar.name}`);
 
 	const { mutate, isPending } = useEditGuitar(id);
 
