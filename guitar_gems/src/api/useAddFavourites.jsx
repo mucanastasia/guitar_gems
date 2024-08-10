@@ -48,7 +48,7 @@ export const useAddFavourites = () => {
 			return { previousFavourites, previousGuitarData };
 		},
 		onSuccess: () => {
-			queryClient.invalidateQueries({
+			queryClient.refetchQueries({
 				queryKey: ['favourites_page', user?.id],
 			});
 		},

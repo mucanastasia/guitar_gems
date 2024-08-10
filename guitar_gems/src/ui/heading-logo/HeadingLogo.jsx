@@ -20,7 +20,7 @@ export function HeadingLogo({ name, path }) {
 				src={theme === 'dark' ? logoWhite : logoBlack}
 				className="heading-logo"
 				alt="Guitar Gems logo image"
-				onClick={handleClick}
+				onClick={path && handleClick}
 			/>
 			<h1 className="heading-logo">{name}</h1>
 		</div>

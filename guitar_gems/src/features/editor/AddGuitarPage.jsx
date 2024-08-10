@@ -1,5 +1,5 @@
 import { AddGuitarContainer } from './containers/AddGuitarContainer';
 
-export function AddGuitarPage() {
+export default function AddGuitarPage() {
 	return <AddGuitarContainer />;
 }

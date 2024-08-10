@@ -3,14 +3,12 @@ import { Editor } from '../components/editor';
 import { useEditorData } from '../contexts/EditorDataContext';
 import { BRAND_PLACEHOLDER } from '../constants/editor';
 import { UploadingStatusProvider } from '../contexts/UploadingStatusContext';
-import { useQueryClient } from '@tanstack/react-query';
+import { useBrands } from '@api/useBrands';
 
 export function EditorContainer({ handleSubmit }) {
 	const { data } = useEditorData();
 	const [uploadingPhoto, setUploadingPhoto] = useState(false);
-
-	const queryClient = useQueryClient();
-	const brandsList = queryClient.getQueryData(['brands_filters']);
+	const { data: brandsList } = useBrands();
 
 	const displayBrandName = (brandId) => {
 		if (!brandsList) return BRAND_PLACEHOLDER;

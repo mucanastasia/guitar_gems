@@ -3,7 +3,6 @@ import { HeadingLogo } from '@ui/heading-logo';
 import { Icon } from '@ui/icon';
 import { SearchField } from '@ui/search-field';
 import { PROJECT_NAME } from '../../constants/catalogue';
-import { ROOT_PATH } from '@features/router/constants/routePaths';
 import './CatalogueHeader.css';
 
 export function CatalogueHeader({ ...props }) {
@@ -13,7 +12,7 @@ export function CatalogueHeader({ ...props }) {
 	return (
 		<div className="catalogue-page-header">
 			<div className="logo">
-				<HeadingLogo name={PROJECT_NAME} path={ROOT_PATH} />
+				<HeadingLogo name={PROJECT_NAME} />
 			</div>
 			<div className="catalogue-header">
 				<div className="wrap">

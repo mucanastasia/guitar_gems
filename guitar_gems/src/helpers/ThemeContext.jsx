@@ -10,7 +10,6 @@ export const ThemeProvider = ({ children }) => {
 
 	useEffect(() => {
 		const themeFromLS = getThemeFromLocalStorage();
-		console.log('themeFromLS', themeFromLS);
 		if (themeFromLS === null) {
 			const darkThemeSystem = window.matchMedia('(prefers-color-scheme: dark)').matches;
 			document.documentElement.setAttribute(
@@ -18,7 +17,6 @@ export const ThemeProvider = ({ children }) => {
 				darkThemeSystem ? 'dark' : 'light'
 			);
 			setTheme(darkThemeSystem ? 'dark' : 'light');
-			console.log('darkThemeSystem', darkThemeSystem);
 		} else if (themeFromLS !== null) {
 			document.documentElement.setAttribute('data-theme', themeFromLS);
 			setTheme(themeFromLS);
