@@ -20,7 +20,7 @@ const fetchFavourites = async ({ pageParam = 0 }) => {
 };
 
 export const useFavourites = () => {
-	const { data: user } = useUser();
+	const { data: user, isPending } = useUser();
 	const userId = user?.id || 'guest';
 
 	return useInfiniteQuery({
@@ -33,6 +33,6 @@ export const useFavourites = () => {
 			}
 			return lastPage[lastPage.length - 1].id;
 		},
-		enabled: !!userId,
+		enabled: !!user.id && !isPending,
 	});
 };

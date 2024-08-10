@@ -29,14 +29,12 @@ const getGuitar = async (id) => {
 };
 
 export const useEditableGuitar = (id) => {
-	const { data: user } = useUser();
+	const { data: user, isPending } = useUser();
+	const isUserEditor = user?.app_metadata.role === 'editor';
 
 	return useQuery({
 		queryKey: ['editable_guitar', id],
-		queryFn: () => {
-			if (user?.app_metadata.role === 'editor') {
-				return getGuitar(id);
-			}
-		},
+		queryFn: () => getGuitar(id),
+		enabled: isUserEditor && !isPending,
 	});
 };

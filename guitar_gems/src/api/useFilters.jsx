@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQueries } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 
 const fetchFilters = async (tableName) => {
@@ -9,44 +9,28 @@ const fetchFilters = async (tableName) => {
 	return data;
 };
 
+const filters = ['brands', 'guitar_types', 'materials', 'countries'];
+
 export const useFilters = () => {
-	const brandsQuery = useQuery({
-		queryKey: ['brands_filters'],
-		queryFn: () => fetchFilters('brands'),
-		gcTime: 3600000,
-		staleTime: Infinity,
-	});
-	const typesQuery = useQuery({
-		queryKey: ['guitar_types_filters'],
-		queryFn: () => fetchFilters('guitar_types'),
-		gcTime: 3600000,
-		staleTime: Infinity,
-	});
-	const materialsQuery = useQuery({
-		queryKey: ['materials_filters'],
-		queryFn: () => fetchFilters('materials'),
-		gcTime: 3600000,
-		staleTime: Infinity,
-	});
-	const countriesQuery = useQuery({
-		queryKey: ['countries_filters'],
-		queryFn: () => fetchFilters('countries'),
-		gcTime: 3600000,
-		staleTime: Infinity,
+	const filtersQueries = useQueries({
+		queries: filters.map((tableName) => ({
+			queryKey: [`${tableName}_filters`],
+			queryFn: () => fetchFilters(tableName),
+			gcTime: 3600000,
+			staleTime: Infinity,
+		})),
+		combine: (results) => {
+			const data = {};
+			results.forEach((result, index) => {
+				const key = filters[index] === 'guitar_types' ? 'types' : filters[index];
+				data[key] = result.data;
+			});
+			return {
+				data,
+				isPending: results.some((result) => result.isPending),
+			};
+		},
 	});
 
-	const isPending =
-		brandsQuery.isPending ||
-		typesQuery.isPending ||
-		materialsQuery.isPending ||
-		countriesQuery.isPending;
-
-	const data = {
-		brands: brandsQuery.data || [],
-		types: typesQuery.data || [],
-		materials: materialsQuery.data || [],
-		countries: countriesQuery.data || [],
-	};
-
-	return { data, isPending };
+	return filtersQueries;
 };
