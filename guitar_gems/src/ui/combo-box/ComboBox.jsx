@@ -11,13 +11,12 @@ import { Icon } from '@ui/icon';
 import { Label } from '@ui/label';
 import './ComboBox.css';
 
-export function ComboBox({ label, selected, value, options, onSelectionChange }) {
+export function ComboBox({ label, selected, options, onSelectionChange }) {
 	return (
 		<AriaComboBox
 			isRequired
 			defaultItems={options}
 			selectedKey={selected}
-			inputValue={value}
 			onSelectionChange={onSelectionChange}>
 			<div>
 				<Label>{label}</Label>
@@ -30,7 +29,7 @@ export function ComboBox({ label, selected, value, options, onSelectionChange })
 			</div>
 			<FieldError />
 			<AriaPopover>
-				<ListBox>{(item) => <ListBoxItem id={item.id}>{item.name}</ListBoxItem>}</ListBox>
+				<ListBox>{(item) => <ListBoxItem>{item.name}</ListBoxItem>}</ListBox>
 			</AriaPopover>
 		</AriaComboBox>
 	);

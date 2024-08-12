@@ -16,7 +16,20 @@ export function EditGuitarContainer() {
 
 	const { data: guitar, isPending: loading, isError } = useEditableGuitar(id);
 
-	const [data, setData] = useState({});
+	const [data, setData] = useState({
+		name: '',
+		description: '',
+		brand_id: '',
+		type_id: '',
+		body_material_id: '',
+		neck_material_id: '',
+		fingerboard_material_id: '',
+		release_date: '',
+		country_id: '',
+		main_img: '',
+		features: [],
+	});
+
 	useEffect(() => {
 		if (guitar) {
 			setData(guitar);

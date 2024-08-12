@@ -16,7 +16,6 @@ export function SpecItemContainer({ label, guitarKey, optionsKey }) {
 			objectKey={guitarKey}
 			options={selectOptions[optionsKey]}
 			selected={data[guitarKey]}
-			value={selectOptions[optionsKey]?.name}
 			onSelectionChange={handleSelectionChange}
 		/>
 	);
