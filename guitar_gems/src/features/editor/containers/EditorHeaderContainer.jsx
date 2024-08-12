@@ -8,6 +8,7 @@ import {
 	GUITAR_PATH_DIR,
 } from '@features/router/constants/routePaths';
 import { ADD_GUITAR_TITLE, EDIT_GUITAR_TITLE } from '../constants/editor';
+import { useScrollRestoration } from '@helpers/useScrollRestoration';
 
 export function EditorHeaderContainer() {
 	const { submitting, error } = useEditorData();
@@ -24,8 +25,11 @@ export function EditorHeaderContainer() {
 	const history = useHistory();
 	const location = useLocation();
 
+	const { restoreScrollPosition } = useScrollRestoration();
+
 	const handleCancelClick = () => {
 		if (location.state?.from) {
+			restoreScrollPosition();
 			history.push(location.state?.from);
 			return;
 		}

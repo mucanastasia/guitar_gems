@@ -21,13 +21,13 @@ export const useEditGuitar = (id) => {
 		mutationKey: ['editGuitar'],
 		mutationFn: editGuitar,
 		onSuccess: (_data, variables) => {
-			queryClient.invalidateQueries({
+			queryClient.refetchQueries({
 				queryKey: ['favourites_page', user?.id],
 			});
-			queryClient.invalidateQueries({
+			queryClient.refetchQueries({
 				queryKey: ['guitars'],
 			});
-			queryClient.invalidateQueries({
+			queryClient.refetchQueries({
 				queryKey: ['data_guitar', variables.id],
 			});
 			queryClient.invalidateQueries({

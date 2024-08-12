@@ -8,6 +8,8 @@ import { EDIT_GUITAR_TITLE } from '../constants/editor';
 import { useEditGuitar } from '@api/useEditGuitar';
 import { useEditableGuitar } from '@api/useEditableGuitar';
 import { Spinner } from '@ui/spinner';
+import { useHistory } from 'react-router-dom';
+import { useScrollRestoration } from '@helpers/useScrollRestoration';
 
 export function EditGuitarContainer() {
 	const [error, setError] = useState(false);
@@ -37,6 +39,21 @@ export function EditGuitarContainer() {
 	}, [guitar]);
 
 	useTitle(guitar && `${EDIT_GUITAR_TITLE} - ${guitar.name}`);
+
+	const history = useHistory();
+	const { restoreScrollPosition } = useScrollRestoration();
+
+	useEffect(() => {
+		const unlisten = history.listen((_location, action) => {
+			if (action === 'POP') {
+				restoreScrollPosition();
+			}
+		});
+
+		return () => {
+			unlisten();
+		};
+	}, [history]);
 
 	const { mutate, isPending } = useEditGuitar(id);
 

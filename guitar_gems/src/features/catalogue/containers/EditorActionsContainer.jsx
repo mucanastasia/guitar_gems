@@ -9,7 +9,7 @@ import { useUser } from '@api/useUser';
 import { useDeleteGuitar } from '@api/useDeleteGuitar';
 import { useLocation } from 'react-router-dom';
 
-export function EditorActionsContainer({ guitarId }) {
+export function EditorActionsContainer({ guitarId, saveScrollPosition }) {
 	const { data: user } = useUser();
 	const isUserEditor = user?.app_metadata.role === 'editor';
 
@@ -45,6 +45,7 @@ export function EditorActionsContainer({ guitarId }) {
 					e.preventDefault();
 					e.stopPropagation();
 					editGuitar(guitarId);
+					saveScrollPosition();
 				}}>
 				stylus
 			</span>

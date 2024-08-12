@@ -22,7 +22,7 @@ export const useAddGuitar = () => {
 		mutationKey: ['addGuitar'],
 		mutationFn: addGuitar,
 		onSuccess: (responseData) => {
-			queryClient.invalidateQueries({
+			queryClient.refetchQueries({
 				queryKey: ['guitars'],
 			});
 			history.push(`${GUITAR_PATH_DIR}${responseData[0].id}`);

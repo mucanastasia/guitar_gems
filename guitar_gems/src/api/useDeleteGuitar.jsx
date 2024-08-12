@@ -7,7 +7,7 @@ const deleteGuitar = async ({ id }) => {
 	if (error) {
 		console.error(error.message);
 	}
-	await new Promise((resolve) => setTimeout(resolve, 300));
+	await new Promise((resolve) => setTimeout(resolve, 200));
 };
 
 export const useDeleteGuitar = () => {
@@ -21,7 +21,7 @@ export const useDeleteGuitar = () => {
 			queryClient.invalidateQueries({
 				queryKey: ['guitars'],
 			});
-			queryClient.invalidateQueries({
+			queryClient.refetchQueries({
 				queryKey: ['favourites_page', user?.id],
 			});
 			queryClient.removeQueries({

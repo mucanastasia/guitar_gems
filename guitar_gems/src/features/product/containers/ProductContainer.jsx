@@ -7,6 +7,9 @@ import { useGuitarData } from '@api/useGuitarData';
 import { useUser } from '@api/useUser';
 import { useAddFavourites } from '@api/useAddFavourites';
 import { useDeleteFavourites } from '@api/useDeleteFavourites';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useScrollRestoration } from '@helpers/useScrollRestoration';
 
 export function ProductContainer() {
 	const { id } = useParams();
@@ -17,6 +20,21 @@ export function ProductContainer() {
 	useTitle(guitar && `${guitar.brand.name} - ${guitar.name}`);
 
 	const isLoggedIn = user !== null;
+
+	const history = useHistory();
+	const { restoreScrollPosition } = useScrollRestoration();
+
+	useEffect(() => {
+		const unlisten = history.listen((_location, action) => {
+			if (action === 'POP') {
+				restoreScrollPosition();
+			}
+		});
+
+		return () => {
+			unlisten();
+		};
+	}, [history]);
 
 	const { mutate: addFavourites } = useAddFavourites();
 	const { mutate: deleteFavourites } = useDeleteFavourites();

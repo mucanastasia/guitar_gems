@@ -10,10 +10,13 @@ import { useHistory } from 'react-router-dom';
 import { useUser } from '@api/useUser';
 import { SIGN_IN_PATH } from '@features/router/constants/routePaths';
 import { useFavouritesList } from '@api/useFavouritesList';
+import { useScrollRestoration } from '@helpers/useScrollRestoration';
 
 export function GuitarListContainer() {
 	const { selectedFilters } = useSelectedFilters();
+
 	const history = useHistory();
+
 	const { data: user } = useUser();
 	const isAnonym = user === null;
 	const isUserEditor = user?.app_metadata.role === 'editor';
@@ -48,6 +51,8 @@ export function GuitarListContainer() {
 			: addFavourites({ guitarId: guitar.id });
 	};
 
+	const { saveScrollPosition } = useScrollRestoration();
+
 	const props = {
 		guitars,
 		isFetching,
@@ -55,6 +60,7 @@ export function GuitarListContainer() {
 		lastCardRef,
 		handleFavourites,
 		isUserEditor,
+		saveScrollPosition,
 	};
 
 	if (!isFetching && (!guitars || guitars.length === 0)) {

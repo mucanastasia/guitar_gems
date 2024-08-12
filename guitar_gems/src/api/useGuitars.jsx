@@ -4,7 +4,6 @@ import { CARDS_PER_PAGE } from '@features/catalogue/constants/catalogue';
 import { prepareFilter } from '@features/catalogue/helpers/filterHelpers';
 
 const fetchGuitars = async ({ pageParam = 0, queryKey }) => {
-	await new Promise((resolve) => setTimeout(resolve, 200));
 	const filters = queryKey[1];
 
 	let request = supabase
@@ -45,6 +44,8 @@ const fetchGuitars = async ({ pageParam = 0, queryKey }) => {
 	const { data, error } = await request;
 
 	if (error) throw new Error(error.message);
+
+	await new Promise((resolve) => setTimeout(resolve, 200));
 
 	return data;
 };

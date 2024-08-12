@@ -14,6 +14,7 @@ export function GuitarList({ ...props }) {
 		lastCardRef,
 		handleFavourites,
 		isUserEditor,
+		saveScrollPosition,
 	} = props;
 
 	return (
@@ -28,8 +29,9 @@ export function GuitarList({ ...props }) {
 								key={guitar.id}
 								to={`${GUITAR_PATH_DIR}${guitar.id}`}
 								ref={lastCardRef}
-								target="_blank"
-								rel="noopener noreferrer">
+								// target="_blank"
+								// rel="noopener noreferrer"
+								onClick={saveScrollPosition}>
 								<ProductCard
 									brand={guitar.brand_name}
 									name={guitar.name}
@@ -39,7 +41,14 @@ export function GuitarList({ ...props }) {
 										handleFavourites(guitar);
 									}}
 									EditorActions={
-										isUserEditor ? <EditorActionsContainer guitarId={guitar.id} /> : false
+										isUserEditor ? (
+											<EditorActionsContainer
+												guitarId={guitar.id}
+												saveScrollPosition={saveScrollPosition}
+											/>
+										) : (
+											false
+										)
 									}
 								/>
 							</Link>
@@ -49,8 +58,9 @@ export function GuitarList({ ...props }) {
 							<Link
 								key={guitar.id}
 								to={`${GUITAR_PATH_DIR}${guitar.id}`}
-								target="_blank"
-								rel="noopener noreferrer">
+								// target="_blank"
+								// rel="noopener noreferrer"
+								onClick={saveScrollPosition}>
 								<ProductCard
 									brand={guitar.brand_name}
 									name={guitar.name}
@@ -60,7 +70,14 @@ export function GuitarList({ ...props }) {
 										handleFavourites(guitar);
 									}}
 									EditorActions={
-										isUserEditor ? <EditorActionsContainer guitarId={guitar.id} /> : false
+										isUserEditor ? (
+											<EditorActionsContainer
+												guitarId={guitar.id}
+												saveScrollPosition={saveScrollPosition}
+											/>
+										) : (
+											false
+										)
 									}
 								/>
 							</Link>

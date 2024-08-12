@@ -6,6 +6,7 @@ import { Text } from '@ui/text';
 import { DialogTrigger } from 'react-aria-components';
 import { useUser } from '@api/useUser';
 import { useDeleteGuitar } from '@api/useDeleteGuitar';
+import { useQueryClient } from '@tanstack/react-query';
 
 export function EditorActionsContainer() {
 	const { data: user } = useUser();
@@ -15,6 +16,7 @@ export function EditorActionsContainer() {
 
 	const { id } = useParams();
 	const history = useHistory();
+	const queryClient = useQueryClient();
 
 	const handleEditClick = () => {
 		history.push(`${EDIT_GUITAR_PATH_DIR}${id}`);
@@ -24,7 +26,8 @@ export function EditorActionsContainer() {
 		await mutate(
 			{ id },
 			{
-				onSuccess: () => {
+				onSuccess: async () => {
+					await queryClient.refetchQueries({ queryKey: ['guitars'] });
 					history.push(ROOT_PATH);
 				},
 			}
