@@ -1,0 +1,25 @@
+.edit-content {
+    .react-aria-TextField {
+        width: 100%;
+
+        .react-aria-TextArea {
+            width: 100%;
+            font-family: "Roboto";
+            font-weight: 400;
+            font-size: 16px;
+            background: var(--bg-secondary-color);
+            color: var(--primary-color);
+            min-height: 140px;
+            border: none;
+            border-radius: 0;
+            outline: none;
+            padding: 14px 18px;
+            line-height: 150%;
+            resize: vertical;
+
+            &[aria-invalid] {
+                border: solid 1px var(--error-color);
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+p {
+    font-family: "Roboto Condensed";
+    font-weight: 400;
+    color: var(--primary-color);
+}
+
+p.text-large {
+    font-size: 20px;
+    color: var(--grey-color);
+    line-height: 120%;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+p.text-medium {
+    position: absolute;
+    top: 378px;
+    color: var(--grey-color);
+    text-transform: uppercase;
+    margin: 2px 30px;
+}
+
+p.text-small {
+    font-size: 16px;
+    line-height: 150%;
+    text-transform: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+p.text-xsmall {
+    font-family: "Roboto";
+    font-size: 16px;
+    line-height: 150%;
+    text-transform: none;
+}
+
+p.text-xlarge {
+    color: #FFFFFF;
+    font-family: "Bebas Neue";
+    font-size: 40px;
+    left: 150%;
+    letter-spacing: 3px;
+    margin: 24px 40px 20px 0;
+}

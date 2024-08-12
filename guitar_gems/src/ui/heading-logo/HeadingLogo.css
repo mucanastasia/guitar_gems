@@ -1,0 +1,59 @@
+.heading-logo {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    h1.heading-logo {
+        font-size: 72px;
+        font-family: "Bebas Neue";
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
+        letter-spacing: 1px;
+        color: var(--primary-color);
+    }
+
+    img.heading-logo {
+        height: 68px;
+        margin: 0 32px 0 0;
+    }
+
+    img.heading-logo:hover {
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+
+    .heading-logo>h1.heading-logo {
+        font-size: 58px;
+    }
+
+    .heading-logo>img.heading-logo {
+        height: 58px;
+        margin: 0 24px 0 0;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+
+    .heading-logo>h1.heading-logo {
+        font-size: 48px;
+    }
+
+    .heading-logo>img.heading-logo {
+        height: 48px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+
+    .heading-logo>h1.heading-logo {
+        font-size: 32px;
+    }
+
+    .heading-logo>img.heading-logo {
+        height: 32px;
+        margin: 0 14px 0 0;
+    }
+}

@@ -1,0 +1,44 @@
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-left: -54px;
+}
+
+.not-found-image {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+}
+
+.not-found-text {
+    color: var(--primary-color);
+    font-family: 'Bebas Neue';
+    font-size: 32px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    padding: 0 0 0 54px;
+    margin: 8px 0;
+}
+
+.back-to-home-link {
+    border: solid 2px var(--primary-color);
+    padding: 12px 84px;
+    font-family: 'Roboto Condensed';
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin: 44px 0 0 54px;
+    transition: all var(--transition-duration) var(--transition-timing-function);
+
+    &:hover {
+        color: var(--secondary-color);
+        background-color: var(--primary-color);
+    }
+}

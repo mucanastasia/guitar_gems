@@ -1,0 +1,9 @@
+span.error-general {
+    height: 16px;
+    font-size: 14px;
+    font-family: "Roboto";
+    font-weight: 400;
+    color: var(--error-color);
+    margin-top: -28px;
+    margin-bottom: 28px;
+}

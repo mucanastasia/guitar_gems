@@ -1,0 +1,1 @@
+export { HeadingLarge, HeadingMedium, HeadingSmall } from './Heading';

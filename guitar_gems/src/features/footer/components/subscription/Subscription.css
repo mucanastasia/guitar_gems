@@ -1,0 +1,72 @@
+footer>.subscribe-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+footer .react-aria-Form {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    .react-aria-TextField {
+        display: flex;
+        flex-direction: row;
+        width: 340px;
+
+        .react-aria-Input {
+            width: 340px;
+        }
+    }
+}
+
+@media only screen and (max-width: 934px) {
+
+    footer .react-aria-Form,
+    footer>.subscribe-section {
+        flex-wrap: wrap;
+        width: 80%;
+        justify-content: center;
+    }
+
+    footer .white-button,
+    footer>.subscribe-section>.react-aria-Form {
+        width: 80%;
+        margin: 0;
+        margin-top: 14px;
+
+        .react-aria-TextField {
+            justify-content: center;
+            width: 100%;
+
+            .react-aria-Input {
+                width: 80%;
+            }
+        }
+    }
+
+    footer>.subscribe-section>p {
+        text-align: center;
+        margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    footer .white-button,
+    footer>.subscribe-section>.react-aria-Form {
+        width: 100%;
+
+        .react-aria-TextField {
+            width: 100%;
+
+            .react-aria-Input {
+                width: 100%;
+            }
+        }
+    }
+}

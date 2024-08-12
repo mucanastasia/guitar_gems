@@ -1,0 +1,44 @@
+.auth-form {
+    .react-aria-Form {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 34px;
+    }
+
+    p {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+
+    .auth-wrapper {
+        .auth-form {
+            max-width: 340px;
+
+            .password-field,
+            .react-aria-TextField,
+            .react-aria-Input,
+            .primary-button {
+                max-width: 340px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 360px) {
+
+    .auth-wrapper {
+        .auth-form {
+            max-width: 280px;
+
+            .password-field,
+            .react-aria-TextField,
+            .react-aria-Input,
+            .primary-button {
+                max-width: 280px;
+            }
+        }
+    }
+}

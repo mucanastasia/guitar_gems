@@ -1,0 +1,135 @@
+.react-aria-ComboBox {
+    color: #000000;
+
+    div {
+        display: flex;
+        align-items: center;
+        margin: 10px 0 0 0;
+
+        .react-aria-Label {
+            width: 198px;
+            margin: 10px 0 0 0;
+        }
+
+        .react-aria-Input {
+            font-family: "Roboto";
+            font-weight: 400;
+            font-size: 16px;
+            margin: 0;
+            width: 482px;
+            background: var(--bg-secondary-color);
+            color: var(--primary-color);
+            border-radius: 0px;
+            border: none;
+            height: 48px;
+            padding: 8px 32px 8px 18px;
+            vertical-align: middle;
+
+            &[data-focused] {
+                outline: none;
+                outline: 2px solid var(--focus-ring-color);
+                outline-offset: -1px;
+            }
+
+            &[aria-invalid] {
+                border: solid 1px var(--error-color);
+            }
+
+            &::placeholder {
+                color: var(--placeholder-color);
+            }
+        }
+
+        .react-aria-Button {
+            border: none;
+            color: #353535;
+            background-color: transparent;
+            forced-color-adjust: none;
+            border-radius: 0px;
+            border: none;
+            margin-left: -36px;
+            width: 28px;
+            height: 28px;
+            padding: 0;
+            cursor: pointer;
+
+            &[data-focus-visible] {
+                outline: none;
+            }
+
+            &[data-focused] {
+                outline: none;
+            }
+
+            span.material-symbols-outlined {
+                position: relative;
+                top: 6px;
+            }
+        }
+    }
+}
+
+.react-aria-Popover[data-trigger=ComboBox] {
+    width: 482px;
+    max-width: 482px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    padding: 4px;
+    border: none;
+    box-shadow: var(--box-shadow);
+
+    .react-aria-ListBox {
+        display: block;
+        width: unset;
+        max-height: inherit;
+        min-height: unset;
+        border: none;
+        padding: 14px;
+
+
+        .react-aria-Header {
+            padding-left: 18px;
+        }
+    }
+
+    .react-aria-ListBoxItem {
+        color: var(--primary-color);
+        padding: 14px;
+        background: var(--background-color);
+        border-radius: 4px;
+        font-family: "Roboto";
+        font-weight: 400;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all var(--transition-duration) var(--transition-timing-function);
+
+        &[data-focus-visible] {
+            outline: none;
+        }
+
+        &[data-hovered] {
+            background: var(--bg-secondary-color);
+        }
+
+        &[data-selected] {
+            font-weight: 600;
+            background: var(--background-color);
+            color: #007292;
+
+            &::before {
+                content: '';
+                alt: ' ';
+                position: absolute;
+                top: 4px;
+                left: 4px;
+            }
+        }
+
+        &[data-focused],
+        &[data-pressed] {
+            background: var(--bg-secondary-color);
+            color: var(--primary-color);
+        }
+    }
+
+}

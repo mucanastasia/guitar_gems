@@ -1,0 +1,9 @@
+img.logo {
+    width: 24px;
+    margin: 0 14px 0 0;
+}
+
+.header-link.logo {
+    opacity: 0.94;
+    padding: 0 32px 0 0;
+}

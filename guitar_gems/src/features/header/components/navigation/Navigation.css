@@ -1,0 +1,16 @@
+nav {
+    display: flex;
+    justify-self: end;
+    align-items: center;
+}
+
+.popover {
+    .accent-button span {
+        transition: all var(--transition-duration) var(--transition-timing-function);
+        color: var(--secondary-color);
+    }
+
+    .accent-button[data-hovered] span {
+        color: var(--primary-color);
+    }
+}
