@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AuthProvider } from '@features/auth/context/AuthContext';
 import { ThemeProvider } from './helpers/ThemeContext';
+import ErrorBoundary from '@helpers/ErrorBoundary';
 import './main.css';
 
 const queryClient = new QueryClient({
@@ -17,14 +18,16 @@ const queryClient = new QueryClient({
 
 const App = () => {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<ThemeProvider>
-				<AuthProvider>
-					<Router />
-				</AuthProvider>
-			</ThemeProvider>
-			<ReactQueryDevtools initialIsOpen={false} />
-		</QueryClientProvider>
+		<ErrorBoundary fallback={<h1>Something went wrong.</h1>}>
+			<QueryClientProvider client={queryClient}>
+				<ThemeProvider>
+					<AuthProvider>
+						<Router />
+					</AuthProvider>
+				</ThemeProvider>
+				<ReactQueryDevtools initialIsOpen={false} />
+			</QueryClientProvider>
+		</ErrorBoundary>
 	);
 };
 

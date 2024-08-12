@@ -11,25 +11,16 @@ export function PrivateRouteContainer({ children, ...rest }) {
 			{...rest}
 			render={({ location }) =>
 				isPending ? (
-					<>
-						{/* {console.log('isPending', location)} */}
-						<Spinner />
-					</>
+					<Spinner />
 				) : user ? (
-					<>
-						{/* {console.log('user', location)} */}
-						{children}
-					</>
+					children
 				) : (
-					<>
-						{/* {console.log('redirect', user)} */}
-						<Redirect
-							to={{
-								pathname: SIGN_IN_PATH,
-								state: { from: location.pathname },
-							}}
-						/>
-					</>
+					<Redirect
+						to={{
+							pathname: SIGN_IN_PATH,
+							state: { from: location.pathname },
+						}}
+					/>
 				)
 			}
 		/>
