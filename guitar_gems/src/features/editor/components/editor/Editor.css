@@ -57,3 +57,126 @@
         }
     }
 }
+
+@media only screen and (max-width: 1162px) {
+    .editor-wrap {
+
+        header.editor {
+            width: 100%;
+        }
+
+        .product-content-container {
+            grid-template-columns: auto;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+
+
+            >div {
+                display: flex;
+                gap: 40px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .editor-wrap {
+        .product-content-container {
+            gap: 0px;
+            padding: 0 20px;
+
+            >div {
+                flex-direction: column;
+                gap: 0px;
+                margin-bottom: 40px;
+            }
+
+            .product-content.edit-content {
+                padding: 0 20px;
+                max-width: 100%;
+
+                .react-aria-TextField {
+                    width: 100%;
+                }
+
+                .react-aria-ComboBox {
+                    .react-aria-Input {
+                        width: 320px;
+                    }
+                }
+
+                .react-aria-Group {
+                    width: 320px;
+                    min-width: 320px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .editor-wrap {
+        header.editor {
+            flex-direction: column;
+            height: 130px;
+            padding: 10px 20px 20px 20px;
+            position: relative;
+        }
+
+        .product-content-container {
+            .product-content.edit-content {
+                padding: 0;
+
+                .react-aria-ComboBox {
+                    >div {
+                        flex-direction: column;
+                        align-items: start;
+                    }
+                }
+
+                .react-aria-DatePicker {
+                    >div {
+                        flex-direction: column;
+                        align-items: start;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 400px) {
+    .editor-wrap {
+        header.editor {
+            padding: 10px 20px 38px 20px;
+            height: fit-content;
+            margin-bottom: 10px;
+
+            .heading-large {
+                display: none;
+            }
+
+            .edit-header-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+            }
+        }
+
+        .product-content-container {
+            .product-card {
+                display: none;
+            }
+
+            .product-content.edit-content {
+                .edit-features {
+                    ul {
+                        width: 320px;
+                    }
+                }
+            }
+        }
+    }
+}
