@@ -10,6 +10,7 @@ import { useDeleteFavourites } from '@api/useDeleteFavourites';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useScrollRestoration } from '@helpers/useScrollRestoration';
+import { useFavourites } from '@api/useFavourites';
 
 export function ProductContainer() {
 	const { id } = useParams();
@@ -38,10 +39,13 @@ export function ProductContainer() {
 
 	const { mutate: addFavourites } = useAddFavourites();
 	const { mutate: deleteFavourites } = useDeleteFavourites();
+	const { refetch: refetchFavourites } = useFavourites();
 
 	const handleFavourites = async () => {
-		!guitar.isFavourite && (await addFavourites({ guitarId: id }));
-		guitar.isFavourite && (await deleteFavourites({ guitarId: id }));
+		const guitarId = id;
+		!guitar.isFavourite && (await addFavourites({ guitarId }));
+		guitar.isFavourite &&
+			(await deleteFavourites({ guitarId }, { onSuccess: refetchFavourites }));
 	};
 
 	if (isPending) {

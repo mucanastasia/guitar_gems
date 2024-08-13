@@ -3,6 +3,7 @@ import { supabase } from '@api/supabaseClient';
 import { useUser } from '@api/useUser';
 
 const getGuitar = async (guitarId, userId) => {
+	await new Promise((resolve) => setTimeout(resolve, 200));
 	let query = supabase
 		.from('guitars')
 		.select(
@@ -62,5 +63,6 @@ export const useGuitarData = (guitarId) => {
 		queryKey: ['data_guitar', guitarId],
 		queryFn: () => getGuitar(guitarId, user?.id),
 		enabled: !!guitarId,
+		refetchOnMount: true,
 	});
 };

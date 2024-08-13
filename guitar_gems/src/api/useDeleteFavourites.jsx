@@ -69,7 +69,7 @@ export const useDeleteFavourites = () => {
 				queryKey: ['list_of_favourites', user?.id],
 				refetchType: 'inactive',
 			});
-			queryClient.invalidateQueries({
+			queryClient.refetchQueries({
 				queryKey: ['data_guitar', variables.guitarId],
 				refetchType: 'inactive',
 			});

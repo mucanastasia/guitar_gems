@@ -7,7 +7,7 @@ const deleteGuitar = async ({ id }) => {
 	if (error) {
 		console.error(error.message);
 	}
-	await new Promise((resolve) => setTimeout(resolve, 200));
+	await new Promise((resolve) => setTimeout(resolve, 300));
 };
 
 export const useDeleteGuitar = () => {
