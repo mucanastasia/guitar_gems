@@ -73,8 +73,24 @@
 
 
             >div {
-                display: flex;
+                display: grid;
+                grid-template-columns: 320px auto;
+                grid-template-rows: repeat(6, 50px);
+                grid-template-areas: 'product-card primary-button'
+                    'product-card delete-button';
                 gap: 40px;
+
+                .product-card {
+                    grid-area: product-card;
+                }
+
+                .primary-button {
+                    grid-area: primary-button;
+                }
+
+                .danger-button {
+                    grid-area: delete-button;
+                }
             }
         }
     }
@@ -87,8 +103,12 @@
             padding: 0 20px;
 
             >div {
-                flex-direction: column;
-                gap: 0px;
+                grid-template-columns: 320px;
+                grid-template-rows: repeat(2, auto);
+                grid-template-areas: 'product-card'
+                    'primary-button'
+                    'delete-button';
+                gap: 0;
                 margin-bottom: 40px;
             }
 
