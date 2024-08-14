@@ -3,7 +3,7 @@ import { FavouritesHeader } from './components/favourites-header';
 import { FavouritesContainer } from './containers/FavouritesContainer';
 import { useUser } from '@api/useUser';
 
-export default function FavouritesPage() {
+export function FavouritesPage() {
 	const { data: user } = useUser();
 
 	const userName = user?.user_metadata.name;

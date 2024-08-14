@@ -1,5 +1,5 @@
 import { EditGuitarContainer } from './containers/EditGuitarContainer';
 
-export default function EditGuitarPage() {
+export function EditGuitarPage() {
 	return <EditGuitarContainer />;
 }

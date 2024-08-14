@@ -20,9 +20,15 @@ import {
 import { useUser } from '@api/useUser';
 import { Spinner } from '@ui/spinner';
 
-const FavouritesPage = lazy(() => import('@features/favourites/FavouritesPage'));
-const EditGuitarPage = lazy(() => import('@features/editor/EditGuitarPage'));
-const AddGuitarPage = lazy(() => import('@features/editor/AddGuitarPage'));
+const FavouritesPage = lazy(() =>
+	import('@features/favourites').then((module) => ({ default: module.FavouritesPage }))
+);
+const EditGuitarPage = lazy(() =>
+	import('@features/editor').then((module) => ({ default: module.EditGuitarPage }))
+);
+const AddGuitarPage = lazy(() =>
+	import('@features/editor').then((module) => ({ default: module.AddGuitarPage }))
+);
 
 export function Router() {
 	const { data: user } = useUser();
