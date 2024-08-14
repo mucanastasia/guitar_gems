@@ -6,14 +6,12 @@ import { Text } from '@ui/text';
 import { DialogTrigger } from 'react-aria-components';
 import { useUser } from '@api/useUser';
 import { useDeleteGuitar } from '@api/useDeleteGuitar';
-import { useGuitars } from '@api/useGuitars';
 
 export function EditorActionsContainer() {
 	const { data: user } = useUser();
 	const isUserEditor = user?.app_metadata.role === 'editor';
 
 	const { mutate, isPending } = useDeleteGuitar();
-	const { refetch: refetchGuitars } = useGuitars();
 
 	const { id } = useParams();
 	const history = useHistory();
@@ -26,10 +24,10 @@ export function EditorActionsContainer() {
 		await mutate(
 			{ id },
 			{
-				onSuccess: async () => {
-					await refetchGuitars();
-					console.log('Guitar deleted');
-					history.push(ROOT_PATH);
+				onSuccess: () => {
+					setTimeout(() => {
+						history.push(ROOT_PATH);
+					}, 200);
 				},
 			}
 		);
@@ -50,7 +48,7 @@ export function EditorActionsContainer() {
 				<Popover>
 					<Text size="xsmall">Are you sure you want to delete this guitar?</Text>
 					<Button state="danger" onClick={handleDeleteClick} disabled={isPending}>
-						Yes, delete
+						{isPending ? 'Deleting...' : 'Yes, delete'}
 					</Button>
 				</Popover>
 			</DialogTrigger>

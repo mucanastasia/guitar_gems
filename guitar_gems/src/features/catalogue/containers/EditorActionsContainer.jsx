@@ -64,7 +64,7 @@ export function EditorActionsContainer({ guitarId, saveScrollPosition }) {
 						state="danger"
 						onClick={() => deleteGuitar(guitarId)}
 						disabled={isPending}>
-						Yes, delete
+						{isPending ? 'Deleting...' : 'Yes, delete'}
 					</Button>
 				</Popover>
 			</DialogTrigger>

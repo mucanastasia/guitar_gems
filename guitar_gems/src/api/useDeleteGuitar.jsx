@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 import { useUser } from '@api/useUser';
+import { useRouteMatch } from 'react-router-dom';
+import { GUITAR_PATH } from '@features/router/constants/routePaths';
 
 const deleteGuitar = async ({ id }) => {
 	const { error } = await supabase.from('guitars').delete().eq('id', id);
@@ -13,6 +15,7 @@ const deleteGuitar = async ({ id }) => {
 export const useDeleteGuitar = () => {
 	const queryClient = useQueryClient();
 	const { data: user } = useUser();
+	const isGuitarPage = Boolean(useRouteMatch(GUITAR_PATH));
 
 	return useMutation({
 		mutationKey: ['deleteGuitar'],
@@ -21,6 +24,10 @@ export const useDeleteGuitar = () => {
 			queryClient.invalidateQueries({
 				queryKey: ['guitars'],
 			});
+			isGuitarPage &&
+				queryClient.refetchQueries({
+					queryKey: ['guitars'],
+				});
 			queryClient.refetchQueries({
 				queryKey: ['favourites_page', user?.id],
 			});
