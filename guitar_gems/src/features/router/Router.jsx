@@ -4,6 +4,7 @@ import { PrivateRouteContainer } from './containers/PrivateRouteContainer';
 import { ScrollToTop } from '@helpers/ScrollToTop';
 import { AppLayoutContainer } from './containers/AppLayoutContainer';
 import { CataloguePage } from '@features/catalogue';
+import { ProductPage } from '@features/product';
 import {
 	ROOT_PATH,
 	SIGN_IN_PATH,
@@ -22,23 +23,15 @@ const FavouritesPage = lazy(async () => ({
 const EditGuitarPage = lazy(async () => ({
 	default: (await import('@features/editor')).EditGuitarPage,
 }));
-
 const AddGuitarPage = lazy(async () => ({
 	default: (await import('@features/editor')).AddGuitarPage,
 }));
-
 const SignInPage = lazy(async () => ({
 	default: (await import('@features/auth')).SignInPage,
 }));
-
 const SignUpPage = lazy(async () => ({
 	default: (await import('@features/auth')).SignUpPage,
 }));
-
-const ProductPage = lazy(async () => ({
-	default: (await import('@features/product')).ProductPage,
-}));
-
 const NotFoundPage = lazy(async () => ({
 	default: (await import('@features/not-found')).NotFoundPage,
 }));
