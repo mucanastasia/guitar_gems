@@ -1,19 +1,32 @@
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useWindowWidth } from '@helpers/useWindowWidth';
 import { useSelectedFilters } from '../contexts/SelectedFiltersContext';
 import { CatalogueHeader } from '../components/catalogue-header';
 import { useDrawer } from '../contexts/DrawerContext';
+import { useUrlState } from '../helpers/useUrlState';
 
 export function CatalogueHeaderContainer() {
 	const { selectedFilters, setSelectedFilters } = useSelectedFilters();
+	const { updateURL } = useUrlState();
 	const { setIsOpen } = useDrawer();
 
 	const isMobile = useWindowWidth();
 	const searchRef = useRef();
+	const [query, setQuery] = useState('');
+
+	//TODO: Is it better to implement Instant search or as it is now?
+
+	useEffect(() => {
+		if (selectedFilters.query) {
+			setQuery(selectedFilters.query);
+		}
+	}, [selectedFilters.query]);
 
 	const handleSubmit = () => {
 		const value = searchRef.current.value.trim();
-		setSelectedFilters({ ...selectedFilters, query: value });
+		const newFilters = { ...selectedFilters, query: value };
+		setSelectedFilters(newFilters);
+		updateURL(newFilters);
 	};
 
 	const handleClearOrEscape = (e) => {
@@ -21,7 +34,9 @@ export function CatalogueHeaderContainer() {
 			return;
 		}
 		if (selectedFilters.query) {
-			setSelectedFilters({ ...selectedFilters, query: '' });
+			const newFilters = { ...selectedFilters, query: '' };
+			setSelectedFilters(newFilters);
+			updateURL(newFilters);
 		}
 	};
 
@@ -35,6 +50,8 @@ export function CatalogueHeaderContainer() {
 		handleSubmit,
 		handleClearOrEscape,
 		handleFiltersClick,
+		query,
+		setQuery,
 	};
 
 	return <CatalogueHeader {...props} />;

@@ -6,8 +6,15 @@ import { PROJECT_NAME } from '../../constants/catalogue';
 import './CatalogueHeader.css';
 
 export function CatalogueHeader({ ...props }) {
-	const { isMobile, searchRef, handleSubmit, handleClearOrEscape, handleFiltersClick } =
-		props;
+	const {
+		isMobile,
+		searchRef,
+		handleSubmit,
+		handleClearOrEscape,
+		handleFiltersClick,
+		query,
+		setQuery,
+	} = props;
 
 	return (
 		<div className="catalogue-page-header">
@@ -23,6 +30,8 @@ export function CatalogueHeader({ ...props }) {
 						<Label>Filters</Label>
 					</div>
 					<SearchField
+						value={query}
+						onChange={setQuery}
 						onSubmit={handleSubmit}
 						onClear={handleClearOrEscape}
 						searchRef={searchRef}

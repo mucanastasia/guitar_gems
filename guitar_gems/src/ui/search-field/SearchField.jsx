@@ -6,10 +6,12 @@ import {
 import { Icon } from '@ui/icon';
 import './SearchField.css';
 
-export function SearchField({ onSubmit, onClear, searchRef }) {
+export function SearchField({ value, onChange, onSubmit, onClear, searchRef }) {
 	return (
 		<AriaSearchField
 			aria-label="Search"
+			value={value}
+			onChange={onChange}
 			onSubmit={onSubmit}
 			onClear={onClear}
 			onKeyDown={onClear}>
