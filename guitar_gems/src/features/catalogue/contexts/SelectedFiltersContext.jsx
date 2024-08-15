@@ -26,6 +26,7 @@ export const SelectedFiltersProvider = ({ children }) => {
 				selectedFilters,
 				setSelectedFilters,
 				handleResetFilters,
+				initialFilters,
 			}}>
 			{children}
 		</SelectedFiltersContext.Provider>

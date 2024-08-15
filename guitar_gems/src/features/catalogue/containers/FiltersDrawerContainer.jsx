@@ -2,17 +2,20 @@ import { useSelectedFilters } from '../contexts/SelectedFiltersContext';
 import { useDrawerSwipe } from '../helpers/useDrawerSwipe';
 import { FiltersDrawer } from '../components/filters-drawer';
 import { useDrawer } from '../contexts/DrawerContext';
+import { useUrlState } from '../helpers/useUrlState';
 
 export function FiltersDrawerContainer({ children }) {
-	const { handleResetFilters } = useSelectedFilters();
+	const { handleResetFilters, initialFilters } = useSelectedFilters();
 	const { isOpen, setIsOpen } = useDrawer();
 	const { handleTouchStart, handleTouchMove, handleTouchEnd } = useDrawerSwipe(setIsOpen);
+	const { updateURL } = useUrlState();
 
 	const handleFiltersClose = (e) => {
 		e.preventDefault();
 		e.stopPropagation();
 		setIsOpen(false);
 		handleResetFilters();
+		updateURL(initialFilters);
 	};
 
 	const handleFiltersApply = () => {
@@ -21,6 +24,7 @@ export function FiltersDrawerContainer({ children }) {
 
 	const handleFiltersClear = () => {
 		handleResetFilters();
+		updateURL(initialFilters);
 	};
 
 	const props = {
