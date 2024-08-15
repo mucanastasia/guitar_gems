@@ -1,4 +1,4 @@
-import { Logo } from '@ui/link';
+import { LogoContainer } from '../../containers/LogoContainer';
 import { NavigationContainer } from '../../containers/NavigationContainer';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
 import './Header.css';
@@ -6,7 +6,7 @@ import './Header.css';
 export function Header() {
 	return (
 		<header>
-			<Logo path={ROOT_PATH} />
+			<LogoContainer path={ROOT_PATH} />
 			<NavigationContainer />
 		</header>
 	);

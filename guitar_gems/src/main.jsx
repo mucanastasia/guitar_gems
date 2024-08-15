@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AuthProvider } from '@features/auth/context/AuthContext';
 import { ThemeProvider } from './helpers/ThemeContext';
+import { SelectedFiltersProvider } from '@features/catalogue/contexts/SelectedFiltersContext';
 import ErrorBoundary from '@helpers/ErrorBoundary';
 import './main.css';
 
@@ -24,7 +25,9 @@ const App = () => {
 			<QueryClientProvider client={queryClient}>
 				<ThemeProvider>
 					<AuthProvider>
-						<Router />
+						<SelectedFiltersProvider>
+							<Router />
+						</SelectedFiltersProvider>
 					</AuthProvider>
 				</ThemeProvider>
 				<ReactQueryDevtools initialIsOpen={false} />

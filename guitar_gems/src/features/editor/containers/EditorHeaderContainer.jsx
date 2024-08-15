@@ -30,7 +30,7 @@ export function EditorHeaderContainer() {
 	const handleCancelClick = () => {
 		if (location.state?.from) {
 			restoreScrollPosition();
-			history.push(location.state?.from);
+			history.goBack();
 			return;
 		}
 		history.push(`${GUITAR_PATH_DIR}${id}`);
