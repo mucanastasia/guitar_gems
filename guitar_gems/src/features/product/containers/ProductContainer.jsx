@@ -1,7 +1,7 @@
 import { Product } from '../components/product';
 import { useParams } from 'react-router-dom';
 import { Spinner } from '@ui/spinner';
-import { NotFoundPage } from '@features/not-found';
+import { NotFoundPage } from '@features/error';
 import { useTitle } from '@helpers/useTitle';
 import { useGuitarData } from '@api/useGuitarData';
 import { useUser } from '@api/useUser';

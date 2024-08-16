@@ -33,7 +33,7 @@ const SignUpPage = lazy(async () => ({
 	default: (await import('@features/auth')).SignUpPage,
 }));
 const NotFoundPage = lazy(async () => ({
-	default: (await import('@features/not-found')).NotFoundPage,
+	default: (await import('@features/error')).NotFoundPage,
 }));
 
 export function Router() {

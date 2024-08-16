@@ -5,10 +5,10 @@ import './NotFound.css';
 
 export function NotFound() {
 	return (
-		<div className="not-found-container">
+		<div className="error-container">
 			<img src={notFoundImg} alt="404 image" className="not-found-image" />
-			<h1 className="not-found-text">Space jam gone wrong? </h1>
-			<h1 className="not-found-text">{`Let's sync back to home.`}</h1>
+			<h1 className="error-text">Space jam gone wrong? </h1>
+			<h1 className="error-text">{`Let's sync back to home.`}</h1>
 			<Link to={ROOT_PATH} className="back-to-home-link">
 				Back to home
 			</Link>

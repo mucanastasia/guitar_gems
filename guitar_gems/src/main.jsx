@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AuthProvider } from '@features/auth/context/AuthContext';
 import { ThemeProvider } from './helpers/ThemeContext';
 import { SelectedFiltersProvider } from '@features/catalogue/contexts/SelectedFiltersContext';
+import { ErrorPage } from '@features/error';
 import ErrorBoundary from '@helpers/ErrorBoundary';
 import './main.css';
 
@@ -22,7 +23,7 @@ const queryClient = new QueryClient({
 
 const App = () => {
 	return (
-		<ErrorBoundary fallback={<h1>Something went wrong.</h1>}>
+		<ErrorBoundary fallback={<ErrorPage />}>
 			<QueryClientProvider client={queryClient}>
 				<ThemeProvider>
 					<AuthProvider>

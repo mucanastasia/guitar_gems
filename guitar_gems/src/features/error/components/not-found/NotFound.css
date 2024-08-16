@@ -1,4 +1,4 @@
-.not-found-container {
+.error-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -14,7 +14,7 @@
     height: auto;
 }
 
-.not-found-text {
+.error-text {
     color: var(--primary-color);
     font-family: 'Bebas Neue';
     font-size: 32px;
