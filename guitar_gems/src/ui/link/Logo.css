@@ -5,5 +5,6 @@ img.logo {
 
 .header-link.logo {
     opacity: 0.94;
-    padding: 0 32px 0 0;
+    padding: 0;
+    margin: 0 32px 0 0;
 }
