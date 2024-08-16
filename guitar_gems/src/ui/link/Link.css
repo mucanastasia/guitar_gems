@@ -1,7 +1,8 @@
 .header-link {
     color: #FFFFFF;
     opacity: 0.8;
-    padding: 0 0 0 32px;
+    padding: 0;
+    margin: 0 0 0 32px;
     background-color: transparent;
     text-decoration: none;
     border: none;
