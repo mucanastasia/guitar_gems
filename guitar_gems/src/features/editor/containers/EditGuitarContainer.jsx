@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { EditorDataProvider } from '../contexts/EditorDataContext';
-import { NotFoundPage } from '@features/not-found';
+import { NotFoundPage } from '@features/error';
 import { EditorContainer } from './EditorContainer';
 import { useTitle } from '@helpers/useTitle';
 import { EDIT_GUITAR_TITLE } from '../constants/editor';
