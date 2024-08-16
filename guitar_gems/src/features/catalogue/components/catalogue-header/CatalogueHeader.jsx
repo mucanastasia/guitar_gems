@@ -25,7 +25,8 @@ export function CatalogueHeader({ ...props }) {
 				<div className="wrap">
 					<div
 						className="filters-label"
-						onClick={isMobile ? handleFiltersClick : undefined}>
+						onClick={isMobile ? handleFiltersClick : undefined}
+						aria-label={isMobile ? 'Open filters button' : undefined}>
 						<Icon name="tune" />
 						<Label>Filters</Label>
 					</div>
