@@ -1,6 +1,6 @@
 import { Button } from '@ui/button';
 import { HeadingMedium } from '@ui/heading';
-import { Icon } from '@ui/icon';
+import { IconButton } from '@ui/icon';
 import { EditorField } from '@ui/editor-field';
 import { HEADING_FEATURES } from '@features/product/constants/productHeadingNames';
 import './GuitarFeatures.css';
@@ -25,7 +25,11 @@ export function GuitarFeatures({ ...props }) {
 					placeholder="Fill in a feature"
 					required={false}
 				/>
-				<Icon name="delete" size="medium" onClick={() => handleFeatureDelete(index)} />
+				<IconButton
+					name="delete"
+					size="medium"
+					onClick={() => handleFeatureDelete(index)}
+				/>
 			</li>
 		));
 	};

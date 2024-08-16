@@ -1,9 +1,5 @@
-import {
-	SearchField as AriaSearchField,
-	Input,
-	Button as AriaButton,
-} from 'react-aria-components';
-import { Icon } from '@ui/icon';
+import { SearchField as AriaSearchField, Input } from 'react-aria-components';
+import { IconButton } from '@ui/icon';
 import './SearchField.css';
 
 export function SearchField({ value, onChange, onSubmit, onClear, searchRef }) {
@@ -15,11 +11,9 @@ export function SearchField({ value, onChange, onSubmit, onClear, searchRef }) {
 			onSubmit={onSubmit}
 			onClear={onClear}
 			onKeyDown={onClear}>
-			<Icon name="search" onClick={onSubmit} />
+			<IconButton className="icon-search-button" name="search" onClick={onSubmit} />
 			<Input aria-label="Search" placeholder="Search" ref={searchRef} type="text" />
-			<AriaButton>
-				<Icon name="close_small" color="grey" />
-			</AriaButton>
+			<IconButton className="cancel-icon-button" name="close_small" color="grey" />
 		</AriaSearchField>
 	);
 }

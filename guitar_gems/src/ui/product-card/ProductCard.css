@@ -51,8 +51,8 @@
             }
         }
 
-        .material-symbols-outlined,
-        .material-symbols-filled.outlined {
+        button.material-symbols-outlined,
+        button.material-symbols-filled.outlined {
             transition: all var(--transition-duration) var(--transition-timing-function);
             font-size: 24px;
             color: var(--primary-color);
@@ -67,7 +67,9 @@
             }
 
             &.filled,
-            &[data-selected] {
+            &[data-selected],
+            &.filled>span.material-symbols-outlined,
+            &[data-selected]>span.material-symbols-outlined {
                 font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
                 color: var(--primary-color);
                 opacity: 1;

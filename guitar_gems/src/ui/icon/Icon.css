@@ -36,3 +36,10 @@
 .material-symbols-outlined.small {
     font-size: 22px;
 }
+
+.icon-button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}

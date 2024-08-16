@@ -1,5 +1,5 @@
 import { TextField as AriaTextField, Input } from 'react-aria-components';
-import { Icon } from '@ui/icon';
+import { IconButton } from '@ui/icon';
 import './PasswordField.css';
 
 export function PasswordField({
@@ -15,7 +15,7 @@ export function PasswordField({
 	return (
 		<AriaTextField className="password-field" name={name} type={type} aria-label={name}>
 			<Input placeholder={name} ref={refValue} onChange={onChange} onBlur={onBlur} />
-			<Icon
+			<IconButton
 				name={type === 'password' ? 'visibility' : 'visibility_off'}
 				color="grey"
 				onClick={onIconClick}

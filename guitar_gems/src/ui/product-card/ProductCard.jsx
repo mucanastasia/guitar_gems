@@ -1,5 +1,6 @@
 import { HeadingSmall } from '@ui/heading';
 import { Text } from '@ui/text';
+import { IconButton } from '@ui/icon';
 import { Spinner } from '@ui/spinner';
 import './ProductCard.css';
 
@@ -16,15 +17,15 @@ export function ProductCard({
 		<section className="product-card">
 			<div className="product-card-actions">
 				{onFavouriteClick && (
-					<span
+					<IconButton
+						name="favorite"
+						size="medium"
 						className={`material-symbols-outlined ${isFavourite ? 'filled' : 'outlined'}`}
 						onClick={(e) => {
-							e.preventDefault();
-							e.stopPropagation();
 							onFavouriteClick();
-						}}>
-						favorite
-					</span>
+						}}
+						preventDefault
+					/>
 				)}
 				{EditorActions && (
 					<div className="product-card-editor-actions" id="product-card-editor-actions">

@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { EDIT_GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 import { Button } from '@ui/button';
-import { Button as AriaButton } from 'react-aria-components';
+import { IconButton } from '@ui/icon';
 import { Popover } from '@ui/popover';
 import { Text } from '@ui/text';
 import { DialogTrigger } from 'react-aria-components';
@@ -39,25 +39,23 @@ export function EditorActionsContainer({ guitarId, saveScrollPosition }) {
 
 	return (
 		<>
-			<span
+			<IconButton
+				name="stylus"
+				size="medium"
 				className="material-symbols-outlined outlined"
-				onClick={(e) => {
-					e.preventDefault();
-					e.stopPropagation();
+				onClick={() => {
 					editGuitar(guitarId);
 					saveScrollPosition();
-				}}>
-				stylus
-			</span>
+				}}
+				preventDefault
+			/>
 			<DialogTrigger>
-				<AriaButton
+				<IconButton
+					name="delete"
+					size="medium"
 					className="material-symbols-outlined outlined"
-					onClick={(e) => {
-						e.preventDefault();
-						e.stopPropagation();
-					}}>
-					delete
-				</AriaButton>
+					preventDefault
+				/>
 				<Popover>
 					<Text size="xsmall">Are you sure you want to delete this guitar?</Text>
 					<Button
