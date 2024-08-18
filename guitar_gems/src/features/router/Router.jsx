@@ -5,11 +5,13 @@ import { ScrollToTop } from '@helpers/ScrollToTop';
 import { AppLayoutContainer } from './containers/AppLayoutContainer';
 import { CataloguePage } from '@features/catalogue';
 import { ProductPage } from '@features/product';
+import { ComparePage } from '@features/comparison';
 import {
 	ROOT_PATH,
 	SIGN_IN_PATH,
 	SIGN_UP_PATH,
 	GUITAR_PATH,
+	COMPARE_PATH,
 	FAVOURITES_PATH,
 	ADD_GUITAR_PATH,
 	EDIT_GUITAR_PATH,
@@ -52,15 +54,19 @@ export function Router() {
 						</Route>
 
 						<Route path={SIGN_IN_PATH}>
-							{!user ? <SignInPage /> : <Redirect push to="/" />}
+							{!user ? <SignInPage /> : <Redirect push to={ROOT_PATH} />}
 						</Route>
 
 						<Route path={SIGN_UP_PATH}>
-							{!user ? <SignUpPage /> : <Redirect push to="/" />}
+							{!user ? <SignUpPage /> : <Redirect push to={ROOT_PATH} />}
 						</Route>
 
 						<Route path={GUITAR_PATH}>
 							<ProductPage />
+						</Route>
+
+						<Route path={COMPARE_PATH}>
+							<ComparePage />
 						</Route>
 
 						<PrivateRouteContainer path={FAVOURITES_PATH}>

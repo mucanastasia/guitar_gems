@@ -12,6 +12,8 @@ export const EDIT_GUITAR_PATH = '/editor/edit-guitar/:id';
 
 export const FAVOURITES_PATH = '/my-picks';
 
+export const COMPARE_PATH = '/compare';
+
 //directory paths
 export const GUITAR_PATH_DIR = '/guitars/';
 

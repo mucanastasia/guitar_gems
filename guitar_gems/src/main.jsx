@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AuthProvider } from '@features/auth/context/AuthContext';
 import { ThemeProvider } from './helpers/ThemeContext';
 import { SelectedFiltersProvider } from '@features/catalogue/contexts/SelectedFiltersContext';
+import { ComparisonProvider } from '@features/comparison/contexts/ComparisonContext';
 import { ErrorPage } from '@features/error';
 import ErrorBoundary from '@helpers/ErrorBoundary';
 import './main.css';
@@ -28,11 +29,13 @@ const App = () => {
 				<ThemeProvider>
 					<AuthProvider>
 						<SelectedFiltersProvider>
-							<Router />
+							<ComparisonProvider>
+								<Router />
+							</ComparisonProvider>
 						</SelectedFiltersProvider>
 					</AuthProvider>
 				</ThemeProvider>
-				<ReactQueryDevtools initialIsOpen={false} />
+				{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 			</QueryClientProvider>
 		</ErrorBoundary>
 	);

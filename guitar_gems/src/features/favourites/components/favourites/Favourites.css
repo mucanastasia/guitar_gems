@@ -12,6 +12,14 @@
         gap: 24px;
         margin: 20px 0;
         content-visibility: auto;
+
+        .product-card {
+            .product-card-editor-actions {
+                .none {
+                    display: none;
+                }
+            }
+        }
     }
 }
 

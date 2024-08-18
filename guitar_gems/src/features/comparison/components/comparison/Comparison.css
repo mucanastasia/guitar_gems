@@ -1,0 +1,71 @@
+.comparison-container {
+    display: flex;
+    flex-direction: column;
+    gap: 46px;
+    /* width: 1360px; */
+    margin: 60px auto 100px 40px;
+
+    .heading-logo {
+        margin-bottom: -20px;
+    }
+
+    .cards {
+        display: flex;
+        gap: 80px;
+        padding: 40px 0 40px 240px;
+        border-bottom: 1px solid var(--divider-color);
+        border-top: 1px solid var(--divider-color);
+    }
+
+    .specs {
+        display: flex;
+        gap: 80px;
+        padding-bottom: 60px;
+        border-bottom: 1px solid var(--divider-color);
+
+        .specs-labels {
+            width: 160px;
+            display: flex;
+            flex-direction: column;
+            gap: 37px;
+            margin: 19px 12px 20px 0;
+        }
+
+        .specs-content {
+            display: flex;
+            flex-direction: column;
+            margin-left: 30px;
+            width: 320px;
+        }
+
+    }
+
+    .features {
+        display: flex;
+        gap: 80px;
+
+        .features-label {
+            width: 160px;
+            margin: 14px 0 60px 0;
+        }
+
+        .features-content {
+
+            ul {
+                width: 320px;
+                margin: 0 0 100px 0;
+                padding: 0 30px;
+
+                li {
+                    font-size: 14px;
+                    color: var(--primary-color);
+
+                    p {
+                        font-size: 14px;
+                    }
+                }
+            }
+
+        }
+    }
+}

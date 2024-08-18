@@ -15,11 +15,12 @@ export function Favourites({
 	lastCardRef,
 	isFetching,
 	deleteFavourites,
+	EditorActions,
 }) {
 	if ((!isFetching && favourites.length === 0) || isError) {
 		return (
 			<div className="empty-favourites">
-				<Text size="large">{`You haven't added any guitars to your picks, yet!`}</Text>
+				<Text size="large">{`You haven't added any guitars to your picks yet!`}</Text>
 				<Text size="small">
 					<LinkAuth path={ROOT_PATH} name="Explore the catalogue" />
 				</Text>
@@ -38,10 +39,7 @@ export function Favourites({
 								<Link
 									key={guitar.id}
 									to={`${GUITAR_PATH_DIR}${guitar.id}`}
-									ref={lastCardRef}
-									// target="_blank"
-									// rel="noopener noreferrer"
-								>
+									ref={lastCardRef}>
 									<ProductCard
 										brand={guitar.brand_name}
 										name={guitar.name}
@@ -50,17 +48,15 @@ export function Favourites({
 										onFavouriteClick={() => {
 											deleteFavourites({ guitarId: guitar.id });
 										}}
+										EditorActions={
+											EditorActions && <EditorActions id={guitar.id} name={guitar.name} />
+										}
 									/>
 								</Link>
 							);
 						} else {
 							return (
-								<Link
-									key={guitar.id}
-									to={`${GUITAR_PATH_DIR}${guitar.id}`}
-									// target="_blank"
-									// rel="noopener noreferrer"
-								>
+								<Link key={guitar.id} to={`${GUITAR_PATH_DIR}${guitar.id}`}>
 									<ProductCard
 										brand={guitar.brand_name}
 										name={guitar.name}
@@ -69,6 +65,9 @@ export function Favourites({
 										onFavouriteClick={() => {
 											deleteFavourites({ guitarId: guitar.id });
 										}}
+										EditorActions={
+											EditorActions && <EditorActions id={guitar.id} name={guitar.name} />
+										}
 									/>
 								</Link>
 							);
