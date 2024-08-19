@@ -4,4 +4,4 @@ export const COMPARE_BUTTON = 'Compare';
 
 export const COMPARE_ACTION_NAME = 'Compare';
 
-export const COMPARE_REMOVE_NAME = 'Remove from Compare';
+export const COMPARE_REMOVE_NAME = 'Delete from Compare';

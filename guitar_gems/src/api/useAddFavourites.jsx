@@ -3,7 +3,6 @@ import { supabase } from '@api/supabaseClient';
 import { useUser } from '@api/useUser';
 
 const addToFavourites = async ({ guitarId, userId }) => {
-	// await new Promise((resolve) => setTimeout(resolve, 400));
 	const { data, error } = await supabase
 		.from('favourites')
 		.upsert([{ user_id: userId, guitar_id: guitarId }])

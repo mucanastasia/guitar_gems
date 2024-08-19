@@ -5,8 +5,12 @@ import { ProductContentContainer } from '../../containers/ProductContentContaine
 import { Breadcrumbs } from '@ui/breadcrumbs';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
 import { Button } from '@ui/button';
-import './Product.css';
+import {
+	ADD_TO_FAVOURITES_NAME,
+	DELETE_FROM_FAVOURITES_NAME,
+} from '../../constants/toggleFavouritesNames';
 import { CompareActionContainer } from '@features/comparison/containers/CompareActionContainer';
+import './Product.css';
 
 export function Product({ ...props }) {
 	const { id, name, brand, img, isLoggedIn, handleFavourites, isFavorite } = props;
@@ -23,7 +27,7 @@ export function Product({ ...props }) {
 							<Button
 								state={isFavorite ? 'toggle-accent' : 'toggle-primary'}
 								onClick={handleFavourites}>
-								{isFavorite ? 'Delete from my picks' : 'Add to my picks'}
+								{isFavorite ? DELETE_FROM_FAVOURITES_NAME : ADD_TO_FAVOURITES_NAME}
 							</Button>
 						)}
 
