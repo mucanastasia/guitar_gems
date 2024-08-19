@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Router } from '@features/router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+//import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AuthProvider } from '@features/auth/context/AuthContext';
 import { ThemeProvider } from './helpers/ThemeContext';
 import { SelectedFiltersProvider } from '@features/catalogue/contexts/SelectedFiltersContext';

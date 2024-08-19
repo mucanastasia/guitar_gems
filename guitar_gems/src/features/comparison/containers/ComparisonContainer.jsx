@@ -9,6 +9,7 @@ import { useCompareGuitars } from '@api/useCompareGuitars';
 import { getComparisonFromLS, setComparisonToLS } from '../helpers/localstorageCompare';
 import { EmptyCompare } from '../components/empty-compare';
 import { useUser } from '@api/useUser';
+import { COMPARE_REMOVE_NAME } from '../constants/comparison';
 
 export function ComparisonContainer() {
 	const guitarsFromLS = getComparisonFromLS() || [];
@@ -49,7 +50,7 @@ export function ComparisonContainer() {
 					}}
 					preventDefault
 				/>
-				<Tooltip>Delete from comparison</Tooltip>
+				<Tooltip>{COMPARE_REMOVE_NAME}</Tooltip>
 			</TooltipTrigger>
 		);
 	};

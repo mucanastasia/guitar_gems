@@ -2,6 +2,7 @@ import { useFavourites } from '@api/useFavourites';
 import { Favourites } from '../components/favourites';
 import { useInfiniteScroll } from '@features/catalogue/helpers/useInfiniteScroll';
 import { useDeleteFavourites } from '@api/useDeleteFavourites';
+import { useScrollRestoration } from '@helpers/useScrollRestoration';
 
 export function FavouritesContainer() {
 	const {
@@ -19,51 +20,7 @@ export function FavouritesContainer() {
 
 	const { mutate: deleteFavourites } = useDeleteFavourites();
 
-	// const { comparison, setComparison } = useComparison();
-
-	// const findGuitarInCompare = useCallback(
-	// 	(id) => {
-	// 		return comparison.find((guitar) => guitar.id === id) !== undefined;
-	// 	},
-	// 	[comparison]
-	// );
-
-	// const addToCompare = (id, name) => {
-	// 	if (comparison.length >= 3) {
-	// 		return;
-	// 	} else {
-	// 		const newComparison = [...comparison, { id, name }];
-	// 		setComparison(newComparison);
-	// 		setComparisonToLS(newComparison);
-	// 	}
-	// };
-
-	// const removeFromCompare = (id) => {
-	// 	const newComparison = comparison.filter((guitar) => guitar.id !== id);
-	// 	setComparison(newComparison);
-	// 	setComparisonToLS(newComparison);
-	// };
-
-	// const CompareActionContainer = ({ id, name }) => {
-	// 	return (
-	// 		<TooltipTrigger>
-	// 			<IconButton
-	// 				name="compare"
-	// 				size="medium"
-	// 				className={`material-symbols-outlined ${
-	// 					findGuitarInCompare(id) || comparison.length === 3 ? 'none' : 'outlined'
-	// 				}`}
-	// 				onClick={() => {
-	// 					findGuitarInCompare(id) ? removeFromCompare(id) : addToCompare(id, name);
-	// 				}}
-	// 				preventDefault
-	// 			/>
-	// 			<Tooltip>{`${
-	// 				findGuitarInCompare(id) ? 'Delete from' : 'Add for'
-	// 			} comparison`}</Tooltip>
-	// 		</TooltipTrigger>
-	// 	);
-	// };
+	const { saveScrollPosition } = useScrollRestoration();
 
 	return (
 		<Favourites
@@ -73,6 +30,7 @@ export function FavouritesContainer() {
 			isFetchingNextPage={isFetchingNextPage}
 			lastCardRef={lastCardRef}
 			deleteFavourites={deleteFavourites}
+			saveScrollPosition={saveScrollPosition}
 		/>
 	);
 }

@@ -27,7 +27,10 @@ export function GuitarList({ ...props }) {
 						return (
 							<Link
 								key={guitar.id}
-								to={`${GUITAR_PATH_DIR}${guitar.id}`}
+								to={{
+									pathname: `${GUITAR_PATH_DIR}${guitar.id}`,
+									state: { from: location.pathname },
+								}}
 								ref={lastCardRef}
 								onClick={saveScrollPosition}>
 								<ProductCard
@@ -55,7 +58,10 @@ export function GuitarList({ ...props }) {
 						return (
 							<Link
 								key={guitar.id}
-								to={`${GUITAR_PATH_DIR}${guitar.id}`}
+								to={{
+									pathname: `${GUITAR_PATH_DIR}${guitar.id}`,
+									state: { from: location.pathname },
+								}}
 								onClick={saveScrollPosition}>
 								<ProductCard
 									brand={guitar.brand_name}

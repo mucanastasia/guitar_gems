@@ -5,7 +5,6 @@ import { ScrollToTop } from '@helpers/ScrollToTop';
 import { AppLayoutContainer } from './containers/AppLayoutContainer';
 import { CataloguePage } from '@features/catalogue';
 import { ProductPage } from '@features/product';
-import { ComparePage } from '@features/comparison';
 import {
 	ROOT_PATH,
 	SIGN_IN_PATH,
@@ -33,6 +32,9 @@ const SignInPage = lazy(async () => ({
 }));
 const SignUpPage = lazy(async () => ({
 	default: (await import('@features/auth')).SignUpPage,
+}));
+const ComparePage = lazy(async () => ({
+	default: (await import('@features/comparison')).ComparePage,
 }));
 const NotFoundPage = lazy(async () => ({
 	default: (await import('@features/error')).NotFoundPage,

@@ -17,6 +17,7 @@ export function Favourites({ ...props }) {
 		lastCardRef,
 		isFetching,
 		deleteFavourites,
+		saveScrollPosition,
 	} = props;
 
 	if ((!isFetching && favourites.length === 0) || isError) {
@@ -41,8 +42,12 @@ export function Favourites({ ...props }) {
 							return (
 								<Link
 									key={guitar.id}
-									to={`${GUITAR_PATH_DIR}${guitar.id}`}
-									ref={lastCardRef}>
+									to={{
+										pathname: `${GUITAR_PATH_DIR}${guitar.id}`,
+										state: { from: location.pathname },
+									}}
+									ref={lastCardRef}
+									onClick={saveScrollPosition}>
 									<ProductCard
 										brand={guitar.brand_name}
 										name={guitar.name}
@@ -61,7 +66,13 @@ export function Favourites({ ...props }) {
 							);
 						} else {
 							return (
-								<Link key={guitar.id} to={`${GUITAR_PATH_DIR}${guitar.id}`}>
+								<Link
+									key={guitar.id}
+									to={{
+										pathname: `${GUITAR_PATH_DIR}${guitar.id}`,
+										state: { from: location.pathname },
+									}}
+									onClick={saveScrollPosition}>
 									<ProductCard
 										brand={guitar.brand_name}
 										name={guitar.name}
