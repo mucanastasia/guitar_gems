@@ -2,8 +2,19 @@
     display: flex;
     flex-direction: column;
     gap: 46px;
-    /* width: 1360px; */
-    margin: 60px auto 100px 40px;
+    margin: 20px 0 40px 0;
+
+    &:has(.cards>.product-card:nth-child(3):last-child) {
+        width: 1360px;
+    }
+
+    &:has(.cards>.product-card:nth-child(2):last-child) {
+        width: 960px;
+    }
+
+    &:has(.cards>.product-card:nth-child(1):last-child) {
+        width: 560px;
+    }
 
     .heading-logo {
         margin-bottom: -20px;
@@ -35,7 +46,7 @@
             display: flex;
             flex-direction: column;
             margin-left: 30px;
-            width: 320px;
+            width: 290px;
         }
 
     }
@@ -50,7 +61,6 @@
         }
 
         .features-content {
-
             ul {
                 width: 320px;
                 margin: 0 0 100px 0;
@@ -66,6 +76,76 @@
                 }
             }
 
+        }
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    .comparison-container {
+        flex-direction: row;
+        gap: 14px;
+
+        &:has(.cards>.product-card:nth-child(2):last-child) {
+            width: 100%;
+        }
+
+        &:has(.cards>.product-card:nth-child(1):last-child) {
+            width: 100%;
+        }
+
+        &:has(.cards>.product-card:nth-child(3):last-child) {
+            width: 100%;
+        }
+
+        .cards,
+        .specs,
+        .features {
+            gap: 40px;
+            flex-direction: column;
+            border: none;
+        }
+
+        .cards {
+            width: 220px;
+            height: fit-content;
+            padding: 20px 0;
+
+            .product-card {
+                width: 200px;
+                min-width: 200px;
+                aspect-ratio: 3/9;
+
+                img {
+                    width: 490px;
+                    top: 0px;
+                    left: -144px;
+                }
+            }
+        }
+
+        .specs {
+            .specs-labels {
+                display: none;
+            }
+
+            .specs-content {
+                margin-left: 0;
+                gap: 0px;
+                height: 600px;
+                width: 100px;
+                justify-content: baseline;
+                padding-top: 20px;
+            }
+        }
+
+        .features {
+            display: none;
+        }
+    }
+
+    .compare-wrap {
+        h1.heading-logo {
+            font-size: 36px;
         }
     }
 }

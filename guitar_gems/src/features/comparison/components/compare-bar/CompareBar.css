@@ -1,4 +1,5 @@
 .compare-bar {
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,14 +20,17 @@
             .icon-button {
                 margin-top: 8px;
                 border: none;
+                width: 28px;
+                height: 28px;
             }
         }
     }
 
-    @media (max-width: 660px) {
+    @media (max-width: 720px) {
         flex-direction: column;
         height: auto;
         padding: 0 20px;
+        transform: translateY(107px);
     }
 
     .compare-bar__content {
@@ -34,8 +38,8 @@
         gap: 32px;
         align-items: center;
 
-        @media (max-width: 660px) {
-            gap: 14px;
+        @media (max-width: 720px) {
+            gap: 12px;
         }
 
         .icon-button {
@@ -64,6 +68,12 @@
         gap: 10px;
     }
 
+    @media (max-width: 720px) {
+        flex-wrap: wrap;
+        margin-top: 10px;
+        margin-bottom: 8px;
+    }
+
     .react-aria-Tag {
         display: flex;
         align-items: center;
@@ -72,6 +82,10 @@
         border-radius: 2px;
         padding: 0px 8px 0 14px;
         height: 40px;
+
+        &[data-focused] {
+            outline: none;
+        }
 
         .text-xsmall {
             max-width: 310px;
@@ -89,6 +103,14 @@
 
             @media (max-width: 1220px) {
                 max-width: 100px;
+            }
+
+            @media (max-width: 1023px) {
+                max-width: 60px;
+            }
+
+            @media (max-width: 720px) {
+                max-width: 34px;
             }
         }
 

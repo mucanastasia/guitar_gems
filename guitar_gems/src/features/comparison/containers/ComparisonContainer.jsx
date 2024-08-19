@@ -6,9 +6,12 @@ import { TooltipTrigger } from 'react-aria-components';
 import { Tooltip } from '@ui/tooltip';
 import { useComparison } from '../contexts/ComparisonContext';
 import { useCompareGuitars } from '@api/useCompareGuitars';
+import { getComparisonFromLS, setComparisonToLS } from '../helpers/localstorageCompare';
+import { EmptyCompare } from '../components/empty-compare';
+import { useUser } from '@api/useUser';
 
 export function ComparisonContainer() {
-	const guitarsFromLS = JSON.parse(localStorage.getItem('comparison')) || [];
+	const guitarsFromLS = getComparisonFromLS() || [];
 
 	const { comparison } = useComparison();
 	const guitarIds = comparison.map((guitar) => guitar.id);
@@ -17,24 +20,24 @@ export function ComparisonContainer() {
 
 	const [guitarsToCompare, setGuitarsToCompare] = useState([]);
 
+	const { data: user } = useUser();
+
 	useEffect(() => {
 		setGuitarsToCompare(data || []);
 	}, [data]);
-
-	const numberOfGuitars = guitarsToCompare.length;
 
 	const deleteGuitarFromComparison = (id) => {
 		const newGuitarsToCompare = guitarsToCompare.filter((guitar) => guitar.id !== id);
 		setGuitarsToCompare(newGuitarsToCompare);
 		const newComparison = guitarsFromLS.filter((guitar) => guitar.id !== id);
-		localStorage.setItem('comparison', JSON.stringify(newComparison));
+		setComparisonToLS(newComparison);
 	};
 
 	const handleDelete = (id) => {
 		deleteGuitarFromComparison(id);
 	};
 
-	const DeleteAction = ({ id }) => {
+	const RemoveFromCompareAction = ({ id }) => {
 		return (
 			<TooltipTrigger>
 				<IconButton
@@ -55,11 +58,14 @@ export function ComparisonContainer() {
 		return <Spinner />;
 	}
 
+	if (guitarsToCompare.length === 0) {
+		return <EmptyCompare isLoggedIn={user !== null} />;
+	}
+
 	return (
 		<Comparison
 			guitarsToCompare={guitarsToCompare}
-			numberOfGuitars={numberOfGuitars}
-			EditorActions={DeleteAction}
+			RemoveAction={RemoveFromCompareAction}
 		/>
 	);
 }

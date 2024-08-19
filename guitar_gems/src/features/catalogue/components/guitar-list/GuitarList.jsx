@@ -29,8 +29,6 @@ export function GuitarList({ ...props }) {
 								key={guitar.id}
 								to={`${GUITAR_PATH_DIR}${guitar.id}`}
 								ref={lastCardRef}
-								// target="_blank"
-								// rel="noopener noreferrer"
 								onClick={saveScrollPosition}>
 								<ProductCard
 									brand={guitar.brand_name}
@@ -40,7 +38,7 @@ export function GuitarList({ ...props }) {
 									onFavouriteClick={() => {
 										handleFavourites(guitar);
 									}}
-									EditorActions={
+									CardActions={
 										isUserEditor ? (
 											<EditorActionsContainer
 												guitarId={guitar.id}
@@ -58,8 +56,6 @@ export function GuitarList({ ...props }) {
 							<Link
 								key={guitar.id}
 								to={`${GUITAR_PATH_DIR}${guitar.id}`}
-								// target="_blank"
-								// rel="noopener noreferrer"
 								onClick={saveScrollPosition}>
 								<ProductCard
 									brand={guitar.brand_name}
@@ -69,7 +65,7 @@ export function GuitarList({ ...props }) {
 									onFavouriteClick={() => {
 										handleFavourites(guitar);
 									}}
-									EditorActions={
+									CardActions={
 										isUserEditor ? (
 											<EditorActionsContainer
 												guitarId={guitar.id}

@@ -1,4 +1,4 @@
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { useQueries } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 
 const getGuitar = async (guitarId) => {

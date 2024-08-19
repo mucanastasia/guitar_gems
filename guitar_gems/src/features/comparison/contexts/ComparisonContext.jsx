@@ -1,4 +1,9 @@
 import { createContext, useContext, useState } from 'react';
+import {
+	checkCompareBarInLS,
+	getCompareBarOpenFromLS,
+	getComparisonFromLS,
+} from '../helpers/localstorageCompare';
 
 export const ComparisonContext = createContext();
 
@@ -6,14 +11,10 @@ export const useComparison = () => useContext(ComparisonContext);
 
 export const ComparisonProvider = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(
-		localStorage.getItem('comparison-Open')
-			? JSON.parse(localStorage.getItem('comparison-Open'))
-			: true
+		checkCompareBarInLS() ? getCompareBarOpenFromLS() : true
 	);
 
-	const [comparison, setComparison] = useState(
-		JSON.parse(localStorage.getItem('comparison')) || []
-	);
+	const [comparison, setComparison] = useState(getComparisonFromLS() || []);
 
 	return (
 		<ComparisonContext.Provider value={{ isOpen, setIsOpen, comparison, setComparison }}>

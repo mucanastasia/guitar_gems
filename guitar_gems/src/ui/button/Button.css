@@ -133,3 +133,7 @@ button {
     background: var(--primary-color);
     border: solid 2px var(--primary-color);
 }
+
+.none-button {
+    display: none;
+}

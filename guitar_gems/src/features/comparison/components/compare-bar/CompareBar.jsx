@@ -1,30 +1,17 @@
 import { Button } from '@ui/button';
 import { IconButton, Icon } from '@ui/icon';
 import { Text } from '@ui/text';
-
 import { TagGroup, TagList, Tag, Button as AriaButton } from 'react-aria-components';
-import { useHistory } from 'react-router-dom';
-import { COMPARE_PATH } from '@features/router/constants/routePaths';
-import { useComparison } from '@features/comparison/contexts/ComparisonContext';
-
+import { COMPARE_TITLE, COMPARE_BUTTON } from '../../constants/comparison';
 import './CompareBar.css';
-import { useEffect } from 'react';
 
-export function CompareBar() {
-	const { comparison, setComparison, isOpen, setIsOpen } = useComparison();
-
-	useEffect(() => {
-		setComparison(JSON.parse(localStorage.getItem('comparison')) || []);
-	}, []);
-
-	const history = useHistory();
-
-	const handleRemove = (guitarId) => {
-		const newComparison = comparison.filter((guitar) => guitar.id !== guitarId);
-		setComparison(newComparison);
-		localStorage.setItem('comparison', JSON.stringify(newComparison));
-	};
-
+export function CompareBar({
+	comparison,
+	handleOpenBar,
+	handleClickCompare,
+	isOpen,
+	removeFromCompare,
+}) {
 	return (
 		<div
 			className={`compare-bar ${isOpen && 'open'}`}
@@ -33,22 +20,17 @@ export function CompareBar() {
 				<IconButton
 					name={`keyboard_arrow_${isOpen ? 'down' : 'up'}`}
 					size="medium"
-					onClick={() => {
-						setIsOpen((prev) => !prev);
-						localStorage.setItem('comparison-Open', !isOpen);
-					}}
+					onClick={handleOpenBar}
 				/>
 				<div className="compare-bar__title">
-					<Text size="small">Guitars to compare:</Text>
+					<Text size="small">{COMPARE_TITLE}</Text>
 				</div>
-				<TagGroup
-					aria-label="A list of guitars to compare with remove buttons"
-					items={comparison}>
+				<TagGroup aria-label={COMPARE_TITLE} items={comparison}>
 					<TagList>
 						{comparison.map((guitar) => (
 							<Tag key={guitar.id} textValue={guitar.name}>
 								<Text size="xsmall">{guitar.name}</Text>
-								<AriaButton slot="remove" onPress={() => handleRemove(guitar.id)}>
+								<AriaButton slot="remove" onPress={() => removeFromCompare(guitar.id)}>
 									<Icon name="close" size="small" />
 								</AriaButton>
 							</Tag>
@@ -59,9 +41,9 @@ export function CompareBar() {
 			<Button
 				state="primary"
 				width="180px"
-				onClick={() => history.push(COMPARE_PATH)}
+				onClick={handleClickCompare}
 				disabled={comparison.length < 2}>
-				Compare
+				{COMPARE_BUTTON}
 			</Button>
 		</div>
 	);

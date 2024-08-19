@@ -6,17 +6,19 @@ import { Link } from 'react-router-dom';
 import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 import { Skeleton } from '@ui/skeleton';
 import { CARDS_PER_PAGE } from '@features/catalogue/constants/catalogue';
+import { CompareActionContainer } from '@features/comparison/containers/CompareActionContainer';
 import './Favourites.css';
 
-export function Favourites({
-	favourites,
-	isError,
-	isFetchingNextPage,
-	lastCardRef,
-	isFetching,
-	deleteFavourites,
-	EditorActions,
-}) {
+export function Favourites({ ...props }) {
+	const {
+		favourites,
+		isError,
+		isFetchingNextPage,
+		lastCardRef,
+		isFetching,
+		deleteFavourites,
+	} = props;
+
 	if ((!isFetching && favourites.length === 0) || isError) {
 		return (
 			<div className="empty-favourites">
@@ -27,6 +29,7 @@ export function Favourites({
 			</div>
 		);
 	}
+
 	return (
 		<div className="favourites">
 			<div className="favourites-container">
@@ -48,8 +51,10 @@ export function Favourites({
 										onFavouriteClick={() => {
 											deleteFavourites({ guitarId: guitar.id });
 										}}
-										EditorActions={
-											EditorActions && <EditorActions id={guitar.id} name={guitar.name} />
+										CardActions={
+											CompareActionContainer && (
+												<CompareActionContainer id={guitar.id} name={guitar.name} />
+											)
 										}
 									/>
 								</Link>
@@ -65,8 +70,10 @@ export function Favourites({
 										onFavouriteClick={() => {
 											deleteFavourites({ guitarId: guitar.id });
 										}}
-										EditorActions={
-											EditorActions && <EditorActions id={guitar.id} name={guitar.name} />
+										CardActions={
+											CompareActionContainer && (
+												<CompareActionContainer id={guitar.id} name={guitar.name} />
+											)
 										}
 									/>
 								</Link>

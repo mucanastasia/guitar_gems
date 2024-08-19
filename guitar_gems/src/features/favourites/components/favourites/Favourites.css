@@ -14,7 +14,13 @@
         content-visibility: auto;
 
         .product-card {
-            .product-card-editor-actions {
+            &:has(.filled-compare) {
+                .product-card-additional-actions {
+                    opacity: 1;
+                }
+            }
+
+            .product-card-additional-actions {
                 .none {
                     display: none;
                 }

@@ -6,8 +6,10 @@ import { Breadcrumbs } from '@ui/breadcrumbs';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
 import { Button } from '@ui/button';
 import './Product.css';
+import { CompareActionContainer } from '@features/comparison/containers/CompareActionContainer';
 
-export function Product({ name, brand, img, isLoggedIn, handleFavourites, isFavorite }) {
+export function Product({ ...props }) {
+	const { id, name, brand, img, isLoggedIn, handleFavourites, isFavorite } = props;
 	return (
 		<>
 			<Hero brand={brand} name={name} img={img} />
@@ -24,7 +26,12 @@ export function Product({ name, brand, img, isLoggedIn, handleFavourites, isFavo
 								{isFavorite ? 'Delete from my picks' : 'Add to my picks'}
 							</Button>
 						)}
-						<EditorActionsContainer />
+
+						<CompareActionContainer id={id} name={name} />
+
+						<div className="editor-actions">
+							<EditorActionsContainer />
+						</div>
 					</div>
 					<ProductContentContainer />
 				</div>

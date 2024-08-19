@@ -58,6 +58,7 @@ export function ProductContainer() {
 
 	return (
 		<Product
+			id={guitar.id}
 			name={guitar.name}
 			brand={guitar.brand.name}
 			img={guitar.main_img}

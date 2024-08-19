@@ -23,17 +23,20 @@
             display: grid;
             gap: 24px;
             margin-bottom: 24px;
+
+            .editor-actions {
+                display: grid;
+                gap: 24px;
+                padding-top: 24px;
+
+                &:has(button) {
+                    border-top: 1px solid var(--divider-color);
+                }
+            }
         }
 
         &:hover .product-card-img {
             transform: rotate(-90deg) scale(1);
-        }
-
-        .react-aria-ToggleButton {
-            &[data-selected] {
-                background-color: #000000;
-                color: #ffffff;
-            }
         }
     }
 }
