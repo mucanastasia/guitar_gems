@@ -18,10 +18,15 @@
 
         .compare-bar__content {
             .icon-button {
-                margin-top: 8px;
+                margin-top: 0px;
                 border: none;
                 width: 28px;
                 height: 28px;
+                background-color: transparent;
+
+                span {
+                    font-family: 'Material Symbols Outlined';
+                }
             }
         }
     }
@@ -43,11 +48,18 @@
         }
 
         .icon-button {
-            margin-top: -100px;
+            margin-top: -140px;
             border: 1px solid var(--divider-color);
             border-radius: 4px;
             width: 28px;
             height: 28px;
+            background-color: var(--background-color);
+
+            span {
+                font-size: 20px;
+                margin-top: 4px;
+                font-family: "Roboto Condensed";
+            }
         }
 
         .compare-bar__title {

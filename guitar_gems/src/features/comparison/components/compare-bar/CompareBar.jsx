@@ -18,7 +18,8 @@ export function CompareBar({
 			style={{ display: comparison.length > 0 ? 'flex' : 'none' }}>
 			<div className="compare-bar__content">
 				<IconButton
-					name={`keyboard_arrow_${isOpen ? 'down' : 'up'}`}
+					name={`${isOpen ? 'keyboard_arrow_down' : `${comparison.length}`}`}
+					// name={`keyboard_arrow_${isOpen ? 'down' : 'up'}`}
 					size="medium"
 					onClick={handleOpenBar}
 				/>
