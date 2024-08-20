@@ -10,7 +10,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { GUITAR_PATH } from '@features/router/constants/routePaths';
 
 export const CompareActionContainer = ({ id, name }) => {
-	const { comparison, setComparison } = useComparison();
+	const { comparison, setComparison, setIsOpen } = useComparison();
 
 	const findGuitarInCompare = useCallback(
 		(id) => {
@@ -20,6 +20,9 @@ export const CompareActionContainer = ({ id, name }) => {
 	);
 
 	const addToCompare = (id, name) => {
+		if (comparison.length === 0) {
+			setIsOpen(true);
+		}
 		if (comparison.length >= 3) {
 			return;
 		} else {
