@@ -3,6 +3,7 @@ import { supabase } from '@api/supabaseClient';
 import { useHistory } from 'react-router-dom';
 import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 import { useUser } from '@api/useUser';
+import toast from 'react-hot-toast';
 
 const editGuitar = async ({ filteredData, id }) => {
 	const { error } = await supabase.from('guitars').update(filteredData).eq('id', id);
@@ -34,6 +35,10 @@ export const useEditGuitar = (id) => {
 				queryKey: ['editable_guitar', variables.id],
 			});
 			history.push(`${GUITAR_PATH_DIR}${id}`);
+			toast.success('Changes saved successfully!');
+		},
+		onError: (err) => {
+			toast.error(`Failed to save changes: ${err.message}`);
 		},
 	});
 };

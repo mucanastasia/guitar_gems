@@ -8,6 +8,7 @@ import { ThemeProvider } from './helpers/ThemeContext';
 import { SelectedFiltersProvider } from '@features/catalogue/contexts/SelectedFiltersContext';
 import { ComparisonProvider } from '@features/comparison/contexts/ComparisonContext';
 import { ErrorPage } from '@features/error';
+import { Toaster } from '@ui/toaster';
 import ErrorBoundary from '@helpers/ErrorBoundary';
 import './main.css';
 
@@ -31,6 +32,7 @@ const App = () => {
 						<SelectedFiltersProvider>
 							<ComparisonProvider>
 								<Router />
+								<Toaster />
 							</ComparisonProvider>
 						</SelectedFiltersProvider>
 					</AuthProvider>
