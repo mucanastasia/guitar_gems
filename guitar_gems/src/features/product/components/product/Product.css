@@ -20,6 +20,8 @@
         }
 
         .product-card-container {
+            position: sticky;
+            top: 32px;
             display: grid;
             gap: 24px;
             margin-bottom: 24px;
@@ -51,6 +53,12 @@
         max-width: 720px;
         padding: 0 20px;
         grid-template-columns: 1fr;
+
+        & .product-content-container {
+            .product-card-container {
+                position: static;
+            }
+        }
     }
 
     .product-wrap>.product-content-container {
