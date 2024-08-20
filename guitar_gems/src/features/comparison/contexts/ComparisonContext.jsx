@@ -11,7 +11,7 @@ export const useComparison = () => useContext(ComparisonContext);
 
 export const ComparisonProvider = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(
-		checkCompareBarInLS() ? getCompareBarOpenFromLS() : true
+		checkCompareBarInLS() ? getCompareBarOpenFromLS() : false
 	);
 
 	const [comparison, setComparison] = useState(getComparisonFromLS() || []);

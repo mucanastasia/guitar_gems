@@ -19,14 +19,11 @@
         .compare-bar__content {
             .icon-button {
                 margin-top: 0px;
-                border: none;
-                width: 28px;
-                height: 28px;
+                border: 1px solid transparent;
+                padding: 4px 2px;
+                width: 32px;
+                height: 32px;
                 background-color: transparent;
-
-                span {
-                    font-family: 'Material Symbols Outlined';
-                }
             }
         }
     }
@@ -48,18 +45,15 @@
         }
 
         .icon-button {
+            opacity: 0.8;
+            font-size: 22px;
             margin-top: -140px;
             border: 1px solid var(--divider-color);
             border-radius: 4px;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            padding: 4px 2px;
+            height: 32px;
             background-color: var(--background-color);
-
-            span {
-                font-size: 20px;
-                margin-top: 4px;
-                font-family: "Roboto Condensed";
-            }
         }
 
         .compare-bar__title {
@@ -75,6 +69,14 @@
     gap: 32px;
     flex-wrap: nowrap;
     align-items: center;
+    outline: none;
+
+    &[data-empty] {
+        p {
+            font-size: 14px;
+            color: var(--grey-color);
+        }
+    }
 
     @media (max-width: 1220px) {
         gap: 10px;

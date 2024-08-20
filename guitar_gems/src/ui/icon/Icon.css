@@ -51,6 +51,15 @@
             >button.material-symbols-outlined.filled-compare {
                 opacity: 1;
             }
+
+            >button.material-symbols-outlined[data-disabled] {
+                opacity: 0.3;
+                cursor: default;
+            }
+
+            >button.material-symbols-outlined[data-disabled]:hover {
+                opacity: 0.3;
+            }
         }
     }
 }

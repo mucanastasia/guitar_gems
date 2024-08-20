@@ -2,7 +2,11 @@ import { Button } from '@ui/button';
 import { IconButton, Icon } from '@ui/icon';
 import { Text } from '@ui/text';
 import { TagGroup, TagList, Tag, Button as AriaButton } from 'react-aria-components';
-import { COMPARE_TITLE, COMPARE_BUTTON } from '../../constants/comparison';
+import {
+	COMPARE_TITLE,
+	COMPARE_BUTTON,
+	COMPARE_MAX_TEXT,
+} from '../../constants/comparison';
 import './CompareBar.css';
 
 export function CompareBar({
@@ -13,13 +17,10 @@ export function CompareBar({
 	removeFromCompare,
 }) {
 	return (
-		<div
-			className={`compare-bar ${isOpen && 'open'}`}
-			style={{ display: comparison.length > 0 ? 'flex' : 'none' }}>
+		<div className={`compare-bar ${isOpen && 'open'}`}>
 			<div className="compare-bar__content">
 				<IconButton
-					name={`${isOpen ? 'keyboard_arrow_down' : `${comparison.length}`}`}
-					// name={`keyboard_arrow_${isOpen ? 'down' : 'up'}`}
+					name={`${isOpen ? 'keyboard_arrow_down' : 'compare_arrows'}`}
 					size="medium"
 					onClick={handleOpenBar}
 				/>
@@ -27,7 +28,7 @@ export function CompareBar({
 					<Text size="small">{COMPARE_TITLE}</Text>
 				</div>
 				<TagGroup aria-label={COMPARE_TITLE} items={comparison}>
-					<TagList>
+					<TagList renderEmptyState={() => <Text size="xsmall">{COMPARE_MAX_TEXT}</Text>}>
 						{comparison.map((guitar) => (
 							<Tag key={guitar.id} textValue={guitar.name}>
 								<Text size="xsmall">{guitar.name}</Text>

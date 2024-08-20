@@ -44,33 +44,25 @@ export const CompareActionContainer = ({ id, name }) => {
 	if (isProductPage) {
 		return (
 			<Button
-				state={
-					findGuitarInCompare(id)
-						? 'toggle-accent'
-						: comparison.length === 3
-						? 'none'
-						: 'toggle-primary'
-				}
-				onClick={handleClickCompare}>
+				state={findGuitarInCompare(id) ? 'toggle-accent' : 'toggle-primary'}
+				onClick={handleClickCompare}
+				disabled={!findGuitarInCompare(id) && comparison.length >= 3}>
 				{findGuitarInCompare(id) ? COMPARE_REMOVE_NAME : COMPARE_ACTION_NAME}
 			</Button>
 		);
 	}
 
 	return (
-		<TooltipTrigger>
+		<TooltipTrigger delay={0}>
 			<IconButton
-				name="compare"
+				name="compare_arrows"
 				size="medium"
 				className={`material-symbols-outlined ${
-					findGuitarInCompare(id)
-						? 'filled-compare'
-						: comparison.length === 3
-						? 'none'
-						: 'outlined'
+					findGuitarInCompare(id) ? 'filled-compare' : 'outlined'
 				}`}
 				onClick={handleClickCompare}
 				preventDefault
+				disabled={!findGuitarInCompare(id) && comparison.length >= 3}
 			/>
 			<Tooltip>
 				{findGuitarInCompare(id) ? COMPARE_REMOVE_NAME : COMPARE_ACTION_NAME}

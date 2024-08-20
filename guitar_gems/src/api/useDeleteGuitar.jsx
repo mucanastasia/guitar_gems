@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 
 const deleteGuitar = async ({ id }) => {
 	const { error } = await supabase.from('guitars').delete().eq('id', id);
+
 	if (error) {
 		throw new Error(error.message);
 	}
