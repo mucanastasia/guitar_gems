@@ -42,38 +42,40 @@ export function DateRangePicker({ label, onChange, maxValue, value, onClear }) {
 			</Group>
 			<AriaPopover>
 				<Dialog>
-					<RangeCalendar visibleDuration={{ months: 2 }}>
-						<section>
-							<I18nProvider locale="en-GB">
-								<Label>From:</Label>
-								<DateInput slot="start">
-									{(segment) => <DateSegment segment={segment} />}
-								</DateInput>
-								<Label>To:</Label>
-								<DateInput slot="end">
-									{(segment) => <DateSegment segment={segment} />}
-								</DateInput>
-							</I18nProvider>
-							<button className="secondary-button" onClick={onClear}>
-								Clear selected dates
-							</button>
-						</section>
-						<header>
-							<AriaButton slot="previous">
-								<Icon name="chevron_left" color="grey" size="medium" />
-							</AriaButton>
-							<Heading />
-							<AriaButton slot="next">
-								<Icon name="chevron_right" color="grey" size="medium" />
-							</AriaButton>
-						</header>
-						<div style={{ display: 'flex', gap: 30, overflow: 'auto' }}>
-							<CalendarGrid>{(date) => <CalendarCell date={date} />}</CalendarGrid>
-							<CalendarGrid offset={{ months: 1 }}>
-								{(date) => <CalendarCell date={date} />}
-							</CalendarGrid>
-						</div>
-					</RangeCalendar>
+					<I18nProvider locale="en-GB">
+						<RangeCalendar visibleDuration={{ months: 2 }}>
+							<section>
+								<I18nProvider locale="en-GB">
+									<Label>From:</Label>
+									<DateInput slot="start">
+										{(segment) => <DateSegment segment={segment} />}
+									</DateInput>
+									<Label>To:</Label>
+									<DateInput slot="end">
+										{(segment) => <DateSegment segment={segment} />}
+									</DateInput>
+								</I18nProvider>
+								<button className="secondary-button" onClick={onClear}>
+									Clear selected dates
+								</button>
+							</section>
+							<header>
+								<AriaButton slot="previous">
+									<Icon name="chevron_left" color="grey" size="medium" />
+								</AriaButton>
+								<Heading />
+								<AriaButton slot="next">
+									<Icon name="chevron_right" color="grey" size="medium" />
+								</AriaButton>
+							</header>
+							<div style={{ display: 'flex', gap: 30, overflow: 'auto' }}>
+								<CalendarGrid>{(date) => <CalendarCell date={date} />}</CalendarGrid>
+								<CalendarGrid offset={{ months: 1 }}>
+									{(date) => <CalendarCell date={date} />}
+								</CalendarGrid>
+							</div>
+						</RangeCalendar>
+					</I18nProvider>
 				</Dialog>
 			</AriaPopover>
 		</AriaDateRangePicker>

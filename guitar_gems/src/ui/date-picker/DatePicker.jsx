@@ -34,18 +34,20 @@ export function DatePicker({ label, value, onChange }) {
 			<FieldError />
 			<AriaPopover>
 				<Dialog>
-					<Calendar>
-						<header>
-							<Button slot="previous">
-								<Icon name="keyboard_arrow_left" size="medium" color="grey" />
-							</Button>
-							<Heading />
-							<Button slot="next">
-								<Icon name="keyboard_arrow_right" size="medium" color="grey" />
-							</Button>
-						</header>
-						<CalendarGrid>{(date) => <CalendarCell date={date} />}</CalendarGrid>
-					</Calendar>
+					<I18nProvider locale="en-GB">
+						<Calendar>
+							<header>
+								<Button slot="previous">
+									<Icon name="keyboard_arrow_left" size="medium" color="grey" />
+								</Button>
+								<Heading />
+								<Button slot="next">
+									<Icon name="keyboard_arrow_right" size="medium" color="grey" />
+								</Button>
+							</header>
+							<CalendarGrid>{(date) => <CalendarCell date={date} />}</CalendarGrid>
+						</Calendar>
+					</I18nProvider>
 				</Dialog>
 			</AriaPopover>
 		</AriaDatePicker>
