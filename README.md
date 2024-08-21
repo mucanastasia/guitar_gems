@@ -2,12 +2,14 @@
 
 Welcome to the **Guitar Gems** project! This is a web application created to help guitar enthusiasts explore, compare, and discover various guitar models. The application was developed as part of my education in web development and its primary purpose was to enhance my skills and knowledge.
 
+## Demo
 Check out the live demo of the project here: [guitar-gems.vercel.app](https://guitar-gems.vercel.app).
 
 <img width="70%" alt="Guitar Gems Catalogue screenshot" src="https://awesomescreenshot.s3.amazonaws.com/image/1650869/50147119-a87714acc37e29d3dc368fa57423156a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20240821%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240821T095245Z&X-Amz-Expires=28800&X-Amz-SignedHeaders=host&X-Amz-Signature=30eb642b341fa75f5558ca3fea903e8fa886774b376dc87a1c4e2ba9add607a7" />
 
 ## Table of Contents
 
+- [Demo](#demo)
 - [Technology Stack](#technology-stack)
 - [About the Project](#about-the-project)
 - [Features](#features)
