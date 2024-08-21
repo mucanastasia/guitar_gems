@@ -2,6 +2,7 @@ import { useFavourites } from '@api/useFavourites';
 import { Favourites } from '../components/favourites';
 import { useInfiniteScroll } from '@features/catalogue/helpers/useInfiniteScroll';
 import { useDeleteFavourites } from '@api/useDeleteFavourites';
+import { useScrollRestoration } from '@helpers/useScrollRestoration';
 
 export function FavouritesContainer() {
 	const {
@@ -19,6 +20,8 @@ export function FavouritesContainer() {
 
 	const { mutate: deleteFavourites } = useDeleteFavourites();
 
+	const { saveScrollPosition } = useScrollRestoration();
+
 	return (
 		<Favourites
 			favourites={favourites}
@@ -27,6 +30,7 @@ export function FavouritesContainer() {
 			isFetchingNextPage={isFetchingNextPage}
 			lastCardRef={lastCardRef}
 			deleteFavourites={deleteFavourites}
+			saveScrollPosition={saveScrollPosition}
 		/>
 	);
 }

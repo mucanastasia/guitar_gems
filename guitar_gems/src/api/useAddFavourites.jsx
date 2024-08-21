@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 import { useUser } from '@api/useUser';
+import toast from 'react-hot-toast';
 
 const addToFavourites = async ({ guitarId, userId }) => {
-	// await new Promise((resolve) => setTimeout(resolve, 400));
 	const { data, error } = await supabase
 		.from('favourites')
 		.upsert([{ user_id: userId, guitar_id: guitarId }])
@@ -61,7 +61,7 @@ export const useAddFavourites = () => {
 				['data_guitar', variables.guitarId],
 				context.previousGuitarData
 			);
-			console.error('Error adding to favourites:', error.message);
+			toast.error('Failed while adding to my picks');
 		},
 		onSettled: (_data, _error, variables) => {
 			queryClient.invalidateQueries({

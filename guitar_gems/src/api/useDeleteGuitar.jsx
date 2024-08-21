@@ -3,11 +3,13 @@ import { supabase } from '@api/supabaseClient';
 import { useUser } from '@api/useUser';
 import { useRouteMatch } from 'react-router-dom';
 import { GUITAR_PATH } from '@features/router/constants/routePaths';
+import toast from 'react-hot-toast';
 
 const deleteGuitar = async ({ id }) => {
 	const { error } = await supabase.from('guitars').delete().eq('id', id);
+
 	if (error) {
-		console.error(error.message);
+		throw new Error(error.message);
 	}
 	await new Promise((resolve) => setTimeout(resolve, 300));
 };
@@ -37,6 +39,10 @@ export const useDeleteGuitar = () => {
 			queryClient.removeQueries({
 				queryKey: ['editable_guitar', variables.id],
 			});
+			toast.success(`Successfully deleted!`);
+		},
+		onError: (err) => {
+			toast.error(`Failed to delete: ${err.message}`);
 		},
 	});
 };

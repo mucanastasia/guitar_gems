@@ -11,7 +11,7 @@ export function ProductCard({
 	loading,
 	isFavourite,
 	onFavouriteClick,
-	EditorActions,
+	CardActions,
 }) {
 	return (
 		<section className="product-card">
@@ -21,16 +21,14 @@ export function ProductCard({
 						name="favorite"
 						size="medium"
 						className={`material-symbols-outlined ${isFavourite ? 'filled' : 'outlined'}`}
-						onClick={(e) => {
+						onClick={() => {
 							onFavouriteClick();
 						}}
 						preventDefault
 					/>
 				)}
-				{EditorActions && (
-					<div className="product-card-editor-actions" id="product-card-editor-actions">
-						{EditorActions}
-					</div>
+				{CardActions && (
+					<div className="product-card-additional-actions">{CardActions}</div>
 				)}
 			</div>
 			{loading ? (

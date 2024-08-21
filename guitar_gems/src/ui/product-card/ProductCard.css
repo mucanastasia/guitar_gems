@@ -21,7 +21,7 @@
         transform: rotate(-90deg) scale(1.04);
     }
 
-    &:hover .product-card-actions>.product-card-editor-actions {
+    &:hover .product-card-actions>.product-card-additional-actions {
         opacity: 1;
     }
 
@@ -34,7 +34,7 @@
         right: 18px;
         z-index: 2;
 
-        .product-card-editor-actions {
+        .product-card-additional-actions {
             display: flex;
             flex-direction: column;
             gap: 8px;

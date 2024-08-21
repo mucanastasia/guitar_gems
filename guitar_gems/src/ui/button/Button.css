@@ -32,6 +32,7 @@ button {
         background: transparent;
         color: #a1a1a1;
         border: solid 2px #a1a1a1;
+        cursor: default;
     }
 }
 
@@ -60,6 +61,7 @@ button {
         background: #a1a1a1;
         color: #ffffff;
         border: solid 2px #a1a1a1;
+        cursor: default;
     }
 }
 
@@ -83,6 +85,7 @@ button {
         background: transparent;
         color: #a1a1a1;
         border: solid 2px #a1a1a1;
+        cursor: default;
     }
 }
 
@@ -126,10 +129,28 @@ button {
     color: var(--primary-color);
     background: transparent;
     border: solid 2px var(--primary-color);
+
+    &[data-disabled] {
+        background: transparent;
+        color: #a1a1a1;
+        border: solid 2px #a1a1a1;
+        cursor: default;
+    }
 }
 
 .toggle-accent-button {
     color: var(--secondary-color);
     background: var(--primary-color);
     border: solid 2px var(--primary-color);
+
+    &[data-disabled] {
+        background: #a1a1a1;
+        color: #ffffff;
+        border: solid 2px #a1a1a1;
+        cursor: default;
+    }
+}
+
+.none-button {
+    display: none;
 }

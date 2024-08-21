@@ -6,26 +6,31 @@ import { Link } from 'react-router-dom';
 import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 import { Skeleton } from '@ui/skeleton';
 import { CARDS_PER_PAGE } from '@features/catalogue/constants/catalogue';
+import { CompareActionContainer } from '@features/comparison/containers/CompareActionContainer';
 import './Favourites.css';
 
-export function Favourites({
-	favourites,
-	isError,
-	isFetchingNextPage,
-	lastCardRef,
-	isFetching,
-	deleteFavourites,
-}) {
+export function Favourites({ ...props }) {
+	const {
+		favourites,
+		isError,
+		isFetchingNextPage,
+		lastCardRef,
+		isFetching,
+		deleteFavourites,
+		saveScrollPosition,
+	} = props;
+
 	if ((!isFetching && favourites.length === 0) || isError) {
 		return (
 			<div className="empty-favourites">
-				<Text size="large">{`You haven't added any guitars to your picks, yet!`}</Text>
+				<Text size="large">{`You haven't added any guitars to your picks yet!`}</Text>
 				<Text size="small">
 					<LinkAuth path={ROOT_PATH} name="Explore the catalogue" />
 				</Text>
 			</div>
 		);
 	}
+
 	return (
 		<div className="favourites">
 			<div className="favourites-container">
@@ -37,11 +42,12 @@ export function Favourites({
 							return (
 								<Link
 									key={guitar.id}
-									to={`${GUITAR_PATH_DIR}${guitar.id}`}
+									to={{
+										pathname: `${GUITAR_PATH_DIR}${guitar.id}`,
+										state: { from: location.pathname },
+									}}
 									ref={lastCardRef}
-									// target="_blank"
-									// rel="noopener noreferrer"
-								>
+									onClick={saveScrollPosition}>
 									<ProductCard
 										brand={guitar.brand_name}
 										name={guitar.name}
@@ -50,6 +56,11 @@ export function Favourites({
 										onFavouriteClick={() => {
 											deleteFavourites({ guitarId: guitar.id });
 										}}
+										CardActions={
+											CompareActionContainer && (
+												<CompareActionContainer id={guitar.id} name={guitar.name} />
+											)
+										}
 									/>
 								</Link>
 							);
@@ -57,10 +68,11 @@ export function Favourites({
 							return (
 								<Link
 									key={guitar.id}
-									to={`${GUITAR_PATH_DIR}${guitar.id}`}
-									// target="_blank"
-									// rel="noopener noreferrer"
-								>
+									to={{
+										pathname: `${GUITAR_PATH_DIR}${guitar.id}`,
+										state: { from: location.pathname },
+									}}
+									onClick={saveScrollPosition}>
 									<ProductCard
 										brand={guitar.brand_name}
 										name={guitar.name}
@@ -69,6 +81,11 @@ export function Favourites({
 										onFavouriteClick={() => {
 											deleteFavourites({ guitarId: guitar.id });
 										}}
+										CardActions={
+											CompareActionContainer && (
+												<CompareActionContainer id={guitar.id} name={guitar.name} />
+											)
+										}
 									/>
 								</Link>
 							);

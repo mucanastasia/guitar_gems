@@ -5,7 +5,9 @@ const fetchFilters = async (tableName) => {
 	await new Promise((resolve) => setTimeout(resolve, 200));
 
 	const { data, error } = await supabase.from(tableName).select(`id, name`);
-	if (error) console.error(error.message);
+	if (error) {
+		throw new Error(error.message);
+	}
 	return data;
 };
 

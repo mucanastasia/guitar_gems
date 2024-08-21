@@ -2,6 +2,7 @@ import { useTitle } from '@helpers/useTitle';
 import { FavouritesHeader } from './components/favourites-header';
 import { FavouritesContainer } from './containers/FavouritesContainer';
 import { useUser } from '@api/useUser';
+import { CompareBarContainer } from '@features/comparison/containers/CompareBarContainer';
 
 export function FavouritesPage() {
 	const { data: user } = useUser();
@@ -14,6 +15,7 @@ export function FavouritesPage() {
 		<>
 			<FavouritesHeader name={`${userName}'s picks`} />
 			<FavouritesContainer />
+			<CompareBarContainer />
 		</>
 	);
 }
