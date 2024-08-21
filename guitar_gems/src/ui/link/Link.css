@@ -31,7 +31,7 @@
     opacity: 1;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 810px) {
 
     .header-link>p {
         display: none;

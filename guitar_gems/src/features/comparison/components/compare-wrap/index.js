@@ -1,0 +1,1 @@
+export { CompareWrap } from './CompareWrap';

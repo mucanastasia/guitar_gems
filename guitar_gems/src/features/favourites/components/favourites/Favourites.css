@@ -12,6 +12,20 @@
         gap: 24px;
         margin: 20px 0;
         content-visibility: auto;
+
+        .product-card {
+            &:has(.filled-compare) {
+                .product-card-additional-actions {
+                    opacity: 1;
+                }
+            }
+
+            .product-card-additional-actions {
+                .none {
+                    display: none;
+                }
+            }
+        }
     }
 }
 

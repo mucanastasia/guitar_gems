@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@api/supabaseClient';
 import { useUser } from '@api/useUser';
+import toast from 'react-hot-toast';
 
 const deleteFavourites = async ({ guitarId, userId }) => {
 	const { data, error } = await supabase
@@ -10,7 +11,7 @@ const deleteFavourites = async ({ guitarId, userId }) => {
 		.eq('user_id', userId)
 		.select('guitar_id');
 	if (error) {
-		console.error(error.message);
+		throw new Error(error.message);
 	}
 	return data;
 };
@@ -62,7 +63,7 @@ export const useDeleteFavourites = () => {
 				['data_guitar', variables.guitarId],
 				context.previousGuitarData
 			);
-			console.error('Error deleting from favourites:', error.message);
+			toast.error(`Failed to delete from my picks`);
 		},
 		onSettled: (_data, _error, variables) => {
 			queryClient.invalidateQueries({

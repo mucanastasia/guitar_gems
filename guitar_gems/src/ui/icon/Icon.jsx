@@ -13,6 +13,7 @@ export function IconButton({
 	dataRec,
 	className = 'icon-button',
 	preventDefault = false,
+	disabled = false,
 }) {
 	return (
 		<Button
@@ -24,7 +25,8 @@ export function IconButton({
 					e.stopPropagation();
 				},
 			})}
-			data-rec={dataRec || undefined}>
+			data-rec={dataRec || undefined}
+			isDisabled={disabled}>
 			<Icon name={name} color={color} size={size} />
 		</Button>
 	);

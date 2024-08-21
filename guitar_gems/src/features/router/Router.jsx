@@ -10,6 +10,7 @@ import {
 	SIGN_IN_PATH,
 	SIGN_UP_PATH,
 	GUITAR_PATH,
+	COMPARE_PATH,
 	FAVOURITES_PATH,
 	ADD_GUITAR_PATH,
 	EDIT_GUITAR_PATH,
@@ -32,6 +33,9 @@ const SignInPage = lazy(async () => ({
 const SignUpPage = lazy(async () => ({
 	default: (await import('@features/auth')).SignUpPage,
 }));
+const ComparePage = lazy(async () => ({
+	default: (await import('@features/comparison')).ComparePage,
+}));
 const NotFoundPage = lazy(async () => ({
 	default: (await import('@features/error')).NotFoundPage,
 }));
@@ -52,15 +56,19 @@ export function Router() {
 						</Route>
 
 						<Route path={SIGN_IN_PATH}>
-							{!user ? <SignInPage /> : <Redirect push to="/" />}
+							{!user ? <SignInPage /> : <Redirect push to={ROOT_PATH} />}
 						</Route>
 
 						<Route path={SIGN_UP_PATH}>
-							{!user ? <SignUpPage /> : <Redirect push to="/" />}
+							{!user ? <SignUpPage /> : <Redirect push to={ROOT_PATH} />}
 						</Route>
 
 						<Route path={GUITAR_PATH}>
 							<ProductPage />
+						</Route>
+
+						<Route path={COMPARE_PATH}>
+							<ComparePage />
 						</Route>
 
 						<PrivateRouteContainer path={FAVOURITES_PATH}>

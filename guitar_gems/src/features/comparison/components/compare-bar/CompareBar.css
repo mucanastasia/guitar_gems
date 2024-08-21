@@ -1,0 +1,138 @@
+.compare-bar {
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px 0 20px;
+    background-color: var(--background-color);
+    border-top: 1px solid var(--divider-color);
+    height: 64px;
+    position: sticky;
+    bottom: 0;
+    transform: translateY(64px);
+    transition: transform 0.3s ease-in-out;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.open {
+        transform: translateY(0);
+
+        .compare-bar__content {
+            .icon-button {
+                margin-top: 0px;
+                border: 1px solid transparent;
+                padding: 4px 2px;
+                width: 32px;
+                height: 32px;
+                background-color: transparent;
+            }
+        }
+    }
+
+    @media (max-width: 720px) {
+        flex-direction: column;
+        height: auto;
+        padding: 0 20px;
+        transform: translateY(107px);
+    }
+
+    .compare-bar__content {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+
+        @media (max-width: 720px) {
+            gap: 12px;
+        }
+
+        .icon-button {
+            opacity: 0.8;
+            font-size: 22px;
+            margin-top: -140px;
+            border: 1px solid var(--divider-color);
+            border-radius: 4px;
+            width: 32px;
+            padding: 4px 2px;
+            height: 32px;
+            background-color: var(--background-color);
+        }
+
+        .compare-bar__title {
+            @media (max-width: 1023px) {
+                display: none;
+            }
+        }
+    }
+}
+
+.react-aria-TagList {
+    display: flex;
+    gap: 32px;
+    flex-wrap: nowrap;
+    align-items: center;
+    outline: none;
+
+    &[data-empty] {
+        p {
+            font-size: 14px;
+            color: var(--grey-color);
+        }
+    }
+
+    @media (max-width: 1220px) {
+        gap: 10px;
+    }
+
+    @media (max-width: 720px) {
+        flex-wrap: wrap;
+        margin-top: 10px;
+        margin-bottom: 8px;
+    }
+
+    .react-aria-Tag {
+        display: flex;
+        align-items: center;
+        background: var(--bg-secondary-color);
+        color: var(--primary-color);
+        border-radius: 2px;
+        padding: 0px 8px 0 14px;
+        height: 40px;
+
+        &[data-focused] {
+            outline: none;
+        }
+
+        .text-xsmall {
+            max-width: 310px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            @media (max-width: 1700px) {
+                max-width: 200px;
+            }
+
+            @media (max-width: 1370px) {
+                max-width: 150px;
+            }
+
+            @media (max-width: 1220px) {
+                max-width: 100px;
+            }
+
+            @media (max-width: 1023px) {
+                max-width: 60px;
+            }
+
+            @media (max-width: 720px) {
+                max-width: 34px;
+            }
+        }
+
+        button {
+            height: 22px;
+            border: 0;
+            padding: 0;
+            margin: 0 0 0 8px;
+        }
+    }
+}
