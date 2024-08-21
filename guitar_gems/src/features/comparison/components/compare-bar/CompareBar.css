@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
+    padding: 0 40px 0 20px;
     background-color: var(--background-color);
     border-top: 1px solid var(--divider-color);
     height: 64px;
@@ -37,7 +37,7 @@
 
     .compare-bar__content {
         display: flex;
-        gap: 32px;
+        gap: 24px;
         align-items: center;
 
         @media (max-width: 720px) {
