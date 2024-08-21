@@ -36,19 +36,19 @@ Check out the live demo of the project here: [guitar-gems.vercel.app](https://gu
 
 The project began with careful planning of content and design, where I used Figma [Guitar Gems figma file](https://www.figma.com/design/pOIGMbvhDm5Fr0u32oRnJa/Guitar_Gems?node-id=31-102506&t=HAKZMztejVTvMzPD-1) to conceptualize the layout, user flow, and overall aesthetic of the application. This initial phase helped establish a clear vision and ensured a user-friendly interface.
 
-For the backend and authentication, I chose Supabase, a powerful and scalable solution that integrates seamlessly with modern frontend frameworks. In Supabase, I designed a primary table to store all relevant information about each guitar, such as description, specifications and guitar features . Additionally, I created separate tables for brands, types of guitars, materials, and other information needed for filters. These tables are interconnected with the main guitar table through foreign keys, allowing for efficient data management and retrieval based on specific criteria (Like fetching only essential columns from the table that needed to be display on a particular page).
+For the backend and authentication, I chose Supabase, a powerful and scalable solution that integrates seamlessly with modern frontend frameworks. In Supabase, I designed a primary table to store all relevant information about each guitar, such as description, specifications and guitar features. Additionally, I created separate tables for brands, types of guitars, materials, and other information needed for filters. These tables are interconnected with the main guitar table through foreign keys, allowing for efficient data management and retrieval based on specific criteria (Like fetching only essential columns from the table that needed to be displayed on a particular page).
 
-The frontend of the application was built using React, with Vite serving as the build tool to streamline development. For the UI components, I opted for unstyled React Aria components, which allowed for maximum flexibility in design while ensuring accessibility standards. Data fetching was handled using React Query, which provided a robust solution for managing data and caching. This approach allowed for the implementation of infinite scroll with scroll restoration.
+The application's frontend was built using React, with Vite serving as the build tool to streamline development. For the UI components, I opted for unstyled React Aria components, which allowed for maximum flexibility in design while ensuring accessibility standards. Data fetching was handled using React Query, which provided a robust solution for managing data and caching. This approach allowed for the implementation of infinite scroll with scroll restoration.
 
-To organize the codebase effectively, I implemented a lightweight version of the Feature-Sliced Design approach (with a huge help from my mentor). This methodology helped maintain a modular and scalable structure, making it easier to manage and extend the project as it grew. Additionally, I adhered to best practices by incorporating the Presentational and Container pattern, Composition Components pattern, all of which contributed to a clean and maintainable codebase.
+To organize the codebase effectively, I implemented a lightweight version of the Feature-Sliced Design approach (with a huge help from my mentor). This methodology helped maintain a modular and scalable structure, making it easier to manage and extend the project as it grew. Additionally, I adhered to best practices by incorporating the Presentational and Container pattern, and Composition Components pattern, all of which contributed to a clean and maintainable codebase.
 
 ## Features
 
 - **User Roles:** Guitar Gems supports three distinct user roles:
 
-    - **Non-authenticated users** can explore the guitar catalog, view detailed product pages, and add guitars to a comparison list and compare them.
-    - **Authenticated users** have additional features, including the ability to add or remove guitars from their favorites (My Picks) and access a dedicated My Picks page where they can use the comparison feature.
-    - **Editors** have full access to all features, including the ability to add new guitars to the catalog, edit existing entries, and delete guitars.
+    - **Non-authenticated users** can explore the guitar catalogue, view detailed product pages, and add guitars to a comparison list and compare them.
+    - **Authenticated users** have additional features, including the ability to add or remove guitars from their favourites (My Picks) and access a dedicated My Picks page where they can use the comparison feature.
+    - **Editors** have full access to all features, including the ability to add new guitars to the catalogue, edit existing entries, and delete guitars.
 
 - **Authentication:** Users can <i>SIGN IN</i> or <i>SIGN UP</i> to access additional features, with secure authentication managed by Supabase. 
 
@@ -59,11 +59,11 @@ To organize the codebase effectively, I implemented a lightweight version of the
     - **Pagination with infinite scroll:** The catalogue page implements infinite scroll, allowing users to continuously browse through the guitar listings without needing to manually click through pages.
     - **Scroll restoration:** As users scroll, more guitars are loaded seamlessly, enhancing the browsing experience. Additionally, if a user navigates to a product page (or an editor clicks edit from the catalogue) and then returns, the page restores the previous scroll position, ensuring a smooth and intuitive user experience.
     - **Filters and Search in the catalogue:** Users can filter the catalogue by various criteria such as brand, type, and material, or use the search function to quickly find specific guitars. These tools make it easier to narrow down the options and find the perfect guitar.
-    - **Product Card actions:** Authenticated users can add or remove a guitar from their favorites. Editors can also edit or delete a guitar. A non-authenticated users see an "add to favourites" heart but they will be redirected to sign in page by clicking on it.
+    - **Product Card actions:** Authenticated users can add or remove a guitar from their favourites. Editors can also edit or delete a guitar. A non-authenticated users see an "add to favourites" heart but they will be redirected to the sign-in page by clicking on it.
     
-- **Product page:** Each guitar in the catalogue has its own detailed product page, where users can view comprehensive information about the model with a stunning picture of the guitar. The product page also provides options for adding the guitar to the comparison list (they will appear in the Compare Bar at the bottom of the page) or to favorites for authenticated users.
+- **Product page:** Each guitar in the catalogue has its own detailed product page, where users can view comprehensive information about the model with a stunning picture of the guitar. The product page also provides options for adding the guitar to the comparison list (they will appear in the Compare Bar at the bottom of the page) or to favourites for authenticated users.
 
-- **My Picks page:** This page is exclusive to authenticated users, allowing them to view and manage their favorite guitars. Users can add guitars from the My Picks page to the comparison tool, making it easier to evaluate their top choices.
+- **My Picks page:** This page is exclusive to authenticated users, allowing them to view and manage their favourite guitars. Users can add guitars from the My Picks page to the comparison tool, making it easier to evaluate their top choices.
 
 - **(Only for Editor role) Adding a new guitar:** Editors have the ability to add new guitars to the catalogue through a dedicated form and uploading a picture of a guitar.
 
