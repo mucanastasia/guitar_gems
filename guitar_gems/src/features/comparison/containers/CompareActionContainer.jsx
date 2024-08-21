@@ -64,7 +64,6 @@ export const CompareActionContainer = ({ id, name }) => {
 					findGuitarInCompare(id) ? 'filled-compare' : 'outlined'
 				}`}
 				onClick={handleClickCompare}
-				preventDefault
 				disabled={!findGuitarInCompare(id) && comparison.length >= 3}
 			/>
 			<Tooltip>

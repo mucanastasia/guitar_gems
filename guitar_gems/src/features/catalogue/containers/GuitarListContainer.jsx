@@ -6,16 +6,18 @@ import { useGuitars } from '@api/useGuitars';
 import { useAddFavourites } from '@api/useAddFavourites';
 import { useDeleteFavourites } from '@api/useDeleteFavourites';
 import { useSelectedFilters } from '../contexts/SelectedFiltersContext';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useUser } from '@api/useUser';
 import { SIGN_IN_PATH } from '@features/router/constants/routePaths';
 import { useFavouritesList } from '@api/useFavouritesList';
 import { useScrollRestoration } from '@helpers/useScrollRestoration';
+import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 
 export function GuitarListContainer() {
 	const { selectedFilters } = useSelectedFilters();
 
 	const history = useHistory();
+	const location = useLocation();
 
 	const { data: user } = useUser();
 	const isAnonym = user === null;
@@ -53,6 +55,14 @@ export function GuitarListContainer() {
 
 	const { saveScrollPosition } = useScrollRestoration();
 
+	const handleGuitarClick = (guitarId) => {
+		history.push({
+			pathname: `${GUITAR_PATH_DIR}${guitarId}`,
+			state: { from: location.pathname },
+		});
+		saveScrollPosition();
+	};
+
 	const props = {
 		guitars,
 		isFetching,
@@ -60,7 +70,7 @@ export function GuitarListContainer() {
 		lastCardRef,
 		handleFavourites,
 		isUserEditor,
-		saveScrollPosition,
+		handleGuitarClick,
 	};
 
 	if (!isFetching && (!guitars || guitars.length === 0)) {

@@ -12,7 +12,7 @@ import { ProductCard } from '@ui/product-card';
 import { Text } from '@ui/text';
 import './Comparison.css';
 
-export function Comparison({ guitarsToCompare, RemoveAction }) {
+export function Comparison({ guitarsToCompare, RemoveAction, handleGuitarClick }) {
 	return (
 		<div className="comparison-container">
 			<section className="cards">
@@ -22,6 +22,7 @@ export function Comparison({ guitarsToCompare, RemoveAction }) {
 						brand={guitar?.brand.name}
 						name={guitar?.name}
 						image={guitar?.main_img}
+						onClick={() => handleGuitarClick(guitar?.id)}
 						CardActions={RemoveAction && <RemoveAction id={guitar?.id} />}
 					/>
 				))}

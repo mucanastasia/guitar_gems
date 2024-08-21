@@ -10,6 +10,8 @@ import { getComparisonFromLS, setComparisonToLS } from '../helpers/localstorageC
 import { EmptyCompare } from '../components/empty-compare';
 import { useUser } from '@api/useUser';
 import { COMPARE_REMOVE_NAME } from '../constants/comparison';
+import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
+import { useHistory } from 'react-router-dom';
 
 export function ComparisonContainer() {
 	const guitarsFromLS = getComparisonFromLS() || [];
@@ -20,6 +22,8 @@ export function ComparisonContainer() {
 	const { data, isPending } = useCompareGuitars(guitarIds);
 
 	const [guitarsToCompare, setGuitarsToCompare] = useState([]);
+
+	const history = useHistory();
 
 	const { data: user } = useUser();
 
@@ -38,6 +42,10 @@ export function ComparisonContainer() {
 		deleteGuitarFromComparison(id);
 	};
 
+	const handleGuitarClick = (guitarId) => {
+		history.push(`${GUITAR_PATH_DIR}${guitarId}`);
+	};
+
 	const RemoveFromCompareAction = ({ id }) => {
 		return (
 			<TooltipTrigger>
@@ -48,7 +56,6 @@ export function ComparisonContainer() {
 					onClick={() => {
 						handleDelete(id);
 					}}
-					preventDefault
 				/>
 				<Tooltip>{COMPARE_REMOVE_NAME}</Tooltip>
 			</TooltipTrigger>
@@ -67,6 +74,7 @@ export function ComparisonContainer() {
 		<Comparison
 			guitarsToCompare={guitarsToCompare}
 			RemoveAction={RemoveFromCompareAction}
+			handleGuitarClick={handleGuitarClick}
 		/>
 	);
 }

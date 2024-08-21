@@ -8,8 +8,9 @@ import { DialogTrigger } from 'react-aria-components';
 import { useUser } from '@api/useUser';
 import { useDeleteGuitar } from '@api/useDeleteGuitar';
 import { useLocation } from 'react-router-dom';
+import { useScrollRestoration } from '@helpers/useScrollRestoration';
 
-export function EditorActionsContainer({ guitarId, saveScrollPosition }) {
+export function EditorActionsContainer({ guitarId }) {
 	const { data: user } = useUser();
 	const isUserEditor = user?.app_metadata.role === 'editor';
 
@@ -18,12 +19,15 @@ export function EditorActionsContainer({ guitarId, saveScrollPosition }) {
 	const history = useHistory();
 	const location = useLocation();
 
+	const { saveScrollPosition } = useScrollRestoration();
+
 	const editGuitar = (guitarId) => {
 		if (isUserEditor) {
 			history.push({
 				pathname: `${EDIT_GUITAR_PATH_DIR}${guitarId}`,
 				state: { from: location.pathname },
 			});
+			saveScrollPosition();
 			return;
 		}
 		return null;
@@ -45,16 +49,13 @@ export function EditorActionsContainer({ guitarId, saveScrollPosition }) {
 				className="material-symbols-outlined outlined"
 				onClick={() => {
 					editGuitar(guitarId);
-					saveScrollPosition();
 				}}
-				preventDefault
 			/>
 			<DialogTrigger>
 				<IconButton
 					name="delete"
 					size="medium"
 					className="material-symbols-outlined outlined"
-					preventDefault
 				/>
 				<Popover>
 					<Text size="xsmall">Are you sure you want to delete this guitar?</Text>

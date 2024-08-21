@@ -17,12 +17,10 @@
             &:has(.filled-compare) {
                 .product-card-additional-actions {
                     opacity: 1;
-                }
-            }
 
-            .product-card-additional-actions {
-                .none {
-                    display: none;
+                    span {
+                        color: var(--link-color);
+                    }
                 }
             }
         }
