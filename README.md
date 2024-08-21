@@ -61,15 +61,15 @@ To organize the codebase effectively, I implemented a lightweight version of the
     - **Filters and Search in the catalogue:** Users can filter the catalogue by various criteria such as brand, type, and material, or use the search function to quickly find specific guitars. These tools make it easier to narrow down the options and find the perfect guitar.
     - **Product Card actions:** Authenticated users can add or remove a guitar from their favourites. Editors can also edit or delete a guitar. A non-authenticated users see an "add to favourites" heart but they will be redirected to the sign-in page by clicking on it.
     
-- **Product page:** Each guitar in the catalogue has its own detailed product page, where users can view comprehensive information about the model with a stunning picture of the guitar. The product page also provides options for adding the guitar to the comparison list (they will appear in the Compare Bar at the bottom of the page) or to favourites for authenticated users.
+- **Product page:** Each guitar in the catalogue has its own detailed product page, where users can view comprehensive information about the model with a stunning picture of the guitar. The product page also provides options for adding the guitar to the comparison list (they will appear in the Compare Bar at the bottom of the page) or to favourites for authenticated users. And <i>Editors</i> can edit or delete a guitar directly from the product page.
 
 - **My Picks page:** This page is exclusive to authenticated users, allowing them to view and manage their favourite guitars. Users can add guitars from the My Picks page to the comparison tool, making it easier to evaluate their top choices.
 
-- **(Only for Editor role) Adding a new guitar:** Editors have the ability to add new guitars to the catalogue through a dedicated form and uploading a picture of a guitar.
+- **Editor-Only Features:**
 
-- **(Only for Editor role) Editing guitars:** Editors can modify existing guitar entries to correct information or update specifications.
-
-- **(Only for Editor role) Delete guitars:** Editors can remove guitars from the catalogue when they are no longer relevant.
+   - **Adding a new guitar:** Editors have the ability to add new guitars to the catalogue through a dedicated form and uploading a picture of a guitar.
+   - **Editing guitars:** Editors can modify existing guitar entries to correct information or update specifications.
+   - **Delete guitars:** Editors can remove guitars from the catalogue when they are no longer relevant.
 
 
 - **Dark/Light Mode:** The application supports both dark and light themes. It initially respects the user's system preferences but also allows users to toggle the theme via a header control. Once set, the app remembers the user's theme preference.
