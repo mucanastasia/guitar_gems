@@ -100,7 +100,7 @@ To run the project locally, follow these steps:
     ```bash
     npm run dev
 
-or if you need to expose host for external devices:
+(Optional) Start the development server with a host exposed for external devices:
     
     npm run dev -- --host
 
