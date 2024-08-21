@@ -31,10 +31,6 @@
             display: flex;
             flex-direction: column;
             width: 320px;
-
-            a>.product-card:hover {
-                transform: none;
-            }
         }
     }
 }
@@ -46,9 +42,6 @@
 }
 
 @media only screen and (max-width: 360px) {
-    a>.product-card {
-        transform: scale(0.9);
-    }
 
     .catalogue-container {
         margin: 20px 0;

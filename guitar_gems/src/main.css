@@ -24,6 +24,8 @@ html[data-theme="light"] {
     --grey-color: #646464;
     --skeleton-color: #fafafa;
     --skeleton-highlight-color: #efefef;
+    --link-color: #008FAF;
+    --link-color-hover: #00AED4;
 }
 
 html[data-theme="dark"] {
@@ -42,6 +44,8 @@ html[data-theme="dark"] {
     --grey-color: #838383;
     --skeleton-color: #212125;
     --skeleton-highlight-color: #3a3a3f;
+    --link-color: #008FAF;
+    --link-color-hover: #00AED4;
 }
 
 * {

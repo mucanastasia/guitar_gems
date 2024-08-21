@@ -2,8 +2,6 @@ import { ProductCard } from '@ui/product-card';
 import { Text } from '@ui/text';
 import { LinkAuth } from '@ui/link';
 import { ROOT_PATH } from '@features/router/constants/routePaths';
-import { Link } from 'react-router-dom';
-import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
 import { Skeleton } from '@ui/skeleton';
 import { CARDS_PER_PAGE } from '@features/catalogue/constants/catalogue';
 import { CompareActionContainer } from '@features/comparison/containers/CompareActionContainer';
@@ -17,7 +15,7 @@ export function Favourites({ ...props }) {
 		lastCardRef,
 		isFetching,
 		deleteFavourites,
-		saveScrollPosition,
+		handleGuitarClick,
 	} = props;
 
 	if ((!isFetching && favourites.length === 0) || isError) {
@@ -40,54 +38,42 @@ export function Favourites({ ...props }) {
 					favourites.map((guitar, index) => {
 						if (favourites.length === index + 1) {
 							return (
-								<Link
+								<ProductCard
 									key={guitar.id}
-									to={{
-										pathname: `${GUITAR_PATH_DIR}${guitar.id}`,
-										state: { from: location.pathname },
+									onClick={() => handleGuitarClick(guitar.id)}
+									refValue={lastCardRef}
+									brand={guitar.brand_name}
+									name={guitar.name}
+									image={guitar.main_img}
+									isFavourite={guitar.is_favourite}
+									onFavouriteClick={() => {
+										deleteFavourites({ guitarId: guitar.id });
 									}}
-									ref={lastCardRef}
-									onClick={saveScrollPosition}>
-									<ProductCard
-										brand={guitar.brand_name}
-										name={guitar.name}
-										image={guitar.main_img}
-										isFavourite={guitar.is_favourite}
-										onFavouriteClick={() => {
-											deleteFavourites({ guitarId: guitar.id });
-										}}
-										CardActions={
-											CompareActionContainer && (
-												<CompareActionContainer id={guitar.id} name={guitar.name} />
-											)
-										}
-									/>
-								</Link>
+									CardActions={
+										CompareActionContainer && (
+											<CompareActionContainer id={guitar.id} name={guitar.name} />
+										)
+									}
+								/>
 							);
 						} else {
 							return (
-								<Link
+								<ProductCard
 									key={guitar.id}
-									to={{
-										pathname: `${GUITAR_PATH_DIR}${guitar.id}`,
-										state: { from: location.pathname },
+									onClick={() => handleGuitarClick(guitar.id)}
+									brand={guitar.brand_name}
+									name={guitar.name}
+									image={guitar.main_img}
+									isFavourite={guitar.is_favourite}
+									onFavouriteClick={() => {
+										deleteFavourites({ guitarId: guitar.id });
 									}}
-									onClick={saveScrollPosition}>
-									<ProductCard
-										brand={guitar.brand_name}
-										name={guitar.name}
-										image={guitar.main_img}
-										isFavourite={guitar.is_favourite}
-										onFavouriteClick={() => {
-											deleteFavourites({ guitarId: guitar.id });
-										}}
-										CardActions={
-											CompareActionContainer && (
-												<CompareActionContainer id={guitar.id} name={guitar.name} />
-											)
-										}
-									/>
-								</Link>
+									CardActions={
+										CompareActionContainer && (
+											<CompareActionContainer id={guitar.id} name={guitar.name} />
+										)
+									}
+								/>
 							);
 						}
 					})

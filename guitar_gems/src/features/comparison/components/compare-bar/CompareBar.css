@@ -16,6 +16,12 @@
     &.open {
         transform: translateY(0);
 
+        .primary-button {
+            @media (max-width: 720px) {
+                width: 100% !important;
+            }
+        }
+
         .compare-bar__content {
             .icon-button {
                 margin-top: 0px;
@@ -28,10 +34,17 @@
         }
     }
 
+    .primary-button {
+        @media (max-width: 720px) {
+            width: 100% !important;
+        }
+    }
+
     @media (max-width: 720px) {
-        flex-direction: column;
+        flex-wrap: wrap;
         height: auto;
         padding: 0 20px;
+        justify-content: space-between;
         transform: translateY(107px);
     }
 
@@ -42,6 +55,7 @@
 
         @media (max-width: 720px) {
             gap: 12px;
+            justify-content: space-between;
         }
 
         .icon-button {
@@ -75,6 +89,7 @@
         p {
             font-size: 14px;
             color: var(--grey-color);
+            margin: 8px 0;
         }
     }
 

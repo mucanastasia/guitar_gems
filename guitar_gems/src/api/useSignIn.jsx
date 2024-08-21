@@ -25,9 +25,6 @@ export const useSignIn = () => {
 		mutationFn: signIn,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['user'] });
-			//queryClient.setQueryData({ queryKey: ['user'], data: data.user });
-
-			//TODO: Investigate why the redirect happens before the user is set. (PrivateRouteContainer.jsx)
 			setTimeout(() => {
 				history.replace(from);
 			}, 400);

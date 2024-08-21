@@ -14,8 +14,6 @@ export function CatalogueHeaderContainer() {
 	const searchRef = useRef();
 	const [query, setQuery] = useState('');
 
-	//TODO: Is it better to implement Instant search or as it is now?
-
 	useEffect(() => {
 		if (selectedFilters.query) {
 			setQuery(selectedFilters.query);

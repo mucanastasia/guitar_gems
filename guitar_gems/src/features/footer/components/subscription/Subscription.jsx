@@ -5,12 +5,12 @@ import { Form } from 'react-aria-components';
 
 import './Subscription.css';
 
-export function Subscription({ onSubmit }) {
+export function Subscription({ onSubmit, subscribeEmailRef, handleChange }) {
 	return (
 		<div className="subscribe-section">
-			<Text size="xlarge">Subscribe to our newsletters</Text>
+			<Text size="xlarge">Subscribe to our newsletter</Text>
 			<Form onSubmit={onSubmit}>
-				<TextField name="Email" />
+				<TextField name="Email" refValue={subscribeEmailRef} onChange={handleChange} />
 				<Button state="white" type="submit" width="none">
 					Subscribe
 				</Button>

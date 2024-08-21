@@ -12,19 +12,12 @@ export function IconButton({
 	onClick,
 	dataRec,
 	className = 'icon-button',
-	preventDefault = false,
 	disabled = false,
 }) {
 	return (
 		<Button
 			className={className}
 			onPress={onClick}
-			{...(preventDefault && {
-				onClick: (e) => {
-					e.preventDefault();
-					e.stopPropagation();
-				},
-			})}
 			data-rec={dataRec || undefined}
 			isDisabled={disabled}>
 			<Icon name={name} color={color} size={size} />

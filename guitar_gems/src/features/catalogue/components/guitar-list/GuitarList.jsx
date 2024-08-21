@@ -1,7 +1,5 @@
 import { Skeleton } from '@ui/skeleton';
 import { CARDS_PER_PAGE } from '../../constants/catalogue';
-import { GUITAR_PATH_DIR } from '@features/router/constants/routePaths';
-import { Link } from 'react-router-dom';
 import { ProductCard } from '@ui/product-card';
 import { EditorActionsContainer } from '../../containers/EditorActionsContainer';
 import './GuitarList.css';
@@ -14,7 +12,7 @@ export function GuitarList({ ...props }) {
 		lastCardRef,
 		handleFavourites,
 		isUserEditor,
-		saveScrollPosition,
+		handleGuitarClick,
 	} = props;
 
 	return (
@@ -25,64 +23,38 @@ export function GuitarList({ ...props }) {
 				guitars.map((guitar, index) => {
 					if (guitars.length === index + 1) {
 						return (
-							<Link
+							<ProductCard
 								key={guitar.id}
-								to={{
-									pathname: `${GUITAR_PATH_DIR}${guitar.id}`,
-									state: { from: location.pathname },
+								onClick={() => handleGuitarClick(guitar.id)}
+								refValue={lastCardRef}
+								brand={guitar.brand_name}
+								name={guitar.name}
+								image={guitar.main_img}
+								isFavourite={guitar.is_favourite}
+								onFavouriteClick={() => {
+									handleFavourites(guitar);
 								}}
-								ref={lastCardRef}
-								onClick={saveScrollPosition}>
-								<ProductCard
-									brand={guitar.brand_name}
-									name={guitar.name}
-									image={guitar.main_img}
-									isFavourite={guitar.is_favourite}
-									onFavouriteClick={() => {
-										handleFavourites(guitar);
-									}}
-									CardActions={
-										isUserEditor ? (
-											<EditorActionsContainer
-												guitarId={guitar.id}
-												saveScrollPosition={saveScrollPosition}
-											/>
-										) : (
-											false
-										)
-									}
-								/>
-							</Link>
+								CardActions={
+									isUserEditor ? <EditorActionsContainer guitarId={guitar.id} /> : false
+								}
+							/>
 						);
 					} else {
 						return (
-							<Link
+							<ProductCard
 								key={guitar.id}
-								to={{
-									pathname: `${GUITAR_PATH_DIR}${guitar.id}`,
-									state: { from: location.pathname },
+								onClick={() => handleGuitarClick(guitar.id)}
+								brand={guitar.brand_name}
+								name={guitar.name}
+								image={guitar.main_img}
+								isFavourite={guitar.is_favourite}
+								onFavouriteClick={() => {
+									handleFavourites(guitar);
 								}}
-								onClick={saveScrollPosition}>
-								<ProductCard
-									brand={guitar.brand_name}
-									name={guitar.name}
-									image={guitar.main_img}
-									isFavourite={guitar.is_favourite}
-									onFavouriteClick={() => {
-										handleFavourites(guitar);
-									}}
-									CardActions={
-										isUserEditor ? (
-											<EditorActionsContainer
-												guitarId={guitar.id}
-												saveScrollPosition={saveScrollPosition}
-											/>
-										) : (
-											false
-										)
-									}
-								/>
-							</Link>
+								CardActions={
+									isUserEditor ? <EditorActionsContainer guitarId={guitar.id} /> : false
+								}
+							/>
 						);
 					}
 				})
