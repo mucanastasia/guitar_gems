@@ -102,7 +102,6 @@ To run the project locally, follow these steps:
 
 or if you need to expose host for external devices:
     
-    ```bash
     npm run dev -- --host
 
 Once the development server is running, you can access the task board application in your browser at `http://localhost:5173/`
