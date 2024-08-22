@@ -10,9 +10,7 @@ export function FiltersDrawerContainer({ children }) {
 	const { handleTouchStart, handleTouchMove, handleTouchEnd } = useDrawerSwipe(setIsOpen);
 	const { updateURL } = useUrlState();
 
-	const handleFiltersClose = (e) => {
-		e.preventDefault();
-		e.stopPropagation();
+	const handleFiltersClose = () => {
 		setIsOpen(false);
 		handleResetFilters();
 		updateURL(initialFilters);

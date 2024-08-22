@@ -13,13 +13,15 @@ export function IconButton({
 	dataRec,
 	className = 'icon-button',
 	disabled = false,
+	dataTest,
 }) {
 	return (
 		<Button
 			className={className}
 			onPress={onClick}
 			data-rec={dataRec || undefined}
-			isDisabled={disabled}>
+			isDisabled={disabled}
+			data-test={dataTest}>
 			<Icon name={name} color={color} size={size} />
 		</Button>
 	);
