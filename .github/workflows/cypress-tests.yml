@@ -8,10 +8,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
       - name: Install dependencies
         run: |
           cd guitar_gems
           npm install
+          
+      - name: Start the development server
+        run: npm run dev
+        working-directory: guitar_gems
+        
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
