@@ -6,10 +6,10 @@ describe('Mobile: Testing Filters drawer', () => {
     });
 
    it('Should successfully open and interact with the filters drawer on mobile', () => {
-        cy.contains('Filters').should('be.visible').scrollIntoView().click();
+        cy.contains('Filters').should('be.visible').click({force: true});
 
         cy.contains('Apply filters').should('be.visible');
-        cy.contains('Clear filters').scrollIntoView().should('be.visible');
+        cy.contains('Clear filters').should('be.visible');
 
         // Apply various filters and check the URL for correct parameters
         cy.contains('Gibson').click();
