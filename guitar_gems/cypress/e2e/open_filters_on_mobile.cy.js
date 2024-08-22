@@ -6,7 +6,7 @@ describe('Mobile: Testing Filters drawer', () => {
     });
 
    it('Should successfully open and interact with the filters drawer on mobile', () => {
-        cy.contains('Filters').should('be.visible');
+        cy.contains('Filters').should('be.visible').scrollIntoView().click();
         cy.contains('Filters').click();
 
         cy.contains('Apply filters').should('be.visible');
