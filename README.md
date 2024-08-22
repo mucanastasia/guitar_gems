@@ -14,6 +14,8 @@ Check out the live demo of the project here: [guitar-gems.vercel.app](https://gu
 - [About the Project](#about-the-project)
 - [Features](#features)
 - [Installation](#installation)
+- [Testing](#testing)
+- [Deployment](#deployment)
 - [Feedback and Contact](#feedback-and-contact)
 
 
@@ -105,6 +107,35 @@ To run the project locally, follow these steps:
     npm run dev -- --host
 
 Once the development server is running, you can access the task board application in your browser at `http://localhost:5173/`
+
+## Testing
+
+This project uses Cypress for end-to-end testing.
+To run the tests, follow these steps:
+
+**Run all tests in headless mode:**
+```bash
+npm test
+```
+
+**Open the Cypress Test Runner:**
+```bash
+npm run cy:open  
+```
+
+## Deployment
+
+This project uses GitHub Actions to run tests and trigger deployments to Vercel in two environments: Staging (Vercel Preview) and Production.
+
+### Workflow
+- **Staging (Vercel Preview):**
+    - Deploys automatically on every branch push.
+    - Cypress tests run, but deployment proceeds even if tests fail.
+
+- **Production:**
+    - Deploys automatically on merges to the `master` branch.
+    - Cypress tests must pass for deployment to proceed. Failing tests block the deployment.
+
 
 ## Feedback and Contact
 
