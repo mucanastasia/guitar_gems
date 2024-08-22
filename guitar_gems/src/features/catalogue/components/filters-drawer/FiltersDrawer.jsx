@@ -1,4 +1,5 @@
 import { Button } from 'react-aria-components';
+import { IconButton } from '@ui/icon';
 import './FiltersDrawer.css';
 
 export function FiltersDrawer({ children, ...props }) {
@@ -22,9 +23,13 @@ export function FiltersDrawer({ children, ...props }) {
 				<header className="filters-buttons">
 					<Button onPress={handleFiltersApply}>Apply filters</Button>
 					<Button onPress={handleFiltersClear}>Clear filters</Button>
-					<span className="material-symbols-outlined" onClick={handleFiltersClose}>
-						close
-					</span>
+					<IconButton
+						size="medium"
+						className="drawer-close-button"
+						onClick={handleFiltersClose}
+						name="close"
+						dataTest="drawer-close-button"
+					/>
 				</header>
 				{children}
 			</div>

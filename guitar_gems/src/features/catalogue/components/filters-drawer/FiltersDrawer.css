@@ -28,13 +28,14 @@
         position: fixed;
         z-index: 1000;
 
-        span.material-symbols-outlined {
-            font-size: '28px';
+        .drawer-close-button {
             cursor: pointer;
             color: var(--primary-color);
             position: fixed;
-            top: 22px;
-            right: 28px;
+            top: 14px;
+            right: 24px;
+            padding: 4px;
+            border: none;
         }
 
         .react-aria-Button {
