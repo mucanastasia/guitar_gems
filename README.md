@@ -18,7 +18,6 @@ Check out the live demo of the project here: [guitar-gems.vercel.app](https://gu
 - [Deployment](#deployment)
 - [Feedback and Contact](#feedback-and-contact)
 
-
 ## Technology Stack
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -82,7 +81,7 @@ To organize the codebase effectively, I implemented a lightweight version of the
     - **Compare page:** The compare page displays detailed side-by-side comparisons of selected guitars (Max 3 guitars). This tool helps users make informed decisions by providing a clear overview of how each guitar stacks up against others.
     - **Compare bar:** The compare bar is a persistent feature that appears at the bottom of the screen, allowing users to quickly access and manage their comparison list as they browse the application. It provides an easy way to remove guitars and navigate to the full comparison page. The compare bar is closed by default (you will only see a small button with a compare arrows icon) but when you add a guitar to the empty comparison list, the bar will open to provide a little feedback to the action.
 
-## Instalation 
+## Installation 
 
 To run the project locally, follow these steps:
 
