@@ -1,6 +1,6 @@
 # GUITAR GEMS Catalogue project
 
-Welcome to the **Guitar Gems** project! This is a web application created to help guitar enthusiasts explore, compare, and discover various guitar models. The application was developed as part of my education in web development and its primary purpose was to enhance my skills and knowledge.
+Hey there, welcome to the **Guitar Gems** project! This web app lets guitar lovers explore, and compare different guitars. I developed it as part of my web development education, primarily to boost my skills and knowledge.
 
 ## Demo
 Check out the live demo of the project here: [guitar-gems.vercel.app](https://guitar-gems.vercel.app).
@@ -35,51 +35,51 @@ Check out the live demo of the project here: [guitar-gems.vercel.app](https://gu
 
 ## About the Project
 
-The project began with careful planning of content and design, where I used Figma [Guitar Gems figma file](https://www.figma.com/design/pOIGMbvhDm5Fr0u32oRnJa/Guitar_Gems?node-id=31-102506&t=HAKZMztejVTvMzPD-1) to conceptualize the layout, user flow, and overall aesthetic of the application. This initial phase helped establish a clear vision and ensured a user-friendly interface.
+The project kicked off with a planning phase where I mapped out the design and user flow using Figma[Guitar Gems figma file](https://www.figma.com/design/pOIGMbvhDm5Fr0u32oRnJa/Guitar_Gems?node-id=31-102506&t=HAKZMztejVTvMzPD-1). This step was crucial to clarify the application's structure, minimize future design decisions, and determine which UI components were necessary and reusable.
 
-For the backend and authentication, I chose Supabase, a powerful and scalable solution that integrates seamlessly with modern frontend frameworks. In Supabase, I designed a primary table to store all relevant information about each guitar, such as description, specifications and guitar features. Additionally, I created separate tables for brands, types of guitars, materials, and other information needed for filters. These tables are interconnected with the main guitar table through foreign keys, allowing for efficient data management and retrieval based on specific criteria (Like fetching only essential columns from the table that needed to be displayed on a particular page).
+I went with Supabase for the backend and authentification. The primary table `guitars` was designed to store all relevant information about each guitar and separate tables for brands, types of guitars, materials etc. to handle filters. Also, the Supabase client made it easy to write queries for fetching just the necessary data for a specific page, which was straightforward to read and understand.
 
-The application's frontend was built using React, with Vite serving as the build tool to streamline development. For the UI components, I opted for unstyled React Aria components, which allowed for maximum flexibility in design while ensuring accessibility standards. Data fetching was handled using React Query, which provided a robust solution for managing data and caching. This approach allowed for the implementation of infinite scroll with scroll restoration.
+The frontend is powered by React, and I used Vite to speed up development. I chose unstyled React Aria components for the UI to keep things flexible and accessible. Data fetching is handled by React Query, which smooths interactions on the site, such as using caching to implement infinite scrolling and scroll restoration.
 
-To organize the codebase effectively, I implemented a lightweight version of the Feature-Sliced Design approach (with a huge help from my mentor). This methodology helped maintain a modular and scalable structure, making it easier to manage and extend the project as it grew. Additionally, I adhered to best practices by incorporating the Presentational and Container pattern, and Composition Components pattern, all of which contributed to a clean and maintainable codebase.
+The code is organized following the Feature-Sliced Design (lightweight version), which was a game-changer recommended by my mentor. This setup, combined with solid coding patterns like Presentational and Container components, along with Composition Components, really helps in keeping the code clean and scalable — super handy as the project grows.
 
 ## Features
 
-- **User Roles:** Guitar Gems supports three distinct user roles:
+- **User Roles:**
 
-    - **Non-authenticated users** can explore the guitar catalogue, view detailed product pages, and add guitars to a comparison list and compare them.
-    - **Authenticated users** have additional features, including the ability to add or remove guitars from their favourites (My Picks) and access a dedicated My Picks page where they can use the comparison feature.
-    - **Editors** have full access to all features, including the ability to add new guitars to the catalogue, edit existing entries, and delete guitars.
+    - **Non-authenticated users** can browse the guitar catalogue, check out guitar details, and compare guitars.
+    - **Authenticated users** get extra perks like adding or removing guitars from their favourites and accessing the 'My Picks'(favourites) page where they can use the comparison feature.
+    - **Editors**  can do it all: add, edit, and delete guitars in the catalogue (from the catalogue and the guitar page)
 
-- **Authentication:** Users can <i>SIGN IN</i> or <i>SIGN UP</i> to access additional features, with secure authentication managed by Supabase. 
+- **Authentication:** <i>SIGN IN</i> or <i>SIGN UP</i> for extra features, with all the security handled by Supabase. 
 
-  **NOTE:** You can use fake emails for registration, you will NOT receive any emails from the app.
+  **NOTE:** Feel free to use fake emails for signing up; NO emails will be sent.
 
 - **Catalogue page:** 
 
-    - **Pagination with infinite scroll:** The catalogue page implements infinite scroll, allowing users to continuously browse through the guitar listings without needing to manually click through pages.
-    - **Scroll restoration:** As users scroll, more guitars are loaded seamlessly, enhancing the browsing experience. Additionally, if a user navigates to a product page (or an editor clicks edit from the catalogue) and then returns, the page restores the previous scroll position, ensuring a smooth and intuitive user experience.
-    - **Filters and Search in the catalogue:** Users can filter the catalogue by various criteria such as brand, type, and material, or use the search function to quickly find specific guitars. These tools make it easier to narrow down the options and find the perfect guitar.
-    - **Product Card actions:** Authenticated users can add or remove a guitar from their favourites. Editors can also edit or delete a guitar. A non-authenticated users see an "add to favourites" heart but they will be redirected to the sign-in page by clicking on it.
+    - **Infinite scroll:** Just keep scrolling to see more guitars—no need to click through pages.
+    - **Scroll restoration:** If you leave a page and come back, it remembers where you were.
+    - **Filters and Search in the catalogue:** Easily find guitars by brand, type, or material, you can even combine search and filters. That will help to find the perfect guitar.
+    - **Product Card actions:** Authenticated users can add or remove a guitar from their favourites. Editors can also edit or delete a guitar. Non-authenticated users see an "add to favourites" heart but they will be redirected to the sign-in page by clicking on it.
     
-- **Product page:** Each guitar in the catalogue has its own detailed product page, where users can view comprehensive information about the model with a stunning picture of the guitar. The product page also provides options for adding the guitar to the comparison list (they will appear in the Compare Bar at the bottom of the page) or to favourites for authenticated users. And <i>Editors</i> can edit or delete a guitar directly from the product page.
+- **Product page:** Each guitar has a detailed page with all the info you need with a stunning picture of the guitar and options to add it to your favourites (for authenticated users) or comparison list(they will appear in the Compare Bar at the bottom of the page). And <i>Editors</i> can edit or delete a guitar directly from the product page.
 
-- **My Picks page:** This page is exclusive to authenticated users, allowing them to view and manage their favourite guitars. Users can add guitars from the My Picks page to the comparison tool, making it easier to evaluate their top choices.
+- **My Picks page:** A place for logged-in users to keep tabs on their favourite guitars and easily compare them.
 
 - **Editor-Only Features:**
 
-   - **Adding a new guitar:** Editors have the ability to add new guitars to the catalogue through a dedicated form and uploading a picture of a guitar.
-   - **Editing guitars:** Editors can modify existing guitar entries to correct information or update specifications.
-   - **Delete guitars:** Editors can remove guitars from the catalogue when they are no longer relevant.
+   - **Adding a new guitar:** Add guitars by filling out a form and uploading a photo.
+   - **Editing guitars:** Update guitar details.
+   - **Delete guitars:** Remove guitars from the catalogue when they are no longer needed.
 
 
-- **Dark/Light Mode:** The application supports both dark and light themes. It initially respects the user's system preferences but also allows users to toggle the theme via a header control. Once set, the app remembers the user's theme preference.
+- **Responsive Design:** Looks great on both desktop and mobile, ensuring everyone gets a smooth experience.
 
-- **Responsive Design:** Guitar Gems is fully responsive, offering an optimized experience across desktops, mobiles, and other screen sizes. The responsive design ensures that the application is accessible and functional on a wide range of devices.
+- **Dark/Light Mode:**  Switch between dark and light mode. The app initially respects your system preferences but you can easily toggle the theme via a header control. Once set, the app remembers your theme preference.
 
 - **BONUS feature: Compare guitars:** 
-    - **Compare page:** The compare page displays detailed side-by-side comparisons of selected guitars (Max 3 guitars). This tool helps users make informed decisions by providing a clear overview of how each guitar stacks up against others.
-    - **Compare bar:** The compare bar is a persistent feature that appears at the bottom of the screen, allowing users to quickly access and manage their comparison list as they browse the application. It provides an easy way to remove guitars and navigate to the full comparison page. The compare bar is closed by default (you will only see a small button with a compare arrows icon) but when you add a guitar to the empty comparison list, the bar will open to provide a little feedback to the action.
+    - **Compare page:** View side-by-side comparisons of up to three guitars to help make your choice easier.
+    - **Compare bar:** A handy tool at the bottom of your screen for managing comparisons. It pops open when you start comparing guitars.
 
 ## Installation 
 
@@ -138,11 +138,10 @@ This project uses GitHub Actions to run tests and trigger deployments to Vercel 
 
 ## Feedback and Contact
 
-This project was developed for educational purposes and to demonstrate my front-end development skills. If you have any suggestions or feedback, please feel free to contact me via email at [mucanastasia@gmail.com](mailto:mucanastasia@gmail.com).
+This project is just a showcase of my front-end skills and was made for learning, so I’d love to hear from you! Shoot at [mucanastasia@gmail.com](mailto:mucanastasia@gmail.com) or send me a DM on [Twitter](https://x.com/mucanastasia).
 
 ## Thank you
 
-Thank you for taking the time to explore my Guitar Gems project.
-This journey into front-end development has been both challenging and rewarding, and this project reflects my continuous dedication to honing my skills. I'm looking forward to continuing to learn and grow in the world of web development.
+Thanks for checking out my Guitar Gems project! It’s been a fun and challenging ride, and it really shows how much I'm committed to levelling up my frontend skills. Can’t wait to keep learning and growing in the web development world!
 
 Happy coding! 🚀
