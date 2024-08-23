@@ -31,11 +31,12 @@ Check out the live demo of the project here: [guitar-gems.vercel.app](https://gu
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![Context-API](https://img.shields.io/badge/Context--Api-000000?style=for-the-badge&logo=react)
 ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
 
 
 ## About the Project
 
-The project kicked off with a planning phase where I mapped out the design and user flow using Figma[Guitar Gems figma file](https://www.figma.com/design/pOIGMbvhDm5Fr0u32oRnJa/Guitar_Gems?node-id=31-102506&t=HAKZMztejVTvMzPD-1). This step was crucial to clarify the application's structure, minimize future design decisions, and determine which UI components were necessary and reusable.
+The project kicked off with a planning phase where I mapped out the design and user flow using Figma [Guitar Gems figma file](https://www.figma.com/design/pOIGMbvhDm5Fr0u32oRnJa/Guitar_Gems?node-id=31-102506&t=HAKZMztejVTvMzPD-1). This step was crucial to clarify the application's structure, minimize future design decisions, and determine which UI components were necessary and reusable.
 
 I went with Supabase for the backend and authentification. The primary table `guitars` was designed to store all relevant information about each guitar and separate tables for brands, types of guitars, materials etc. to handle filters. Also, the Supabase client made it easy to write queries for fetching just the necessary data for a specific page, which was straightforward to read and understand.
 
@@ -49,15 +50,15 @@ The code is organized following the Feature-Sliced Design (lightweight version),
 
     - **Non-authenticated users** can browse the guitar catalogue, check out guitar details, and compare guitars.
     - **Authenticated users** get extra perks like adding or removing guitars from their favourites and accessing the 'My Picks'(favourites) page where they can use the comparison feature.
-    - **Editors**  can do it all: add, edit, and delete guitars in the catalogue (from the catalogue and the guitar page)
+    - **Editors** can do it all: add, edit, and delete guitars in the catalogue (from the catalogue and the guitar page)
 
 - **Authentication:** <i>SIGN IN</i> or <i>SIGN UP</i> for extra features, with all the security handled by Supabase. 
 
-  **NOTE:** Feel free to use fake emails for signing up; NO emails will be sent.
+  ❗️**NOTE:** Feel free to use fake emails for signing up; NO emails will be sent.
 
 - **Catalogue page:** 
 
-    - **Infinite scroll:** Just keep scrolling to see more guitars—no need to click through pages.
+    - **Infinite scroll:** Just keep scrolling to see more guitars — no need to click through pages.
     - **Scroll restoration:** If you leave a page and come back, it remembers where you were.
     - **Filters and Search in the catalogue:** Easily find guitars by brand, type, or material, you can even combine search and filters. That will help to find the perfect guitar.
     - **Product Card actions:** Authenticated users can add or remove a guitar from their favourites. Editors can also edit or delete a guitar. Non-authenticated users see an "add to favourites" heart but they will be redirected to the sign-in page by clicking on it.
