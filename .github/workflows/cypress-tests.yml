@@ -1,6 +1,6 @@
 name: End-to-end tests
 
-on: 
+on:
   workflow_call:
 
 jobs:
@@ -9,14 +9,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Install dependencies
         working-directory: guitar_gems
         run: npm install
-        
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           working-directory: guitar_gems
-          wait-on: "http://localhost:5173"
+          wait-on: 'http://localhost:5173'
           start: npm run dev
+          browser: chrome
