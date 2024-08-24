@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "cy:open": "cypress open",
-    "test": "cypress run"
+    "test": "cypress run  --browser chrome"
   },
   "dependencies": {
     "@internationalized/date": "^3.5.4",
