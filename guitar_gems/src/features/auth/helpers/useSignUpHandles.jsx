@@ -66,8 +66,8 @@ export const useSignUpHandles = ({ ...props }) => {
 		setErrorMessage({ ...errorMessage, general: '', password: '' });
 		passwordRef.current.value = e.target.value;
 		if (
-			confirmedPasswordRef.current.value >= 6 &&
-			e.target.value >= 6 &&
+			confirmedPasswordRef.current.value.length >= 6 &&
+			e.target.value.length >= 6 &&
 			e.target.value === confirmedPasswordRef.current.value
 		) {
 			setErrorMessage({ ...errorMessage, confirmedPass: '', password: '' });
@@ -97,11 +97,14 @@ export const useSignUpHandles = ({ ...props }) => {
 		setErrorMessage({ ...errorMessage, general: '', confirmedPass: '' });
 		confirmedPasswordRef.current.value = e.target.value;
 		if (
-			passwordRef.current.value >= 6 &&
-			e.target.value >= 6 &&
+			passwordRef.current.value.length >= 6 &&
+			e.target.value.length >= 6 &&
 			e.target.value === passwordRef.current.value
 		) {
-			setErrorMessage({ ...errorMessage, confirmedPass: '', password: '' });
+			console.log('handle confirmed: resettting error message');
+			setErrorMessage((prev) => {
+				return { ...prev, confirmedPass: '', password: '' };
+			});
 		}
 	};
 
