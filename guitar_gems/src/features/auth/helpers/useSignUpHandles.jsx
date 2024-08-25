@@ -101,7 +101,6 @@ export const useSignUpHandles = ({ ...props }) => {
 			e.target.value.length >= 6 &&
 			e.target.value === passwordRef.current.value
 		) {
-			console.log('handle confirmed: resettting error message');
 			setErrorMessage((prev) => {
 				return { ...prev, confirmedPass: '', password: '' };
 			});
