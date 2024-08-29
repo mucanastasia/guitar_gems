@@ -25,7 +25,7 @@ export function PhotoUploaderContainer() {
 			return;
 		}
 		setUploadingPhoto(true);
-		const imgName = `${Date.now()}.${imgExtension}`;
+		const imgName = `${Date.now()}.webp`;
 		const imgPath = `${imgName}`;
 		await mutate(
 			{ imgPath, img },
