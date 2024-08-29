@@ -5,6 +5,17 @@ Hey there, welcome to the **Guitar Gems** project! This web app lets guitar love
 ## Demo
 Check out the live demo of the project here: [guitar-gems.vercel.app](https://guitar-gems.vercel.app).
 
+### Users
+**USER:**
+    ```user_marlin@gmail.com```
+    user123
+
+
+**EDITOR:**
+    ```editor_alwin@gmail.com```
+    editorAlwin123
+
+
 <img width="70%" alt="Guitar Gems Catalogue screenshot" src="https://github.com/mucanastasia/mucanastasia/blob/949a757bf41b53da368ad56ccb5abd88b64ababd/50147119-a87714acc37e29d3dc368fa57423156a.png" />
 
 ## Table of Contents
