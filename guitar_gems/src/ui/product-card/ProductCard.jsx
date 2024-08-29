@@ -38,7 +38,12 @@ export function ProductCard({ ...props }) {
 				{loading ? (
 					<Spinner />
 				) : (
-					<img className="product-card-img" src={image} alt={`${brand} ${name} image`} />
+					<img
+						className="product-card-img"
+						src={image}
+						loading="lazy"
+						alt={`${brand} ${name} image`}
+					/>
 				)}
 				<Text size="small">{brand}</Text>
 				<HeadingSmall text={name} />
