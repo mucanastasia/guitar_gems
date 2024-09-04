@@ -23,6 +23,13 @@
             font-size: 16px;
             text-transform: uppercase;
         }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+            -webkit-text-fill-color: var(--primary-color);
+            -webkit-box-shadow: 0 0 0 30px var(--bg-secondary-color) inset;
+        }
     }
 }
 
